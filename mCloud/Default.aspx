@@ -95,6 +95,7 @@
 </nav>
 
 <header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">
+   <!-- <header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#0d0f4e,rgba(60, 200, 232, 0.81));">-->
     <div class="container" style="background: none;">
         <div class="row">
             <div class="col-sm-7">
@@ -106,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <div class="header-content">
                     <div class="device-container" style="background: none;">
                         <div class="device-mockup iphone6_plus portrait white">
@@ -385,8 +386,8 @@
 </footer>
 
 <div class="md-modal md-effect-4" id="modal-4" tabindex="-1" role="dialog" style="padding: 0px; width: 39%;">
-    <div class="md-content" role="document" style="padding: 11px;">
-        <div class="md-content" style="padding: 0px;">
+    <div class="md-content" role="document" style="padding: 11px;background: rgba(0, 108, 143, 0.21);">
+        <div class="md-content" style="padding: 0px;background: #006c8f;">
             <div class="modal-header" style="padding: 9px;">
                 <h4 class="modal-title" id="defaultModalLabel">Create Account</h4>
             </div>
@@ -413,13 +414,13 @@
                                 <div class="form-line">
                                     <select id="IsdCode" runat="server" class="form-control">
                                         <option>+91 - India</option>
-                                        <%--<option>+92 - Pakistan</option>
+                                    <option>+92 - Pakistan</option>
 									<option>+93 - China</option>
 									<option>+93 - Russia</option>
 									<option>+94 - Bhutan</option>
 									<option>+95 - America</option>
 									<option>+96 - London</option>
-									<option>+97 - England</option>--%>
+									<option>+97 - England</option>
                                     </select>
                                     <input id="txtMob" runat="server" type="text" class="form-control" placeholder="Mobile No." maxlength="10" required />
                                 </div>

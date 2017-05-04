@@ -75,10 +75,10 @@ namespace mCloud
 
         protected void btncreate_ServerClick(object sender, EventArgs e)
         {
-            Session["Email"] = txtEmail.Value;
-            Session["isdCode"] = IsdCode.Value;
-            Session["Mob"] = txtMob.Value;
-            sendmail();
+           // Session["Email"] = txtEmail.Value;
+           // Session["isdCode"] = IsdCode.Value;
+           // Session["Mob"] = txtMob.Value;
+           // sendmail();
             Response.Redirect("FrontPage/Activity.aspx");
         }
 

@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -184,6 +185,30 @@
     <Content Include="FrontPage\vendor\jquery\jquery.js" />
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap.css" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Login\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Login\assets\bootstrap\js\bootstrap.js" />
+    <Content Include="Login\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Login\assets\bootstrap\js\npm.js" />
+    <Content Include="Login\assets\css\form-elements.css" />
+    <Content Include="Login\assets\css\style.css" />
+    <Content Include="Login\assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Login\assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Login\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Login\assets\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Login\assets\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Login\assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Login\assets\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Login\assets\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Login\assets\ico\favicon.png" />
+    <Content Include="Login\assets\img\bg.jpg" />
+    <Content Include="Login\assets\js\jquery-1.11.1.js" />
+    <Content Include="Login\assets\js\jquery-1.11.1.min.js" />
+    <Content Include="Login\assets\js\placeholder.js" />
+    <Content Include="Login\assets\js\scripts.js" />
     <Content Include="preInit\AboutUs.aspx" />
     <Content Include="preInit\ContactUs.aspx" />
     <Content Include="preInit\css\new-age.css" />
@@ -317,6 +342,7 @@
     <Content Include="preInit\vendor\jquery\jquery.js" />
     <Content Include="preInit\vendor\jquery\jquery.min.js" />
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="preInit\Activity.aspx" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -3634,8 +3660,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\mCloudDAL.cs" />
-    <Content Include="App_Code\mCloudAL.cs" />
+    <Compile Include="App_Code\mCloudDAL.cs" />
+    <Compile Include="App_Code\mCloudAL.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3698,6 +3724,13 @@
     </Compile>
     <Compile Include="preInit\Terms.aspx.designer.cs">
       <DependentUpon>Terms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Activity.aspx.cs">
+      <DependentUpon>Activity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Activity.aspx.designer.cs">
+      <DependentUpon>Activity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -4100,6 +4133,43 @@
     <Content Include="UserPage\scss\_tooltippopovers.scss" />
     <Content Include="UserPage\scss\_variables.scss" />
     <Content Include="UserPage\scss\_waveseffect.scss" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Login\assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Login\assets\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Login\assets\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Login\assets\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Login\assets\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Login\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Login\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Login\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Login\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Login\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Login\assets\font-awesome\less\animated.less" />
+    <Content Include="Login\assets\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Login\assets\font-awesome\less\core.less" />
+    <Content Include="Login\assets\font-awesome\less\fixed-width.less" />
+    <Content Include="Login\assets\font-awesome\less\font-awesome.less" />
+    <Content Include="Login\assets\font-awesome\less\icons.less" />
+    <Content Include="Login\assets\font-awesome\less\larger.less" />
+    <Content Include="Login\assets\font-awesome\less\list.less" />
+    <Content Include="Login\assets\font-awesome\less\mixins.less" />
+    <Content Include="Login\assets\font-awesome\less\path.less" />
+    <Content Include="Login\assets\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Login\assets\font-awesome\less\stacked.less" />
+    <Content Include="Login\assets\font-awesome\less\variables.less" />
+    <Content Include="Login\assets\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_animated.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_core.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_icons.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_larger.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_list.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_mixins.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_path.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_stacked.scss" />
+    <Content Include="Login\assets\font-awesome\scss\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

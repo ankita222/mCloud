@@ -37,7 +37,6 @@
 <body id="page-top" style="overflow: visible;">
 <form id="form1" runat="server">
 <div>
-<asp:ContentPlaceHolder ID="ContentPlaceHolderHeader" runat="server">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container" style="background: none;">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -73,6 +72,8 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+<asp:ContentPlaceHolder ID="ContentPlaceHolderHeader" runat="server">
+    
 
 
 </asp:ContentPlaceHolder>
@@ -84,6 +85,10 @@
 
 <div class="clearfix"></div>
 <asp:ContentPlaceHolder ID="ContentPlaceHolderFooter" runat="server">
+    
+
+</asp:ContentPlaceHolder>
+
     <footer>
         <div class="container" style="background: none;">
             <p style="color: white; font-size: 14px;">&copy; 2017 MoilCloud. All Rights Reserved.</p>
@@ -100,8 +105,6 @@
             </ul>
         </div>
     </footer>
-
-</asp:ContentPlaceHolder>
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
