@@ -34,7 +34,7 @@
 </asp:ContentPlaceHolder>
 
 </head>
-<body id="page-top" style="overflow: visible;">
+<body id="page-top" style="overflow:hidden;">
 <form id="form1" runat="server">
 <div>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -46,7 +46,7 @@
                 </button>
 
 
-                <img src="img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" />
+               <a href="../Default.aspx"> <img src="img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,16 +55,16 @@
                     <li>
                         <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                        <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal" style="color: black;">Sign up</a>
+                        <a class="md-trigger" data-modal="modal-4" href="../Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="FrontPage/Login.aspx" style="color: black;">Sign In</a>
+                        <a class="page-scroll" href="#" style="color: black;font-weight:700;">Sign In</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#" style="color: black;">Features</a>
+                        <a class="page-scroll" href="#" style="color: black;font-weight:700;">Features</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#" style="color: black;">Contact</a>
+                        <a class="page-scroll" href="ContactUs.aspx" style="color: black;font-weight:700;">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -94,13 +94,13 @@
             <p style="color: white; font-size: 14px;">&copy; 2017 MoilCloud. All Rights Reserved.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="FrontPage/Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
+                    <a href="Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
                 </li>
                 <li>
-                    <a href="FrontPage/Privacy Policy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
+                    <a href="PrivacyPolicy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
                 </li>
                 <li>
-                    <a href="FrontPage/Terms Of Uses.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
+                    <a href="#" style="color: white; font-size: 12px;">Terms Of Use</a>
                 </li>
             </ul>
         </div>

@@ -40,12 +40,30 @@
 		
 	<script src="modal/js/modernizr.custom.js"></script>
 
+
+    <style>
+        .chooseplan
+        {
+            box-shadow: 2px 2px 2px 2px rgba(78, 7, 7, 0.27);
+            border-top-left-radius: 29px;
+            border-bottom-left-radius: 28px;
+            padding-top: 10px;
+            color: black;
+            font-weight: 700;
+            height:57px;
+            background: rgb(234, 243, 231);  /* fallback for old browsers */
+           
+        }
+    </style>
+
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderHeader" runat="server">
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-    <section id="features" class="features" style="background: url(img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));margin-top:57px;">
+ 
+    <section id="features" class="features" style="background: url(img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">
 		
 		<div class="container" style="background: none;">
 		   <div class="row">
@@ -73,7 +91,88 @@
 				</div>
             </div>
 
-			<div class="row" style="background:url(img/cibbva-cloud-computing.gif);padding: 23px; background-size:cover;" runat="server" id="divacvity">
+           
+              	<div class="row" style="padding: 23px; background-size:cover;background:rgba(226, 226, 226, 0.28);" runat="server">
+                      <div class="col-lg-6">
+                          <div class="form-box" style="margin-top:0px;">
+								<!--<div class="form-top" style="height: 54px;background: rgba(210, 91, 91, 0.72);">
+									<div class="form-top-left" style="padding-top: 11px;">
+										<h3 style="color: #fff;line-height: 20px;">Choose Plans</h3>
+									</div>
+									
+								</div>-->
+                           
+                              <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Choose Plan </h3>
+								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
+                                    <asp:Repeater runat="server" ID="rptselectplan"  >
+                                        <ItemTemplate>
+                                            <div class="chooseplan">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <div runat="server" id="divprice" >₹: <%#Eval("Amount") %></div>
+                                           
+                                        </div>
+
+                                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 8px;padding-right: 2px;">
+                                               <span runat="server" id="planandduration"><%#Eval("Detail") %></span>
+                                        </div>
+
+                                          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                              <asp:Button CommandArgument='<%#Eval("Detail") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
+                                        </div>
+
+									</div>
+                                         <div style="height:9px;"></div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+									
+								</div>
+                                      
+							</div>
+
+                      </div>
+
+                 <div class="col-sm-6">
+                    <div class="form-box" style="margin-top:0px;">
+								<!--<div class="form-top" style="height: 54px;background: rgba(210, 91, 91, 0.72);">
+									<div class="form-top-left" style="padding-top: 11px;">
+										<h3 style="color: #fff;line-height: 20px;">Account Information</h3>
+										
+									</div>
+									
+								</div>-->
+                        <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Account Information</h3>
+                           <h3 style="color: #fff;line-height: 20px;font-weight: 700;" runat="server" id="h3showplan"></h3>
+								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
+									<div role="form" action="" method="post" class="login-form">
+										<div class="form-group" style="margin-bottom: 6px;">
+											<label class="sr-only" for="form-username">Email</label>
+											<input type="text" name="form-username" runat="server" id="Text1" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+										</div>
+										
+										<div class="form-group" style="margin-bottom: 6px;">
+											<label class="sr-only" for="form-username">Mobile Number</label>
+										<input type="text" name="form-username" runat="server" id="Text2" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
+										<input type="text" name="form-username" runat="server" id="Text3" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;"/>
+										</div>
+
+										<div class="form-group" style="margin-bottom: 6px;">
+											<label class="sr-only" for="form-username">Name</label>
+											<input type="text" name="form-username" runat="server" id="Text4" placeholder="First Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+										</div>
+										<div class="form-group" style="margin-bottom: 6px;">
+											<label class="sr-only" for="form-password">Password</label>
+											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
+											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+										</div>
+                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud Terms of Use and Privacy Policy</span> 
+										<button type="submit" class="btn" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>
+									</div>
+								</div>
+							</div>
+                </div>
+        </div>
+
+			<div class="row" style="padding: 23px; background-size:cover;" runat="server" id="divacvity" visible="false">
 				 <div class="col-sm-2"></div>
 						<div class="col-sm-4">
 							<div class="form-box" style="margin-top:0px;">
@@ -217,6 +316,16 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderFooterScript" runat="server">
 
+     <script type="text/javascript">
+       var checker = document.getElementById('chk');
+        var sendbtn = document.getElementById('ContentPlaceHolderContent_btncfrm');
+         checker.onchange = function() {
+          
+          sendbtn.removeAttribute('disabled')
+           
+        };
+
+     </script>
      <!-- Javascript -->
 		<script src="../Login/assets/js/jquery-1.11.1.min.js"></script>
 		<script src="../Login/assets/bootstrap/js/bootstrap.min.js"></script>

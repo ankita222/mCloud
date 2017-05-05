@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <title>Contact Us</title>
+    <style>
+        body{
+            overflow:hidden;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
@@ -28,44 +33,39 @@
                         <div id="sign_up" method="POST">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="material-icons"></i>
+                                    <i class="fa fa-user" style="font-size: 18px;width: 14px;"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="namesurname" placeholder="Full Name" required autofocus>
+                                    <input type="text" class="form-control" name="namesurname" placeholder="Full Name" required autofocus/>
                                 </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="material-icons"></i>
+                                    <i class="fa fa-envelope"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="email" class="form-control" name="email" placeholder="Email Address">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address"/>
                                 </div>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="material-icons"></i>
+                                    <i class="fa fa-mobile" style="font-size: 17px;width: 14px;"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="number" class="form-control" name="number" placeholder="Mobile No." required />
+                                    <input type="text" class="form-control" name="number" placeholder="Mobile No." required />
                                 </div>
                             </div>
-
-
-
+                            <br />
                             <div class="form-group">
-                                <span class="input-group-addon">
-                                    <i class="material-icons"></i>
-                                    
-                                </span>
+                               
                                 <div class="form-line">
                                     <asp:TextBox ID="txtMsg" CssClass="form-control"  placeholder="Message" TextMode="MultiLine" runat="server"></asp:TextBox>
                                     <%--<textarea name="txtMsg" cols="40" placeholder="Message" required class="form-control" rows="5"></textarea>--%>
                                 </div>
                             </div>
 
-                            <asp:Button ID="btnSubmit" CssClass="btn btn-block btn-lg bg-pink waves-effec" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnSubmit" CssClass="btn btn-info" runat="server" Text="Submit" OnClick="btnSubmit_Click" style="border-radius: 5px;"/>
 
 
                         </div>
@@ -84,6 +84,7 @@
 <div class="row">
 </div>
 </div>
+    </div>
 </section>
 </asp:Content>
 

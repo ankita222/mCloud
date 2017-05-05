@@ -343,6 +343,7 @@
     <Content Include="preInit\vendor\jquery\jquery.min.js" />
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="preInit\Activity.aspx" />
+    <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -3731,6 +3732,13 @@
     </Compile>
     <Compile Include="preInit\Activity.aspx.designer.cs">
       <DependentUpon>Activity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.designer.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

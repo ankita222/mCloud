@@ -73,19 +73,19 @@
                 <li>
                     <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                    <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Sign up</a>
+                    <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal" style="font-weight:700;">Sign up</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="FrontPage/Login.aspx">Sign In</a>
+                    <a class="page-scroll" href="FrontPage/Login.aspx" style="font-weight:700;">Sign In</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#features">Price & Plans</a>
+                    <a class="page-scroll" href="#features" style="font-weight:700;">Price & Plans</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="FrontPage/Contact_Us.aspx">Contact</a>
+                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight:700;">Contact</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="FrontPage/About_Us.aspx">About Us</a>
+                    <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight:700;">About Us</a>
                 </li>
             </ul>
         </div>
@@ -103,7 +103,7 @@
                     <div class="header-content-inner">
                         <img src="FrontPage/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />
                         <h1>All-In-One Online Cloud Storage , Easy and Secure Backups</h1>
-                        <a href="#" class="btn btn-outline btn-xl page-scroll">Start Now</a>
+                        <a href="#" class="btn btn-outline btn-xl page-scroll">Download Now</a>
                     </div>
                 </div>
             </div>
@@ -370,13 +370,13 @@
 
 <footer>
     <div class="container" style="background: none;">
-        <p style="color: white; font-size: 14px;">&copy; 2017 Techizas Infotech. All Rights Reserved.</p>
+        <p style="color: white; font-size: 14px;">&copy; 2017 Moil Cloud. All Rights Reserved</p>
         <ul class="list-inline">
             <li>
-                <a href="FrontPage/Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
+                <a href="preInit/Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
             </li>
             <li>
-                <a href="FrontPage/Privacy Policy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
+                <a href="preInit/PrivacyPolicy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
             </li>
             <li>
                 <a href="FrontPage/Terms Of Uses.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
@@ -386,8 +386,8 @@
 </footer>
 
 <div class="md-modal md-effect-4" id="modal-4" tabindex="-1" role="dialog" style="padding: 0px; width: 39%;">
-    <div class="md-content" role="document" style="padding: 11px;background: rgba(0, 108, 143, 0.21);">
-        <div class="md-content" style="padding: 0px;background: #006c8f;">
+    <div class="md-content" role="document" style="padding: 11px;">
+        <div class="md-content" style="padding: 0px;">
             <div class="modal-header" style="padding: 9px;">
                 <h4 class="modal-title" id="defaultModalLabel">Create Account</h4>
             </div>
