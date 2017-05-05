@@ -76,7 +76,7 @@
                     <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal" style="font-weight:700;">Sign up</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="FrontPage/Login.aspx" style="font-weight:700;">Sign In</a>
+                    <a class="page-scroll" href="preInit/Login.aspx" style="font-weight:700;">Sign In</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#features" style="font-weight:700;">Price & Plans</a>
@@ -94,8 +94,8 @@
     <!-- /.container-fluid -->
 </nav>
 
-<header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">
-   <!-- <header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#0d0f4e,rgba(60, 200, 232, 0.81));">-->
+  <!--<header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">-->
+  <header style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
     <div class="container" style="background: none;">
         <div class="row">
             <div class="col-sm-7">
@@ -189,58 +189,7 @@
                 </div>
             </div>
         </div>
-        <%--<div class="row">
-	<div class="col-md-4">
-		<div class="device-container">
-			<div class="device-mockup iphone6_plus portrait white">
-				<div class="device">
-					<div class="screen">
-						<!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-						<img src="img/demo-screen-1.jpg" class="img-responsive" alt=""> </div>
-					<div class="button">
-						<!-- You can hook the "home button" to some JavaScript events or just remove it -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-8">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="feature-item">
-						<i class="icon-screen-smartphone text-primary"></i>
-						<h3>Device Mockups</h3>
-						<p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="feature-item">
-						<i class="icon-camera text-primary"></i>
-						<h3>Flexible Use</h3>
-						<p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="feature-item">
-						<i class="icon-present text-primary"></i>
-						<h3>Free to Use</h3>
-						<p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="feature-item">
-						<i class="icon-lock-open text-primary"></i>
-						<h3>Open Source</h3>
-						<p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>--%>
+    
 
         <div class="container" style="background: none;">
             <div class="row">
@@ -379,15 +328,15 @@
                 <a href="preInit/PrivacyPolicy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
             </li>
             <li>
-                <a href="FrontPage/Terms Of Uses.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
+                <a href="preInit/Terms.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
             </li>
         </ul>
     </div>
 </footer>
 
 <div class="md-modal md-effect-4" id="modal-4" tabindex="-1" role="dialog" style="padding: 0px; width: 39%;">
-    <div class="md-content" role="document" style="padding: 11px;">
-        <div class="md-content" style="padding: 0px;">
+    <div class="md-content" role="document" style="padding: 11px;background: linear-gradient(0deg, rgba(0, 0, 0, 0.41), #02cbdf);">
+        <div class="md-content" style="padding: 0px;background: linear-gradient(70deg, #645f7b, #00b2c3);">
             <div class="modal-header" style="padding: 9px;">
                 <h4 class="modal-title" id="defaultModalLabel">Create Account</h4>
             </div>
@@ -400,7 +349,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input id="txtEmail" runat="server" type="email" class="form-control" name="email" placeholder="Email Address" required />
+                                    <input id="txtEmail" runat="server" type="email" class="form-control" name="email" placeholder="Email Address"  />
                                 </div>
                             </div>
                         </div>

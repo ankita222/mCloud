@@ -28,7 +28,7 @@ namespace mCloud.App_Code
         {
             if (SqlConn == null)
                 SqlConn = new SqlConnection(ConfigurationManager.
-                    ConnectionStrings["gt_ConStr"].ToString());
+                    ConnectionStrings["mConstr"].ToString());
             if (SqlConn.State == ConnectionState.Closed)
                 SqlConn.Open();
 

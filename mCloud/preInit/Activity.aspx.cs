@@ -27,14 +27,12 @@ namespace mCloud.preInit
             dt= mDAL.FunDataTable(getPlan);
             rptselectplan.DataSource = dt;
             rptselectplan.DataBind();
-            
         }
 
         protected void btnselect_Command(object sender, CommandEventArgs e)
         {
             string getplan = e.CommandArgument.ToString();
             h3showplan.InnerText ="You have selected : "+ getplan;
-
         }
     }
 }

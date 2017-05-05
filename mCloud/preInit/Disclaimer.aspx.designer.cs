@@ -11,7 +11,7 @@ namespace mCloud.preInit
 {
 
 
-    public partial class SignUp
+    public partial class WebForm2
     {
     }
 }

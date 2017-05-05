@@ -11,7 +11,7 @@
                         <h1 style="color:black;">Terms Of uses</h1>
                      
                         <p class="text-muted">
-User are responsible for any breaches of the TOS, including breaches by the people who download your file </p>
+                                    User are responsible for any breaches of the TOS, including breaches by the people who download your file </p>
                                  <p class="text-muted">Users are bound to keep backups, so Moil cloud is not responsible for data loss </p>
                                  <p class="text-muted">MoilCloud reserves the right to suspend, terminate, and/or delete your account/data due to a TOS breach 
 </p>

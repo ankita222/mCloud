@@ -35,7 +35,7 @@ namespace mCloud.App_Code
         #endregion
 
         #region Function for SendMail
-        public void SendMail(string Email, string Subject, string BodyText)
+        public int SendMail(string Email, string Subject, string BodyText)
         {
             MailMessage message = new MailMessage();
             MailAddress Sender = new MailAddress(ConfigurationManager.AppSettings["smtpUser"], "MoilCloud");
@@ -56,14 +56,44 @@ namespace mCloud.App_Code
             try
             {
                 smtp.Send(message);
+                return 1;
             }
             catch (Exception ex)
             {
-                throw ex;
+               // throw ex;
+                return 0;
             }
+            return 0;
         }
         #endregion
 
-        
+        #region
+        public string GenerateOTP()
+        {
+            string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+            string numbers = "1234567890";
+
+
+            string characters = numbers;
+
+            characters += alphabets + small_alphabets + numbers;
+
+            int length = 6;
+            string otp = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                string character = string.Empty;
+                do
+                {
+                    int index = new Random().Next(0, characters.Length);
+                    character = characters.ToCharArray()[index].ToString();
+                } while (otp.IndexOf(character) != -1);
+                otp += character;
+            }
+            return otp;
+        }
+        #endregion
+
     }
 }
