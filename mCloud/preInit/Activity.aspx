@@ -54,6 +54,14 @@
             background: rgb(234, 243, 231);  /* fallback for old browsers */
            
         }
+        .selectedplan {
+            color: #fff;
+            line-height: 25px;
+            font-weight: 700;
+            background: rgba(67, 156, 67, 0.76);
+            padding: 5px;
+            text-align: center;
+        }
     </style>
 
    
@@ -143,7 +151,7 @@
                         <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Account Information</h3>
                         
 								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
-                                       <h3 style="color: #fff;line-height: 20px;font-weight: 700;background: rgba(67, 156, 67, 0.76);padding: 5px;" runat="server" id="h3showplan" visible="false"></h3>
+                                       <h3 class="selectedplan" runat="server" id="h3showplan" visible="false"></h3>
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
@@ -165,8 +173,8 @@
 											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
 											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
-                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud <a href="Terms.aspx" style="    color: #1200ff;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #1200ff;">Privacy Policy</a></span> 
-										<button type="submit" class="btn" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>
+                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #1200ff;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #1200ff;">Privacy Policy</a></span> 
+										<button type="submit" class="btn" runat="server" id="btncfrm" disabled="disabled" style="    background: #31b159;color: #fff;" onserverclick="btncfrm_ServerClick">Proceed To Pay</button>
 									</div>
 								</div>
 							</div>

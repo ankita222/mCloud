@@ -104,11 +104,11 @@
                     <div class="header-content-inner">
                         <img src="preInit/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />
                         <h1>All-In-One Online Cloud Storage , Easy and Secure Backups</h1>
-                        <a href="#" class="btn btn-outline btn-xl page-scroll">Download Now</a>
+                        <a href="https://play.google.com/store/apps/details?id=arya.cloud.moil.moilcloud" class=""><img style="width: 351px;" src="preInit/img/Google-play-logo.png" class="img-responsive"/></a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="header-content">
                     <div class="device-container" style="background: none;">
                         <div class="device-mockup iphone6_plus portrait white">

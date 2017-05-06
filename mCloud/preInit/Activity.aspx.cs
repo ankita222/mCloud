@@ -34,7 +34,7 @@ namespace mCloud.preInit
         protected void btnselect_Command(object sender, CommandEventArgs e)
         {
             string getplan = e.CommandArgument.ToString();
-          h3showplan.Visible = true;
+            h3showplan.Visible = true;
             h3showplan.InnerText ="You have selected : "+ getplan;
         }
 
@@ -81,6 +81,11 @@ namespace mCloud.preInit
 
             }
             
+        }
+
+        protected void btncfrm_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }
