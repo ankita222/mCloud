@@ -1,0 +1,312 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Storage.master.cs" Inherits="mCloud.UserPage.Storage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <title>Moil Cloud</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
+
+    <!-- Bootstrap Core Css -->
+  
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+ 
+   
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.min.css" rel="stylesheet" />
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <%--<link href="css/themes/all-themes.css" rel="stylesheet" />--%>
+  
+ 
+    <link href="css/themes/theme-black.css" rel="stylesheet" />
+    <link href="css/themes/theme-black.min.css" rel="stylesheet" />
+
+  
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="theme-red">
+  
+    <div>
+          <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+         
+    </div>
+   </div>
+    <div class="overlay"></div>
+   
+    <nav class="navbar" style="height: 43px;background:linear-gradient(45deg, #7e67e5, #02cbdf) ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="#" style="color: white;margin-top: -6px;"><img src="../preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="margin-top: -16px;" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+               
+                <ul class="nav navbar-nav navbar-right" style="margin-top: -12px;">
+                   
+                     
+                    <li>
+                        <a href="MyAccount.aspx" class="dropdown-toggle" >
+                            <i class="material-icons" style="color: white;">person</i>
+                            <%--<span class="label-count">7</span>--%>
+                        </a>
+                       
+                    </li>
+                    <!-- #END# Notifications -->
+                    <!-- Tasks -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons" style="color: white;">build</i>
+                            <%--<span class="label-count">9</span>--%>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header" style="background: rgba(134, 175, 167, 0.59);">Settings</li>
+                            <li class="body">
+                                <ul class="menu tasks">
+                                    <li>
+                                        <a href="MyAccount.aspx">
+                                            <h4>
+                                               My Account
+                                                <small>Plan Name</small>
+                                            </h4>
+                                         <%--   <div class="progress">
+                                                <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                                                </div>
+                                            </div>--%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                              Upgrade
+                                                <%--<small>45%</small>--%>
+                                            </h4>
+                                           <%-- <div class="progress">
+                                                <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                                </div>
+                                            </div>--%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                Reload
+                                               <%-- <small>54%</small>--%>
+                                            </h4>
+                                          <%--  <div class="progress">
+                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%">
+                                                </div>
+                                            </div>--%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../Logout.aspx">
+                                            <h4>
+                                               Logout
+                                             <%--   <small>65%</small>--%>
+                                            </h4>
+                                          <%--  <div class="progress">
+                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                                </div>
+                                            </div>--%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                               About Moil Cloud
+                                           <%--     <small>92%</small>--%>
+                                            </h4>
+                                           <%-- <div class="progress">
+                                                <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
+                                                </div>
+                                            </div>--%>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                           <%-- <li class="footer">
+                                <a href="javascript:void(0);">View All Tasks</a>
+                            </li>--%>
+                        </ul>
+                    </li>
+                    <!-- #END# Tasks -->
+                    <%--<li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>--%>
+                </ul>
+            </div>
+        </div>
+      
+
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar" style="height: calc(106vh - 70px);top: 43px;width: 161px;background: linear-gradient(200deg, #7e67e5, #02cbdf)">
+            <!-- User Info -->
+            <%--<div class="user-info" style="background-color: #3c829c;padding: 33px 20px 18px 46px;" >--%>
+                  <div class="user-info" style="padding: 33px 20px 18px 46px;" >
+                <div class="image">
+                    <asp:Image ID="img1" ImageUrl="images/User-Profile.png" width="48" height="48" alt="User" runat="server"/>
+                </div>
+                <div class="info-container" style="top: 4px;">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;" runat="server" id="divuser">Welcome <br/>
+                        <span id="sp1" runat="server"></span>
+                    </div>
+                   
+                    
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+          <%--  <div class="menu" style="background-color: #3c829c;">--%>
+                  <div class="menu" >
+                <ul class="list">
+                    <li class="header">Cloud Drive</li>
+                    <li class="active">
+                        <a href="Dashboard.aspx">
+                            <i class="material-icons" style="color: #ffffff;">dashboard</i>
+                            <span style="color:#fff6f6">Dashboard</span>
+                        </a>
+                    </li>
+                      <li class="active">
+                        <a href="Dashboard.aspx?type=files">
+                            <i class="material-icons" style="color: #ffffff;">content_copy</i>
+                            <span style="color:#fff6f6">Files</span>
+                        </a>
+                    </li>
+                       <li class="active">
+                        <a href="Dashboard.aspx?type=folder">
+                            <i class="material-icons" style="color: #ffffff;">folder</i>
+                            <span style="color:#fff6f6">Folder</span>
+                        </a>
+                    </li>
+                       <li class="active">
+                        <a href="Dashboard.aspx?type=image">
+                            <i class="material-icons" style="color: #ffffff;">image</i>
+                            <span style="color:#fff6f6">Images</span>
+                        </a>
+                    </li>
+
+                     <li class="active">
+                        <a href="Dashboard.aspx?type=contact">
+                            <i class="material-icons" style="color: #ffffff;">contacts</i>
+                            <span style="color:#fff6f6">Contact</span>
+                        </a>
+                    </li>
+                     <li class="active">
+                        <a href="Dashboard.aspx?type=shared">
+                            <i class="material-icons" style="color: #ffffff;">folder_shared</i>
+                            <span style="color:#fff6f6">Shared with me</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright" style="margin-top: -8px;color: white">
+                    &copy; 2017 <a href="javascript:void(0);" style="color: white;">Techizas</a>.
+                </div>
+               <%-- <div class="version">
+                    <b>Version: </b> 1.0.4
+                </div>--%>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+          
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content" >
+        
+       
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+
+        </asp:ContentPlaceHolder>
+    </section>
+
+
+
+        
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+        
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/morrisjs/morris.js"></script>
+
+    <!-- ChartJs -->
+    <script src="plugins/chartjs/Chart.bundle.js"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="plugins/flot-charts/jquery.flot.js"></script>
+    <script src="plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="plugins/flot-charts/jquery.flot.time.js"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="js/pages/index.js"></script>
+
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
+    </div>
+   
+</body>
+</html>

@@ -9,6 +9,7 @@ using System.Net;
 using System.IO;
 using mCloud.App_Code;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace mCloud
 {
@@ -16,24 +17,23 @@ namespace mCloud
     {
         mCloudAL AL = new mCloudAL();
         mCloudDAL DAL = new mCloudDAL();
+        SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
         protected void btncreate_ServerClick(object sender, EventArgs e)
         {
-            string CheckUser = "select * from PreRegistration where Email='"+ txtEmail.Value.Trim() + "' and Mobile='"+ txtMob.Value.Trim() + "'";
-            DataTable dttable = DAL.FunDataTable(CheckUser);
-            if (dttable == null || dttable.Rows.Count == 0)
-            {
+
+            SqlParameter[] param = { new SqlParameter("@Email", txtEmail.Value), new SqlParameter("@Mobile", txtMob.Value) };
+            int x = DAL.FunExecuteNonQuerySP("ust_beginreg", param);
 
                 Session["Email"] = txtEmail.Value;
                 Session["isdCode"] = IsdCode.Value;
                 Session["Mob"] = txtMob.Value;
-
-
                 string otp = AL.GenerateOTP();
-                if (txtEmail.Value != "")
+                Session["otp"] = txtMob.Value;
+            if (txtEmail.Value != "")
                 {
                     int i = AL.SendMail(txtEmail.Value, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
                     if (i == 1)
@@ -44,11 +44,7 @@ namespace mCloud
                         Response.Write("<script>alert('Error! Please try again');</script>");
                     }
                 }
-            }
-            else
-            {
-                
-            } 
+            
         }
     }
 }

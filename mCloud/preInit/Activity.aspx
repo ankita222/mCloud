@@ -77,14 +77,14 @@
 			</div>
 			 
 
-            <div class="row" runat="server" id="divverify" visible="false">
+            <div class="row" runat="server" id="divverify" >
                 <div class="col-lg-12 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your email account, please enter the verification code and verify to procees</p>
 						<div style="display:inline-flex;">
                         <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
-                        &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify"  />
-                              &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend"/>
+                        &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
+                              &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnresend_Click"/>
                             </div>
 						<hr/>
 					</div>
@@ -92,7 +92,7 @@
             </div>
 
            
-              	<div class="row" style="padding: 23px; background-size:cover;background:rgba(226, 226, 226, 0.28);" runat="server">
+              	<div class="row" id="divregister" style="padding: 23px; background-size:cover;background:rgba(226, 226, 226, 0.28);" runat="server" visible="false">
                       <div class="col-lg-6">
                           <div class="form-box" style="margin-top:0px;">
 								<!--<div class="form-top" style="height: 54px;background: rgba(210, 91, 91, 0.72);">
@@ -103,16 +103,16 @@
 								</div>-->
                            
                               <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Choose Plan </h3>
-								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
+								<div class="form-bottom" style="background:none;padding:0px;"> 
                                     <asp:Repeater runat="server" ID="rptselectplan"  >
                                         <ItemTemplate>
                                             <div class="chooseplan">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-right: 0px;">
                                             <div runat="server" id="divprice" >₹: <%#Eval("Amount") %></div>
                                            
                                         </div>
 
-                                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 8px;padding-right: 2px;">
+                                          <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4" style="padding-right: 0px;">
                                                <span runat="server" id="planandduration"><%#Eval("Detail") %></span>
                                         </div>
 
@@ -141,8 +141,9 @@
 									
 								</div>-->
                         <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Account Information</h3>
-                           <h3 style="color: #fff;line-height: 20px;font-weight: 700;" runat="server" id="h3showplan"></h3>
+                        
 								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
+                                       <h3 style="color: #fff;line-height: 20px;font-weight: 700;background: rgba(67, 156, 67, 0.76);padding: 5px;" runat="server" id="h3showplan" visible="false"></h3>
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
@@ -164,134 +165,13 @@
 											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
 											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
-                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud Terms of Use and Privacy Policy</span> 
+                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud <a href="Terms.aspx" style="    color: #1200ff;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #1200ff;">Privacy Policy</a></span> 
 										<button type="submit" class="btn" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>
 									</div>
 								</div>
 							</div>
                 </div>
         </div>
-
-			<div class="row" style="padding: 23px; background-size:cover;" runat="server" id="divacvity" visible="false">
-				 <div class="col-sm-2"></div>
-						<div class="col-sm-4">
-							<div class="form-box" style="margin-top:0px;">
-								<div class="form-top" style="height: 54px;background: rgba(210, 91, 91, 0.72);">
-									<div class="form-top-left" style="padding-top: 11px;">
-										<h3 style="color: #fff;line-height: 20px;">Account Information</h3>
-										
-									</div>
-									
-								</div>
-								<div class="form-bottom" style="border: 1px solid rgba(0, 0, 0, 0.32);padding: 18px 25px 30px 25px;"> 
-									<div role="form" action="" method="post" class="login-form">
-										<div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">Email</label>
-											<input type="text" name="form-username" runat="server" id="txtemail" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;" required/>
-										</div>
-										
-										<div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">Mobile Number</label>
-										<input type="text" name="form-username" runat="server" id="txtIsdCode" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
-										<input type="text" name="form-username" runat="server" id="txtmobile" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;" required/>
-										</div>
-
-										<div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">First Name</label>
-											<input type="text" name="form-username" runat="server" id="txtfrst" placeholder="First Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;" required/>
-										</div>
-											 <div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">Last Name</label>
-											<input type="text" name="form-username" runat="server" id="txtlast" placeholder="Last Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
-										</div>
-
-										  <div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">Postal Code</label>
-											<input type="text"  runat="server" id="txtpostalcode" placeholder="Postal Code..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;" required/>
-										</div>
-
-										  <div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-username">Country</label>
-											<select runat="server" id="getcountry" class="form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;padding: 0px;">
-												 <option>Select Country----</option>
-												<option>India</option>
-												<option>Pakistan</option>
-												<option>China</option>
-												<option>Russia</option>
-												<option>Bhutan</option>
-												<option>America</option>
-												<option>London</option>
-												<option>England</option>
-											</select>
-										</div>
-
-										<div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-password">Password</label>
-											<input type="password"  runat="server" id="txtconfmpswd" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;" required/>
-											<input type="password"  runat="server" id="txtpass" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" required/>
-										</div>
-										<%--<button type="submit" class="btn" runat="server" id="btncfrm" onserverclick="btncfrm_ServerClick">Confirm</button>--%>
-									</div>
-								</div>
-							</div>
-						
-							<%--<div class="social-login">
-								<h3>...or login with:</h3>
-								<div class="social-login-buttons">
-									<a class="btn btn-link-1 btn-link-1-facebook" href="#">
-										<i class="fa fa-facebook"></i> Facebook
-									</a>
-									<a class="btn btn-link-1 btn-link-1-twitter" href="#">
-										<i class="fa fa-twitter"></i> Twitter
-									</a>
-									<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-										<i class="fa fa-google-plus"></i> Google Plus
-									</a>
-								</div>
-							</div>--%>
-							
-						</div>
-						
-					<%--	<div class="col-sm-1 middle-border"></div>
-						<div class="col-sm-1"></div>--%>
-							
-						<div class="col-sm-4">
-							
-							<div class="form-box" style="margin-top:0px;">
-								<div class="form-top"  style="height: 54px;background: #436e9a;">
-									<div class="form-top-left" style="padding-top: 11px;">
-										<h3 style="color: #fff;line-height: 20px;font-size: 18px;">Choose your plan!</h3>
-										
-									</div>
-									
-								</div>
-								<div class="form-bottom">
-									<div role="form" action="" method="post" class="registration-form">
-										<div class="form-group" style="margin-bottom: 6px;">
-											<label style="font-family:'Times New Roman';float:left;padding-right:25px;color:black;">Select Plan</label>
-											<asp:DropDownList id="ddlPlan" runat="server" class="form-control" style="width:75%;height: 28px;font-size: 14px;border: 1px solid #0981e8;padding: 0px;" AutoPostBack="true">
-											<asp:ListItem >select</asp:ListItem>    
-											 <asp:ListItem >400 Mb</asp:ListItem>    
-											<asp:ListItem >1 Gb</asp:ListItem>     
-											<asp:ListItem >2 Gb</asp:ListItem>    
-											</asp:DropDownList>
-											
-											</div>
-										<div class="form-group" style="margin-bottom: 6px;width: 221px;">
-											<asp:Label id="lblprice" runat="server" CssClass="form-control" Style="background-color:#436e9a;color:white;">Choose plan from above list.</asp:Label>
-											<%--<input type="text" name="form-first-name" placeholder="Card Number..." class="form-first-name form-control" id="form-first-name" style="height: 36px;">--%>
-										</div>				
-										<asp:button ID="btnSave" style="color: black;font-size: 18px;font-weight: 500;height: 32px;line-height: 24px;" runat="server" Text="Verify" class="md-trigger"  data-modal="modal-4"  OnClientClick="return CheckControls()" ></asp:button>
-										<asp:button ID="btnpay" style="display:none;color: black;font-size: 18px;font-weight: 500;height: 32px;line-height: 24px;" runat="server" Text="Pay" class="md-trigger"  data-modal="modal-4" ></asp:button>
-                                       <%--a runat="server" id="pay">Pay</a>--%>
-                                         <br />
-										<p style="font-size: 15px;color: black;">By creating an account you are agreeing to the Moil Cloud Terms of Use and Privacy Policy.</p>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
 	</div>
 	</section>
 

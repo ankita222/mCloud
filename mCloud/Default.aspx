@@ -13,42 +13,43 @@
 <title>MoilCloud - Online Storage Solution</title>
 
 <!-- Bootstrap Core CSS -->
+	
+    <link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Custom Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"/>
 
-<link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<!-- Custom Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" />
+	<!-- Plugin CSS -->
+	<link rel="stylesheet" href="FrontPage/vendor/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="FrontPage/vendor/simple-line-icons/css/simple-line-icons.css"/>
+	<link rel="stylesheet" href="FrontPage/vendor/device-mockups/device-mockups.min.css"/>
 
-<!-- Plugin CSS -->
-<link rel="stylesheet" href="FrontPage/vendor/font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" href="FrontPage/vendor/simple-line-icons/css/simple-line-icons.css" />
-<link rel="stylesheet" href="FrontPage/vendor/device-mockups/device-mockups.min.css" />
+	<!-- Theme CSS -->
+	<link href="FrontPage/css/new-age.min.css" rel="stylesheet"/>
 
-<!-- Theme CSS -->
-<link href="FrontPage/css/new-age.min.css" rel="stylesheet" />
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 
 
-<!--Pricing Tables -->
-<link rel="stylesheet" type="text/css" href="Pricing/bootstrap/css/bootstrap.min.css" />
-<link href="FrontPage/Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="FrontPage/Pricing/font-awesome/css/font-awesome.min.css" />
+   <!--Pricing Tables -->
+ <link rel="stylesheet" type="text/css" href="Pricing/bootstrap/css/bootstrap.min.css" />
+    <link href="FrontPage/Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="FrontPage/Pricing/font-awesome/css/font-awesome.min.css" />
 
-<script type="text/javascript" src="FrontPage/Pricing/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="FrontPage/Pricing/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="FrontPage/Pricing/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="FrontPage/Pricing/bootstrap/js/bootstrap.min.js"></script>
 
-<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
-<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
-<link href="FrontPage/modal/css/component.css" rel="stylesheet" />
 
-<script src="FrontPage/modal/js/modernizr.custom.js"></script>
+		<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
+    <link href="FrontPage/modal/css/default.css" rel="stylesheet" />
+	<link href="FrontPage/modal/css/component.css" rel="stylesheet" />
+		
+	<script src="FrontPage/modal/js/modernizr.custom.js"></script>
 
 </head>
 <body id="page-top" style="overflow: visible;">
@@ -64,7 +65,7 @@
             <%--<img src="img/MoilCloud Homepage logo top.png" class="navbar-brand page-scroll img-responsive" style="height:15%; width:20%; float:left;" />--%>
             <%--<a class="navbar-brand page-scroll" href="Default.aspx" style="font-size: 35px;color:#c33b3b;">Moil Cloud</a>--%>
 
-            <a href="./"><img src="FrontPage/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
+            <a href="./"><img src="preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -101,7 +102,7 @@
             <div class="col-sm-7">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <img src="FrontPage/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />
+                        <img src="preInit/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />
                         <h1>All-In-One Online Cloud Storage , Easy and Secure Backups</h1>
                         <a href="#" class="btn btn-outline btn-xl page-scroll">Download Now</a>
                     </div>
@@ -389,32 +390,31 @@
 </div>
 
 
-<!-- jQuery -->
-<script src="FrontPage/vendor/jquery/jquery.min.js"></script>
+	<!-- jQuery -->
+	<script src="FrontPage/vendor/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="FrontPage/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="FrontPage/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Plugin JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-<!-- Theme JavaScript -->
-<script src="FrontPage/js/new-age.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="FrontPage/js/new-age.min.js"></script>
 
 
-
-<script src="FrontPage/modal/js/classie.js"></script>
-<script src="FrontPage/modal/js/modalEffects.js"></script>
-<!-- for the blur effect -->
-<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-<script>
-    // this is important for IEs
-    var polyfilter_scriptpath = '/js/';
-</script>
-<script src="FrontPage/modal/js/cssParser.js"></script>
-<script src="FrontPage/js/css-filters-polyfill.js"></script>
-<script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
-
+		
+		<script src="FrontPage/modal/js/classie.js"></script>
+	<script src="FrontPage/modal/js/modalEffects.js"></script>
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '/js/';
+		</script>
+	<script src="FrontPage/modal/js/cssParser.js"></script>
+		<script src="FrontPage/js/css-filters-polyfill.js"></script>
+	<script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
 </div>
 </form>
 </body>
