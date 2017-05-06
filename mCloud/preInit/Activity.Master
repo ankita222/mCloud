@@ -64,7 +64,7 @@
                     <a class="page-scroll" href="../Default.aspx" style="font-weight:700;color: black;">Price & Plans</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight:700;color: black;">Contact</a>
+                    <a class="page-scroll" href="AboutUs.aspx" style="font-weight:700;color: black;">About Us</a>
                 </li>
                     <li>
                         <a class="page-scroll" href="ContactUs.aspx" style="color: black;font-weight:700;">Contact</a>

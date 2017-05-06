@@ -185,6 +185,7 @@
     <Content Include="FrontPage\vendor\jquery\jquery.js" />
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="preInit\Login.aspx" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap.css" />
@@ -225,7 +226,6 @@
     <Content Include="preInit\img\true.jpg" />
     <Content Include="preInit\js\new-age.js" />
     <Content Include="preInit\js\new-age.min.js" />
-    <Content Include="preInit\Login.aspx" />
     <Content Include="preInit\modal\css\component.css" />
     <Content Include="preInit\modal\css\default.css" />
     <Content Include="preInit\modal\fonts\codropsicons\license.txt" />
@@ -3669,6 +3669,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="preInit\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="preInit\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3689,13 +3696,6 @@
     </Compile>
     <Compile Include="preInit\ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="preInit\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="preInit\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
