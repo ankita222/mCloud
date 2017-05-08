@@ -20,18 +20,13 @@ namespace mCloud.preInit
             if (!IsPostBack)
             {
                 LoadPricePlan();
-                if (!string.IsNullOrEmpty(Session["Email"] as string)) 
-                {
-                    txtEmail.Value = Session["Email"].ToString();
-                }
-                txtIsdCode.Value = Session["IsdCode"].ToString();
-                txtMob.Value = Session["Mob"].ToString();
             }
         }
 
         public void LoadPricePlan()
         {
-            string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
+            //string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
+            string getPlan = "  Select Price, (SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+' Days') as Detail, (convert(nvarchar,Price)+'-'+SpaceInByte+'-'+convert(nvarchar,ValidityInDays)) as PlanDetails from PlanMaster";
             dt = mDAL.FunDataTable(getPlan);
             rptselectplan.DataSource = dt;
             rptselectplan.DataBind();
@@ -40,8 +35,13 @@ namespace mCloud.preInit
         protected void btnselect_Command(object sender, CommandEventArgs e)
         {
             string getplan = e.CommandArgument.ToString();
+            string[] planarray = getplan.Split('-');
+            string amt, planbytes, duration;
+            Session["Amount"]=  amt = planarray[0];
+            Session["Bytes"] = planbytes = planarray[1];
+            Session["Days"] = duration = planarray[2];
             h3showplan.Visible = true;
-            h3showplan.InnerText = "Selected Plan : " + getplan;
+            h3showplan.InnerText = "Selected Plan : " +planbytes+" - "+duration+" Days";
         }
 
         protected void btnverify_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace mCloud.preInit
             try
             {
                 //string otp1 = Session["hastotp"].ToString();
-                if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString()) 
+                if (AL.PassHash(txtcode.Value) == Session["hastotp"].ToString())
                 {
                     divregister.Visible = true;
                     divverify.Visible = false;
@@ -62,32 +62,31 @@ namespace mCloud.preInit
             {
                 divregister.Visible = true;
                 divverify.Visible = false;
-                
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Wrong OTP!')", true);
             }
         }
 
         protected void btnresend_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    string email = Session["Email"].ToString();
-            //    string mob = Session["Mob"].ToString();
+            try
+            {
+                string email = Session["Email"].ToString();
+                string mob = Session["Mob"].ToString();
 
-            //    string otp = AL.GenerateOTP();
-            //    if (email == "" || mob == "")
-            //    {
-            //        Response.Redirect("~/Default.aspx");
-            //    }
-            //    else
-            //    {
-            //        int i = AL.SendMail(email, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
-            //    }
-            //}
-            //catch (Exception)
-            //{
+                string otp = AL.GenerateOTP();
+                if (email == "" || mob == "")
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+                else
+                {
+                    int i = AL.SendMail(email, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
+                }
+            }
+            catch (Exception)
+            {
 
-            //}
+            }
 
         }
 
@@ -101,12 +100,18 @@ namespace mCloud.preInit
 
         protected void btnPay_Click(object sender, EventArgs e)
         {
-            if (chbxAgree.Checked == true)
+            if (Session["Mob"].ToString() != "" || Session["Email"].ToString() != "")
             {
-                Session["Name"] = txtName.Value;
-
-                Response.Redirect("~/preInit/Pay.aspx");
-                //Session["PlanName"]= (dt.Rows[0]["Name"].ToString());
+                string mobile = Session["Mob"].ToString();
+                int i = AL.CreateUserFolder(mobile);
+                if (i == 1)
+                {
+                    Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + mobile);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Something Wrong Occured.')</script>");
+                }
             }
         }
     }

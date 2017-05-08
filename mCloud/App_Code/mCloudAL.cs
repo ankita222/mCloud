@@ -67,7 +67,7 @@ namespace mCloud.App_Code
         }
         #endregion
 
-        #region
+        #region function for generateotp
         public string GenerateOTP()
         {
             string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -95,5 +95,41 @@ namespace mCloud.App_Code
         }
         #endregion
 
+        #region function for userfolder
+        public int CreateUserFolder(string mobile)
+        {
+            try
+            {
+                string map = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile);
+                if (!System.IO.Directory.Exists(map))
+                {
+                    System.IO.Directory.CreateDirectory(map);
+                    System.Web.HttpContext.Current.Session["id"] = mobile;
+                    string contactmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Contact");
+                    string Imagesmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Images");
+                    string Filesmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Files");
+                   
+                    if (!System.IO.Directory.Exists(contactmap))
+                    {
+                        System.IO.Directory.CreateDirectory(contactmap);
+                    }
+                    if (!System.IO.Directory.Exists(Imagesmap))
+                    {
+                        System.IO.Directory.CreateDirectory(Imagesmap);
+                    }
+                    if (!System.IO.Directory.Exists(Filesmap))
+                    {
+                        System.IO.Directory.CreateDirectory(Filesmap); 
+                    }
+                    return 1;
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        #endregion
     }
 }

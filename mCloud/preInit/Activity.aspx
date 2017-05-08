@@ -67,7 +67,7 @@
 		 <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
 		<div class="container" style="background: none;">
 		   <div class="row">
-				<div class="col-lg-12 text-left">
+				<div class="col-lg-12 col-xs-12 col-sm-12 text-left">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Activate Your Account</h2>
 						<p class="text-muted" style="font-size: 18px;color: #fff;">Verify Number >> Select Plan >> Pay Now </p>
@@ -80,18 +80,18 @@
 			
 
             <div class="row" runat="server" id="divverify" ><hr/>
-                <div class="col-lg-3 text-center"></div>
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
+                <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed</p>
-						<div style="display:inline-flex;">
+						<div style="display:inline-block;">
                         <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnresend_Click"/>
                             </div>
 						<hr/>
 					</div>
-				</div><div class="col-lg-3 text-center"></div>
+				</div><div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
             </div>
             
            
@@ -121,7 +121,7 @@
                                         </div>
 
                                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                              <asp:Button CommandArgument='<%#Eval("Detail") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
+                                              <asp:Button CommandArgument='<%#Eval("PlanDetails") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
                                         </div>
 
 									</div>
@@ -151,27 +151,27 @@
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
-											<input type="text" name="form-username" runat="server" id="txtEmail" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+											<input type="text" name="form-username" runat="server" id="Text1" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Mobile Number</label>
-										<input type="text" name="form-username" runat="server" id="txtIsdCode" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
-										<input type="text" name="form-username" runat="server" id="txtMob" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;"/>
+										<input type="text" name="form-username" runat="server" id="Text2" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
+										<input type="text" name="form-username" runat="server" id="Text3" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;"/>
 										</div>
 
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Name</label>
-											<input type="text" name="form-username" runat="server" id="txtName" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+											<input type="text" name="form-username" runat="server" id="Text4" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-password">Password</label>
-											<input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
-											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
+											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
-                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click"  />
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click" />
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
 									</div>
 								</div>
