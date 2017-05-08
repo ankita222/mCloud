@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="mCloud.Default" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta charset="utf-8" />
@@ -10,46 +9,46 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <script src="../Validation.js"></script>
+
 <title>MoilCloud - Online Storage Solution</title>
 
 <!-- Bootstrap Core CSS -->
-	
-    <link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- Custom Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"/>
+<link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" />
 
-	<!-- Plugin CSS -->
-	<link rel="stylesheet" href="FrontPage/vendor/font-awesome/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="FrontPage/vendor/simple-line-icons/css/simple-line-icons.css"/>
-	<link rel="stylesheet" href="FrontPage/vendor/device-mockups/device-mockups.min.css"/>
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="FrontPage/vendor/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="FrontPage/vendor/simple-line-icons/css/simple-line-icons.css" />
+<link rel="stylesheet" href="FrontPage/vendor/device-mockups/device-mockups.min.css" />
 
-	<!-- Theme CSS -->
-	<link href="FrontPage/css/new-age.min.css" rel="stylesheet"/>
+<!-- Theme CSS -->
+<link href="FrontPage/css/new-age.min.css" rel="stylesheet" />
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
-
-   <!--Pricing Tables -->
- <link rel="stylesheet" type="text/css" href="Pricing/bootstrap/css/bootstrap.min.css" />
-    <link href="FrontPage/Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="FrontPage/Pricing/font-awesome/css/font-awesome.min.css" />
-
-	<script type="text/javascript" src="FrontPage/Pricing/js/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="FrontPage/Pricing/bootstrap/js/bootstrap.min.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
 
-		<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
-    <link href="FrontPage/modal/css/default.css" rel="stylesheet" />
-	<link href="FrontPage/modal/css/component.css" rel="stylesheet" />
-		
-	<script src="FrontPage/modal/js/modernizr.custom.js"></script>
+<!--Pricing Tables -->
+<link rel="stylesheet" type="text/css" href="Pricing/bootstrap/css/bootstrap.min.css" />
+<link href="FrontPage/Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="FrontPage/Pricing/font-awesome/css/font-awesome.min.css" />
+
+<script type="text/javascript" src="FrontPage/Pricing/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="FrontPage/Pricing/bootstrap/js/bootstrap.min.js"></script>
+
+
+<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
+<link href="FrontPage/modal/css/default.css" rel="stylesheet" />
+<link href="FrontPage/modal/css/component.css" rel="stylesheet" />
+
+<script src="FrontPage/modal/js/modernizr.custom.js"></script>
 
 </head>
 <body id="page-top" style="overflow: visible;">
@@ -65,7 +64,8 @@
             <%--<img src="img/MoilCloud Homepage logo top.png" class="navbar-brand page-scroll img-responsive" style="height:15%; width:20%; float:left;" />--%>
             <%--<a class="navbar-brand page-scroll" href="Default.aspx" style="font-size: 35px;color:#c33b3b;">Moil Cloud</a>--%>
 
-            <a href="./"><img src="preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
+            <a href="./">
+                <img src="preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,19 +74,19 @@
                 <li>
                     <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                    <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal" style="font-weight:700;">Sign up</a>
+                    <a class="md-trigger" data-modal="modal-4" href="#" data-toggle="modal" style="font-weight: 700;">Sign up</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="preInit/Login.aspx" style="font-weight:700;">Sign In</a>
+                   <a class="md-trigger" data-modal="modal-login" href="#" data-toggle="modal" style="font-weight: 700;">Sign In</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#features" style="font-weight:700;">Price & Plans</a>
+                    <a class="page-scroll" href="#features" style="font-weight: 700;">Price & Plans</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight:700;">Contact</a>
+                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight: 700;">Contact</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight:700;">About Us</a>
+                    <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight: 700;">About Us</a>
                 </li>
             </ul>
         </div>
@@ -95,27 +95,34 @@
     <!-- /.container-fluid -->
 </nav>
 
-  <!--<header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">-->
-  <header style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
+<!--<header style="background: url(FrontPage/img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">-->
+<header style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
     <div class="container" style="background: none;">
         <div class="row">
             <div class="col-sm-7">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <img src="preInit/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />
-                        <h1>All-In-One Online Cloud Storage , Easy and Secure Backups</h1>
-                        <a href="https://play.google.com/store/apps/details?id=arya.cloud.moil.moilcloud" class=""><img style="width: 351px;" src="preInit/img/Google-play-logo.png" class="img-responsive"/></a>
+                        <div class="clearfix">&nbsp;</div>
+                        <h1 style="color:#f9e92e">MoilCloud</h1>
+                        <%--<img src="preInit/img/MOIL CLOUD.png" class="img-responsive" width="70%" alt="" />--%>
+                        <h2>All-In-One Online Cloud Storage , Easy and Secure Backups</h2>
+                        <%--<a href="#" class="btn btn-outline btn-xl page-scroll">Download Now</a>--%>
+                        <div class="clearfix">&nbsp;</div>
+                        <a href='https://play.google.com/store/apps/details?id=arya.cloud.moil.moilcloud&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank">
+                            <img style="width: 30%;" alt='Get it on Google Play' src="preInit/img/google-play-badge.png" />
+
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <div class="header-content">
                     <div class="device-container" style="background: none;">
                         <div class="device-mockup iphone6_plus portrait white">
                             <div class="device">
                                 <div class="screen">
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="preInit/img/moil_cloud1.png" class="img-responsive" alt="" />
+                                    <a href="./"><img src="preInit/img/moil_cloud1.png" class="img-responsive" alt="" /></a>
                                 </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -156,19 +163,23 @@
                             <div class="feature-item">
                                 <i class="icon-globe text-primary" style="font-size: 50px;"></i>
                                 <h3 style="color: black; font-size: 17px;">Secure Global Access</h3>
-                                <p style="font-size: 16px;" class="text-muted">Your data is accessible any time, from any<br /> 
+                                <p style="font-size: 16px;" class="text-muted">
+                                    Your data is accessible any time, from any<br />
                                     device, anywhere. Only you control the
-                                    <br />
-                                    keys to your files.</p>
+                        <br />
+                                    keys to your files.
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="feature-item">
                                 <i class="icon-user text-primary" style="font-size: 50px;"></i>
                                 <h3 style="color: black; font-size: 17px;">Easy Sharing</h3>
-                                <p style="font-size: 16px;" class="text-muted">Share folders with your contacts and see their<br />
-                                    updates in real time. Online collaboration has<br/>
-                                    never been more private and secure.</p>
+                                <p style="font-size: 16px;" class="text-muted">
+                                    Share folders with your contacts and see their<br />
+                                    updates in real time. Online collaboration has<br>
+                                    never been more private and secure.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -190,7 +201,7 @@
                 </div>
             </div>
         </div>
-    
+
 
         <div class="container" style="background: none;">
             <div class="row">
@@ -210,17 +221,17 @@
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Data Sharing With Other Users
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Technical Support
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                         </ul>
                         <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Purchase</a>
+                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -240,17 +251,17 @@
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Data Sharing With Other Users
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Technical Support
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                         </ul>
                         <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Purchase</a>
+                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -270,17 +281,17 @@
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Data Sharing With Other Users
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Technical Support
-			<span class="glyphicon glyphicon-ok pull-right"></span>
+<span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                         </ul>
                         <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Purchase</a>
+                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -336,10 +347,13 @@
 </footer>
 
 <div class="md-modal md-effect-4" id="modal-4" tabindex="-1" role="dialog" style="padding: 0px; width: 39%;">
-    <div class="md-content" role="document" style="padding: 11px;background: linear-gradient(0deg, rgba(0, 0, 0, 0.41), #02cbdf);">
-        <div class="md-content" style="padding: 0px;background: linear-gradient(70deg, #645f7b, #00b2c3);">
+    <div class="md-content" role="document" style="padding: 2px; background: #cccccc;">
+        <div class="md-content" style="padding: 0px; background: linear-gradient(70deg, #f5f5f5, #f9f9f9);">
             <div class="modal-header" style="padding: 9px;">
-                <h4 class="modal-title" id="defaultModalLabel">Create Account</h4>
+                <span style="float: left; color: #808080;" class="modal-title" id="defaultModalLabel">Create Account</span>
+                <span style="float: right;">
+                    <button type="button" style="padding: 5px; line-height: 10px;" class="btn btn-danger md-close">x </button>
+                </span>
             </div>
             <div class="modal-body">
                 <div class="row clearfix">
@@ -350,7 +364,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input id="txtEmail" runat="server" type="email" class="form-control" name="email" placeholder="Email Address"  />
+                                    <input id="txtEmail" runat="server" type="email" class="form-control" name="email" placeholder="Email Address" />
                                 </div>
                             </div>
                         </div>
@@ -364,15 +378,16 @@
                                 <div class="form-line">
                                     <select id="IsdCode" runat="server" class="form-control">
                                         <option>+91 - India</option>
-                                    <option>+92 - Pakistan</option>
-									<option>+93 - China</option>
-									<option>+93 - Russia</option>
-									<option>+94 - Bhutan</option>
-									<option>+95 - America</option>
-									<option>+96 - London</option>
-									<option>+97 - England</option>
+                                        <option>+92 - Pakistan</option>
+                                        <option>+93 - China</option>
+                                        <option>+93 - Russia</option>
+                                        <option>+94 - Bhutan</option>
+                                        <option>+95 - America</option>
+                                        <option>+96 - London</option>
+                                        <option>+97 - England</option>
                                     </select>
-                                    <input id="txtMob" runat="server" type="text" class="form-control" placeholder="Mobile No." maxlength="10" required />
+                               
+                                    <input id="txtMob" runat="server" type="text" class="form-control" name="mobileno" placeholder="Mobile No." maxlength="10"  />
                                 </div>
                             </div>
                         </div>
@@ -382,39 +397,82 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 9px;">
-                <asp:Button type="button" class="btn btn-success" runat="server" ID="btncreate" Style="float: left;" OnClick="btncreate_ServerClick" Text="Create Account" />
-                <button type="button" class="md-close" style="padding: 5px; float: right;">CLOSE</button>
+                <asp:Button class="btn btn-success" runat="server" ID="btnSignUp" Style="float: right;" OnClick="btnSignUp_Click" Text="Sign Up" />
+
             </div>
         </div>
     </div>
 </div>
 
+<div class="md-modal md-effect-4" id="modal-login" tabindex="-1" role="dialog" style="padding: 0px; width: 39%;">
+    <div class="md-content" role="document" style="padding: 2px; background: #cccccc;">
+        <div class="md-content" style="padding: 0px; background: linear-gradient(70deg, #f5f5f5, #f9f9f9);">
+            <div class="modal-header" style="padding: 9px;">
+                <span style="float: left; color: #808080;" class="modal-title" id="defaultModalLabellogin">Sign in to start your session</span>
+                <span style="float: right;">
+                    <button type="button" style="padding: 5px; line-height: 10px;" class="btn btn-danger md-close">x </button>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <div class="form-line">
+                                    <input id="username" runat="server" type="number" class="form-control" name="username" placeholder="UserName"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <div class="form-line">
+                                    <input id="password" runat="server" type="password" class="form-control" placeholder="Password" maxlength="10"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 9px;">
+                <asp:Button type="button" class="btn btn-success" runat="server" ID="Button1" Style="float: right;" OnClick="btncreate_ServerClick" Text="Sign In" />
 
-	<!-- jQuery -->
-	<script src="FrontPage/vendor/jquery/jquery.min.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="FrontPage/vendor/jquery/jquery.min.js"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="FrontPage/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="FrontPage/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- Plugin JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-	<!-- Theme JavaScript -->
-	<script src="FrontPage/js/new-age.min.js"></script>
+<!-- Theme JavaScript -->
+<script src="FrontPage/js/new-age.min.js"></script>
 
 
-		
-		<script src="FrontPage/modal/js/classie.js"></script>
-	<script src="FrontPage/modal/js/modalEffects.js"></script>
-		<!-- for the blur effect -->
-		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-		<script>
-			// this is important for IEs
-			var polyfilter_scriptpath = '/js/';
-		</script>
-	<script src="FrontPage/modal/js/cssParser.js"></script>
-		<script src="FrontPage/js/css-filters-polyfill.js"></script>
-	<script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
+
+<script src="FrontPage/modal/js/classie.js"></script>
+<script src="FrontPage/modal/js/modalEffects.js"></script>
+<!-- for the blur effect -->
+<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+<script>
+    // this is important for IEs
+    var polyfilter_scriptpath = '/js/';
+</script>
+<script src="FrontPage/modal/js/cssParser.js"></script>
+<script src="FrontPage/js/css-filters-polyfill.js"></script>
+<script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
 </div>
 </form>
 </body>

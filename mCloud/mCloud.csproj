@@ -192,7 +192,7 @@
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
-    <Content Include="preInit\img\Google-play-logo.png" />
+    <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\Login.aspx" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.min.css" />
