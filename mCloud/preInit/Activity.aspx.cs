@@ -91,5 +91,19 @@ namespace mCloud.preInit
             else
                 btnPay.Enabled = false;
         }
+
+        protected void btnPay_Click(object sender, EventArgs e)
+        {
+            string mobile=Session["Mob"].ToString();
+            int i= AL.CreateUserFolder(mobile);
+            if(i==1)
+            {
+                Response.Redirect("~\\Userpage\\Dashboard.aspx?id="+mobile);
+            }
+            else
+            {
+                Response.Write("<script>alert('Something Wrong Occured.')</script>");
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace mCloud
         }
         protected void btncreate_ServerClick(object sender, EventArgs e)
         {
-
+            /*
             SqlParameter[] param = { new SqlParameter("@Email", txtEmail.Value), new SqlParameter("@Mobile", txtMob.Value) };
             int x = DAL.FunExecuteNonQuerySP("ust_beginreg", param);
 
@@ -38,10 +38,13 @@ namespace mCloud
                     Response.Redirect("preInit/Activity.aspx");
                 else
                 {
-                    // ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Error! Please try again')", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Error! Please try again')", true);
                     Response.Write("<script>alert('Error! Please try again');</script>");
                 }
-            }
+            }*/
+
+          
+
 
         }
 

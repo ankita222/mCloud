@@ -67,7 +67,7 @@
 		 <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
 		<div class="container" style="background: none;">
 		   <div class="row">
-				<div class="col-lg-12 text-left">
+				<div class="col-lg-12 col-xs-12 col-sm-12 text-left">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Activate Your Account</h2>
 						<p class="text-muted" style="font-size: 18px;color: #fff;">Verify Number >> Select Plan >> Pay Now </p>
@@ -80,18 +80,18 @@
 			
 
             <div class="row" runat="server" id="divverify" ><hr/>
-                <div class="col-lg-3 text-center"></div>
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
+                <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed</p>
-						<div style="display:inline-flex;">
+						<div style="display:inline-block;">
                         <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnresend_Click"/>
                             </div>
 						<hr/>
 					</div>
-				</div><div class="col-lg-3 text-center"></div>
+				</div><div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
             </div>
             
            
@@ -171,7 +171,7 @@
 										</div>
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
-                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay"  />
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click" />
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
 									</div>
 								</div>

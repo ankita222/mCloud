@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="header-content">
                     <div class="device-container" style="background: none;">
                         <div class="device-mockup iphone6_plus portrait white">
@@ -448,6 +448,10 @@
         </div>
     </div>
 </div>
+
+    <div class="md-overlay" style="background: rgba(35, 50, 70, 0.43);"></div>
+
+
 <!-- jQuery -->
 <script src="FrontPage/vendor/jquery/jquery.min.js"></script>
 
