@@ -115,7 +115,7 @@
                             <div class="device">
                                 <div class="screen">
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="FrontPage/img/moil_cloud1.png" class="img-responsive" alt="" />
+                                    <img src="preInit/img/moil_cloud1.png" class="img-responsive" alt="" />
                                 </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -167,7 +167,7 @@
                                 <i class="icon-user text-primary" style="font-size: 50px;"></i>
                                 <h3 style="color: black; font-size: 17px;">Easy Sharing</h3>
                                 <p style="font-size: 16px;" class="text-muted">Share folders with your contacts and see their<br />
-                                    updates in real time. Online collaboration has<br>
+                                    updates in real time. Online collaboration has<br/>
                                     never been more private and secure.</p>
                             </div>
                         </div>
