@@ -4,17 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 
-
-namespace mCloud.UserPage
+namespace mCloud
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Logout : System.Web.UI.Page
     {
-        DataTable dt_temp = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            Session["id"] = null;
+            Response.Redirect("Default.aspx");
         }
     }
 }

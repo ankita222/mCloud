@@ -11,7 +11,15 @@ namespace mCloud.UserPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                string id = Session["id"].ToString();
+                sp1.InnerText = id;
+            }
+            catch(Exception)
+            {
+                Response.Redirect("~/Logout.aspx");
+            }
         }
     }
 }
