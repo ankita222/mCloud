@@ -16,6 +16,7 @@ namespace mCloud.UserPage
         protected void Page_Load(object sender, EventArgs e)
         {
             CreateTable();
+            loadDirectory();
         }
 
         public void CreateTable()
