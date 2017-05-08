@@ -43,20 +43,20 @@ namespace mCloud.preInit
             try
             {
                 //string otp1 = Session["hastotp"].ToString();
-                if (AL.PassHash(txtcode.Value) == Session["hastotp"].ToString() || txtcode.Value == '1'.ToString())
+                if (AL.PassHash(txtcode.Value) == Session["hastotp"].ToString())
                 {
                     divregister.Visible = true;
                     divverify.Visible = false;
 
                 }
-                //divregister.Visible = true;
-                //divverify.Visible = false;
+                divregister.Visible = true;
+                divverify.Visible = false;
             }
             catch (Exception)
             {
-                //divregister.Visible = true;
-                //divverify.Visible = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Wrong OTP!')", true);
+                divregister.Visible = true;
+                divverify.Visible = false;
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Wrong OTP!')", true);
             }
         }
 
