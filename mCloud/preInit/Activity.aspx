@@ -67,20 +67,23 @@
 		 <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
 		<div class="container" style="background: none;">
 		   <div class="row">
-				<div class="col-lg-12 text-center">
+				<div class="col-lg-12 text-left">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
 						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Activate Your Account</h2>
-						<p class="text-muted" style="font-size: 18px;color: #fff;">Never Loose Your Stuffs Again ! </p>
-						<hr/>
+						<p class="text-muted" style="font-size: 18px;color: #fff;">Verify Number >> Select Plan >> Pay Now </p>
 					</div>
 				</div>
+               <br />
+                
 			</div>
-			 
+             
+			
 
-            <div class="row" runat="server" id="divverify" >
-                <div class="col-lg-12 text-center">
+            <div class="row" runat="server" id="divverify" ><hr/>
+                <div class="col-lg-3 text-center"></div>
+                <div class="col-lg-6 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your email account, please enter the verification code and verify to procees</p>
+						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed</p>
 						<div style="display:inline-flex;">
                         <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
@@ -88,9 +91,9 @@
                             </div>
 						<hr/>
 					</div>
-				</div>
+				</div><div class="col-lg-3 text-center"></div>
             </div>
-
+            
            
               	<div class="row" id="divregister" style="padding: 23px; background-size:cover;background:rgba(226, 226, 226, 0.28);" runat="server" visible="false">
                       <div class="col-lg-6">
@@ -103,12 +106,13 @@
 								</div>-->
                            
                               <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Choose Plan </h3>
+                              <div class="clearfix">&nbsp;</div>
 								<div class="form-bottom" style="background:none;padding:0px;"> 
                                     <asp:Repeater runat="server" ID="rptselectplan"  >
                                         <ItemTemplate>
                                             <div class="chooseplan">
                                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-right: 0px;">
-                                            <div runat="server" id="divprice" >₹: <%#Eval("Amount") %></div>
+                                            <div runat="server" id="divprice" >₹ <%#Eval("Price") %></div>
                                            
                                         </div>
 
@@ -143,7 +147,7 @@
                         <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Account Information</h3>
                         
 								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
-                                       <h3 style="color: #fff;line-height: 20px;font-weight: 700;background: rgba(67, 156, 67, 0.76);padding: 5px;" runat="server" id="h3showplan" visible="false"></h3>
+                                       <h4 style="border: 1px solid #f0f0f0;border-radius: 4px;color: #fff;line-height: 20px;background: #5cb85c; text-align:center; padding: 5px;" runat="server" id="h3showplan" visible="false"></h4>
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
@@ -158,15 +162,17 @@
 
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Name</label>
-											<input type="text" name="form-username" runat="server" id="Text4" placeholder="First Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+											<input type="text" name="form-username" runat="server" id="Text4" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-password">Password</label>
 											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
 											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
-                                     <input type="checkbox" id="chk" />&nbsp; <span>I agree to the Moil Cloud <a href="Terms.aspx" style="    color: #1200ff;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #1200ff;">Privacy Policy</a></span> 
-										<button type="submit" class="btn" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>
+                                        <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
+                                     <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay"  />
+										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
 									</div>
 								</div>
 							</div>
@@ -174,7 +180,7 @@
         </div>
 	</div>
 	</section>
-
+    
     <section id="contact" class="contact bg-primary">
 		<div class="container" style="background: none;">
 			<h2>We <i class="fa fa-heart"></i> new friends!</h2>

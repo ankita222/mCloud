@@ -130,12 +130,21 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password2;
         
         /// <summary>
-        /// btncfrm control.
+        /// chbxAgree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btncfrm;
+        protected global::System.Web.UI.WebControls.CheckBox chbxAgree;
+        
+        /// <summary>
+        /// btnPay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPay;
     }
 }
