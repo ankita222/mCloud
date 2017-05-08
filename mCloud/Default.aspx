@@ -449,7 +449,7 @@
     </div>
 </div>
 
-    <div class="md-overlay" style="background: rgba(35, 50, 70, 0.43);"></div>
+    <div class="md-overlay" style="background:rgba(35, 50, 70, 0.64);"></div>
 
 
 <!-- jQuery -->

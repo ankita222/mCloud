@@ -121,7 +121,7 @@
                                         </div>
 
                                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                              <asp:Button CommandArgument='<%#Eval("Detail") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
+                                              <asp:Button CommandArgument='<%#Eval("PlanDetails") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
                                         </div>
 
 									</div>

@@ -43,7 +43,8 @@ namespace mCloud
                 }
             }*/
 
-          
+            Session["id"] = username.Value;
+            Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + username.Value);
 
 
         }

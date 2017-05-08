@@ -25,7 +25,8 @@ namespace mCloud.preInit
 
         public void LoadPricePlan()
         {
-            string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
+            //string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
+            string getPlan = "  Select Price, (SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+' Days') as Detail, (convert(nvarchar,Price)+'-'+SpaceInByte+'-'+convert(nvarchar,ValidityInDays)) as PlanDetails from PlanMaster";
             dt = mDAL.FunDataTable(getPlan);
             rptselectplan.DataSource = dt;
             rptselectplan.DataBind();
@@ -34,8 +35,13 @@ namespace mCloud.preInit
         protected void btnselect_Command(object sender, CommandEventArgs e)
         {
             string getplan = e.CommandArgument.ToString();
+            string[] planarray = getplan.Split('-');
+            string amt, planbytes, duration;
+            Session["Amount"]=  amt = planarray[0];
+            Session["Bytes"] = planbytes = planarray[1];
+            Session["Days"] = duration = planarray[2];
             h3showplan.Visible = true;
-            h3showplan.InnerText = "Selected Plan : " + getplan;
+            h3showplan.InnerText = "Selected Plan : " +planbytes+" - "+duration+" Days";
         }
 
         protected void btnverify_Click(object sender, EventArgs e)
@@ -94,15 +100,18 @@ namespace mCloud.preInit
 
         protected void btnPay_Click(object sender, EventArgs e)
         {
-            string mobile=Session["Mob"].ToString();
-            int i= AL.CreateUserFolder(mobile);
-            if(i==1)
+            if (Session["Mob"].ToString() != "" || Session["Email"].ToString() != "")
             {
-                Response.Redirect("~\\Userpage\\Dashboard.aspx?id="+mobile);
-            }
-            else
-            {
-                Response.Write("<script>alert('Something Wrong Occured.')</script>");
+                string mobile = Session["Mob"].ToString();
+                int i = AL.CreateUserFolder(mobile);
+                if (i == 1)
+                {
+                    Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + mobile);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Something Wrong Occured.')</script>");
+                }
             }
         }
     }

@@ -192,6 +192,7 @@
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Logout.aspx" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\Login.aspx" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
@@ -3677,6 +3678,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
