@@ -242,6 +242,7 @@
     <Content Include="preInit\modal\js\cssParser.js" />
     <Content Include="preInit\modal\js\modalEffects.js" />
     <Content Include="preInit\modal\js\modernizr.custom.js" />
+    <Content Include="preInit\Pay.aspx" />
     <Content Include="preInit\Payment.aspx" />
     <Content Include="preInit\Pricing\bootstrap\css\bootstrap.css" />
     <Content Include="preInit\Pricing\bootstrap\css\bootstrap.min.css" />
@@ -3666,6 +3667,7 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
     <Content Include="Validation.js" />
+    <Content Include="Verification.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3705,6 +3707,13 @@
     </Compile>
     <Compile Include="preInit\ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Pay.aspx.cs">
+      <DependentUpon>Pay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Pay.aspx.designer.cs">
+      <DependentUpon>Pay.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
@@ -3755,6 +3764,13 @@
     </Compile>
     <Compile Include="UserPage\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Verification.aspx.cs">
+      <DependentUpon>Verification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verification.aspx.designer.cs">
+      <DependentUpon>Verification.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

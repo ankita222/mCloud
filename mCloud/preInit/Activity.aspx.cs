@@ -20,6 +20,12 @@ namespace mCloud.preInit
             if (!IsPostBack)
             {
                 LoadPricePlan();
+                if (!string.IsNullOrEmpty(Session["Email"] as string)) 
+                {
+                    txtEmail.Value = Session["Email"].ToString();
+                }
+                txtIsdCode.Value = Session["IsdCode"].ToString();
+                txtMob.Value = Session["Mob"].ToString();
             }
         }
 
@@ -43,7 +49,7 @@ namespace mCloud.preInit
             try
             {
                 //string otp1 = Session["hastotp"].ToString();
-                if (AL.PassHash(txtcode.Value) == Session["hastotp"].ToString())
+                if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString()) 
                 {
                     divregister.Visible = true;
                     divverify.Visible = false;
@@ -56,31 +62,32 @@ namespace mCloud.preInit
             {
                 divregister.Visible = true;
                 divverify.Visible = false;
+                
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Wrong OTP!')", true);
             }
         }
 
         protected void btnresend_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string email = Session["Email"].ToString();
-                string mob = Session["Mob"].ToString();
+            //try
+            //{
+            //    string email = Session["Email"].ToString();
+            //    string mob = Session["Mob"].ToString();
 
-                string otp = AL.GenerateOTP();
-                if (email == "" || mob == "")
-                {
-                    Response.Redirect("~/Default.aspx");
-                }
-                else
-                {
-                    int i = AL.SendMail(email, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
-                }
-            }
-            catch (Exception)
-            {
+            //    string otp = AL.GenerateOTP();
+            //    if (email == "" || mob == "")
+            //    {
+            //        Response.Redirect("~/Default.aspx");
+            //    }
+            //    else
+            //    {
+            //        int i = AL.SendMail(email, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-            }
+            //}
 
         }
 
@@ -90,6 +97,17 @@ namespace mCloud.preInit
                 btnPay.Enabled = true;
             else
                 btnPay.Enabled = false;
+        }
+
+        protected void btnPay_Click(object sender, EventArgs e)
+        {
+            if (chbxAgree.Checked == true)
+            {
+                Session["Name"] = txtName.Value;
+
+                Response.Redirect("~/preInit/Pay.aspx");
+                //Session["PlanName"]= (dt.Rows[0]["Name"].ToString());
+            }
         }
     }
 }

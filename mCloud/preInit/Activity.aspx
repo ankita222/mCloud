@@ -151,27 +151,27 @@
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
-											<input type="text" name="form-username" runat="server" id="Text1" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+											<input type="text" name="form-username" runat="server" id="txtEmail" placeholder="Email..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Mobile Number</label>
-										<input type="text" name="form-username" runat="server" id="Text2" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
-										<input type="text" name="form-username" runat="server" id="Text3" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;"/>
+										<input type="text" name="form-username" runat="server" id="txtIsdCode" placeholder="ISD Code" style="height: 28px;font-size: 12px;border: 1px solid #0981e8;width:25%; float:left;padding: 9px;"/>
+										<input type="text" name="form-username" runat="server" id="txtMob" placeholder="Mobile Number ..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:75%;"/>
 										</div>
 
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Name</label>
-											<input type="text" name="form-username" runat="server" id="Text4" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
+											<input type="text" name="form-username" runat="server" id="txtName" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-password">Password</label>
-											<input type="password"  runat="server" id="Password1" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
-											<input type="password"  runat="server" id="Password2" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+											<input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
+											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
-                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay"  />
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click"  />
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
 									</div>
 								</div>

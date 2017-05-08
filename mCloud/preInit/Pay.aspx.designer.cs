@@ -7,81 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mCloud {
+namespace mCloud.preInit {
     
     
-    public partial class Default {
+    public partial class Pay {
         
         /// <summary>
-        /// form1 control.
+        /// divverify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divverify;
         
         /// <summary>
-        /// txtEmail control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEmail;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// ddlIsdCode control.
+        /// lblMob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIsdCode;
+        protected global::System.Web.UI.WebControls.Label lblMob;
         
         /// <summary>
-        /// txtMob control.
+        /// lblPlan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMob;
+        protected global::System.Web.UI.WebControls.Label lblPlan;
         
         /// <summary>
-        /// btnSignUp control.
+        /// lblAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignUp;
+        protected global::System.Web.UI.WebControls.Label lblAmount;
         
         /// <summary>
-        /// username control.
+        /// btnPayNow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl username;
-        
-        /// <summary>
-        /// password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword password;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnPayNow;
     }
 }
