@@ -134,7 +134,7 @@
                                      </button>
                                  </li>
                                  <li class="mymenu">
-                                     <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-placement="bottom" title="File Download" runat="server" id="btndownload" >
+                                     <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-placement="bottom" title="File Download" runat="server" id="btndownload" onserverclick="btndownload_ServerClick" >
                                          <i class="material-icons">file_download</i>
                                      </button>
                                  </li>
@@ -167,6 +167,32 @@
                                     </ItemTemplate>
                             </asp:Repeater>
                         </div>
+                            <div class="row" style="padding: 10px;">
+                                <asp:Repeater ID="Repeater2" runat="server">
+                                    <ItemTemplate>
+
+                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" id="divfiles" oncontextmenu="return filecontextmenu(event);">
+                                      <%--   <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" id="divfiles">--%>
+                                            <asp:Panel ID="thumbnails" runat="server" />
+
+                                            <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
+                                                <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
+                                                <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
+                                                <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Width="90" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></asp:Label>
+                                                <span id="Label1" style="color: rgba(138, 129, 129, 0.84); display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="showul();" onmouseout="hideul();">&#9660;</span>
+                                                <ul id="myul1" class="mymenuforfile">
+                                                    <li>Delete</li>
+                                                    <li>open</li>
+                                                </ul>
+                                            </div>
+
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ItemTemplate>
+
+                                </asp:Repeater>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,7 +223,7 @@
                            <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
 
-                            <asp:Button runat="server" ID="btnfolder" CssClass="btn btn-info waves-effect" Text="Create" style="float: left;width:100%" />
+                            <asp:Button runat="server" ID="btnfolder" CssClass="btn btn-info waves-effect" Text="Create" OnClick="btnfolder_Click" style="float: left;width:100%" />
                             </div>
                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                       <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Close</button>
@@ -234,10 +260,10 @@
                         <div class="modal-footer" style="color: white;">
                         <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnupload" CssClass="btn btn-info waves-effect"  Text="Upload" style="float: left;width:  100%;"/>
+                            <asp:Button runat="server" ID="btnupload" CssClass="btn btn-info waves-effect" onclick="btnupload_Click"  Text="Upload" style="float: left;width:  100%;"/>
                         </div>
                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                                          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width:  100%;">Cancel</button>
+                                          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"  style="color: white;width:  100%;">Cancel</button>
                            </div>
                             </div>
                         </div>
