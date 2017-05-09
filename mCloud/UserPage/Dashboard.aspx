@@ -128,10 +128,6 @@
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Width="90" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></asp:Label>
                                                 <span id="Label1" style="color: rgba(138, 129, 129, 0.84); display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="showul();" onmouseout="hideul();">&#9660;</span>
-                                                <ul id="myul1" class="mymenuforfile">
-                                                    <li>Delete</li>
-                                                    <li>open</li>
-                                                </ul>
                                             </div>
 
 
@@ -243,7 +239,7 @@
                         <div class="modal-footer" style="color: white;">
                           <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnrename" CssClass="btn btn-info waves-effect"  Text="Rename" style="float: left;width: 100%;" />
+                            <asp:Button runat="server" ID="btnrename" CssClass="btn btn-info waves-effect" OnClick="btnrename_Click"  Text="Rename" style="float: left;width: 100%;" />
                           </div>
                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;" >Close</button>
@@ -271,7 +267,7 @@
                         <div class="modal-footer" style="color: white;">
                           <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="Button4" CssClass="btn btn-danger waves-effect" Text="Delete"  style="float: left;width: 100%;"/>
+                            <asp:Button runat="server" ID="button4" CssClass="btn btn-danger waves-effect" Text="Delete" OnClick="btndel_ServerClick"  style="float: left;width: 100%;"/>
                                       </div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                             <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Cancel</button>
