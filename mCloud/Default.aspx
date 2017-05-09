@@ -376,7 +376,12 @@
                                     <i class="fa fa-phone-square"></i>
                                 </span>
                                 <div class="form-line">
-                                    <select id="IsdCode" runat="server" class="form-control">
+                                    <asp:DropDownList ID="ddlIsdCode" runat="server" CssClass="form-control">
+                                        <asp:ListItem>+91 - India</asp:ListItem>
+                                        <asp:ListItem>Others</asp:ListItem>
+                                    </asp:DropDownList>
+                                  
+                                   <%-- <select id="IsdCode1" runat="server" class="form-control">
                                         <option>+91 - India</option>
                                         <option>+92 - Pakistan</option>
                                         <option>+93 - China</option>
@@ -385,7 +390,7 @@
                                         <option>+95 - America</option>
                                         <option>+96 - London</option>
                                         <option>+97 - England</option>
-                                    </select>
+                                    </select>--%>
                                
                                     <input id="txtMob" runat="server" type="text" class="form-control" name="mobileno" placeholder="Mobile No." maxlength="10"  />
                                 </div>
