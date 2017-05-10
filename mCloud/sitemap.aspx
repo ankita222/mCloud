@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,6 +21,8 @@
     <SelectedNodeStyle BackColor="#B5B5B5" Font-Underline="False" HorizontalPadding="0px"
         VerticalPadding="0px" />
 </asp:TreeView>
+
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
     </div>
     </form>
 </body>
