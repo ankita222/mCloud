@@ -47,7 +47,7 @@
                 </button>
 
 
-               <a href="../Default.aspx"> <img src="img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
+               <a href="./"> <img src="img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

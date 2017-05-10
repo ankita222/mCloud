@@ -20,6 +20,14 @@ namespace mCloud.preInit
             if (!IsPostBack)
             {
                 LoadPricePlan();
+                if (!string.IsNullOrEmpty(Session["ClientId"] as string))
+                    txtMob.Value = Session["Mob"].ToString();
+                    //Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
+                    //Session["Mob"] = txtMob.Value;
+                    //string otp = AL.GenerateOTP();
+                    //Session["HashOtp"] = AL.PassHash(otp);
+                    //Session["Email"] = txtEmail.Value;
+
             }
         }
 
