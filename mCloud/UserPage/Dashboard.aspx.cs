@@ -251,6 +251,31 @@ namespace mCloud.UserPage
         protected void btndel_ServerClick(object sender, EventArgs e)
         {
             string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
+                    DirectoryInfo[] Files = d.GetDirectories();
+                    foreach (DirectoryInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string startPath = file.FullName;
+
+                            Directory.Delete(startPath);
+
+                        }
+
+                    }
+                }
+
+            }
+
             foreach (RepeaterItem ri in Repeater2.Items)
             {
                 HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
@@ -267,6 +292,7 @@ namespace mCloud.UserPage
                 }
             }
             loadFiles();
+            loadDirectory();
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
         /* public void IncreaseSize(Int64 size, string userid)
