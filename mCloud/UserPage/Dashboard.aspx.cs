@@ -20,15 +20,14 @@ namespace mCloud.UserPage
 
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
             CreateTable();
             if (Page.IsPostBack != true)
             {
-            loadDirectory();
-            loadFiles();
-        }
-
-
+                loadDirectory();
+                loadFiles();
+            }
         }
 
         public void CreateTable()
@@ -43,6 +42,7 @@ namespace mCloud.UserPage
         {
             try
             {
+                
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));//Assuming Test is your Folder
                 DirectoryInfo[] Files = d.GetDirectories(); //Getting Text files
@@ -58,7 +58,7 @@ namespace mCloud.UserPage
                 Repeater1.DataBind();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
             }
@@ -124,7 +124,8 @@ namespace mCloud.UserPage
         {
             string folder = txtfolder.Value;
             string name = Session["id"].ToString();
-            string map = MapPath("~\\Users\\" + name + "\\" + folder);
+            //            string map = MapPath("~\\Users\\" + name + "\\" + folder);
+            string map = Server.MapPath("~\\Users\\" + name + "\\" + folder);
             if (!System.IO.Directory.Exists(map))
             {
                 //string mobile = txtmobile.Value;
@@ -221,7 +222,7 @@ namespace mCloud.UserPage
                 }
 
             }
-            foreach (RepeaterItem ri in Repeater1.Items)
+            foreach (RepeaterItem ri in Repeater2.Items)
             {
                 HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
                 System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
@@ -268,29 +269,58 @@ namespace mCloud.UserPage
             loadFiles();
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
-       /* public void IncreaseSize(Int64 size, string userid)
+        /* public void IncreaseSize(Int64 size, string userid)
+         {
+             try
+             {
+                 string gettotalsize = "select SizeOnDisk from UserPlanDetail where UserId='" + userid + "'";
+                 DataTable dtuserplan = new DataTable();
+                 dtuserplan = c.fetchInfo(gettotalsize);
+                 string sizedb = dtuserplan.Rows[0][0].ToString();
+                 if (double.Parse(sizedb) < double.Parse(size.ToString()))
+                 {
+                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Sorry You Dont Have Enough Space')", true);
+                 }
+                 else
+                 {
+                     double newsize = double.Parse(sizedb) + double.Parse(size.ToString());
+                     string updatesize = "update UserPlanDetail set SizeOnDisk='" + newsize + "' where UserId='" + userid + "'";
+                     int j = c.InsertUpdateDel(updatesize);
+
+                 }
+             }
+             catch (Exception)
+             {
+             }
+         }*/
+
+        protected void Image1_Command(object sender, CommandEventArgs e)
         {
             try
             {
-                string gettotalsize = "select SizeOnDisk from UserPlanDetail where UserId='" + userid + "'";
-                DataTable dtuserplan = new DataTable();
-                dtuserplan = c.fetchInfo(gettotalsize);
-                string sizedb = dtuserplan.Rows[0][0].ToString();
-                if (double.Parse(sizedb) < double.Parse(size.ToString()))
+                string foldername = e.CommandArgument.ToString();
+                string path = Server.MapPath(@"~//Users//" + Session["id"].ToString() + "//" + foldername + "//");
+                ////////////////////////////////////////////////////////
+                // string name = Session["id"].ToString();
+                DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
+                DirectoryInfo[] dir = d.GetDirectories(); //Getting Text files
+                string str = "", image = "";
+                foreach (DirectoryInfo file in dir)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Sorry You Dont Have Enough Space')", true);
+                    str = file.Name;
+                    image = "~/UserPage/images/folder_PNG8771.png";
+                    object[] o = { str, image };
+                    dt_temp.Rows.Add(o);
                 }
-                else
-                {
-                    double newsize = double.Parse(sizedb) + double.Parse(size.ToString());
-                    string updatesize = "update UserPlanDetail set SizeOnDisk='" + newsize + "' where UserId='" + userid + "'";
-                    int j = c.InsertUpdateDel(updatesize);
-
-                }
+                Repeater1.DataSource = dt_temp;
+                Repeater1.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
-        }*/
+        }
+            //////////////////////////////////////////////////////////////////           
+          //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
+        
     }
 }

@@ -108,7 +108,7 @@
                                         <%--  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">--%>
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
-                                                <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>'  ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
+                                                <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable"></asp:Label>
                                             </div>
                                         </div>
