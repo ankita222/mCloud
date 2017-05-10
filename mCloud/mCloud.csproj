@@ -353,6 +353,7 @@
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="preInit\Activity.aspx" />
     <Content Include="preInit\Disclaimer.aspx" />
+    <Content Include="sitemap.aspx" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -3759,6 +3760,13 @@
       <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sitemap.aspx.cs">
+      <DependentUpon>sitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitemap.aspx.designer.cs">
+      <DependentUpon>sitemap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserPage\Storage.Master.cs">
       <DependentUpon>Storage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

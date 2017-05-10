@@ -42,6 +42,8 @@ namespace mCloud
             //        Response.Write("<script>alert('Error! Please try again');</script>");
             //    }
             //}
+            Session["id"] = username.Value;
+            Response.Redirect("UserPage/Dashboard.aspx?id=" + username.Value);
 
         }
 

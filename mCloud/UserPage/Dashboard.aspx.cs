@@ -190,5 +190,108 @@ namespace mCloud.UserPage
                 }
             }
         }
+        protected void btnrename_Click(object sender, EventArgs e)
+        {
+            string rename = txtrename.Value;
+            string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
+                    DirectoryInfo[] Files = d.GetDirectories();
+                    foreach (DirectoryInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string startPath = file.FullName;
+
+                            string frompath = Path.GetDirectoryName(startPath);
+                            string topath = frompath + "\\" + rename;
+                            Directory.Move(@startPath, @topath);
+
+                            //  Directory.Delete(startPath);
+
+                        }
+
+                    }
+                }
+
+            }
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (FileInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string startPath = file.FullName;
+                            string frompath = Path.GetDirectoryName(startPath);
+                            string topath = frompath + "\\" + rename;
+                            File.Move(startPath, @topath);
+
+                        }
+
+                    }
+                }
+            }
+            Response.Redirect(Request.RawUrl);
+        }
+        protected void btndel_ServerClick(object sender, EventArgs e)
+        {
+            string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+                    string map = MapPath(@"~/Users/" + username + "/" + name);
+                    FileInfo fi = new FileInfo(map);
+                    Int64 ln = fi.Length;// (MapPath(@"~/Users/" + username + "/" + name)).Length;
+               //     IncreaseSize(ln, username);
+                    System.IO.File.Delete(map);
+                    //File.Delete(@"~/Users/6354/" + name);
+                }
+            }
+            loadFiles();
+        }
+        ///// ///////////////////////     Update the size after deleting.///////////////////////
+       /* public void IncreaseSize(Int64 size, string userid)
+        {
+            try
+            {
+                string gettotalsize = "select SizeOnDisk from UserPlanDetail where UserId='" + userid + "'";
+                DataTable dtuserplan = new DataTable();
+                dtuserplan = c.fetchInfo(gettotalsize);
+                string sizedb = dtuserplan.Rows[0][0].ToString();
+                if (double.Parse(sizedb) < double.Parse(size.ToString()))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Sorry You Dont Have Enough Space')", true);
+                }
+                else
+                {
+                    double newsize = double.Parse(sizedb) + double.Parse(size.ToString());
+                    string updatesize = "update UserPlanDetail set SizeOnDisk='" + newsize + "' where UserId='" + userid + "'";
+                    int j = c.InsertUpdateDel(updatesize);
+
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }*/
     }
 }
