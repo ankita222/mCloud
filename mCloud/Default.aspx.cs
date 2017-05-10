@@ -100,7 +100,9 @@ namespace mCloud
         {
             #region TEMP LOGIN CODE
             Session["id"] = txtUserName.Value;
+            Session["CurrentPath"] = "UserPage";
             Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
+           
             #endregion
 
             #region LOGIN CODE

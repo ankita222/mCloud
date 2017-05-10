@@ -14,7 +14,7 @@ namespace mCloud.preInit
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
-
+        string hashotp;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,11 +22,12 @@ namespace mCloud.preInit
                 LoadPricePlan();
                 if (!string.IsNullOrEmpty(Session["ClientId"] as string))
                     txtMob.Value = Session["Mob"].ToString();
-                    //Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
-                    //Session["Mob"] = txtMob.Value;
-                    //string otp = AL.GenerateOTP();
-                    //Session["HashOtp"] = AL.PassHash(otp);
-                    //Session["Email"] = txtEmail.Value;
+                if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
+                    txtIsdCode.Value = Session["IsdCode"].ToString();
+                if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
+                    hashotp = Session["HashOtp"].ToString();
+                if (!string.IsNullOrEmpty(Session["Email"] as string))
+                    txtEmail.Value = Session["Email"].ToString();
 
             }
         }
