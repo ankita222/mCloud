@@ -406,6 +406,7 @@
     <Content Include="UserPage\images\blue_32x32.png" />
     <Content Include="UserPage\images\child_boy-512.png" />
     <Content Include="UserPage\images\document-626142_640 %281%29.png" />
+    <Content Include="UserPage\images\document-626142_640.png" />
     <Content Include="UserPage\images\document-icon-36540.png" />
     <Content Include="UserPage\images\download %281%29 - Copy.jpg" />
     <Content Include="UserPage\images\exe-file-icon-56bcac1d5f9b5829f84fa0d7.PNG" />
@@ -3668,6 +3669,7 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.css" />
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
+    <Content Include="UserPage\MyAccount.aspx" />
     <Content Include="Validation.js" />
     <Content Include="Verification.aspx" />
     <Content Include="Web.config" />
@@ -3780,6 +3782,13 @@
     </Compile>
     <Compile Include="UserPage\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPage\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPage\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Verification.aspx.cs">
       <DependentUpon>Verification.aspx</DependentUpon>

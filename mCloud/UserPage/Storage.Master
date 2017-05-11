@@ -176,7 +176,7 @@
             <%--<div class="user-info" style="background-color: #3c829c;padding: 33px 20px 18px 46px;" >--%>
                   <div class="user-info" style="padding: 33px 20px 18px 46px;" >
                 <div class="image">
-                    <asp:Image ID="img1" ImageUrl="images/User-Profile.png" width="48" height="48" alt="User" runat="server" style="background: #1e6498;box-shadow: 0px 2px 34px 3px #06273a;"/>
+                    <asp:Image ID="img1" ImageUrl="~/UserPage/images/child_boy-512.png" width="48" height="48" alt="User" runat="server" style="background: #1e6498;box-shadow: 0px 2px 34px 3px #06273a;"/>
                 </div>
                 <div class="info-container" style="top: 4px;">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #1b2133;font-weight: 700;" runat="server" id="divuser">Welcome <br/>
@@ -235,7 +235,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright" style="margin-top: -8px;color:#1e6498">
-                    &copy; 2017 <a href="javascript:void(0);" style="color: #1e6498;">Techizas</a>.
+                    &copy; 2017 <a href="javascript:void(0);" style="color: #1e6498;">Moil Cloud</a>.
                 </div>
                <%-- <div class="version">
                     <b>Version: </b> 1.0.4

@@ -24,11 +24,10 @@ namespace mCloud.preInit
                     txtMob.Value = Session["Mob"].ToString();
                 if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
                     txtIsdCode.Value = Session["IsdCode"].ToString();
-                if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
+                if (!string.IsNullOrEmpty(Session["HashOtp"] as string))
                     hashotp = Session["HashOtp"].ToString();
                 if (!string.IsNullOrEmpty(Session["Email"] as string))
                     txtEmail.Value = Session["Email"].ToString();
-
             }
         }
 
@@ -96,7 +95,6 @@ namespace mCloud.preInit
             {
 
             }
-
         }
 
         protected void chbxAgree_CheckedChanged(object sender, EventArgs e)

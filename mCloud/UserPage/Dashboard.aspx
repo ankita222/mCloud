@@ -185,8 +185,6 @@
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color:black;"></asp:Label>
                                                 </div>
                                             </div>
-
-
                                             <div class="clearfix"></div>
                                         </div>
                                     </ItemTemplate>
