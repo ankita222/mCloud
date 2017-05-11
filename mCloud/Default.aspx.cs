@@ -102,38 +102,48 @@ namespace mCloud
             Session["id"] = txtUserName.Value;
             Session["CurrentPath"] = "UserPage";
             Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
-           
+
             #endregion
 
             #region LOGIN CODE
-            //if(txtUserName.Value != "" && txtPassword.Value != "")
-            //{
-            //    SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
+            /*
+            if (txtUserName.Value != "" && txtPassword.Value != "")
+            {
+                SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
 
-            //    int x = DAL.FunExecuteNonQuerySP("ust_login", param);
-            //    if (x == 1)
-            //    {
-            //        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
-            //        string hash = FormsAuthentication.Encrypt(ticket);
-            //        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+                 SqlParameter u= DAL.SqlParam("@UserId", txtUserName.Value, SqlDbType.VarChar);
+                string phash = AL.PassHash(txtPassword.Value);
+                SqlParameter p = DAL.SqlParam("@Password", phash, SqlDbType.VarChar);
 
-            //        if (ticket.IsPersistent)
-            //        {
-            //            cookie.Expires = ticket.Expiration;
-            //        }
-            //        Response.Cookies.Add(cookie);
-            //        Session["UserId"] = txtUserName.Value; Session["UserId"] = txtUserName.Value;
+                //int x = DAL.FunExecuteNonQuerySP("ust_login", u,p);
+                //int x = DAL.FunExecuteNonQuery("SELECT COUNT(*) as UsrCnt FROM UserDetails WHERE UserId='" + txtUserName.Value + "' AND Password='" + AL.PassHash(txtPassword.Value) + "'");
+                DataTable dt = DAL.FunDataTableSP("ust_login", param);
 
-            //        Response.Redirect("UserPage/Dashboard.aspx");
-            //        FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
+                if (dt.Rows[0]["Column1"].ToString() == "1")
+                {
+                    //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
+                    //string hash = FormsAuthentication.Encrypt(ticket);
+                    //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
 
-
-
-            //    }
-            //    else
-            //        lblErrorMsg.Text = "Invalid Username and/or Password";
-
-            // }
+                    //if (ticket.IsPersistent)
+                    //{
+                    //    cookie.Expires = ticket.Expiration;
+                    //}
+                    //Response.Cookies.Add(cookie);
+                    //Session["UserId"] = txtUserName.Value;
+                   
+                    //FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
+                    Response.Redirect("UserPage/Dashboard.aspx");
+                    
+                }
+                else
+                {
+                    this.lblErrorMsg.Visible = true;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                    this.lblErrorMsg.Text = "Invalid Username and/or Password";
+                }
+            }
+            */
             #endregion
 
         }

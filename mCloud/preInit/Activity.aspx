@@ -146,8 +146,13 @@
 								</div>-->
                         <h3 style="color: #fff;line-height: 20px;font-weight: 700;">Account Information</h3>
                         
-								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px;"> 
-                                       <h4 style="border: 1px solid #f0f0f0;border-radius: 4px;color: #fff;line-height: 20px;background: #5cb85c; text-align:center; padding: 5px;" runat="server" id="h3showplan" visible="false"></h4>
+								<div class="form-bottom" style="background:none;padding: 18px 25px 30px 25px; width:100%;">
+                                    <h4 runat="server" visible="false" id="h3showplan" style="border: 1px solid #f0f0f0;border-radius: 4px;color: #fff;line-height: 20px;background: #5cb85c; text-align:center; padding: 5px;" >
+                                    <asp:Label ID="lblSelectedPlan" Visible="false" runat="server"></asp:Label>
+                                    </h4>
+
+                                       <%--<h4 style="border: 1px solid #f0f0f0;border-radius: 4px;color: #fff;line-height: 20px;background: #5cb85c; text-align:center; padding: 5px;" runat="server" id="h3showplan" id="h3showplan" visible="false"id="h3showplan" visible="false"id="h3showplan" visible="false"></h4>--%>
+
 									<div role="form" action="" method="post" class="login-form">
 										<div class="form-group" style="margin-bottom: 6px;">
 											<label class="sr-only" for="form-username">Email</label>
@@ -165,9 +170,9 @@
 											<input type="text" name="form-username" runat="server" id="txtName" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
 										<div class="form-group" style="margin-bottom: 6px;">
-											<label class="sr-only" for="form-password">Password</label>
-											<input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:49%; float:left;"/>
-											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:49%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+				 							<label class="sr-only" for="form-password">Password</label>
+											<input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:50%; float:left;"/>
+											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:50%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
 										</div>
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
