@@ -14,12 +14,21 @@ namespace mCloud.preInit
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
-
+        string hashotp;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadPricePlan();
+                if (!string.IsNullOrEmpty(Session["ClientId"] as string))
+                    txtMob.Value = Session["Mob"].ToString();
+                if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
+                    txtIsdCode.Value = Session["IsdCode"].ToString();
+                if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
+                    hashotp = Session["HashOtp"].ToString();
+                if (!string.IsNullOrEmpty(Session["Email"] as string))
+                    txtEmail.Value = Session["Email"].ToString();
+
             }
         }
 

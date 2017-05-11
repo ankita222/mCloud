@@ -427,7 +427,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input id="username" runat="server" type="number" class="form-control" name="username" placeholder="UserName"  />
+                                    <input id="txtUserName" runat="server" type="number" class="form-control" name="username" placeholder="Username"  />
                                 </div>
                             </div>
                         </div>
@@ -439,7 +439,27 @@
                                     <i class="fa fa-lock"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input id="password" runat="server" type="password" class="form-control" placeholder="Password" maxlength="10"  />
+                                    <input id="txtPassword" runat="server" type="password" class="form-control" placeholder="Password" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                               
+                                <div class="form-line">
+                                    <asp:CheckBox ID="CheckBoxPersist" style="color:#555555; font-weight:normal;font-size:small;" CssClass="checkbox-inline" Checked="false" Text="Remember me" runat="server" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                               
+                                <div class="form-line">
+                                    <asp:Label ID="lblErrorMsg" runat="server" Text="Label"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -447,7 +467,7 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 9px;">
-                <asp:Button type="button" class="btn btn-success" runat="server" ID="Button1" Style="float: right;" OnClick="btncreate_ServerClick" Text="Sign In" />
+                <asp:Button class="btn btn-success" runat="server" ID="btnSignIn" Style="float: right;" OnClick="btnSignIn_Click" Text="Sign In" />
 
             </div>
         </div>
