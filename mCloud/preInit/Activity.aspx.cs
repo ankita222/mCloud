@@ -19,15 +19,25 @@ namespace mCloud.preInit
         {
             if (!IsPostBack)
             {
+                //Temporary code
                 LoadPricePlan();
-                if (!string.IsNullOrEmpty(Session["ClientId"] as string))
-                    txtMob.Value = Session["Mob"].ToString();
-                if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
-                    txtIsdCode.Value = Session["IsdCode"].ToString();
-                if (!string.IsNullOrEmpty(Session["HashOtp"] as string))
-                    hashotp = Session["HashOtp"].ToString();
-                if (!string.IsNullOrEmpty(Session["Email"] as string))
-                    txtEmail.Value = Session["Email"].ToString();
+
+                if (txtMob.Value != "")
+                {
+                    LoadPricePlan();
+                    if (!string.IsNullOrEmpty(Session["Mob"] as string))
+                        txtMob.Value = Session["Mob"].ToString();
+                    if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
+                        txtIsdCode.Value = Session["IsdCode"].ToString();
+                    if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
+                        hashotp = Session["HashOtp"].ToString();
+                    if (!string.IsNullOrEmpty(Session["Email"] as string))
+                        txtEmail.Value = Session["Email"].ToString();
+                }
+                //Enable below after development
+                //else
+                    //Response.Redirect("./");
+
             }
         }
 
@@ -48,8 +58,11 @@ namespace mCloud.preInit
             Session["Amount"]=  amt = planarray[0];
             Session["Bytes"] = planbytes = planarray[1];
             Session["Days"] = duration = planarray[2];
+
+            lblSelectedPlan.Visible = true;
+            lblSelectedPlan.Text= "Selected Plan : " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days";
             h3showplan.Visible = true;
-            h3showplan.InnerText = "Selected Plan : " +planbytes+" - "+duration+" Days";
+            //h3showplan.InnerText = "Selected Plan : " +"₹"+amt + " - " + planbytes + " GB"+" - " + duration + " Days";
         }
 
         protected void btnverify_Click(object sender, EventArgs e)
@@ -95,6 +108,7 @@ namespace mCloud.preInit
             {
 
             }
+
         }
 
         protected void chbxAgree_CheckedChanged(object sender, EventArgs e)
@@ -107,6 +121,8 @@ namespace mCloud.preInit
 
         protected void btnPay_Click(object sender, EventArgs e)
         {
+            #region TEST CODE
+            /*
             if (Session["Mob"].ToString() != "" || Session["Email"].ToString() != "")
             {
                 string mobile = Session["Mob"].ToString();
@@ -120,6 +136,32 @@ namespace mCloud.preInit
                     Response.Write("<script>alert('Something Wrong Occured.')</script>");
                 }
             }
+            */
+            #endregion
+
+            #region Final Code
+            if (chbxAgree.Checked == true)
+            {
+                if (lblSelectedPlan.Text != "")
+                {
+                    if (txtMob.Value != "" && txtName.Value != "" && txtPassword.Value != "" && txtCPassword.Value != "")
+                    {
+                        if (txtEmail.Value != "")
+                        Session["Email"] = txtEmail.Value;
+                        Session["IsdCode"] = txtIsdCode.Value;
+                        Session["Mob"] = txtMob.Value;
+                        Session["Name"] = txtName.Value;
+                        //Response.Redirect("Pay.aspx");
+                    }
+                    else
+                        Response.Write("<script>alert('Please fill all required fields.');</script>");
+                }
+                else
+                    Response.Write("<script>alert('Please Select a Plan.');</script>");
+            }
+            else
+                Response.Write("<script>alert('Please check the agreement to proceed.');</script>");
+            #endregion
         }
     }
 }

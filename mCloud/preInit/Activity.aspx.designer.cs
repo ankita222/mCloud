@@ -76,6 +76,15 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl h3showplan;
         
         /// <summary>
+        /// lblSelectedPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSelectedPlan;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>

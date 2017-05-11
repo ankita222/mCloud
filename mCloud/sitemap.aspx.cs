@@ -8,11 +8,13 @@ using System.IO;
 using System.Xml;
 using System.Security;
 using System.Security.Permissions;
+using mCloud.App_Code;
 
 namespace mCloud
 {
     public partial class sitemap : System.Web.UI.Page
     {
+        mCloudAL al = new mCloudAL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -104,6 +106,11 @@ namespace mCloud
         protected void Button1_Click(object sender, EventArgs e)
         {
             create();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Label1.Text = al.PassHash(TextBox1.Text);
         }
     }
 }

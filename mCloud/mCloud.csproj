@@ -194,6 +194,7 @@
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Logout.aspx" />
     <Content Include="preInit\img\google-play-badge.png" />
+    <Content Include="preInit\index.html" />
     <Content Include="preInit\Login.aspx" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.min.css" />
