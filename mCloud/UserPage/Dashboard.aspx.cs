@@ -44,8 +44,8 @@ namespace mCloud.UserPage
             {
                 
                 string name = Session["id"].ToString();
-                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));//Assuming Test is your Folder
-                DirectoryInfo[] Files = d.GetDirectories(); //Getting Text files
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+                DirectoryInfo[] Files = d.GetDirectories(); 
                 string str = "", image = "";
                 foreach (DirectoryInfo file in Files)
                 {
@@ -56,6 +56,7 @@ namespace mCloud.UserPage
                 }
                 Repeater1.DataSource = dt_temp;
                 Repeater1.DataBind();
+                //site
 
             }
             catch (Exception ex)

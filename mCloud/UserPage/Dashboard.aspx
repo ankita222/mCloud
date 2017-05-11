@@ -25,6 +25,58 @@
     </script>
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, .container {
+            height: 100%;
+        }
+
+        .container222 {
+            background: #f6f6f6;
+        }
+
+        .context-menu {
+            width: 125px;
+            height: auto;
+            box-shadow: 0px 2px 10px 0px rgba(3, 26, 29, 0.88);
+            position: absolute;
+            display: none;
+            background: white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+            .context-menu ul {
+                list-style: none;
+                padding: 5px 0px 5px 0px;
+            }
+
+                .context-menu ul li:not(.seperator) {
+                    padding: 10px 5px 10px 5px;
+                    border-left: 4px solid transparent;
+                    cursor: pointer;
+                }
+
+                .context-menu ul li :hover {
+                    background: #eee;
+                    border-left: 4px solid #666;
+                }
+
+        .seperator {
+            height: 1px;
+            background: #dedede;
+            margin: 2px 0px 2px 0px;
+        }
+
+        #ContentPlaceHolder1_TreeView1 table tbody tr td {
+            padding:2px;
+        }
+    </style>
+
+    <style>
          body.modal-open .bvv{
             -webkit-filter: blur(4px);
             -moz-filter:  blur(4px);
@@ -56,10 +108,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">    
            <form id="Form1" runat="server">
-                 <div class="bvv" >    
+                 <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" style="background: linear-gradient(45deg, #ebe9f1, #b6e9ef);">
+                    <div class="card" style="background: linear-gradient(45deg, #f3f5f5, #f3f5f5);">
 
                         <div class="header" style="height: 56px; border-bottom: 1px solid rgba(6, 0, 0, 0.35);">
                             <div style="width: 94px; float: left;">
@@ -109,8 +161,11 @@
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
-                                                <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable"></asp:Label>
+                                                
                                             </div>
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                                <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="Label2"></asp:Label>
+                                              </div>
                                         </div>
                                     </ItemTemplate>
                             </asp:Repeater>
@@ -126,8 +181,9 @@
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
-                                                <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Width="90" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></asp:Label>
-                                                <span id="Label1" style="color: rgba(138, 129, 129, 0.84); display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onmouseover="showul();" onmouseout="hideul();">&#9660;</span>
+                                                 <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                                <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color:black;"></asp:Label>
+                                                </div>
                                             </div>
 
 
@@ -281,7 +337,78 @@
 
                </form>
     </div>
+    <div class="container222">
+        <div id="contextMenu" class="context-menu">
+            <ul>
+                <li><div data-target="#defaultModal" data-toggle="modal"> <i class="material-icons" style="color: black; font-size: 17px;">create_new_folder</i><span>New Folder</span></div></li>
+                <li class="seperator"></li>
+                 <li><div data-target="#uploadfiles" data-toggle="modal"> <i class="material-icons" style="color: black; font-size: 17px;">file_upload</i><span>File Upload</span></div></li>
+               
 
+            </ul>
+        </div>
+
+        <div id="filecontextmenu" class="context-menu">
+            <ul>
+                 <li>
+                    <div data-target="#DivShare" data-toggle="modal">
+                        <i class="material-icons" style="color: black; font-size: 17px;">folder_shared</i>
+                        <span>Share</span>
+                    </div>
+                </li>
+                <li class="seperator"></li>
+                <li>
+                    <div onclick="BtndwnClick();">
+                        <i class="material-icons" style="color: black; font-size: 17px;">file_download</i>
+                        <span>Download</span>
+                    </div>
+                </li>
+                <li>
+                    <div data-target="#DivArchive" data-toggle="modal">
+                        <i class="material-icons" style="color: black; font-size: 17px;">archive</i>
+                        <span>Archive</span>
+                    </div>
+                </li>
+                 <li>
+                    <div onclick="BtnClick();">
+                        <i class="material-icons" style="color: black; font-size: 17px;">unarchive</i>
+                        <span>Unarchive</span>
+                    </div>
+                </li>
+                <li class="seperator"></li>
+                <li>
+                    <div data-target="#DivRename" data-toogle="modal" onclick="divshow();">
+                        <i class="material-icons" style="color: black; font-size: 17px;">border_color</i>
+                        <span>Rename</span>
+                    </div>
+                </li>
+                <li>
+                    <div data-target="#DivMoveFiles" data-toggle="modal">
+                        <i class="material-icons" style="color: black; font-size: 17px;">zoom_out_map</i>
+                        <span>Move</span>
+                      
+                    </div>
+                </li>
+
+                 <li>
+                    <div data-target="#DivCopyFiles" data-toggle="modal">
+                        <i class="material-icons" style="color: black; font-size: 17px;">content_copy</i>
+                        <span>Copy</span>
+                    </div>
+                </li>
+                <li class="seperator"></li>
+                <li>
+                    <div data-target="#deletefolder" data-toggle="modal" >
+                        <i class="material-icons" style="color: black; font-size: 17px;">delete</i>
+                        <span>Remove</span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
   <script type="text/javascript">
         window.onclick = hideContextMenu;
         window.onkeydown = listenKeys;
