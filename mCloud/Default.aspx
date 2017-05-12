@@ -324,7 +324,7 @@
 
 <section id="contact" class="contact bg-primary">
     <div class="container" style="background: none;">
-        <h2>We <i class="fa fa-heart"></i>new friends!</h2>
+        <h2>We <i class="fa fa-heart" style="color:#3963dd"></i>new friends!</h2>
         <ul class="list-inline list-social">
             <li class="social-twitter">
                 <a href="#"><i class="fa fa-twitter"></i></a>

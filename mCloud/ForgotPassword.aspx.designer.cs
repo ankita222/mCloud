@@ -7,180 +7,189 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mCloud.UserPage {
+namespace mCloud {
     
     
-    public partial class WebForm2 {
+    public partial class ForgotPassword {
         
         /// <summary>
-        /// Form1 control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtFirstname control.
+        /// divverify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFirstname;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divverify;
         
         /// <summary>
-        /// txtmob control.
+        /// txtcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmob;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcode;
         
         /// <summary>
-        /// txtmail control.
+        /// btnnext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmail;
+        protected global::System.Web.UI.WebControls.Button btnnext;
         
         /// <summary>
-        /// btnsave control.
+        /// p_warn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsave;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl p_warn;
         
         /// <summary>
-        /// txtoldpass control.
+        /// divchoose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtoldpass;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchoose;
         
         /// <summary>
-        /// txtnewpass control.
+        /// divmobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtnewpass;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divmobile;
         
         /// <summary>
-        /// txtcnfrmpass control.
+        /// rbtmobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtcnfrmpass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbtmobile;
         
         /// <summary>
-        /// btnchangepass control.
+        /// lblmobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnchangepass;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmobile;
         
         /// <summary>
-        /// img1 control.
+        /// divemail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divemail;
         
         /// <summary>
-        /// imgupload control.
+        /// rbtmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload imgupload;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbtmail;
         
         /// <summary>
-        /// lblplan control.
+        /// lblmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblplan;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmail;
         
         /// <summary>
-        /// lbltotal control.
+        /// btnsend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltotal;
+        protected global::System.Web.UI.WebControls.Button btnsend;
         
         /// <summary>
-        /// lblexp control.
+        /// divOTP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblexp;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOTP;
         
         /// <summary>
-        /// btnupgrade control.
+        /// txtotp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnupgrade;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtotp;
         
         /// <summary>
-        /// Button2 control.
+        /// btnverify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnverify;
         
         /// <summary>
-        /// lblavailspace control.
+        /// btnResend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblavailspace;
+        protected global::System.Web.UI.WebControls.Button btnResend;
         
         /// <summary>
-        /// lblusedspace control.
+        /// p1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblusedspace;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl p1;
         
         /// <summary>
-        /// Button3 control.
+        /// divChnage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divChnage;
+        
+        /// <summary>
+        /// btnreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnreset;
     }
 }

@@ -20,7 +20,55 @@ namespace mCloud.UserPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadinfo();
+            ///loadPlanDetails();
+        }
 
+        public void loadPlanDetails()
+        {
+            try
+            {
+                string username = Session["id"].ToString();
+                string getinfo = "select * from UserDetails where UserId='" + username + "'";
+                DataTable dt = new DataTable();
+                dt = mDAL.FunDataTable(getinfo);
+                if (dt.Rows.Count > 0)
+                {
+                    txtFirstname.Text = dt.Rows[0]["Name"].ToString();
+                    txtmail.Value = dt.Rows[0]["Email"].ToString();
+                    txtmob.Value = dt.Rows[0]["UserId"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void loadinfo()
+        {
+            try {
+                string username = Session["id"].ToString();
+                string getinfo = "select u.Name as username, u.Email as email, u.UserId as userid, p.Name as planName, p.SpaceInByte as SpaceInByte,convert(nvarchar(12),u.ExpiryDate) as ExpiryDate, u.UsedSpace as usedspace  from UserDetails u join PlanMaster p on p.PlanId = u.PlanId where u.UserId='" + username + "'";
+                DataTable dt = new DataTable();
+                dt = mDAL.FunDataTable(getinfo);
+                if (dt.Rows.Count > 0)
+                {
+                    txtFirstname.Text = dt.Rows[0]["username"].ToString();
+                    txtmail.Value = dt.Rows[0]["email"].ToString();
+                    txtmob.Value= dt.Rows[0]["userid"].ToString();
+                    lblplan.InnerText = dt.Rows[0]["planName"].ToString();
+                    lbltotal.InnerText = dt.Rows[0]["SpaceInByte"].ToString()+" Bytes";
+                    lblexp.InnerText = dt.Rows[0]["ExpiryDate"].ToString();
+                    lblavailspace.InnerText =(Int64.Parse(dt.Rows[0]["SpaceInByte"].ToString())- Int64.Parse(dt.Rows[0]["usedspace"].ToString())).ToString() + " Bytes";
+                    lblusedspace.InnerText = dt.Rows[0]["usedspace"].ToString() + " Bytes";
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         protected void btnsave_Click(object sender, EventArgs e)

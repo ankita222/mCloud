@@ -233,7 +233,7 @@
                                         <label style="float: left;font-size: 16px;">Used Space </label>
                                     </div>
                                      <div class="col-lg-6 col-md-6 col-sm-4 col-xs-5 form-control-label">
-                                        <label style="float: left;font-size: 16px;">50 GB</label>
+                                        <label style="float: left;font-size: 16px;" runat="server" id="lblusedspace">50 GB</label>
                                     </div>
                                 </div>
                                     <div class="row clearfix">
