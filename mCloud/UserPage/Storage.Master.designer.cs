@@ -22,6 +22,24 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// form control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        
+        /// <summary>
+        /// btnLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogOut;
+        
+        /// <summary>
         /// img1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace mCloud.UserPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sp1;
+        
+        /// <summary>
+        /// lblLoginUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLoginUser;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

@@ -193,6 +193,8 @@
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Logout.aspx" />
+    <Content Include="PaymentFailure.aspx" />
+    <Content Include="PaymentSucces.aspx" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\index.html" />
     <Content Include="preInit\Login.aspx" />
@@ -355,6 +357,7 @@
     <Content Include="preInit\Activity.aspx" />
     <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="sitemap.aspx" />
+    <Content Include="EmailVerificationCode.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -475,6 +478,7 @@
     <Content Include="UserPage\images\User-Profile.png" />
     <Content Include="UserPage\images\user.jpg" />
     <Content Include="UserPage\images\user.png" />
+    <Content Include="UserPage\index.html" />
     <Content Include="UserPage\js\admin.js" />
     <Content Include="UserPage\js\demo.js" />
     <Content Include="UserPage\js\helpers.js" />
@@ -3689,6 +3693,20 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentFailure.aspx.cs">
+      <DependentUpon>PaymentFailure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentFailure.aspx.designer.cs">
+      <DependentUpon>PaymentFailure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSucces.aspx.cs">
+      <DependentUpon>PaymentSucces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSucces.aspx.designer.cs">
+      <DependentUpon>PaymentSucces.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

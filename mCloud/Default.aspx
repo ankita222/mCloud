@@ -227,7 +227,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>400 MB Storage Space</strong>
+                                <strong>2 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -257,7 +257,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>1 GB Storage Space</strong>
+                                <strong>&nbsp;6 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -287,7 +287,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>2 GB Storage Space</strong>
+                                <strong>12 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -477,6 +477,7 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 9px;">
+                <span style="float:left;"><a class="btn" href="sitemap.aspx">Renew</a></span>
                 <asp:Button class="btn btn-success" runat="server" ID="btnSignIn" Style="float: right;" OnClick="btnSignIn_Click" Text="Sign In" />
 
             </div>

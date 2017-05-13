@@ -40,15 +40,6 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.WebControls.Label lblMob;
         
         /// <summary>
-        /// lblPlan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlan;
-        
-        /// <summary>
         /// lblAmount control.
         /// </summary>
         /// <remarks>

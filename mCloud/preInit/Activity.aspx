@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Activity.aspx.cs" Inherits="mCloud.preInit.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Activity.aspx.cs" Inherits="mCloud.preInit.WebForm1" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Complete Sign Up</title>
 
@@ -83,12 +83,15 @@
                 <div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
                 <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed</p>
+						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed.</p>
+                        <div class="clearfix">&nbsp;</div>
 						<div style="display:inline-block;">
                         <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
+                             <div class="clearfix">&nbsp;</div>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnresend_Click"/>
                             </div>
+                         <div class="clearfix">&nbsp;</div>
 						<hr/>
 					</div>
 				</div><div class="col-lg-3 col-xs-12 col-sm-12 text-center"></div>
@@ -121,7 +124,7 @@
                                         </div>
 
                                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                              <asp:Button CommandArgument='<%#Eval("PlanDetails") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text="Select" Width="100%" style="padding-left: 7px;" />
+                                              <asp:Button CommandArgument='<%#Eval("PlanDetails") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text='<%#Eval("Name") %>' Width="100%" style="padding-left: 7px;" />
                                         </div>
 
 									</div>

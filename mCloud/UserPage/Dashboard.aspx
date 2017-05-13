@@ -107,7 +107,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">    
-           <form id="Form1" runat="server">
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -335,7 +335,7 @@
 
             </div>
 
-               </form>
+              
     </div>
     <div class="container222">
         <div id="contextMenu" class="context-menu">

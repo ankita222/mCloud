@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,8 +19,31 @@ namespace mCloud.UserPage
             }
             catch(Exception)
             {
-                Response.Redirect("~/Logout.aspx");
+                Response.Redirect("~/Default.aspx");
             }
+            if (IsPostBack)
+            {
+                if (Page.User.Identity.IsAuthenticated)
+                {
+                    lblLoginUser.Text = HttpContext.Current.User.Identity.Name;
+                    Response.Redirect("UserPage/Dashboard.aspx");
+                }
+                else
+                {
+                    Session.Clear();
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    Response.Redirect("~/Default.aspx");
+                }
+            }
+        }
+
+        protected void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

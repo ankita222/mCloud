@@ -14,7 +14,7 @@
     Folder Details</h3>
 <hr />
 
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
+        <asp:TextBox ID="TextBox1" runat="server" Height="87px" Width="248px"></asp:TextBox><asp:Label ID="Label1" runat="server" Text="₹20 - 256974 GB - 90 Days"></asp:Label><asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
         <br />
 <asp:TreeView ID="TreeView1" runat="server" ImageSet="XPFileExplorer" NodeIndent="15">
     <HoverNodeStyle Font-Underline="True" ForeColor="#6666AA" />

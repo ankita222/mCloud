@@ -346,8 +346,13 @@ namespace mCloud.UserPage
             {
             }
         }
-            //////////////////////////////////////////////////////////////////           
-          //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
-        
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Button1.Text= Directory.GetCurrentDirectory();
+        }
+        //////////////////////////////////////////////////////////////////           
+        //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
+
     }
 }
