@@ -37,7 +37,6 @@ namespace mCloud.preInit
                 //Enable below after development
                 //else
                     //Response.Redirect("./");
-
             }
         }
 

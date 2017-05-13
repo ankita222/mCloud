@@ -184,6 +184,24 @@ namespace mCloud {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divChnage;
         
         /// <summary>
+        /// txtnewpass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnewpass;
+        
+        /// <summary>
+        /// txtcnfrmpass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcnfrmpass;
+        
+        /// <summary>
         /// btnreset control.
         /// </summary>
         /// <remarks>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Forgot Password</title>
-   <meta charset="utf-8" />
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
@@ -71,19 +71,19 @@
                     <li>
                         <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                        <a class="md-trigger" data-modal="modal-4" href="../Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
+                        <a class="md-trigger" data-modal="modal-4" href="Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="Login.aspx" style="color: black;font-weight:700;">Sign In</a>
+                        <a class="page-scroll" href="Default.aspx" style="color: black;font-weight:700;">Sign In</a>
                     </li>
                     <li>
-                    <a class="page-scroll" href="../Default.aspx" style="font-weight:700;color: black;">Price & Plans</a>
+                    <a class="page-scroll" href="Default.aspx" style="font-weight:700;color: black;">Price & Plans</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="AboutUs.aspx" style="font-weight:700;color: black;">About Us</a>
+                    <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight:700;color: black;">About Us</a>
                 </li>
                     <li>
-                        <a class="page-scroll" href="ContactUs.aspx" style="color: black;font-weight:700;">Contact</a>
+                        <a class="page-scroll" href="preInit/ContactUs.aspx" style="color: black;font-weight:700;">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -93,11 +93,11 @@
     </nav>
 
         <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
-		<div class="container" style="background: none;">
+		<div class="container" style="background: none;min-height:0px;" >
 		   <div class="row">
 				<div class="col-lg-12 col-xs-12 col-sm-12 text-left">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Recover Password</h2>
+						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Reset Password</h2>
 						<!--<p class="text-muted" style="font-size: 18px;color: #fff;">Verify Number >> Select Plan >> Pay Now </p>-->
 					</div>
 				</div>
@@ -106,7 +106,7 @@
 			</div>
              
 			
-            <div runat="server" id="divverify" visible="false" >
+            <div runat="server" id="divverify"  >
             <div class="row"  ><hr style="max-width:500px;"/>
                 <div class="col-lg-4 col-xs-12 col-sm-12 text-center"></div>
                 <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
@@ -163,7 +163,7 @@
 						<div style="display:inline-block;">
                         <input type="text" runat="server" id="txtotp" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
-                            &nbsp; <asp:Button runat="server" ID="btnResend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnResend_Click" />
+                            &nbsp; <asp:Button runat="server" ID="btnResend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnsend_Click" />
                                &nbsp; <p style="color:#650202;font-weight: 400;line-height: 20px;" runat="server" id="p1" visible="false">Wrong OTP</p>
                             </div>						
 					       </div>
@@ -173,7 +173,7 @@
             <hr style="max-width:500px;"/>
             </div>
 
-            <div runat="server" id="divChnage" >
+            <div runat="server" id="divChnage" visible="false" >
             <div class="row"><hr style="max-width:500px;"/>
                 <div class="col-lg-4 col-xs-12 col-sm-12 text-center"></div>
                 <div class="col-lg-4 col-xs-12 col-sm-12 text-center">
@@ -185,8 +185,7 @@
                                     <div class="col-lg-5 col-md-10 col-sm-8 col-xs-7" style="padding: 0px;">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="txtnewpass" class="form-control" style="height: 29px;padding: 10px;border: none;
-    font-size: 13px;"/>
+                                                <input runat="server" type="text" id="txtnewpass" class="form-control" style="height: 29px;padding: 10px;border: none;font-size: 13px;"/>
                                             </div>
                                         </div>
                                     </div>
@@ -198,13 +197,13 @@
                                     <div class="col-lg-5 col-md-10 col-sm-8 col-xs-7" style="padding: 0px;">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="txtcnfrmpass" class="form-control"  style="height: 29px;padding: 10px;border: none;font-size: 13px;"/>
+                                                <input runat="server" type="text" id="txtcnfrmpass" class="form-control"  style="height: 29px;padding: 10px;border: none;font-size: 13px;"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>		
-                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                      <asp:Button runat="server" ID="btnreset" CssClass="btn btn-sm btn-info" Text="Reset Password "/>
+                                  <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                      <asp:Button runat="server" ID="btnreset" CssClass="btn btn-sm btn-info" Text="Reset Password" OnClick="btnreset_Click"/>
                                     </div>
 					       </div>
 				</div>
@@ -238,13 +237,13 @@
             <p style="color: white; font-size: 14px;">&copy; 2017 MoilCloud. All Rights Reserved.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
+                    <a href="preInit/Disclaimer.aspx" style="color: white; font-size: 12px;">Disclaimer</a>
                 </li>
                 <li>
-                    <a href="PrivacyPolicy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
+                    <a href="preInit/PrivacyPolicy.aspx" style="color: white; font-size: 12px;">Privacy Policy</a>
                 </li>
                 <li>
-                    <a href="Terms.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
+                    <a href="preInit/Terms.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
                 </li>
             </ul>
         </div>
