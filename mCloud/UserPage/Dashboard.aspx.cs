@@ -91,7 +91,7 @@ namespace mCloud.UserPage
                     }
                     else if (ext == ".doc" || ext == ".docx")
                     {
-                        image = "~/UserPage/images/document-626142_640 (1).png";
+                        image = "~/UserPage/images/document-626142_640.png";
                     }
                     else if (ext == ".xls" || ext == ".xlsx")
                     {

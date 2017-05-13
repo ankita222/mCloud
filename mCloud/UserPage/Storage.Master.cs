@@ -12,12 +12,21 @@ namespace mCloud.UserPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string fname;
             try
             {
                 string id = Session["id"].ToString();
                 sp1.InnerText = id;
+                System.IO.DirectoryInfo prodir = new System.IO.DirectoryInfo(Server.MapPath(@"~/Users/Profile/"));
+                System.IO.FileInfo[] files = prodir.GetFiles(id + ".*");
+                foreach(System.IO.FileInfo f in files)
+                {
+                  fname = f.Name;
+                    img1.ImageUrl = "~/Users/Profile/"+fname;
+                }
+
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 Response.Redirect("~/Default.aspx");
             }
