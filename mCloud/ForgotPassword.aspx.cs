@@ -54,7 +54,7 @@ namespace mCloud
                 {
                     DataTable dt = (DataTable)ViewState["dtchk"];
                     string mailid = dt.Rows[0]["Email"].ToString();
-                    string otp = al.GenerateOTP();
+                    string otp = al.GenOTP();
                     Session["Reset_OTP"] = otp;
 
                     int i = al.SendMail(mailid, "Moil Cloud Reset Password", "Enter Following Code To Set New Password :  " + otp + "");
@@ -69,7 +69,7 @@ namespace mCloud
                     DataTable dt = (DataTable)ViewState["dtchk"];
 
                     string mob = dt.Rows[0]["UserId"].ToString();
-                    string otp = al.GenerateOTP();
+                    string otp = al.GenOTP();
                     Session["Reset_OTP"] = otp;
                     int i = 1; // sms otp code here
                     if (i == 1)
@@ -116,7 +116,7 @@ namespace mCloud
             try {
 
                 string mailid = dtchk.Rows[0]["Email"].ToString();
-                string otp = al.GenerateOTP();
+                string otp = al.GenOTP();
                 Session["Reset_OTP"] = otp;
 
                 int i = al.SendMail(mailid, "Moil Cloud Reset Password", "Enter Following Code To Set New Password :  " + otp + "");

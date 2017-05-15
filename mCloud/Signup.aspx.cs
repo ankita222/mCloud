@@ -30,7 +30,7 @@ namespace mCloud
                 {
                     Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
                     Session["Mob"] = txtmobileno.Value;
-                    string otp = AL.GenerateOTP();
+                    string otp = AL.GenOTP();
                     Session["HashOtp"] = AL.PassHash(otp);
 
                     //SMS API CODE HERE
