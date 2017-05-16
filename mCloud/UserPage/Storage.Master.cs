@@ -12,39 +12,34 @@ namespace mCloud.UserPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string fname;
-            try
-            {
-                string id = Session["id"].ToString();
-                sp1.InnerText = id;
-                System.IO.DirectoryInfo prodir = new System.IO.DirectoryInfo(Server.MapPath(@"~/Users/Profile/"));
-                System.IO.FileInfo[] files = prodir.GetFiles(id + ".*");
-                foreach(System.IO.FileInfo f in files)
-                {
-                  fname = f.Name;
-                    img1.ImageUrl = "~/Users/Profile/"+fname;
-                }
 
-            }
-            catch(Exception ex)
+            if (Page.User.Identity.IsAuthenticated)
             {
+                //string fname;
+                lblLoginUser.Text = HttpContext.Current.User.Identity.Name;
+                string id = HttpContext.Current.User.Identity.Name;
+                try {
+                    System.IO.DirectoryInfo prodir = new System.IO.DirectoryInfo(Server.MapPath(@"~/Users/Profile/"));
+                    System.IO.FileInfo[] files = prodir.GetFiles(id + ".*");
+                    foreach (System.IO.FileInfo f in files)
+                    {
+                        string fname = f.Name;
+                        img1.ImageUrl = "~/Users/Profile/" + fname;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                Session.Clear();
+                Session.Abandon();
+                FormsAuthentication.SignOut();
                 Response.Redirect("~/Default.aspx");
             }
-            if (IsPostBack)
-            {
-                if (Page.User.Identity.IsAuthenticated)
-                {
-                    lblLoginUser.Text = HttpContext.Current.User.Identity.Name;
-                    Response.Redirect("UserPage/Dashboard.aspx");
-                }
-                else
-                {
-                    Session.Clear();
-                    Session.Abandon();
-                    FormsAuthentication.SignOut();
-                    Response.Redirect("~/Default.aspx");
-                }
-            }
+
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)

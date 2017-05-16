@@ -13,14 +13,12 @@ using System.IO.Compression;
 
 namespace mCloud.UserPage
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Dashboard : System.Web.UI.Page
     {
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
 
-
         protected void Page_Load(object sender, EventArgs e)
-
         {
             CreateTable();
             if (Page.IsPostBack != true)
@@ -160,7 +158,7 @@ namespace mCloud.UserPage
                 loadFiles();
             }
             catch (Exception ex)
-            { }
+            { throw ex; }
         }
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
@@ -344,13 +342,11 @@ namespace mCloud.UserPage
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Button1.Text= Directory.GetCurrentDirectory();
-        }
+       
         //////////////////////////////////////////////////////////////////           
         //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
 

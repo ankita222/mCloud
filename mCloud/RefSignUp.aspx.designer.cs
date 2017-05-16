@@ -10,7 +10,7 @@
 namespace mCloud {
     
     
-    public partial class Signup {
+    public partial class RefSignUp {
         
         /// <summary>
         /// form1 control.
@@ -22,13 +22,13 @@ namespace mCloud {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtmail control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
         
         /// <summary>
         /// ddlIsdCode control.
@@ -46,7 +46,16 @@ namespace mCloud {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMob;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtMob;
+        
+        /// <summary>
+        /// txtRefCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtRefCode;
         
         /// <summary>
         /// btnSignUp control.

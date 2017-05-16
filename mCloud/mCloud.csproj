@@ -357,9 +357,12 @@
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="preInit\Activity.aspx" />
     <Content Include="preInit\Disclaimer.aspx" />
+    <Content Include="Signin.aspx" />
+    <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
     <Content Include="EmailVerificationCode.txt" />
+    <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -3677,6 +3680,7 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
     <Content Include="UserPage\MyAccount.aspx" />
+    <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
     <Content Include="Verification.aspx" />
     <Content Include="Web.config" />
@@ -3790,6 +3794,20 @@
       <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signin.aspx.cs">
+      <DependentUpon>Signin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Signin.aspx.designer.cs">
+      <DependentUpon>Signin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RefSignUp.aspx.cs">
+      <DependentUpon>RefSignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RefSignUp.aspx.designer.cs">
+      <DependentUpon>RefSignUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4271,7 +4289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Users\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

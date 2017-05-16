@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="mCloud.Signup" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Signin.aspx.cs" Inherits="mCloud.Signin" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Sign up | Moil Cloud</title>
+    <title>Sign in | Moil Cloud</title>
 
     <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
         <!-- /.container-fluid -->
     </nav>
             
-   <div class="login-box">
+<%--   <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);"><b></b></a>
             <small></small>
@@ -120,10 +120,9 @@
                             <i class="fa fa-user"></i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox ID="txtmail" type="email" runat="server" class="form-control" placeholder="Email Address"  autofocus="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;" ></asp:TextBox>
-                            
-                            
-                          <%--  <input type="text" runat="server" id="txtmail" class="form-control" name="MobleNo" placeholder="Email Address" required="" autofocus="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>--%>
+                            <asp:TextBox ID="txtEmail" type="email" runat="server" class="form-control" placeholder="Email Address" required="" autofocus="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"></asp:TextBox>
+
+                         
                         </div>
                     </div>
                     <div class="input-group">
@@ -135,8 +134,7 @@
                                         <asp:ListItem>+91 - India</asp:ListItem>
                                         <asp:ListItem>Others</asp:ListItem>
                                     </asp:DropDownList>
-                            <asp:TextBox ID="txtMob" type="number" runat="server" maxlength="10" class="form-control" placeholder="Mobile No." required="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"></asp:TextBox>
-                           <%-- <input type="number" runat="server" id="txtmobileno" class="form-control" name="password" placeholder="Mobile No." required="" aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>--%>
+                            <input type="text" runat="server" id="txtmobileno" class="form-control" name="password" placeholder="Mobile No." required="" aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
                         </div>
                     </div>
                 </div>
@@ -147,7 +145,72 @@
 
             </div>
         </div>
-    </div>
+    </div>--%>
+
+        <div class="login-box">
+       
+        <div class="card" style="margin-top:40%;">
+    
+        <div class="md-content" style="padding: 0px; background: linear-gradient(70deg, #f5f5f5, #f9f9f9);">
+            <div class="modal-header" style="padding: 9px;">
+                <span style="float: left; color: #808080;" class="modal-title" id="defaultModalLabellogin">Sign in to start your session</span>
+             
+            </div>
+            <div class="modal-body" style="margin-bottom:0px;padding-bottom:0px;">
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <div class="form-line">
+                                    <input id="txtUserName" runat="server" type="number" class="form-control" name="username" placeholder="Username (eg: 99XXXXXX99)"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <div class="form-line">
+                                    <input id="txtPassword" runat="server" type="password" class="form-control" placeholder="Password" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="input-group">
+                               
+                                <div class="form-line">
+                                    <asp:CheckBox ID="CheckBoxPersist" style="color:#555555; font-weight:normal;font-size:small;" CssClass="checkbox-inline" Checked="false" Text="Remember me" runat="server" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                           <div class="input-group">
+                                <div class="form-line">
+                                    <asp:Label ID="lblErrorMsg"  style="font-weight:normal;font-size:small;color:red;" runat="server" Visible="false"></asp:Label>
+                                </div>
+                          </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 9px;">
+                <span style="float:left;"><a class="btn" href="sitemap.aspx">Renew</a></span>
+                <asp:Button class="btn btn-success" runat="server" ID="btnSignIn" Style="float: right;"  Text="Sign In" OnClick="btnSignIn_Click" />
+
+            </div>
+        </div>
+    
+                </div></div>
 
         <footer style="background: none;">
         <div class="container" style="background: none;width: 281px;">
