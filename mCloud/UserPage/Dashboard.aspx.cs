@@ -10,17 +10,16 @@ using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
 using System.Net;
 using System.IO.Compression;
+using mCloud.App_Code;
 
 namespace mCloud.UserPage
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Dashboard : System.Web.UI.Page
     {
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
-
-
+        mCloudAL AL = new mCloudAL();
         protected void Page_Load(object sender, EventArgs e)
-
         {
             CreateTable();
             if (Page.IsPostBack != true)
@@ -58,9 +57,9 @@ namespace mCloud.UserPage
                 //site
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
         }
         public void loadFiles()
@@ -136,10 +135,38 @@ namespace mCloud.UserPage
         }
         protected void btnupload_Click(object sender, EventArgs e)
         {
+            string name = Session["id"].ToString();
             // img1.Style.Add("display", "block")
 
             //  System.Threading.Thread.Sleep(5000);
             //img2.Visible = true;
+
+            //Get the Input File Name and Extension.
+            string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
+            string fileExtension = Path.GetExtension(FileUpload1.PostedFile.FileName);
+
+            //Build the File Path for the original (input) and the encrypted (output) file.
+            string input = Server.MapPath("~/Users/" + name + "/") + fileName + fileExtension;
+            string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
+
+            //Save the Input File, Encrypt it and save the encrypted file in output path.
+            FileUpload1.SaveAs(input);
+            
+            this.AL.Encrypt(input, output);
+
+            //Download the Encrypted File.
+            //Response.ContentType = FileUpload1.PostedFile.ContentType;
+            //Response.Clear();
+            //Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
+            //Response.WriteFile(output);
+            //Response.Flush();
+
+            //Delete the original (input) and the encrypted (output) file.
+            File.Delete(input);
+            //File.Delete(output);
+
+            Response.End();
+
 
             try
             {
@@ -147,7 +174,7 @@ namespace mCloud.UserPage
                 string contenttype = string.Empty;
                 string filename = string.Empty;
                 string filesize = string.Empty;
-                string name = Session["id"].ToString();
+                
                 if (FileUpload1.HasFile)
                 {
                     filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
@@ -159,8 +186,11 @@ namespace mCloud.UserPage
                 loadFiles();
             }
             catch (Exception ex)
-            { }
+            { throw ex; }
         }
+
+
+
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
             string username = Session["id"].ToString();
@@ -343,13 +373,11 @@ namespace mCloud.UserPage
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Button1.Text= Directory.GetCurrentDirectory();
-        }
+       
         //////////////////////////////////////////////////////////////////           
         //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="mCloud.Signup" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RefSignUp.aspx.cs" Inherits="mCloud.RefSignUp" %>
 
 <!DOCTYPE html>
 
@@ -113,17 +113,14 @@
         <div class="card" style="margin-top: 161px;">
 
             <div class="body">
-                <div id="sign_in">
+                <div id="sign_in" method="POST" novalidate="novalidate">
                     <div class="msg" style="margin-bottom: 13px;font-size: 24px;">Create Account</div>
                     <div class="input-group">
                         <span class="input-group-addon"  style="padding: 6px;background: rgba(130, 128, 126, 0.2);border: 1px solid #cec5c5;">
                             <i class="fa fa-user"></i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox ID="txtmail" type="email" runat="server" class="form-control" placeholder="Email Address"  autofocus="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;" ></asp:TextBox>
-                            
-                            
-                          <%--  <input type="text" runat="server" id="txtmail" class="form-control" name="MobleNo" placeholder="Email Address" required="" autofocus="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>--%>
+                            <input runat="server" id="txtEmail" class="form-control" name="MobleNo" placeholder="Email Address" required="required" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
                         </div>
                     </div>
                     <div class="input-group">
@@ -135,8 +132,17 @@
                                         <asp:ListItem>+91 - India</asp:ListItem>
                                         <asp:ListItem>Others</asp:ListItem>
                                     </asp:DropDownList>
-                            <asp:TextBox ID="txtMob" type="number" runat="server" maxlength="10" class="form-control" placeholder="Mobile No." required="" aria-required="true" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"></asp:TextBox>
-                           <%-- <input type="number" runat="server" id="txtmobileno" class="form-control" name="password" placeholder="Mobile No." required="" aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>--%>
+                            <input runat="server" id="txtMob" class="form-control" name="password" type="password" placeholder="Mobile No." required="" aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
+                        </div>
+                    </div>
+
+                      <div class="input-group">
+                        <span class="input-group-addon" style="padding: 6px;background: rgba(130, 128, 126, 0.2);border: 1px solid #cec5c5;">
+                                    <i class="fa fa-bookmark"></i>
+                                </span>
+                        <div class="form-line">
+                            
+                            <input type="text" runat="server" id="txtRefCode" class="form-control" name="password" placeholder="Refernce Code"  aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
                         </div>
                     </div>
                 </div>
@@ -184,6 +190,8 @@
 <script src="FrontPage/modal/js/cssParser.js"></script>
 <script src="FrontPage/js/css-filters-polyfill.js"></script>
 <script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
+
+
     </div>
     </form>
 </body>

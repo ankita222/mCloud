@@ -62,6 +62,11 @@ namespace mCloud.preInit
 
                 //double validity = double.Parse()
                 int PaymentId = AL.GenId();
+                string RefCode = "";
+                if(!string.IsNullOrEmpty(Session["RefCode"] as string))
+                {
+                    RefCode = Session["RefCode"].ToString();
+                }
                 SqlParameter[] param =
                 {
                     new SqlParameter("@UserId",phone ),
@@ -75,7 +80,7 @@ namespace mCloud.preInit
                     new SqlParameter("@UserDirectoryPath", "~/Users/"+phone),
 
                     new SqlParameter("@MyReferenceCode", AL.GenRefCode()),
-                    new SqlParameter("@ByReferenceCode", DBNull.Value),
+                    new SqlParameter("@ByReferenceCode", RefCode),
 
                     new SqlParameter("@PlanBought", Session["PlanId"].ToString()),
                     new SqlParameter("@PaymentStatus", "Pending"),
