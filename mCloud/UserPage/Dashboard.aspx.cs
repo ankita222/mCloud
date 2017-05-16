@@ -40,7 +40,6 @@ namespace mCloud.UserPage
         {
             try
             {
-                
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
                 DirectoryInfo[] Files = d.GetDirectories(); 

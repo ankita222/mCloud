@@ -68,14 +68,14 @@
             <nav class="navbar" style="height: 43px; background: linear-gradient(45deg, #ffffff, #ffffff); box-shadow: 0 1px 5px rgba(25, 66, 101, 0.94);">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                        <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" style="color: black;"></a>
                         <a href="javascript:void(0);" class="bars"></a>
                         <a class="navbar-brand" href="#" style="color: white; margin-top: -6px;">
                             <img src="../preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="margin-top: -16px;" /></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
 
-                        <ul class="nav navbar-nav navbar-right" style="margin-top: -12px;">
+                        <ul class="nav navbar-nav navbar-right" style="margin-top: -12px;background: #ffffff;">
                             <li>
                                 <a href="#" class="dropdown-toggle">
                                     <i class="material-icons" style="color: #3b67b9;">person</i>

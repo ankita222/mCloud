@@ -113,7 +113,7 @@
         <div class="card" style="margin-top: 161px;">
 
             <div class="body">
-                <div id="sign_in" method="POST" novalidate="novalidate">
+                <div id="sign_in">
                     <div class="msg" style="margin-bottom: 13px;font-size: 24px;">Create Account</div>
                     <div class="input-group">
                         <span class="input-group-addon"  style="padding: 6px;background: rgba(130, 128, 126, 0.2);border: 1px solid #cec5c5;">
@@ -184,8 +184,6 @@
 <script src="FrontPage/modal/js/cssParser.js"></script>
 <script src="FrontPage/js/css-filters-polyfill.js"></script>
 <script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
-
-
     </div>
     </form>
 </body>
