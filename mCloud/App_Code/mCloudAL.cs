@@ -14,7 +14,7 @@ namespace mCloud.App_Code
 {
     public class mCloudAL
     {
-       
+
         #region Function for Password Hash
         public string PassHash(string Password)
         {
@@ -60,15 +60,15 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-               // throw ex;
+                // throw ex;
                 return 0;
             }
             return 0;
         }
         #endregion
 
-        #region function for generateotp
-        public string GenerateOTP()
+        #region Function for Generate OTP
+        public string GenOTP()
         {
             string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
@@ -95,7 +95,7 @@ namespace mCloud.App_Code
         }
         #endregion
 
-        #region function for userfolder
+        #region Function for Userfolder
         public int CreateUserFolder(string mobile)
         {
             try
@@ -108,7 +108,7 @@ namespace mCloud.App_Code
                     string contactmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Contact");
                     string Imagesmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Images");
                     string Filesmap = System.Web.HttpContext.Current.Server.MapPath("~\\Users\\" + mobile + "\\Files");
-                   
+
                     if (!System.IO.Directory.Exists(contactmap))
                     {
                         System.IO.Directory.CreateDirectory(contactmap);
@@ -119,7 +119,7 @@ namespace mCloud.App_Code
                     }
                     if (!System.IO.Directory.Exists(Filesmap))
                     {
-                        System.IO.Directory.CreateDirectory(Filesmap); 
+                        System.IO.Directory.CreateDirectory(Filesmap);
                     }
                     return 1;
                 }
@@ -131,5 +131,40 @@ namespace mCloud.App_Code
             }
         }
         #endregion
+
+        #region Function for Generate IDs
+        public int GenId()
+        {
+            System.Random rand = new System.Random((int)System.DateTime.Now.Ticks);
+            int random = (rand.Next(1, 100000000));
+            return random;
+        }
+        #endregion
+
+        #region Function for Generate Reference Code
+        public string GenRefCode()
+        {
+            string alphabets = "ABCDEFGHIJKLMNPRSTUVWXYZ";
+            string small_alphabets = "abcdefghijklmnprstuvwxyz";
+            string numbers = "123456789";
+            string characters = numbers;
+            characters += alphabets + small_alphabets + numbers;
+
+            int length = 5;
+            string refid = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                string character = string.Empty;
+                do
+                {
+                    int index = new Random().Next(0, characters.Length);
+                    character = characters.ToCharArray()[index].ToString();
+                } while (refid.IndexOf(character) != -1);
+                refid += character;
+            }
+            return refid;
+        }
+        #endregion
     }
 }
+

@@ -96,7 +96,11 @@ namespace mCloud.App_Code
             Sqlcmd = new SqlCommand(Command, SqlConn);
             try
             {
-                a = Sqlcmd.ExecuteNonQuery();
+                 a = Sqlcmd.ExecuteNonQuery();
+                //SqlDataAdapter da = new SqlDataAdapter(Command, SqlConn);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //a =Convert.ToInt32(dt.Rows[0]["UsrCnt"].ToString());
             }
             catch (Exception ex)
             {

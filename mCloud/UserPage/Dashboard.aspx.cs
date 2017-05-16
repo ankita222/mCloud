@@ -43,8 +43,8 @@ namespace mCloud.UserPage
             try
             {
                 string name = Session["id"].ToString();
-                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));//Assuming Test is your Folder
-                DirectoryInfo[] Files = d.GetDirectories(); //Getting Text files
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+                DirectoryInfo[] Files = d.GetDirectories(); 
                 string str = "", image = "";
                 foreach (DirectoryInfo file in Files)
                 {
@@ -55,6 +55,7 @@ namespace mCloud.UserPage
                 }
                 Repeater1.DataSource = dt_temp;
                 Repeater1.DataBind();
+                //site
 
             }
             catch (Exception ex)
@@ -89,7 +90,7 @@ namespace mCloud.UserPage
                     }
                     else if (ext == ".doc" || ext == ".docx")
                     {
-                        image = "~/UserPage/images/document-626142_640 (1).png";
+                        image = "~/UserPage/images/document-626142_640.png";
                     }
                     else if (ext == ".xls" || ext == ".xlsx")
                     {
@@ -344,8 +345,13 @@ namespace mCloud.UserPage
             {
             }
         }
-            //////////////////////////////////////////////////////////////////           
-          //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
-        
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Button1.Text= Directory.GetCurrentDirectory();
+        }
+        //////////////////////////////////////////////////////////////////           
+        //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
+
     }
 }

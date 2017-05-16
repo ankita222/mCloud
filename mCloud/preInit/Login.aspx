@@ -39,12 +39,14 @@
 	<link href="modal/css/component.css" rel="stylesheet" />
 		
 	<script src="modal/js/modernizr.custom.js"></script>
+    <link href="Pricing/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 </head>
 <body  class="login-page ls-closed"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
     <form id="form1" runat="server">
     <div>
-     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix-top">
+     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix-top" style="margin-top: -15px;">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">

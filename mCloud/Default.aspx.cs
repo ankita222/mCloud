@@ -52,41 +52,25 @@ namespace mCloud
         {
             if (txtMob.Value != "")
             {
+
                 SqlParameter[] param = { new SqlParameter("@Email", txtEmail.Value), new SqlParameter("@Mobile", txtMob.Value) };
 
+
                 int x = DAL.FunExecuteNonQuerySP("ust_beginreg", param);
-                if (x == 1 || x == -1)
+                if (x == -1 || x == 1)
                 {
                     Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
                     Session["Mob"] = txtMob.Value;
-                    string otp = AL.GenerateOTP();
+                    string otp = AL.GenOTP();
                     Session["HashOtp"] = AL.PassHash(otp);
-
-                    //SMS API CODE HERE
-
                     if (txtEmail.Value != "")
                     {
                         Session["Email"] = txtEmail.Value;
-
-                        /////Email Verification snippet
-                        #region Email Veri
-                        //string activationCode = Guid.NewGuid().ToString();
-                        //SqlParameter[] param2 = { new SqlParameter("@UserId", txtMob.Value), new SqlParameter("@Email", txtEmail.Value), new SqlParameter("@ActivationCode", activationCode) };
-                        //int y = DAL.FunExecuteNonQuerySP("ust_emailverification", param2);
-                        //if (y >= 0)
-                        //{
-                        //    string body = "Dear Customer,";
-                        //    body += "<br /><br />Please click the following link to verify your email.<br>";
-                        //    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("Default.aspx", "Verification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:160px;text-align:center;'>Click here to verify</h2></a>";
-                        //    body += "<br /><br /><br /><br><br>Team MoilCloud";
-                        //    int i = AL.SendMail(txtEmail.Value, "MoilCloud Email Verification", body);
-
-                        //}
-                        #endregion
                     }
 
-                    Response.Redirect("preInit/Activity.aspx");
+                    //SMS API CODE HERE
 
+                    Response.Redirect("preInit/Activity.aspx");
                 }
                 else
                 {
@@ -99,41 +83,70 @@ namespace mCloud
         protected void btnSignIn_Click(object sender, EventArgs e)
         {
             #region TEMP LOGIN CODE
-            Session["id"] = txtUserName.Value;
-            Session["CurrentPath"] = "UserPage";
-            Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
-           
+            //Session["id"] = txtUserName.Value;
+            //Session["CurrentPath"] = "UserPage";
+            //Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
             #endregion
 
             #region LOGIN CODE
-            //if(txtUserName.Value != "" && txtPassword.Value != "")
-            //{
-            //    SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
 
-            //    int x = DAL.FunExecuteNonQuerySP("ust_login", param);
-            //    if (x == 1)
-            //    {
-            //        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
-            //        string hash = FormsAuthentication.Encrypt(ticket);
-            //        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+            if (txtUserName.Value != "" && txtPassword.Value != "")
+            {
+                SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
 
-            //        if (ticket.IsPersistent)
-            //        {
-            //            cookie.Expires = ticket.Expiration;
-            //        }
-            //        Response.Cookies.Add(cookie);
-            //        Session["UserId"] = txtUserName.Value; Session["UserId"] = txtUserName.Value;
+                DataTable dt = DAL.FunDataTableSP("ust_login", param);
+                if (dt.Rows.Count > 0 && dt !=null)
+                {
+                    string x = dt.Rows[0]["IsActive"].ToString();
+                    if (x == "True")
+                    {
+                        DateTime exptime = DateTime.Parse((dt.Rows[0]["ExpiryDate"]).ToString());
+                        System.TimeSpan diffResult = exptime - System.DateTime.Today;
+                        if (diffResult.Days >= 0F)
+                        {
+                            Session["DaysLeft"] = diffResult.Days;
+                            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
+                            string hash = FormsAuthentication.Encrypt(ticket);
+                            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
 
-            //        Response.Redirect("UserPage/Dashboard.aspx");
-            //        FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
+                            if (ticket.IsPersistent)
+                            {
+                                cookie.Expires = ticket.Expiration;
+                            }
+                            Response.Cookies.Add(cookie);
+                            Session["UserId"] = txtUserName.Value;
+                            Session["id"] = txtUserName.Value;
+                            Session["CurrentPath"] = "UserPage";
 
+                            FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
+                            Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
 
+                        }
+                        else
+                        {
 
-            //    }
-            //    else
-            //        lblErrorMsg.Text = "Invalid Username and/or Password";
+DAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive = 0 WHERE UserId='" + txtUserName.Value + "'");
+                            this.lblErrorMsg.Visible = true;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                            this.lblErrorMsg.Text = "Account expire please renew.";
+                        }
+                    }
 
-            // }
+                    else if (x == "False")
+                    {
+                        this.lblErrorMsg.Visible = true;
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                        this.lblErrorMsg.Text = "Account is not active, contact support.";
+                    }
+                }
+                else
+                {
+                    this.lblErrorMsg.Visible = true;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                    this.lblErrorMsg.Text = "Invalid Username and/or Password";
+                }
+            }
+
             #endregion
 
         }

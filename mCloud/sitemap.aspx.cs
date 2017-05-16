@@ -8,11 +8,20 @@ using System.IO;
 using System.Xml;
 using System.Security;
 using System.Security.Permissions;
+using mCloud.App_Code;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace mCloud
 {
     public partial class sitemap : System.Web.UI.Page
     {
+        mCloudAL al = new mCloudAL();
+        mCloudDAL dal = new mCloudDAL();
+
+        public object Assert { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -104,6 +113,32 @@ namespace mCloud
         protected void Button1_Click(object sender, EventArgs e)
         {
             create();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            // Label1.Text = al.PassHash(TextBox1.Text);
+            // string[] tokens = Label1.Text.Split('-');
+            //TextBox1.Text = tokens[0] + " == " + tokens[1] + " == " + tokens[2];
+            // TextBox1.Text = Label1.Text.Split('-')[0];
+
+            //TextBox1.Text = DateTime.Now.ToString() +" ___ "+ DateTime.Now.AddDays(90).ToString();
+
+            //TextBox1.Text = al.GenId().ToString();
+
+            //DateTime dt = DateTime.ParseExact("2017-05-13 12:33:26.310", "MMMM d, yyyy h:mm tt", null);
+            //TextBox1.Text = dt.ToString();
+
+            
+            string dt = "2016-04-14 00:00:00.000";
+            string[] planarray = dt.Split(' ');
+            
+            DateTime time = DateTime.Parse(dt);
+            System.TimeSpan diffResult = time - System.DateTime.Today;
+            if (diffResult.Days >= 0F)
+                Response.Write("IF");
+            else
+                Response.Write("ELSE");
         }
     }
 }

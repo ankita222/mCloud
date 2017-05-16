@@ -49,10 +49,19 @@
 <link href="FrontPage/modal/css/component.css" rel="stylesheet" />
 
 <script src="FrontPage/modal/js/modernizr.custom.js"></script>
+    <!--Sign In modal call-->
+    <script type="text/javascript">
+        function ShowPopup() {
+            $("#btnShowPopup").click();
+        }
+    </script>  
 
 </head>
 <body id="page-top" style="overflow: visible;">
 <form id="form1" runat="server">
+    <!--Hidden button for c# modal call-->
+    <button type="button" style="display: none;" id="btnShowPopup" class="md-trigger" data-modal="modal-login" data-toggle="modal">
+    </button>
 <div>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container" style="background: none;">
@@ -67,7 +76,8 @@
             <a href="./">
                 <img src="preInit/img/MoilCloud Homepage logo top.png" class="img-responsive" width="150px" height="30%" alt="" style="padding-top: 10px" /></a>
         </div>
-
+         
+        <%--data-target="#modal-login"--%>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="margin-top: 9px;">
@@ -217,7 +227,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>400 MB Storage Space</strong>
+                                <strong>2 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -247,7 +257,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>1 GB Storage Space</strong>
+                                <strong>&nbsp;6 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -277,7 +287,7 @@
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>2 GB Storage Space</strong>
+                                <strong>12 GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -314,7 +324,7 @@
 
 <section id="contact" class="contact bg-primary">
     <div class="container" style="background: none;">
-        <h2>We <i class="fa fa-heart"></i>new friends!</h2>
+        <h2>We <i class="fa fa-heart" style="color:#3963dd"></i>new friends!</h2>
         <ul class="list-inline list-social">
             <li class="social-twitter">
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -418,7 +428,7 @@
                     <button type="button" style="padding: 5px; line-height: 10px;" class="btn btn-danger md-close">x </button>
                 </span>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-bottom:0px;padding-bottom:0px;">
                 <div class="row clearfix">
                     <div class="col-sm-12">
                         <div class="form-group form-float">
@@ -427,7 +437,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                                 <div class="form-line">
-                                    <input id="txtUserName" runat="server" type="number" class="form-control" name="username" placeholder="Username"  />
+                                    <input id="txtUserName" runat="server" type="number" class="form-control" name="username" placeholder="Username (eg: 99XXXXXX99)"  />
                                 </div>
                             </div>
                         </div>
@@ -444,7 +454,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group form-float">
                             <div class="input-group">
                                
@@ -454,19 +464,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group form-float">
-                            <div class="input-group">
-                               
+                           <div class="input-group">
                                 <div class="form-line">
-                                    <asp:Label ID="lblErrorMsg" runat="server" Text="Label"></asp:Label>
+                                    <asp:Label ID="lblErrorMsg"  style="font-weight:normal;font-size:small;color:red;" runat="server" Visible="false"></asp:Label>
                                 </div>
+                          </div>
                             </div>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
             <div class="modal-footer" style="padding: 9px;">
+                <span style="float:left;"><a class="btn" href="sitemap.aspx">Renew</a></span>
                 <asp:Button class="btn btn-success" runat="server" ID="btnSignIn" Style="float: right;" OnClick="btnSignIn_Click" Text="Sign In" />
 
             </div>
