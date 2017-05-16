@@ -24,6 +24,16 @@ namespace mCloud.preInit
             {
                 lblMob.Text = Session["Mob"].ToString();
             }
+            if (!string.IsNullOrEmpty(Session["DataSize"] as String))
+            {
+                string planDescription = Session["PlanName"].ToString()+" ("+ Session["DataSize"].ToString() + " GB for "+ Session["Days"].ToString() + " Days)";
+                lblpalDescription.Text = planDescription;
+            }
+            if (!string.IsNullOrEmpty(Session["Amount"] as string))
+            {
+                lblAmount.Text = Session["Amount"].ToString();
+            }
+
 
         }
 
@@ -76,7 +86,15 @@ namespace mCloud.preInit
                 if (x == 0)
                 {
                     //Payment Gateway
+                    /// Code to Create Default Folders -> Images, Contacts, Files
+                    AL.CreateUserFolder(Session["Mob"].ToString());
+                    
+                    
+                    /// 
+
+
                     Response.Write("<script>alert('Registered Successfully.');</script>");
+                   
                 }
             }
             else

@@ -63,6 +63,7 @@ namespace mCloud.preInit
             //Session["PlanId"] = getplan.Split('-')[0];
 
             lblSelectedPlan.Visible = true;
+            lblPaymentSelect.Visible = false;
             //lblSelectedPlan.Text= "Selected Plan : " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days";
             lblSelectedPlan.Text = plan_name +"( " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days )";
             h3showplan.Visible = true;
@@ -185,7 +186,10 @@ namespace mCloud.preInit
                         Response.Write("<script>alert('Please fill all required fields.');</script>");
                 }
                 else
-                    Response.Write("<script>alert('Please Select a Plan.');</script>");
+                //Response.Write("<script>alert('Please Select a Plan.');</script>");
+                {
+                    lblPaymentSelect.Visible = true;
+                }
             }
             else
                 Response.Write("<script>alert('Please check the agreement to proceed.');</script>");

@@ -62,7 +62,7 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
- 
+<asp:ScriptManager ID="SrcripManager" runat="server"></asp:ScriptManager>
    <!-- <section id="features" class="features" style="background: url(img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">-->
 		 <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
 		<div class="container" style="background: none;">
@@ -123,9 +123,11 @@
                                                <span runat="server" id="planandduration"><%#Eval("Detail") %></span>
                                         </div>
 
+                                        
                                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                               <asp:Button CommandArgument='<%#Eval("PlanDetails") %>' OnCommand="btnselect_Command" runat="server" ID="btnselect" CssClass="btn btn-success" Text='<%#Eval("Name") %>' Width="100%" style="padding-left: 7px;" />
                                         </div>
+                                            
 
 									</div>
                                          <div style="height:9px;"></div>
@@ -172,15 +174,27 @@
 											<label class="sr-only" for="form-username">Name</label>
 											<input type="text" name="form-username" runat="server" id="txtName" placeholder="Full Name..." class="form-username form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8;"/>
 										</div>
-										<div class="form-group" style="margin-bottom: 6px;">
-				 							<label class="sr-only" for="form-password">Password</label>
-											<input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:50%; float:left;"/>
+                                        
+                                        
+										                <div class="form-group" style="margin-bottom: 6px;">
+				 						
+                                            <label class="sr-only" for="form-password">Password</label>
+											
+                                            <input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:50%; float:left;"/>
 											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:50%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+                                         
 										</div>
+                                        <!-- Using Updatepanel on agree Checkbox-->
+                                        <asp:UpdatePanel ID="UpdatePanel" runat="server">
+                                        <ContentTemplate>
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
+                                        
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
                                         <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click" />
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
+                                            <label id="lblPaymentSelect" runat="server" visible="false" >Please select a plan.</label>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
 									</div>
 								</div>
 							</div>

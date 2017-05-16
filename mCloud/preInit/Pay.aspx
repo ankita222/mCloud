@@ -27,27 +27,29 @@
                                 <td>Name
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblName" runat="server" Text="Raj"></asp:Label>
+                                    <asp:Label ID="lblName" runat="server" Text="User Name"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Mobile
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblMob" runat="server" Text="72727"></asp:Label>
+                                    <asp:Label ID="lblMob" runat="server" Text="Mobile"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Description
                                 </td>
-                                <td>2GB for 90 days
+                                <td>
+                                   <asp:Label ID="lblpalDescription" runat="server" Text="----"></asp:Label>
+                                   
                                 </td>
                             </tr>
                             <tr>
                                 <td>Amount
                                 </td>
                                 <td>
-                                    ₹<asp:Label ID="lblAmount" runat="server" Text="10"></asp:Label>
+                                    ₹<asp:Label ID="lblAmount" runat="server" Text="0.0"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
