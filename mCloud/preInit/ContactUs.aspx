@@ -36,7 +36,7 @@
                                                     <i class="fa fa-user" style="font-size: 18px; width: 14px;"></i>
                                                 </span>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="namesurname" placeholder="Full Name" required autofocus />
+                                                    <input type="text" class="form-control" name="namesurname" placeholder="Full Name" required="required" autofocus="autofocus" runat="server" id="txtName" />
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -44,7 +44,7 @@
                                                     <i class="fa fa-envelope"></i>
                                                 </span>
                                                 <div class="form-line">
-                                                    <input type="email" class="form-control" name="email" placeholder="Email Address" />
+                                                    <input runat="server" id="txtEmail" type="email" class="form-control" name="email" required="required" placeholder="Email Address" />
                                                 </div>
                                             </div>
 
@@ -53,14 +53,14 @@
                                                     <i class="fa fa-mobile" style="font-size: 17px; width: 14px;"></i>
                                                 </span>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="number" placeholder="Mobile No." required />
+                                                    <input type="number" class="form-control" name="number" runat="server" id="txtMob" maxlenght="10" placeholder="Mobile No." required="required" />
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="form-group">
 
                                                 <div class="form-line">
-                                                    <asp:TextBox ID="txtMsg" CssClass="form-control" placeholder="Message" TextMode="MultiLine" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtMsg" CssClass="form-control" placeholder="Message" required="required" TextMode="MultiLine" runat="server"></asp:TextBox>
                                                     <%--<textarea name="txtMsg" cols="40" placeholder="Message" required class="form-control" rows="5"></textarea>--%>
                                                 </div>
                                             </div>

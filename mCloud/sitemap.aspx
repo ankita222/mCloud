@@ -18,6 +18,9 @@
         <a href="https://www.instamojo.com/@moilcloud/" rel="im-checkout" data-behaviour="link" data-style="flat" data-text="Pay Now"></a>
 <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
     <div>
+
+        <a href="https://www.instamojo.com/moilcloud/moil-premium-package/" rel="im-checkout" data-behaviour="link" data-style="flat" data-text="Pay Now"></a>
+<script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
     <h3>
     Folder Details</h3>
 <hr />
