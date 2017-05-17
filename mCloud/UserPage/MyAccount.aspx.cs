@@ -16,7 +16,7 @@ namespace mCloud.UserPage
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
-        string hashotp;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {

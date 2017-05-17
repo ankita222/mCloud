@@ -59,7 +59,7 @@ namespace mCloud.UserPage
             }
             catch (Exception)
             {
-                throw;
+                
             }
         }
         public void loadFiles()
@@ -135,90 +135,104 @@ namespace mCloud.UserPage
         }
         protected void btnupload_Click(object sender, EventArgs e)
         {
-            string name = Session["id"].ToString();
-            // img1.Style.Add("display", "block")
-
-            //  System.Threading.Thread.Sleep(5000);
-            //img2.Visible = true;
-
-            //Get the Input File Name and Extension.
-            string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
-            string fileExtension = Path.GetExtension(FileUpload1.PostedFile.FileName);
-
-            //Build the File Path for the original (input) and the encrypted (output) file.
-            string input = Server.MapPath("~/Users/" + name + "/") + fileName + fileExtension;
-            string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
-
-            //Save the Input File, Encrypt it and save the encrypted file in output path.
-            FileUpload1.SaveAs(input);
-            
-            this.AL.Encrypt(input, output);
-
-            //Download the Encrypted File.
-            //Response.ContentType = FileUpload1.PostedFile.ContentType;
-            //Response.Clear();
-            //Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
-            //Response.WriteFile(output);
-            //Response.Flush();
-
-            //Delete the original (input) and the encrypted (output) file.
-            File.Delete(input);
-            //File.Delete(output);
-
-            Response.End();
-
-
             try
             {
-                string filePath = string.Empty;
-                string contenttype = string.Empty;
-                string filename = string.Empty;
-                string filesize = string.Empty;
-                
-                if (FileUpload1.HasFile)
+                string name = Session["id"].ToString();
+            // get contenttype
+            string type = AL.DocType(FileUpload1);
+
+                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
                 {
-                    filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
-                    filePath = name + "/" + filename;
-                    filesize = FileUpload1.FileBytes.Length.ToString();
-                    FileUpload1.SaveAs(Server.MapPath("~/Users/" + name + "/" + filename));
+                    //Get the Input File Name and Extension.
+                    string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
+                    string fileExtension = Path.GetExtension(FileUpload1.PostedFile.FileName);
+
+                    //Build the File Path for the original (input) and the encrypted (output) file.
+                    string input = Server.MapPath("~/Users/" + name + "/") + fileName + fileExtension;
+                    string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
+
+                    //Save the Input File, Encrypt it and save the encrypted file in output path.
+                    FileUpload1.SaveAs(input);
+
+                    this.AL.Encrypt(input, output);
+
+                    //Download the Encrypted File.
+                    //Response.ContentType = FileUpload1.PostedFile.ContentType;
+                    //Response.Clear();
+                    //Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
+                    //Response.WriteFile(output);
+                    //Response.Flush();
+
+                    //Delete the original (input) and the encrypted (output) file.
+                    File.Delete(input);
+                    //File.Delete(output);
+
+                    Response.End();
                 }
-                //img1.Style.Add("display", "none");
-                loadFiles();
+                else
+                {
+
+                    string filePath = string.Empty;
+                    string contenttype = string.Empty;
+                    string filename = string.Empty;
+                    string filesize = string.Empty;
+
+                    if (FileUpload1.HasFile)
+                    {
+                        filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                        filePath = name + "/" + filename;
+                        filesize = FileUpload1.FileBytes.Length.ToString();
+                        FileUpload1.SaveAs(Server.MapPath("~/Users/" + name + "/" + filename));
+                    }
+                    //img1.Style.Add("display", "none");
+                    loadFiles();
+                }
             }
             catch (Exception ex)
             { throw ex; }
         }
-
+    
 
 
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
-            string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater2.Items)
-            {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+            try {
+                string username = Session["id"].ToString();
+                foreach (RepeaterItem ri in Repeater2.Items)
                 {
-                    string name = lbl.Text;
-                    // string map = MapPath(@"~/Users/" + username + "/" + name);
-                    //  lblresume.Text = "~/Student_Resume/" + fuResume.FileName.ToString();
-                    if (name != string.Empty)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        WebClient req = new WebClient();
-                        HttpResponse response = HttpContext.Current.Response;
-                        string filePath = "~/Users/" + username + "/" + name;// map;
-                        response.Clear();
-                        response.ClearContent();
-                        response.ClearHeaders();
-                        response.Buffer = true;
-                        response.AddHeader("Content-Disposition", "attachment;filename=" + name);
-                        byte[] data = req.DownloadData(Server.MapPath(filePath));
-                        response.BinaryWrite(data);
-                        response.End();
+                        string name = lbl.Text;
+                        // string map = MapPath(@"~/Users/" + username + "/" + name);
+                        //  lblresume.Text = "~/Student_Resume/" + fuResume.FileName.ToString();
+                        if (name != string.Empty)
+                        {
+                            WebClient req = new WebClient();
+                            HttpResponse response = HttpContext.Current.Response;
+                            string inputfilePath = Server.MapPath("~/Users/" + username + "/" + name);// map;
+                            string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
+                            this.AL.Decrypt(inputfilePath, outputfilePath);
+                            response.Clear();
+                            response.ClearContent();
+                            response.ClearHeaders();
+                            response.Buffer = true;
+                            response.AddHeader("Content-Disposition", "attachment;filename=" + name);
+
+                            byte[] data = req.DownloadData(outputfilePath);
+
+                            response.BinaryWrite(data);
+                            File.Delete(outputfilePath);
+                            response.End();
+
+                            
+                        }
                     }
                 }
             }
+            catch(Exception ex)
+            {}
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {

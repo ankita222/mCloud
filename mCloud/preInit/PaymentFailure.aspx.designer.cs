@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mCloud
+namespace mCloud.preInit
 {
 
 
-    public partial class PaymentSucces
+    public partial class PaymentFailure
     {
     }
 }
