@@ -262,6 +262,34 @@ namespace mCloud.App_Code
             return contenttype;
         }
         #endregion
+
+        #region Bytes To GigaBytes
+        static double ConvertBytesToGigabytes(long bytes)
+        {
+            return ((bytes / 1024f) / 1024f) / 1024f;
+        }
+        #endregion
+
+        #region Bytes To MegaBytes
+        static double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f ;
+        }
+        #endregion
+
+        #region  GigaBytes To Bytes
+        static double ConvertGigabytesToBytes(long bytes)
+        {
+            return ((bytes * 1024f) * 1024f) * 1024f;
+        }
+        #endregion
+
+        #region MegaBytes To Bytes
+        static double ConvertMegabytesToBytes(long bytes)
+        {
+            return (bytes * 1024f) * 1024f;
+        }
+        #endregion
     }
 }
 

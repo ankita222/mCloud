@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Sign up | Moil Cloud</title>
 
-    <meta charset="utf-8" />
+<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
@@ -79,11 +79,9 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+           <%-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right" style="margin-top: 9px;">
                     <li>
-                        <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
-
                         <a class="md-trigger" data-modal="modal-4" href="Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
                     </li>
                     <li>
@@ -99,7 +97,7 @@
                         <a class="page-scroll" href="preInit/ContactUs.aspx" style="color: black;font-weight:700;">Contact</a>
                     </li>
                 </ul>
-            </div>
+            </div>--%>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -120,7 +118,8 @@
                             <i class="fa fa-user"></i>
                         </span>
                         <div class="form-line">
-                            <input runat="server" id="txtEmail" class="form-control" name="MobleNo" placeholder="Email Address" required="required" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
+                            <asp:TextBox ID="txtEmail" runat="server" type="email" class="form-control" placeholder="Email Address"  style="font-size: 14px; border: 1px solid rgba(128, 128, 128, 0.38); margin-bottom: -7px; padding: 5px;"></asp:TextBox>
+                      
                         </div>
                     </div>
                     <div class="input-group">
@@ -132,7 +131,9 @@
                                         <asp:ListItem>+91 - India</asp:ListItem>
                                         <asp:ListItem>Others</asp:ListItem>
                                     </asp:DropDownList>
-                            <input runat="server" id="txtMob" class="form-control" name="password" type="password" placeholder="Mobile No." required="" aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
+                            <asp:TextBox ID="txtMob" runat="server" class="form-control" TextMode="Number" MaxLength="10" placeholder="Mobile No." required="required" aria-required="true" style="font-size: 14px; border: 1px solid rgba(128, 128, 128, 0.38); margin-bottom: -7px; padding: 5px;" ></asp:TextBox>
+
+                          
                         </div>
                     </div>
 
@@ -142,7 +143,7 @@
                                 </span>
                         <div class="form-line">
                             
-                            <input type="text" runat="server" id="txtRefCode" class="form-control" name="password" placeholder="Refernce Code"  aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
+                            <input type="text" runat="server" id="txtRefCode" class="form-control" name="password" placeholder="Refernce Code" required="required"  aria-required="true" maxlength="10" style="font-size: 14px;border: 1px solid rgba(128, 128, 128, 0.38);margin-bottom: -7px;padding: 5px;"/>
                         </div>
                     </div>
                 </div>
