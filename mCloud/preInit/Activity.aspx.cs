@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 using System.Data;
 using mCloud.App_Code;
 
+
 namespace mCloud.preInit
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+       
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
@@ -43,8 +45,9 @@ namespace mCloud.preInit
         public void LoadPricePlan()
         {
             //string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
-            string getPlan = "  Select Name, Price, (SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+' Days') as Detail, (convert(nvarchar,PlanId) +'-'+convert(nvarchar,Price)+'-'+SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+'-'+Name) as PlanDetails from PlanMaster";
+            string getPlan = "  Select Name, Price,SpaceInByte, (SpaceInByte+' GB'+'-'+convert(nvarchar,ValidityInDays)+' Days') as Detail, (convert(nvarchar,PlanId) +'-'+convert(nvarchar,Price)+'-'+SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+'-'+Name) as PlanDetails from PlanMaster";
             dt = mDAL.FunDataTable(getPlan);
+
 
             rptselectplan.DataSource = dt;
             rptselectplan.DataBind();
@@ -164,12 +167,15 @@ namespace mCloud.preInit
             #endregion
 
             #region Final Code
-
-            if (chbxAgree.Checked == true)
+            if (txtPassword.Value != txtCPassword.Value)
+            {
+                Response.Write("<script>alert('Passwords do not match!');</script>");
+            }
+            else if (chbxAgree.Checked == true)
             {
                 if (lblSelectedPlan.Text != "")
                 {
-                    if (txtMob.Value != "" && txtName.Value != "" && txtPassword.Value != "" && txtCPassword.Value != "")
+                    if (txtMob.Value != "" && txtName.Value != "" && (txtPassword.Value != "" && txtCPassword.Value != ""))
                     {
                         if (txtEmail.Value != "")
                             Session["Email"] = txtEmail.Value;

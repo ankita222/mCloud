@@ -181,7 +181,7 @@
                                             <label class="sr-only" for="form-password">Password</label>
 											
                                             <input type="password"  runat="server" id="txtPassword" placeholder="Password..." class="form-password form-control"  style="height: 28px;font-size: 14px;border: 1px solid #0981e8; width:50%; float:left;"/>
-											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..." class="form-password form-control"  style="height: 28px; width:50%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
+											<input type="password"  runat="server" id="txtCPassword" placeholder="Confirm Password..."  class="form-password form-control" onblur="return comparePassword();"  style="height: 28px; width:50%;border: 1px solid #0981e8; padding-left: 9px;font-size: 13px;padding-right: 9px;" />
                                          
 										</div>
                                         <!-- Using Updatepanel on agree Checkbox-->
@@ -192,7 +192,7 @@
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
                                         <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click" />
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
-                                            <label id="lblPaymentSelect" runat="server" visible="false" >Please select a plan.</label>
+                                            <label id="lblPaymentSelect" runat="server" visible="false" style="color:red" >Please select a plan.</label>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
 									</div>
@@ -264,5 +264,23 @@
 		<script src="js/css-filters-polyfill.js"></script>
 	<script src="modal/js/css-filters-polyfill.js"></script>
      <script src="//getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
+
+    <script type="text/javascript">
+        function comparePassword() {
+            
+            
+            
+            var pwd1 = document.getElementById("ContentPlaceHolderContent_txtPassword").value;
+            var pwd2 = document.getElementById("ContentPlaceHolderContent_txtCPassword").value;
+           // alert("Msg=" + pwd1 + "---" + pwd2);
+           //alert("Passwords do not match!");
+             if (pwd1!= pwd2) {
+                 alert("Passwords do not match!");
+                 ContentPlaceHolderContent_txtCPassword.value = "";
+                return false;  }
+            else {  return true;   }
+        }
+       
+        </script>
 
 </asp:Content>
