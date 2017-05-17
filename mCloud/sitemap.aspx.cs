@@ -129,16 +129,30 @@ namespace mCloud
             //DateTime dt = DateTime.ParseExact("2017-05-13 12:33:26.310", "MMMM d, yyyy h:mm tt", null);
             //TextBox1.Text = dt.ToString();
 
-            
-            string dt = "2016-04-14 00:00:00.000";
-            string[] planarray = dt.Split(' ');
-            
-            DateTime time = DateTime.Parse(dt);
-            System.TimeSpan diffResult = time - System.DateTime.Today;
-            if (diffResult.Days >= 0F)
-                Response.Write("IF");
-            else
-                Response.Write("ELSE");
+
+            //string dt = "2016-04-14 00:00:00.000";
+            //string[] planarray = dt.Split(' ');
+
+            //DateTime time = DateTime.Parse(dt);
+            //System.TimeSpan diffResult = time - System.DateTime.Today;
+            //if (diffResult.Days >= 0F)
+            //    Response.Write("IF");
+            //else
+            //    Response.Write("ELSE");
+
+            Label1.Text = ConvertBytesToGigabytes(long.Parse(TextBox1.Text)).ToString();
+
+          //  Label1.Text= ConvertGigabytesToBytes(long.Parse(TextBox1.Text)).ToString();
+        }
+
+        static double ConvertBytesToGigabytes(long bytes)
+        {
+            return ((bytes / 1024f) / 1024f) / 1024f;
+        }
+
+        static double ConvertGigabytesToBytes(long bytes)
+        {
+            return ((bytes * 1024f) * 1024f) * 1024f;
         }
     }
 }

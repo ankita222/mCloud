@@ -28,7 +28,7 @@ namespace mCloud {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
         /// ddlIsdCode control.
@@ -46,7 +46,7 @@ namespace mCloud {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtMob;
+        protected global::System.Web.UI.WebControls.TextBox txtMob;
         
         /// <summary>
         /// txtRefCode control.

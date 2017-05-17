@@ -58,9 +58,7 @@ namespace mCloud.preInit
                 string phone = Session["Mob"].ToString();
                 
                 string productinfo = Session["PlanName"].ToString() + "( " + "₹" + Session["Amount"].ToString() + " - " + Session["DataSize"].ToString() + " GB" + " - " + Session["Days"].ToString() + " Days )";
-                //"₹" + Session["Amount"].ToString() + " - " + Session["DataSize"].ToString() + " GB" + " for " + Session["Days"].ToString() + " Days";
-
-                //double validity = double.Parse()
+               
                 int PaymentId = AL.GenId();
                 string RefCode = "";
                 if(!string.IsNullOrEmpty(Session["RefCode"] as string))
@@ -88,18 +86,11 @@ namespace mCloud.preInit
                 };
 
                 int x = DAL.FunExecuteNonQuerySP("ust_onreg", param);
-                if (x == 0)
+                if (x > 0)
                 {
-                    //Payment Gateway
-                    /// Code to Create Default Folders -> Images, Contacts, Files
                     AL.CreateUserFolder(Session["Mob"].ToString());
-                    
-                    
-                    /// 
-
-
                     Response.Write("<script>alert('Registered Successfully.');</script>");
-                   
+                    //Payment Gateway
                 }
             }
             else
