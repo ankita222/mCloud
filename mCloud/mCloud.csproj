@@ -257,6 +257,7 @@
     <Content Include="preInit\Pricing\font-awesome\css\font-awesome.min.css" />
     <Content Include="preInit\Pricing\js\jquery-1.10.2.min.js" />
     <Content Include="preInit\PrivacyPolicy.aspx" />
+    <Content Include="preInit\Renew.aspx" />
     <Content Include="preInit\Terms.aspx" />
     <Content Include="preInit\vendor\bootstrap\css\bootstrap.css" />
     <Content Include="preInit\vendor\bootstrap\css\bootstrap.min.css" />
@@ -3771,6 +3772,13 @@
     </Compile>
     <Compile Include="preInit\PrivacyPolicy.aspx.designer.cs">
       <DependentUpon>PrivacyPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Renew.aspx.cs">
+      <DependentUpon>Renew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Renew.aspx.designer.cs">
+      <DependentUpon>Renew.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Terms.aspx.cs">
       <DependentUpon>Terms.aspx</DependentUpon>

@@ -9,6 +9,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        Remote
+        <a href="https://www.instamojo.com/@moilcloud/" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Pay Now"></a>
+<script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
+
+
+        Redirect
+        <a href="https://www.instamojo.com/@moilcloud/" rel="im-checkout" data-behaviour="link" data-style="flat" data-text="Pay Now"></a>
+<script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
     <div>
     <h3>
     Folder Details</h3>
