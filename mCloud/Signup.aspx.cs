@@ -25,37 +25,42 @@ namespace mCloud
             {
                 SqlParameter[] param = { new SqlParameter("@Email", txtmail.Text), new SqlParameter("@Mobile", txtMob.Text) };
 
+              
+                int x = DAL.FunExecuteNonQuerySP("ust_beginreg", param);
                 DataTable dt = DAL.FunDataTableSP("ust_beginreg", param);
-
-                if (dt.Rows[0]["Column1"].ToString() == "1")//if exist in preregistration
+                if (dt.Rows.Count > 0 && dt != null)
                 {
-                    SqlParameter[] param0 = { new SqlParameter("@UserId", txtMob.Text), new SqlParameter("@UEmail", txtmail.Text) };
-                    DataTable dt0 = DAL.FunDataTableSP("ust_beginreguserdetal", param0);
-                    if ((dt0.Rows[0]["Column1"].ToString() == "1"))//if exist in userdetails
+                    if (dt.Rows[0]["Column1"].ToString() == "1")//if exist in preregistration
                     {
-                        Response.Write("<script>alert('Account already exist');</script>");
-                    }
-                    else
-                    {
-                        // DAL.FunExecuteNonQuerySP("ust_beginreguserdetal", param);
-                        Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
-                        Session["Mob"] = txtMob.Text;
-                        string otp = AL.GenOTP();
-                        Session["HashOtp"] = AL.PassHash(otp);
-                        if (txtmail.Text != "")
+                        SqlParameter[] param0 = { new SqlParameter("@UserId", txtMob.Text), new SqlParameter("@UEmail", txtmail.Text) };
+                        DataTable dt0 = DAL.FunDataTableSP("ust_beginreguserdetail", param0);
+                        if ((dt0.Rows[0]["Column1"].ToString() == "1"))//if exist in userdetails
                         {
-                            Session["Email"] = txtmail.Text;
+                            Response.Write("<script>alert('Account already exist');</script>");
                         }
+                        else
+                        {
+                            //int y = DAL.FunExecuteNonQuerySP("ust_beginreg", param);
+                            Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
+                            Session["Mob"] = txtMob.Text;
+                            string otp = AL.GenOTP();
+                            Session["HashOtp"] = AL.PassHash(otp);
+                            if (txtmail.Text != "")
+                            {
+                                Session["Email"] = txtmail.Text;
+                            }
 
-                        //SMS API CODE HERE
+                            //SMS API CODE HERE
 
-                        Response.Redirect("preInit/Activity.aspx");
+                            Response.Redirect("preInit/Activity.aspx");
+                        }
                     }
                 }
                 else
                 {
-                    SqlParameter[] param1 = { new SqlParameter("@Email", txtmail.Text), new SqlParameter("@Mobile", txtMob.Text) };
-                    DAL.FunExecuteNonQuerySP("ust_beginreg", param1);
+                    // SqlParameter[] param1 = { new SqlParameter("@UEmail", txtmail.Text), new SqlParameter("@UserId", txtMob.Text) };
+                    SqlParameter[] param2 = { new SqlParameter("@Email", txtmail.Text), new SqlParameter("@Mobile", txtMob.Text) };
+                    int y = DAL.FunExecuteNonQuerySP("ust_beginreg", param2);
                     Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
                     Session["Mob"] = txtMob.Text;
                     string otp = AL.GenOTP();
