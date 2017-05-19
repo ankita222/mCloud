@@ -5486,7 +5486,7 @@ fieldset[disabled] .form-control {
       .breadcrumb-bg-white li a .material-icons {
         padding-bottom: 8px; }
   .breadcrumb-bg-white li + li:before {
-    color: #fff; }
+    color: #000; }
 
 /* Badge | List Group Item ===================== */
 .badge {

@@ -195,7 +195,7 @@
                             <li class="header">Cloud Drive</li>
                             <li class="active">
                                 <a href="Dashboard.aspx">
-                                    <i class="material-icons" style="color: #1e6498;">dashboard</i>
+                                  <i class="material-icons" style="color: #1e6498;">dashboard</i>
                                     <span style="color: #1e6498;">Dashboard</span>
                                 </a>
                             </li>
