@@ -9,6 +9,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
+       Mob <asp:TextBox ID="txtMob" runat="server"></asp:TextBox>
+       Email <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
+        <br />
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="SIZE" Width="74px" />
+        <br />
+        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         Remote
         <a href="https://www.instamojo.com/@moilcloud/" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Pay Now"></a>
 <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>

@@ -290,6 +290,14 @@ namespace mCloud.App_Code
             return (bytes * 1024f) * 1024f;
         }
         #endregion
+
+        #region
+        public long GetDirectorySize(string folderPath)
+        {
+            DirectoryInfo di = new DirectoryInfo(folderPath);
+            return di.EnumerateFiles("*", SearchOption.AllDirectories).Sum(fi => fi.Length);
+        }
+        #endregion
     }
 }
 

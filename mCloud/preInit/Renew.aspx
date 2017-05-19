@@ -63,66 +63,94 @@
             <div class="row" runat="server" id="divverify"  ><hr/>
                 <div class="col-lg-5 col-xs-12 col-sm-12 text-center"></div>
                 <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
+                    <asp:Panel ID="pnlRenew" runat="server">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<p style="color: #fff;font-weight: 400;line-height: 20px;">Enter Your UserId</p>
-                        
+						<p style="color: #fff;font-weight: 400;line-height: 20px;">Enter Your Mobile No.</p>
+                        <br />
 						<div style="display:inline-block;">
-                        <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
                            
-                        &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
-                              &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" />
+                        <input type="number" runat="server" id="txtMob" placeholder="10 digit mobile number"  class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
+                          <br />
+                        &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Send OTP" OnClick="btnverify_Click" />
+                              &nbsp; &nbsp;     <%--<asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" />--%>
                             </div>
                       
 						<hr/>
 					</div>
+                        </asp:Panel>
+                    <asp:Panel ID="pnlRenewOTP" Visible="false" runat="server">
+					<div class="section-heading" style="margin-bottom:0px;float: left;">
+						<p style="color: #fff;font-weight: 400;line-height: 20px;">Enter OTP send to your mobile no.</p>
+                        <br />
+						<div style="display:inline-block;">
+                           
+                        <input type="text" runat="server" id="txtOTP" placeholder="Enter OTP" class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 120px;"/>
+                          <br />
+                        &nbsp; <asp:Button runat="server" ID="btnVerfyOTP" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnVerfyOTP_Click" />
+                            </div>
+						<hr/>
+					</div>
+                        </asp:Panel>
 				</div><div class="col-lg-1 col-xs-12 col-sm-12 text-center"></div>
             </div>
-            
-           
               	  <div class="row" runat="server" id="divselectplan" visible="false">
-                <hr />
+                
                 <div class="col-lg-12 text-center">
                     <div style="display: inline-flex; width: 50%;">
                         <table class="table table-responsive table-bordered" style="background-color: #f9f7fc;">
+
                             <tr>
-                                <td>Plan Name
+                                <td>UserId/Mobile No
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblName" runat="server" Text="User Name"></asp:Label>
+                                    <asp:Label ID="lblUserId" runat="server" Text="User Name"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Space
+                                <td>Previous Plan Name
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblspace" runat="server" Text="Mobile"></asp:Label>
+                                    <asp:Label ID="lblPPName" runat="server" Text="Lite"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Validity
+                                <td>Plan Description
                                 </td>
                                 <td>
-                                   <asp:Label ID="lbldes" runat="server" Text="----"></asp:Label>
+                                    <asp:Label ID="lblPDesc" runat="server" Text="₹20(2GB for 90 days)"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Renew Price
+                                </td>
+                                <td>
+                                   ₹<asp:Label ID="lblRPrice" runat="server" Text="20"></asp:Label>
                                    
                                 </td>
                             </tr>
+                            
                             <tr>
-                                <td>Price
-                                </td>
-                                <td>
-                                    ₹<asp:Label ID="lblprice" runat="server" Text="0.0"></asp:Label>
+                                
+                                <td colspan="2">
+
+                                    <asp:Button runat="server" ID="btnrenew" CssClass="btn btn-sm btn-info" Text="Renew" OnClick="btnrenew_Click"  />
+                                    OR
+                                    <asp:Button runat="server" ID="btnupgrade" CssClass="btn btn-sm btn-info" Text="Upgrade" OnClick="btnupgrade_Click" />
+                                  
+                                    
+                                
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td>
-                                    <asp:Button runat="server" ID="btnrenew" CssClass="btn btn-sm btn-info" Text="Renew"  />
-                                
+                                    <asp:DropDownList ID="ddlupgrade" CssClass="form-control" runat="server" Visible="false">
+                                    </asp:DropDownList>
                                 </td>
-                                <td>
-                                    <asp:Button runat="server" ID="btnupgrade" CssClass="btn btn-sm btn-info" Text="Upgrade" OnClick="btnupgrade_Click" />
-                                    <asp:DropDownList ID="ddlupgrade" runat="server" Visible="false"></asp:DropDownList>
-                                    <asp:Button runat="server" ID="btnpaynow" CssClass="btn btn-sm btn-info" Text="Pay Now"  Visible="false" />
-                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><asp:Button runat="server" ID="btnpaynow" CssClass="btn btn-sm btn-info" Text="Upgrade Now"  Visible="false" /></td>
                             </tr>
                         </table>
                     </div>
