@@ -205,12 +205,13 @@
                                     <span style="color: #1e6498;">Files</span>
                                 </a>
                             </li>
-                            <li class="active">
+                         <!--   <li class="active">
                                 <a href="Dashboard.aspx?type=folder">
                                     <i class="material-icons" style="color: #1e6498;">folder</i>
                                     <span style="color: #1e6498;">Folder</span>
                                 </a>
                             </li>
+                         -->
                             <li class="active">
                                 <a href="Dashboard.aspx?type=image">
                                     <i class="material-icons" style="color: #1e6498;">image</i>
@@ -302,6 +303,9 @@
 
             <!-- Demo Js -->
             <script src="js/demo.js"></script>
+
+           
+
         </div>
     </form>
 </body>

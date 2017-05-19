@@ -113,9 +113,20 @@
                     <div class="card" style="background: linear-gradient(45deg, #f3f5f5, #f3f5f5);">
 
                         <div class="header" style="height: 56px; border-bottom: 1px solid rgba(6, 0, 0, 0.35);">
-                            <div style="width: 94px; float: left;">
+                            <div style="width: 94px; float: left; display:none">
                                 <h2 runat="server" id="h2">Dashboard
                                 </h2>
+                            </div>
+                              <div>
+                               <ol class="breadcrumb breadcrumb-bg-white" style="background-color: #f3f5f5 !important;">
+                                    <asp:Repeater runat="server" ID="rptbreadcrumps">
+                                        <ItemTemplate>
+                                          <!--   <li style="color: #130000;"><a href="#" style="color: #130000;"><%#Eval("dir") %></a></li>-->
+                                            <li style="color: #130000;">
+                                                <asp:LinkButton ID="lnkbtn" runat="server" style="color: #130000;" CommandArgument='<%#Eval("dir") %>' OnCommand="lnkbtn_Command" Text='<%#Eval("dir") %>'></asp:LinkButton></li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                            </ol>
                             </div>
 
                             <div class="myhov" id="attach_box" style="float: right; cursor: pointer; font-size: 24px; font-weight: 900;" onmouseover="calldiv();" onmouseout="fadediv();">
@@ -160,7 +171,6 @@
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
-                                                
                                             </div>
                                              <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="Label2"></asp:Label>
@@ -448,5 +458,6 @@
         }
 
     </script>
+
 
 </asp:Content>

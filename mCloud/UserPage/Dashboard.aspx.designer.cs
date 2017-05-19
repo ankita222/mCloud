@@ -22,6 +22,15 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl h2;
         
         /// <summary>
+        /// rptbreadcrumps control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptbreadcrumps;
+        
+        /// <summary>
         /// btndownload control.
         /// </summary>
         /// <remarks>
