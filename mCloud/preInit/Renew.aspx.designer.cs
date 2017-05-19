@@ -22,13 +22,22 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divverify;
         
         /// <summary>
-        /// txtcode control.
+        /// pnlRenew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcode;
+        protected global::System.Web.UI.WebControls.Panel pnlRenew;
+        
+        /// <summary>
+        /// txtMob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtMob;
         
         /// <summary>
         /// btnverify control.
@@ -40,13 +49,31 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.WebControls.Button btnverify;
         
         /// <summary>
-        /// btnresend control.
+        /// pnlRenewOTP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnresend;
+        protected global::System.Web.UI.WebControls.Panel pnlRenewOTP;
+        
+        /// <summary>
+        /// txtOTP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtOTP;
+        
+        /// <summary>
+        /// btnVerfyOTP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerfyOTP;
         
         /// <summary>
         /// divselectplan control.
@@ -58,40 +85,40 @@ namespace mCloud.preInit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divselectplan;
         
         /// <summary>
-        /// lblName control.
+        /// lblUserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.Label lblUserId;
         
         /// <summary>
-        /// lblspace control.
+        /// lblPPName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblspace;
+        protected global::System.Web.UI.WebControls.Label lblPPName;
         
         /// <summary>
-        /// lbldes control.
+        /// lblPDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldes;
+        protected global::System.Web.UI.WebControls.Label lblPDesc;
         
         /// <summary>
-        /// lblprice control.
+        /// lblRPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprice;
+        protected global::System.Web.UI.WebControls.Label lblRPrice;
         
         /// <summary>
         /// btnrenew control.

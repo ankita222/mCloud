@@ -154,5 +154,28 @@ namespace mCloud
         {
             return ((bytes * 1024f) * 1024f) * 1024f;
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            SqlParameter[] param =
+            {
+                new SqlParameter("@Mobile", txtMob.Text),
+                new SqlParameter("@Email", txtEmail.Text)
+            };
+            object x0 = dal.FunExecuteScalarSP("ust_beginregcheck", param);
+            Label2.Text = x0.ToString();
+        }
+
+        private static long GetDirectorySize(string folderPath)
+        {
+            DirectoryInfo di = new DirectoryInfo(folderPath);
+            return di.EnumerateFiles("*", SearchOption.AllDirectories).Sum(fi => fi.Length);
+        }
+
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Label3.Text = GetDirectorySize(Server.MapPath("~/FrontPage/")).ToString();
+        }
     }
 }

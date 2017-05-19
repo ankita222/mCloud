@@ -352,7 +352,7 @@
             <li>
                 <a href="preInit/Terms.aspx" style="color: white; font-size: 12px;">Terms Of Use</a>
             </li>
-        </ul>
+        </ul><br /><script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
     </div>
 </footer>
 

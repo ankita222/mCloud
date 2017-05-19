@@ -11,83 +11,77 @@ using System.Web.Security;
 
 namespace mCloud
 {
-    public partial class Signin : System.Web.UI.Page
+public partial class Signin : System.Web.UI.Page
+{
+    mCloudAL AL = new mCloudAL();
+    mCloudDAL DAL = new mCloudDAL();
+    protected void Page_Load(object sender, EventArgs e)
     {
-        mCloudAL AL = new mCloudAL();
-        mCloudDAL DAL = new mCloudDAL();
-        protected void Page_Load(object sender, EventArgs e)
+
+    }
+    protected void btnSignIn_Click(object sender, EventArgs e)
+    {
+        #region LOGIN CODE
+
+        if (txtUserName.Value != "" && txtPassword.Value != "")
         {
+            SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
 
-        }
-        protected void btnSignIn_Click(object sender, EventArgs e)
-        {
-            #region TEMP LOGIN CODE
-            //Session["id"] = txtUserName.Value;
-            //Session["CurrentPath"] = "UserPage";
-            //Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
-            #endregion
-
-            #region LOGIN CODE
-
-            if (txtUserName.Value != "" && txtPassword.Value != "")
+            DataTable dt = DAL.FunDataTableSP("ust_login", param);
+            if (dt.Rows.Count > 0 && dt != null)
             {
-                SqlParameter[] param = { new SqlParameter("@UserId", txtUserName.Value), new SqlParameter("@Password", AL.PassHash(txtPassword.Value.Trim())) };
-
-                DataTable dt = DAL.FunDataTableSP("ust_login", param);
-                if (dt.Rows.Count > 0 && dt != null)
+                string x = dt.Rows[0]["IsActive"].ToString();
+                if (x == "True")
                 {
-                    string x = dt.Rows[0]["IsActive"].ToString();
-                    if (x == "True")
+                    DateTime exptime = DateTime.Parse((dt.Rows[0]["ExpiryDate"]).ToString());
+                    System.TimeSpan diffResult = exptime - System.DateTime.Today;
+                    if (diffResult.Days >= 0F)
                     {
-                        DateTime exptime = DateTime.Parse((dt.Rows[0]["ExpiryDate"]).ToString());
-                        System.TimeSpan diffResult = exptime - System.DateTime.Today;
-                        if (diffResult.Days >= 0F)
+                        Session["DaysLeft"] = diffResult.Days;
+                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
+                        string hash = FormsAuthentication.Encrypt(ticket);
+                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+
+                        if (ticket.IsPersistent)
                         {
-                            Session["DaysLeft"] = diffResult.Days;
-                            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Value, DateTime.Now, DateTime.Now.AddMinutes(30), CheckBoxPersist.Checked, FormsAuthentication.FormsCookiePath);
-                            string hash = FormsAuthentication.Encrypt(ticket);
-                            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
-
-                            if (ticket.IsPersistent)
-                            {
-                                cookie.Expires = ticket.Expiration;
-                            }
-                            Response.Cookies.Add(cookie);
-                            Session["UserId"] = txtUserName.Value;
-                            Session["id"] = txtUserName.Value;
-                            Session["CurrentPath"] = "UserPage";
-
-                            FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
-                            Response.Redirect("UserPage/Dashboard.aspx");
-
+                            cookie.Expires = ticket.Expiration;
                         }
-                        else
-                        {
+                        Response.Cookies.Add(cookie);
+                        Session["UserId"] = txtUserName.Value;
+                        Session["id"] = txtUserName.Value;
+                        Session["CurrentPath"] = "UserPage";
 
-                            DAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive = 0 WHERE UserId='" + txtUserName.Value + "'");
-                            this.lblErrorMsg.Visible = true;
-                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
-                            this.lblErrorMsg.Text = "Account expire please renew.";
-                        }
+                        FormsAuthentication.SetAuthCookie(txtUserName.Value, CheckBoxPersist.Checked);
+                        Response.Redirect("UserPage/Dashboard.aspx");
+
                     }
-
-                    else if (x == "False")
+                    else
                     {
+
+                        DAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive = 0 WHERE UserId='" + txtUserName.Value + "'");
                         this.lblErrorMsg.Visible = true;
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
-                        this.lblErrorMsg.Text = "Account is not active, contact support.";
+                        this.lblErrorMsg.Text = "Account expire please renew.";
                     }
                 }
-                else
+
+                else if (x == "False")
                 {
                     this.lblErrorMsg.Visible = true;
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
-                    this.lblErrorMsg.Text = "Invalid Username and/or Password";
+                    this.lblErrorMsg.Text = "Account is not active, contact support.";
                 }
             }
-
-            #endregion
-
+            else
+            {
+                this.lblErrorMsg.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                this.lblErrorMsg.Text = "Invalid Username and/or Password";
+            }
         }
+
+        #endregion
+
     }
+}
 }
