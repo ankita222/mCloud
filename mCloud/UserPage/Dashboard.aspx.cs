@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Net;
 using System.IO.Compression;
 using mCloud.App_Code;
-
+using System.Web.Security;
 
 namespace mCloud.UserPage
 {
@@ -23,6 +23,13 @@ namespace mCloud.UserPage
         DataTable dtSiteMap = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(Session["id"] as string))
+            {
+                Session.Clear();
+                Session.Abandon();
+                FormsAuthentication.SignOut();
+                Response.Redirect("~/Default.aspx");
+            }
             CreateTable();
             CreateSiteMap();
             string ReqFolder = Request.QueryString["type"];
@@ -338,61 +345,148 @@ namespace mCloud.UserPage
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {
+            //string path2 = "~//Users//";
+            //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+            //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            //{
+            //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+            //}
+
+            //string rename = txtrename.Value;
+
+            //int x = 0;
+            //foreach (RepeaterItem ri in Repeater1.Items)
+            //{
+            //    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+            //    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+            //    if (chk.Checked) { x++; }
+            //}
+            //foreach (RepeaterItem ri in Repeater2.Items)
+            //{
+            //    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+            //    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+            //    if (chk.Checked) { x++; }
+            //}
+
             string rename = txtrename.Value;
-            string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater1.Items)
+            string path2 = GetCurrentPath();
+            string DefaultPath = "~//Users//" + Session["id"].ToString() + "//";
+            int x = CheckRepeaterCount();
+            if (x > 1)
             {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+                Response.Write("<script>alert('Select single file.')</script>");
+            }
+            else if (x == 0)
+            {
+                Response.Write("<script>alert('Select file/folder to rename');</script>");
+            }
+            else
+            {
+                #region Code to Rename Folder and FIle
+                #region Code to Rename Folder
+                foreach (RepeaterItem ri in Repeater1.Items)
                 {
-                    string name = lbl.Text;
-
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
-                    DirectoryInfo[] Files = d.GetDirectories();
-                    foreach (DirectoryInfo file in Files)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        if (file.Name == name)
+                        string name = lbl.Text;
+                        if ((path2 == DefaultPath) && (name == "Images" || name == "Files" || name == "Contact"))
                         {
-                            string startPath = file.FullName;
-
-                            string frompath = Path.GetDirectoryName(startPath);
-                            string topath = frompath + "\\" + rename;
-                            Directory.Move(@startPath, @topath);
-
-                            //  Directory.Delete(startPath);
-
+                            Response.Write("<script>alert('Can not rename default direcroy.')</script>");
                         }
+                        else
+                        {
+                            DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
+                            DirectoryInfo[] Files = d.GetDirectories();
+                            //int F = 1;
+                            //for(int i=0;i<Files.Length;i++)
+                            //{
+                            //    if (Files[i].ToString() == rename)
+                            //    {
+                            //        F = 0;
+                            //        break;
+                            //    }
+                            //}
 
+                            //if (F == 0)
+                            //{
+                            //    Response.Write("<Script>alert('Folder Already exists.');</Script>");
+                            //}
+                            //else
+                            //{
+                            foreach (DirectoryInfo file in Files)
+                            {
+                                if (file.Name == name)
+                                {
+                                    if (System.IO.Directory.Exists(System.Web.HttpContext.Current.Server.MapPath(@path2 + "//" + rename)) || System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(@path2 + "//" + rename)))
+                                    {
+                                        Response.Write("<Script>alert('Folder already exists');</Script>");
+                                    }
+                                    else
+                                    {
+                                        string startPath = file.FullName;
+
+                                        string frompath = Path.GetDirectoryName(startPath);
+                                        string topath = frompath + "\\" + rename;
+
+                                        Directory.Move(@startPath, @topath);
+
+                                        //  Directory.Delete(startPath);
+                                    }
+                                }
+
+                            }
+                            //}
+                        }
+                    }
+
+                }
+                #endregion
+                #region Code to rename Files
+                foreach (RepeaterItem ri in Repeater2.Items)
+                {
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
+                    {
+
+                        string name = lbl.Text;
+                        string ext = Path.GetExtension(name);
+
+                        DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
+                        {
+                            if (file.Name == name)
+                            {
+                                if (System.IO.Directory.Exists(System.Web.HttpContext.Current.Server.MapPath(@path2 + "//" + rename + ext)) || System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(@path2 + "//" + rename + ext)))
+                                {
+                                    Response.Write("<Script>alert('File already exists');</Script>");
+                                }
+                                else
+                                {
+
+                                    string startPath = file.FullName;
+                                    string frompath = Path.GetDirectoryName(startPath);
+                                    string topath = frompath + "\\" + rename + ext;
+
+                                    File.Move(startPath, @topath);
+                                }
+                            }
+                        }
                     }
                 }
+                #endregion
+                #endregion
 
+                loadDirectory();
+                loadFiles();
             }
-            foreach (RepeaterItem ri in Repeater2.Items)
-            {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
-                {
-                    string name = lbl.Text;
-
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
-                    FileInfo[] Files = d.GetFiles();
-                    foreach (FileInfo file in Files)
-                    {
-                        if (file.Name == name)
-                        {
-                            string startPath = file.FullName;
-                            string frompath = Path.GetDirectoryName(startPath);
-                            string topath = frompath + "\\" + rename;
-                            File.Move(startPath, @topath);
-
-                        }
-
-                    }
-                }
-            }
-            Response.Redirect(Request.RawUrl);
+            
+            // Code to reload current page.
+            //Response.Redirect(Request.RawUrl);
         }
         protected void btndel_ServerClick(object sender, EventArgs e)
         {
@@ -565,6 +659,38 @@ namespace mCloud.UserPage
 
         //////////////////////////////////////////////////////////////////           
         //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
+
+
+        protected string GetCurrentPath()
+        {
+            string path2 = "~//Users//";
+            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            {
+                path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+            }
+
+            return path2;
+        }
+
+        protected int CheckRepeaterCount()
+        {
+            int x = 0;
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked) { x++; }
+            }
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked) { x++; }
+            }
+            return x;
+        }
 
     }
 }
