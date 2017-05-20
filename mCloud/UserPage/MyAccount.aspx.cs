@@ -148,5 +148,10 @@ namespace mCloud.UserPage
             else
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Key", "alert('Password Did Not Match ');", true);
         }
+
+        protected void btnvery_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
