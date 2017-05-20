@@ -177,5 +177,11 @@ namespace mCloud
         {
             Label3.Text = GetDirectorySize(Server.MapPath("~/FrontPage/")).ToString();
         }
+
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            System.IO.File.Move(Server.MapPath("From.txt"), Server.MapPath("TO.txt"));
+        }
     }
 }

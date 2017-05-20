@@ -23,6 +23,9 @@
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
+        <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Button" />
+        <br />
+        <br />
         <br />
         <br />
         <br />

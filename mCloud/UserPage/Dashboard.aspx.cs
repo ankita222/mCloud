@@ -28,6 +28,7 @@ namespace mCloud.UserPage
             string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
+                if (!string.IsNullOrEmpty(Session["id"] as string)) 
                 LoadSiteMap(Session["id"].ToString());
                 if (ReqFolder == "files")
                 {
@@ -576,8 +577,16 @@ namespace mCloud.UserPage
         {
             try
             {
-                string name = e.CommandArgument.ToString();
+                //string name = e.CommandArgument.ToString();
+                string path2 = "~/Users/";
+                dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
+                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                {
+                    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+                }
+
+                Response.Write("<script>alert('" + path2 + "');</script>");
             }
             catch
             {
