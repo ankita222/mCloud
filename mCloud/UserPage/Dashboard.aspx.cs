@@ -565,17 +565,24 @@ namespace mCloud.UserPage
         }
 
         
-        protected void btnfav_command(object sender, CommandEventArgs e)
+     
+
+        protected void btnfilefav_Command(object sender, CommandEventArgs e)
+        {
+            string fav_File_Name = e.CommandArgument.ToString();
+        }
+
+        protected void btnFav_Command1(object sender, CommandEventArgs e)
         {
             try
             {
                 string name = e.CommandArgument.ToString();
+
             }
             catch
             {
 
             }
-
         }
     }
 }
