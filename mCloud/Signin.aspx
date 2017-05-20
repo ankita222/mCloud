@@ -103,6 +103,12 @@
 
                                             <div>
                                                 <asp:CheckBox ID="CheckBoxPersist" Style="color: #555555; font-weight: normal; font-size: small;" CssClass="checkbox-inline" Checked="false" Text="Remember me" runat="server" />
+                                                <span style="float:right;">
+                                                 <a href="ForgotPassword.aspx" style="font-weight:normal;font-size:small;color:#555555;">Forgot Password </a>
+                                                  
+                                                <i class="fa fa-history"></i>
+                                           
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

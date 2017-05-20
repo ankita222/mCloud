@@ -111,6 +111,7 @@ namespace mCloud
 
                             DAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive = 0 WHERE UserId='" + txtUserName.Value + "'");
                             this.lblErrorMsg.Visible = true;
+
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
                             this.lblErrorMsg.Text = "Account expire please renew.";
                         }

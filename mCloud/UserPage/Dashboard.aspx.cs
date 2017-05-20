@@ -570,7 +570,6 @@ namespace mCloud.UserPage
             try
             {
                 string name = e.CommandArgument.ToString();
-                
             }
             catch
             {
