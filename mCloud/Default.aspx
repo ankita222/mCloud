@@ -425,7 +425,7 @@
             <div class="modal-header" style="padding: 9px;">
                 <span style="float: left; color: #808080;" class="modal-title" id="defaultModalLabellogin">Sign in to start your session</span>
                 <span style="float: right;">
-                    <button type="button" style="padding: 5px; line-height: 10px;" class="btn btn-danger md-close">x </button>
+                    <button type="button" style="padding: 5px; line-height: 10px;" class="btn btn-danger md-close">x</button>
                 </span>
             </div>
             <div class="modal-body" style="margin-bottom:0px;padding-bottom:0px;">
@@ -459,10 +459,14 @@
                             <div class="input-group">
                                
                                 <div class="form-line">
-                                    <asp:CheckBox ID="CheckBoxPersist" style="color:#555555; font-weight:normal;font-size:small;" CssClass="checkbox-inline" Checked="false" Text="Remember me" runat="server" /> 
-                                </div>
-                            </div>
+                                    <asp:CheckBox ID="CheckBoxPersist" style="color:#555555; font-weight:normal;font-size:small;" CssClass="checkbox-inline" Checked="false" Text="Remember me" runat="server" />
+                                    
+
+                                </div><span style="float:right; text-align:end;"> 
+                                    <a href="ForgotPassword.aspx" style="font-weight:normal;font-size:small;color:#006e91;">Forgot Password</a></span>
+                            </div> 
                         </div>
+                      
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group form-float">
