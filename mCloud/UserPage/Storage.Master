@@ -44,7 +44,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="theme-red" style="background-color: #ffffff;">
+<body class="theme-red" style="background-color: azure;">
     <form id="form" runat="server">
         <div>
             <!-- Page Loader -->
@@ -65,7 +65,7 @@
             </div>
             <div class="overlay"></div>
 
-            <nav class="navbar" style="height: 43px; background: linear-gradient(45deg, #ffffff, #ffffff); box-shadow: 0 1px 5px rgba(25, 66, 101, 0.94);">
+            <nav class="navbar" style="height: 43px; background: azure; box-shadow: 0 1px 5px rgba(25, 66, 101, 0.94);">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" style="color: black;"></a>
@@ -169,7 +169,7 @@
             <!-- #Top Bar -->
             <section>
                 <!-- Left Sidebar -->
-                <aside id="leftsidebar" class="sidebar" style="height: calc(106vh - 70px); top: 43px; width: 161px; background: linear-gradient(200deg, ffffff, #ffffff); box-shadow: 0 1px 5px rgba(25, 66, 101, 0.94);">
+                <aside id="leftsidebar" class="sidebar" style="height: calc(106vh - 70px); top: 43px; width: 161px; background: azure;box-shadow: 0 1px 5px rgba(25, 66, 101, 0.94);">
                     <!-- User Info -->
                     <%--<div class="user-info" style="background-color: #3c829c;padding: 33px 20px 18px 46px;" >--%>
                     <div class="user-info" style="padding: 33px 20px 18px 46px;">

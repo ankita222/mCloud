@@ -19,6 +19,7 @@ namespace mCloud.UserPage
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
         mCloudAL AL = new mCloudAL();
+        mCloudDAL dal = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -495,8 +496,6 @@ namespace mCloud.UserPage
             loadDirectory();
             loadFiles();
         }
-
-
         //////////////////////////////////////////////////////////////////           
         //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
 

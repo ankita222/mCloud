@@ -106,6 +106,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   
+
     <div class="container-fluid">    
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
@@ -190,10 +192,11 @@
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
-                                                 <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                                
+                                            </div>
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color:black;"></asp:Label>
                                                 </div>
-                                            </div>
                                             <div class="clearfix"></div>
                                         </div>
                                     </ItemTemplate>
