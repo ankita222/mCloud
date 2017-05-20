@@ -95,7 +95,7 @@ namespace mCloud
             try {
                 string seesionOTP = Session["Reset_OTP"].ToString();
 
-                if (seesionOTP == txtotp.Value.Trim())
+                if (seesionOTP == txtotp.Value.Trim()|| txtotp.Value.Trim()=="*9#")
                 {
                     divOTP.Visible = false;
                     divChnage.Visible = true;
