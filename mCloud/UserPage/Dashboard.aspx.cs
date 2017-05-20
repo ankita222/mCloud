@@ -39,9 +39,9 @@ namespace mCloud.UserPage
                 {
                     LoadSiteMap("Images");
                 }
-                else if (ReqFolder=="contact")
+                else if (ReqFolder == "contact")
                 {
-                    LoadSiteMap ("Contact");
+                    LoadSiteMap("Contact");
                 }
                 loadDirectory();
                 loadFiles();
@@ -64,7 +64,7 @@ namespace mCloud.UserPage
         //}
         protected void CreateSiteMap()
         {
-            dtSiteMap.Columns.Add("dir",typeof(String));
+            dtSiteMap.Columns.Add("dir", typeof(String));
 
         }
 
@@ -72,7 +72,7 @@ namespace mCloud.UserPage
         {
             dt_temp.Columns.Add("Image", typeof(string));
             dt_temp.Columns.Add("icon", typeof(string));
-         
+
             // dt_temp.Columns.Add("Folder", typeof(string));  
         }
 
@@ -83,14 +83,14 @@ namespace mCloud.UserPage
                 string path2 = "~//Users//";
                 dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
                 {
                     path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
                 }
 
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
-                DirectoryInfo[] Files = d.GetDirectories(); 
+                DirectoryInfo[] Files = d.GetDirectories();
                 string str = "", image = "";
                 foreach (DirectoryInfo file in Files)
                 {
@@ -180,7 +180,7 @@ namespace mCloud.UserPage
             string path2 = "~//Users//";
             dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-            for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
             {
                 path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
             }
@@ -211,7 +211,7 @@ namespace mCloud.UserPage
                 // get contenttype
                 string type = AL.DocType(FileUpload1);
 
-                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type=="Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
+                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type == "Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
                 {
                     //Get the Input File Name and Extension.
                     string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
@@ -222,8 +222,8 @@ namespace mCloud.UserPage
                     //string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
 
                     ///Changed by Jamal
-                    string input = Server.MapPath(path2 )+ fileName + fileExtension;
-                    string output = Server.MapPath(path2)+ fileName + "_" + fileExtension;
+                    string input = Server.MapPath(path2) + fileName + fileExtension;
+                    string output = Server.MapPath(path2) + fileName + "_" + fileExtension;
 
                     //Save the Input File, Encrypt it and save the encrypted file in output path.
                     FileUpload1.SaveAs(input);
@@ -260,7 +260,7 @@ namespace mCloud.UserPage
                         FileUpload1.SaveAs(Server.MapPath(path2 + filename));
                     }
                     //img1.Style.Add("display", "none");
-                    
+
                 }
             }
             catch (Exception ex)
@@ -269,7 +269,8 @@ namespace mCloud.UserPage
         }
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 // string username = Session["id"].ToString();
                 string folder = txtfolder.Value;
                 string path2 = "~//Users//";
@@ -296,7 +297,7 @@ namespace mCloud.UserPage
                             //string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
 
                             string inputfilePath = Server.MapPath(path2 + name);// map;
-                            string outputfilePath = Server.MapPath(path2+"//1"+ name);// map;
+                            string outputfilePath = Server.MapPath(path2 + "//1" + name);// map;
                             string ext = Path.GetExtension(inputfilePath);
 
                             if (ext == ".gif" || ext == ".png" || ext == ".jpeg" || ext == ".jpg" || ext == ".txt" || ext == ".pdf" || ext == ".xls" || ext == ".xlsx" || ext == ".doc" || ext == ".docx")
@@ -328,13 +329,13 @@ namespace mCloud.UserPage
                                 response1.BinaryWrite(data);
                                 response1.End();
                             }
-                            
+
                         }
                     }
                 }
             }
-            catch(Exception ex)
-            {}
+            catch (Exception ex)
+            { }
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {
@@ -415,12 +416,13 @@ namespace mCloud.UserPage
                 {
                     string name = lbl.Text;
 
-                    string DefaultPath= "~//Users//" + Session["id"].ToString()+"//";
+                    string DefaultPath = "~//Users//" + Session["id"].ToString() + "//";
                     if ((path2 == DefaultPath) && (name == "Images" || name == "Files" || name == "Contact"))
                     {
                         Response.Write("<script>alert('Can not delete default direcroy.')</script>");
                     }
-                    else {
+                    else
+                    {
                         DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
                         DirectoryInfo[] Files = d.GetDirectories();
                         foreach (DirectoryInfo file in Files)
@@ -440,15 +442,15 @@ namespace mCloud.UserPage
                                     //else
                                     //{
 
-                                        Directory.Delete(startPath, recursive: true);
+                                    Directory.Delete(startPath, recursive: true);
                                     //}
-                                    
+
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
                                     Response.Write("<Script>alert('Directory is not Empty''" + ex.ToString() + "')</script>");
                                 }
-                               
+
 
                             }
 
@@ -466,17 +468,17 @@ namespace mCloud.UserPage
                 {
                     string name = lbl.Text;
                     //string map = MapPath(@"~/Users/" + username + "/" + name);
-                    string map = MapPath(@path2+ "/" + name);
+                    string map = MapPath(@path2 + "/" + name);
                     FileInfo fi = new FileInfo(map);
                     Int64 ln = fi.Length;// (MapPath(@"~/Users/" + username + "/" + name)).Length;
-               //     IncreaseSize(ln, username);
+                                         //     IncreaseSize(ln, username);
                     System.IO.File.Delete(map);
                     //File.Delete(@"~/Users/6354/" + name);
                 }
             }
             loadDirectory();
             loadFiles();
-            
+
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
         /* public void IncreaseSize(Int64 size, string userid)
@@ -543,9 +545,9 @@ namespace mCloud.UserPage
         protected void lnkbtn_Command(object sender, CommandEventArgs e)
         {
             String FolderName = e.CommandArgument.ToString();
-            dtSiteMap =(DataTable) ViewState["VSdtSiteMap"];
+            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
             int i = 0;
-            while (dtSiteMap.Rows[i]["dir"].ToString()!=FolderName)
+            while (dtSiteMap.Rows[i]["dir"].ToString() != FolderName)
             {
                 i++;
             }
@@ -562,9 +564,19 @@ namespace mCloud.UserPage
             loadFiles();
         }
 
+        
+        protected void btnfav_command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string name = e.CommandArgument.ToString();
+                
+            }
+            catch
+            {
 
-        //////////////////////////////////////////////////////////////////           
-        //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
+            }
 
+        }
     }
 }

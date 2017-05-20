@@ -422,6 +422,7 @@
     <Content Include="UserPage\images\exe-file-icon-56bcac1d5f9b5829f84fa0d7.PNG" />
     <Content Include="UserPage\images\ezgif.com-crop.gif" />
     <Content Include="UserPage\images\ezgif.com-resize.gif" />
+    <Content Include="UserPage\images\fav.png" />
     <Content Include="UserPage\images\file-512.png" />
     <Content Include="UserPage\images\file-txt.png" />
     <Content Include="UserPage\images\file-zip-alt.png" />

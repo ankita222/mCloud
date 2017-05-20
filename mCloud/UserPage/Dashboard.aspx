@@ -169,12 +169,16 @@
                         </div>
                         <div class="body">
                             <div class="row" style="padding: 10px;">
+                                <%--For Folder--%>
                             <asp:Repeater ID="Repeater1" runat="server">
                                  <ItemTemplate>
                                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12" oncontextmenu="return filecontextmenu(event);">
                                         <%--  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">--%>
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
+                        <span style="float:right;text-align: end;">
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="15%" CommandArgument='<%#Eval("") %>' OnCommand="btnFav_Command" />
+                        </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
                                              <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
@@ -389,12 +393,12 @@
                     </div>
                 </li>
                 <li class="seperator"></li>
-                <li>
+               <%-- <li>
                     <div data-target="#DivRename" data-toogle="modal" onclick="divshow();">
-                        <i class="material-icons" style="color: black; font-size: 17px;">border_color</i>
-                        <span>Rename</span>
+                        <i class="material-icons" style="color: black; font-size: 17px;">star</i>
+                        <span>Fav/Unfav</span>
                     </div>
-                </li>
+                </li>--%>
                 <li>
                     <div data-target="#DivMoveFiles" data-toggle="modal">
                         <i class="material-icons" style="color: black; font-size: 17px;">zoom_out_map</i>
