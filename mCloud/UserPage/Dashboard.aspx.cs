@@ -12,6 +12,7 @@ using System.Net;
 using System.IO.Compression;
 using mCloud.App_Code;
 
+
 namespace mCloud.UserPage
 {
     public partial class Dashboard : System.Web.UI.Page
@@ -19,16 +20,29 @@ namespace mCloud.UserPage
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
         mCloudAL AL = new mCloudAL();
-        mCloudDAL dal = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             CreateTable();
             CreateSiteMap();
-            //CreateSiteMap(string RedirectedFolderName);
+            string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
                 LoadSiteMap(Session["id"].ToString());
+                if (ReqFolder == "files")
+                {
+                    //  CreateSiteMap("files");
+                    //LoadSiteMap("Files");
+                    LoadSiteMap("Files");
+                }
+                else if (ReqFolder == "image")
+                {
+                    LoadSiteMap("Images");
+                }
+                else if (ReqFolder == "contact")
+                {
+                    LoadSiteMap("Contact");
+                }
                 loadDirectory();
                 loadFiles();
             }
@@ -45,12 +59,12 @@ namespace mCloud.UserPage
 
         //protected void CreateSiteMap(string RedirectedFolderName)
         //{
-        //    dtSiteMap.Columns.Add("dir", typeof(String));
-        //    dtSiteMap.Columns.Add(RedirectedFolderName, typeof(String));
+        //    //dtSiteMap.Columns.Add("dir", typeof(String));
+        //    dtSiteMap.Rows.Add("Files");
         //}
         protected void CreateSiteMap()
         {
-            dtSiteMap.Columns.Add("dir",typeof(String));
+            dtSiteMap.Columns.Add("dir", typeof(String));
 
         }
 
@@ -58,7 +72,7 @@ namespace mCloud.UserPage
         {
             dt_temp.Columns.Add("Image", typeof(string));
             dt_temp.Columns.Add("icon", typeof(string));
-         
+
             // dt_temp.Columns.Add("Folder", typeof(string));  
         }
 
@@ -69,14 +83,14 @@ namespace mCloud.UserPage
                 string path2 = "~//Users//";
                 dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
                 {
                     path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
                 }
 
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
-                DirectoryInfo[] Files = d.GetDirectories(); 
+                DirectoryInfo[] Files = d.GetDirectories();
                 string str = "", image = "";
                 foreach (DirectoryInfo file in Files)
                 {
@@ -166,7 +180,7 @@ namespace mCloud.UserPage
             string path2 = "~//Users//";
             dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-            for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
             {
                 path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
             }
@@ -197,7 +211,7 @@ namespace mCloud.UserPage
                 // get contenttype
                 string type = AL.DocType(FileUpload1);
 
-                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type=="Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
+                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type == "Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
                 {
                     //Get the Input File Name and Extension.
                     string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
@@ -208,8 +222,8 @@ namespace mCloud.UserPage
                     //string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
 
                     ///Changed by Jamal
-                    string input = Server.MapPath(path2 )+ fileName + fileExtension;
-                    string output = Server.MapPath(path2)+ fileName + "_" + fileExtension;
+                    string input = Server.MapPath(path2) + fileName + fileExtension;
+                    string output = Server.MapPath(path2) + fileName + "_" + fileExtension;
 
                     //Save the Input File, Encrypt it and save the encrypted file in output path.
                     FileUpload1.SaveAs(input);
@@ -246,19 +260,17 @@ namespace mCloud.UserPage
                         FileUpload1.SaveAs(Server.MapPath(path2 + filename));
                     }
                     //img1.Style.Add("display", "none");
-                    
+
                 }
             }
             catch (Exception ex)
             { throw ex; }
             loadFiles();
         }
-    
-
-
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 // string username = Session["id"].ToString();
                 string folder = txtfolder.Value;
                 string path2 = "~//Users//";
@@ -285,29 +297,45 @@ namespace mCloud.UserPage
                             //string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
 
                             string inputfilePath = Server.MapPath(path2 + name);// map;
-                            string outputfilePath = Server.MapPath(path2+"//1"+ name);// map;
+                            string outputfilePath = Server.MapPath(path2 + "//1" + name);// map;
+                            string ext = Path.GetExtension(inputfilePath);
 
-                            ///Exception Error in Decryption
-                            this.AL.Decrypt(inputfilePath, outputfilePath);
-                            response.Clear();
-                            response.ClearContent();
-                            response.ClearHeaders();
-                            response.Buffer = true;
-                            response.AddHeader("Content-Disposition", "attachment;filename=" + name);
+                            if (ext == ".gif" || ext == ".png" || ext == ".jpeg" || ext == ".jpg" || ext == ".txt" || ext == ".pdf" || ext == ".xls" || ext == ".xlsx" || ext == ".doc" || ext == ".docx")
+                            {   ///Exception Error in Decryption
+                                this.AL.Decrypt(inputfilePath, outputfilePath);
+                                response.Clear();
+                                response.ClearContent();
+                                response.ClearHeaders();
+                                response.Buffer = true;
+                                response.AddHeader("Content-Disposition", "attachment;filename=" + name);
 
-                            byte[] data = req.DownloadData(outputfilePath);
+                                byte[] data = req.DownloadData(outputfilePath);
 
-                            response.BinaryWrite(data);
-                            File.Delete(outputfilePath);
-                            response.End();
+                                response.BinaryWrite(data);
+                                File.Delete(outputfilePath);
+                                response.End();
+                            }
+                            else
+                            {
+                                WebClient req1 = new WebClient();
+                                HttpResponse response1 = HttpContext.Current.Response;
+                                string filePath = path2 + "/" + name;// map;
+                                response1.Clear();
+                                response1.ClearContent();
+                                response1.ClearHeaders();
+                                response1.Buffer = true;
+                                response1.AddHeader("Content-Disposition", "attachment;filename=" + name);
+                                byte[] data = req.DownloadData(Server.MapPath(filePath));
+                                response1.BinaryWrite(data);
+                                response1.End();
+                            }
 
-                            
                         }
                     }
                 }
             }
-            catch(Exception ex)
-            {}
+            catch (Exception ex)
+            { }
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {
@@ -369,7 +397,17 @@ namespace mCloud.UserPage
         }
         protected void btndel_ServerClick(object sender, EventArgs e)
         {
-            string username = Session["id"].ToString();
+            //string username = Session["id"].ToString();
+
+            string folder = txtfolder.Value;
+            string path2 = "~//Users//";
+            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            {
+                path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+            }
+
             foreach (RepeaterItem ri in Repeater1.Items)
             {
                 HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
@@ -378,18 +416,45 @@ namespace mCloud.UserPage
                 {
                     string name = lbl.Text;
 
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
-                    DirectoryInfo[] Files = d.GetDirectories();
-                    foreach (DirectoryInfo file in Files)
+                    string DefaultPath = "~//Users//" + Session["id"].ToString() + "//";
+                    if ((path2 == DefaultPath) && (name == "Images" || name == "Files" || name == "Contact"))
                     {
-                        if (file.Name == name)
+                        Response.Write("<script>alert('Can not delete default direcroy.')</script>");
+                    }
+                    else
+                    {
+                        DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
+                        DirectoryInfo[] Files = d.GetDirectories();
+                        foreach (DirectoryInfo file in Files)
                         {
-                            string startPath = file.FullName;
+                            if (file.Name == name)
+                            {
+                                string startPath = file.FullName;
 
-                            Directory.Delete(startPath);
+                                try
+                                {
+                                    //DirectoryInfo d11 = new DirectoryInfo(MapPath(@path2+"//"+name));//Assuming Test is your Folder
+                                    //DirectoryInfo[] Files1 = d11.GetDirectories();
+                                    //if (Files1[0] == null)
+                                    //{
+                                    //    Directory.Delete(startPath);
+                                    //}
+                                    //else
+                                    //{
+
+                                    Directory.Delete(startPath, recursive: true);
+                                    //}
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Response.Write("<Script>alert('Directory is not Empty''" + ex.ToString() + "')</script>");
+                                }
+
+
+                            }
 
                         }
-
                     }
                 }
 
@@ -402,16 +467,18 @@ namespace mCloud.UserPage
                 if (chk.Checked)
                 {
                     string name = lbl.Text;
-                    string map = MapPath(@"~/Users/" + username + "/" + name);
+                    //string map = MapPath(@"~/Users/" + username + "/" + name);
+                    string map = MapPath(@path2 + "/" + name);
                     FileInfo fi = new FileInfo(map);
                     Int64 ln = fi.Length;// (MapPath(@"~/Users/" + username + "/" + name)).Length;
-               //     IncreaseSize(ln, username);
+                                         //     IncreaseSize(ln, username);
                     System.IO.File.Delete(map);
                     //File.Delete(@"~/Users/6354/" + name);
                 }
             }
-            loadFiles();
             loadDirectory();
+            loadFiles();
+
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
         /* public void IncreaseSize(Int64 size, string userid)
@@ -478,9 +545,9 @@ namespace mCloud.UserPage
         protected void lnkbtn_Command(object sender, CommandEventArgs e)
         {
             String FolderName = e.CommandArgument.ToString();
-            dtSiteMap =(DataTable) ViewState["VSdtSiteMap"];
+            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
             int i = 0;
-            while (dtSiteMap.Rows[i]["dir"].ToString()!=FolderName)
+            while (dtSiteMap.Rows[i]["dir"].ToString() != FolderName)
             {
                 i++;
             }
@@ -496,8 +563,26 @@ namespace mCloud.UserPage
             loadDirectory();
             loadFiles();
         }
-        //////////////////////////////////////////////////////////////////           
-        //  Response.Redirect("FolderOpen1.aspx?folder=" + foldername);
 
+        
+     
+
+        protected void btnfilefav_Command(object sender, CommandEventArgs e)
+        {
+            string fav_File_Name = e.CommandArgument.ToString();
+        }
+
+        protected void btnFav_Command1(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string name = e.CommandArgument.ToString();
+
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

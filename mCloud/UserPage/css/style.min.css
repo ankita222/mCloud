@@ -7101,7 +7101,7 @@ section.content {
             }
 
         .breadcrumb-bg-white li + li:before {
-            color: #fff;
+            color: #000;
         }
 
 .badge {
