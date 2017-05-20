@@ -37,6 +37,8 @@ namespace mCloud.UserPage
                     txtFirstname.Text = dt.Rows[0]["Name"].ToString();
                     txtmail.Value = dt.Rows[0]["Email"].ToString();
                     txtmob.Value = dt.Rows[0]["UserId"].ToString();
+                    if (dt.Rows[0]["IsEmailVerified"].ToString() == "False")
+                        divvery.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -49,7 +51,7 @@ namespace mCloud.UserPage
         {
             try {
                 string username = Session["id"].ToString();
-                string getinfo = "select u.Name as username, u.Email as email, u.UserId as userid, p.Name as planName, p.SpaceInByte as SpaceInByte,convert(nvarchar(12),u.ExpiryDate) as ExpiryDate, u.UsedSpace as usedspace  from UserDetails u join PlanMaster p on p.PlanId = u.PlanId where u.UserId='" + username + "'";
+                string getinfo = "select u.Name as username, u.Email as email,u.IsEmailVerified, u.UserId as userid, p.Name as planName, p.SpaceInByte as SpaceInByte,convert(nvarchar(12),u.ExpiryDate) as ExpiryDate, u.UsedSpace as usedspace  from UserDetails u join PlanMaster p on p.PlanId = u.PlanId where u.UserId='" + username + "'";
                 DataTable dt = new DataTable();
                 dt = mDAL.FunDataTable(getinfo);
                 if (dt.Rows.Count > 0)
@@ -57,6 +59,8 @@ namespace mCloud.UserPage
                     txtFirstname.Text = dt.Rows[0]["username"].ToString();
                     txtmail.Value = dt.Rows[0]["email"].ToString();
                     txtmob.Value= dt.Rows[0]["userid"].ToString();
+                    if (dt.Rows[0]["IsEmailVerified"].ToString() == "False")
+                        divvery.Visible = true;
                     lblplan.InnerText = dt.Rows[0]["planName"].ToString();
                     lbltotal.InnerText = dt.Rows[0]["SpaceInByte"].ToString()+" Bytes";
                     lblexp.InnerText = dt.Rows[0]["ExpiryDate"].ToString();
@@ -143,6 +147,11 @@ namespace mCloud.UserPage
             }
             else
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Key", "alert('Password Did Not Match ');", true);
+        }
+
+        protected void btnvery_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

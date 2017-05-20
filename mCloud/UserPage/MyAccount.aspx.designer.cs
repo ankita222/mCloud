@@ -40,6 +40,24 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtmail;
         
         /// <summary>
+        /// divvery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divvery;
+        
+        /// <summary>
+        /// btnvery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnvery;
+        
+        /// <summary>
         /// btnsave control.
         /// </summary>
         /// <remarks>
