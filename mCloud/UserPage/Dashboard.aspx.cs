@@ -20,6 +20,7 @@ namespace mCloud.UserPage
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
         mCloudAL AL = new mCloudAL();
+        mCloudDAL DAL = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +39,7 @@ namespace mCloud.UserPage
                 LoadSiteMap(Session["id"].ToString());
                 if (ReqFolder == "files")
                 {
-                    //  CreateSiteMap("files");
+                    //CreateSiteMap("files");
                     //LoadSiteMap("Files");
                     LoadSiteMap("Files");
                 }
@@ -111,7 +112,7 @@ namespace mCloud.UserPage
                 //site
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -229,8 +230,8 @@ namespace mCloud.UserPage
                     //string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
 
                     ///Changed by Jamal
-                    string input = Server.MapPath(path2 )+ fileName + fileExtension;
-                    string output = Server.MapPath(path2)+ fileName + "_" + fileExtension;
+                    string input = Server.MapPath(path2) + fileName + "_" + fileExtension;
+                    string output = Server.MapPath(path2) + fileName + fileExtension;
 
                     //Save the Input File, Encrypt it and save the encrypted file in output path.
                     FileUpload1.SaveAs(input);
@@ -267,8 +268,8 @@ namespace mCloud.UserPage
                         FileUpload1.SaveAs(Server.MapPath(path2 + filename));
                     }
                     //img1.Style.Add("display", "none");
-                    
                 }
+                DAL.FunExecuteNonQuery("UPDATE UserDetails SET UsedSpace='" + AL.GetDirectorySize(Server.MapPath("~/Users/" + Session["id"].ToString()).ToString()) + "' WHERE UserId='" + Session["id"].ToString() + "'");
             }
             catch (Exception ex)
             { throw ex; }
@@ -568,8 +569,10 @@ namespace mCloud.UserPage
                     //File.Delete(@"~/Users/6354/" + name);
                 }
             }
+            DAL.FunExecuteNonQuery("UPDATE UserDetails SET UsedSpace='" + AL.GetDirectorySize(Server.MapPath("~/Users/" + Session["id"].ToString()).ToString()) + "' WHERE UserId='" + Session["id"].ToString() + "'");
             loadDirectory();
             loadFiles();
+
             
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
@@ -691,6 +694,34 @@ namespace mCloud.UserPage
             }
             return x;
         }
+
+        //protected void btnfilefav_Command(object sender, CommandEventArgs e)
+        //{
+        //    string fav_File_Name = e.CommandArgument.ToString();
+        //}
+
+        //protected void btnFav_Command1(object sender, CommandEventArgs e)
+        //{
+         
+        //        //string name = e.CommandArgument.ToString();
+        //        string path2 = "/Users/";
+        //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+        //        for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+        //        {
+        //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+        //        }
+            
+        //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
+        //    {
+        //        sw.WriteLine(path2);
+        //    }
+
+        //    //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
+        //    //    if (x > 0) 
+        //    //    Response.Write("<script>alert('Fav added!');</script>");
+
+        //}
 
     }
 }

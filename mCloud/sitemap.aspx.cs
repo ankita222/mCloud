@@ -12,6 +12,7 @@ using mCloud.App_Code;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Text;
 
 namespace mCloud
 {
@@ -142,7 +143,7 @@ namespace mCloud
 
             Label1.Text = ConvertBytesToGigabytes(long.Parse(TextBox1.Text)).ToString();
 
-          //  Label1.Text= ConvertGigabytesToBytes(long.Parse(TextBox1.Text)).ToString();
+            //  Label1.Text= ConvertGigabytesToBytes(long.Parse(TextBox1.Text)).ToString();
         }
 
         static double ConvertBytesToGigabytes(long bytes)
@@ -183,5 +184,70 @@ namespace mCloud
         {
             System.IO.File.Move(Server.MapPath("From.txt"), Server.MapPath("TO.txt"));
         }
+
+        protected void btnWrite_Click(object sender, EventArgs e)
+        {
+
+
+            // string[] names = new string[] { "AZara Ali", "ANuha Ali"} ;
+            string s = "TEXT";
+            using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"),append:true))
+            {
+
+                //foreach (string s in names)
+                //{
+                    sw.WriteLine(s);
+               // }
+            }
+
+            string line = "";
+            using (StreamReader sr = new StreamReader(Server.MapPath("test.txt")))
+            {
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Response.Write(line);
+                }
+            }
+
+
+            //XmlWriterSettings settings = new XmlWriterSettings();
+            //settings.Indent = true;
+            //settings.NewLineOnAttributes = true;
+            //settings.IndentChars = "\t";
+
+            //settings.OmitXmlDeclaration = true;
+            //StringBuilder sb = new StringBuilder();
+
+            //XmlWriter writer = XmlWriter.Create(sb, settings);
+
+            //writer.WriteStartDocument();
+
+            //writer.WriteStartElement("FavPath");
+            //writer.WriteElementString("path", "/User1/SK6Z0");
+            //writer.WriteEndElement();
+            //writer.WriteEndDocument();
+            //writer.Flush();
+            //writer.Close();
+
+            //using (System.IO.StreamWriter file = new System.IO.StreamWriter(Server.MapPath("FavPath.xml"), true))
+            //{
+            //    file.Write(sb.ToString());
+            //}
+
+
+            //XmlTextWriter xWriter = new XmlTextWriter(Server.MapPath("FavPath.xml"), Encoding.UTF8);
+
+
+            //xWriter.WriteStartDocument();
+
+            //xWriter.WriteStartElement("FavPath");
+            //xWriter.WriteElementString("path", "/User/ZZ0");
+            //xWriter.WriteEndElement();
+
+            //xWriter.WriteEndDocument();
+            //xWriter.Close();
+        }
+
+
     }
 }

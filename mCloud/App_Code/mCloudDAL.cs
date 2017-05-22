@@ -128,6 +128,7 @@ namespace mCloud.App_Code
             catch (Exception ex)
             {
                 throw ex;
+                //HttpContext.Current.Response.Redirect("UserPage.aspx", true);
             }
             return SqlDr;
         }
