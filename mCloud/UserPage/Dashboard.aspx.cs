@@ -33,10 +33,13 @@ namespace mCloud.UserPage
             }
             CreateTable();
             CreateSiteMap();
+            
             string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
+                
                 LoadSiteMap(Session["id"].ToString());
+                treeFolder();
                 if (ReqFolder == "files")
                 {
                     //CreateSiteMap("files");
@@ -53,9 +56,72 @@ namespace mCloud.UserPage
                 }
                 loadDirectory();
                 loadFiles();
+
             }
         }
 
+        public void treeFolder()
+        {
+            try
+            {
+                string name = Session["id"].ToString();
+                DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+                this.PopulateTreeView(rootInfo, null); ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void PopulateTreeView(DirectoryInfo dirInfo, TreeNode treeNode)
+        {
+            try
+            {
+                foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+                {
+                    TreeNode directoryNode = new TreeNode
+                    {
+                        Text = directory.Name,
+                        Value = directory.FullName
+                    };
+
+                    if (treeNode == null)
+                    {
+                        //If Root Node, add to TreeView.
+                        //    TreeView1.Nodes.Add(directoryNode);
+                       TreeView1.Nodes.Add(directoryNode);
+                        TreeView2.Nodes.Add(directoryNode);
+
+                    }
+                    else
+                    {
+                        //If Child Node, add to Parent Node.
+                        treeNode.ChildNodes.Add(directoryNode);
+                    }
+
+                    //Get all files in the Directory.
+                    //foreach (FileInfo file in directory.GetFiles())
+                    //{
+                    //    //Add each file as Child Node.
+                    //    TreeNode fileNode = new TreeNode
+                    //    {
+                    //        Text = file.Name,
+                    //        Value = file.FullName,
+                    //        Target = "_blank",
+                    //        NavigateUrl = (new Uri(Server.MapPath("~/"))).MakeRelativeUri(new Uri(file.FullName)).ToString()
+                    //    };
+                    //    directoryNode.ChildNodes.Add(fileNode);
+                    //}
+
+                    PopulateTreeView(directory, directoryNode);
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+        }
         protected void LoadSiteMap(String UserId)
         {
             Object[] o = { UserId };
@@ -65,6 +131,78 @@ namespace mCloud.UserPage
             rptbreadcrumps.DataBind();
         }
 
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnmoveok_ServerClick(object sender, EventArgs e)
+        {
+            string path = TreeView1.SelectedNode.ValuePath;
+
+            string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (FileInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string filepath = file.FullName;
+
+                            File.Move(@filepath, @path + "\\" + name);
+                        }
+                    }
+                }
+            }
+
+            Response.Redirect(Request.RawUrl);
+
+        }
+
+        protected void btncopyfile_ServerClick(object sender, EventArgs e)
+        {
+           string path = TreeView2.SelectedNode.ValuePath;
+
+           // string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+                    string Path2 = GetCurrentPath();
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (FileInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string filepath = file.FullName;
+                            string DestinationPath = path + "\\"+name;
+                            try
+                            {
+                                 File.Copy(@filepath, @DestinationPath);
+                              //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Response.Redirect(Request.RawUrl);
+        }
         //protected void CreateSiteMap(string RedirectedFolderName)
         //{
         //    //dtSiteMap.Columns.Add("dir", typeof(String));
@@ -494,59 +632,68 @@ namespace mCloud.UserPage
             //string username = Session["id"].ToString();
 
             string folder = txtfolder.Value;
-            string path2 = "~//Users//";
-            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+            //string path2 = "~//Users//";
+            //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            //{
+            //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+            //}
+            String path2 = GetCurrentPath();
+            int x = CheckRepeaterCount();
+            if (x <=0)
             {
-                path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                Response.Write("<script>alert('Select file/folder to delete.')</script>");
             }
-
-            foreach (RepeaterItem ri in Repeater1.Items)
+            else if(x>0)
             {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+                foreach (RepeaterItem ri in Repeater1.Items)
                 {
-                    string name = lbl.Text;
-
-                    string DefaultPath= "~//Users//" + Session["id"].ToString()+"//";
-                    if ((path2 == DefaultPath) && (name == "Images" || name == "Files" || name == "Contact"))
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        Response.Write("<script>alert('Can not delete default direcroy.')</script>");
-                    }
-                    else {
-                        DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
-                        DirectoryInfo[] Files = d.GetDirectories();
-                        foreach (DirectoryInfo file in Files)
-                        {
-                            if (file.Name == name)
-                            {
-                                string startPath = file.FullName;
+                        string name = lbl.Text;
 
-                                try
+                        string DefaultPath = "~//Users//" + Session["id"].ToString() + "//";
+                        if ((path2 == DefaultPath) && (name == "Images" || name == "Files" || name == "Contact"))
+                        {
+                            Response.Write("<script>alert('Can not delete default direcroy.')</script>");
+                        }
+                        else
+                        {
+                            DirectoryInfo d = new DirectoryInfo(MapPath(@path2));//Assuming Test is your Folder
+                            DirectoryInfo[] Files = d.GetDirectories();
+                            foreach (DirectoryInfo file in Files)
+                            {
+                                if (file.Name == name)
                                 {
-                                    //DirectoryInfo d11 = new DirectoryInfo(MapPath(@path2+"//"+name));//Assuming Test is your Folder
-                                    //DirectoryInfo[] Files1 = d11.GetDirectories();
-                                    //if (Files1[0] == null)
-                                    //{
-                                    //    Directory.Delete(startPath);
-                                    //}
-                                    //else
-                                    //{
+                                    string startPath = file.FullName;
+
+                                    try
+                                    {
+                                        //DirectoryInfo d11 = new DirectoryInfo(MapPath(@path2+"//"+name));//Assuming Test is your Folder
+                                        //DirectoryInfo[] Files1 = d11.GetDirectories();
+                                        //if (Files1[0] == null)
+                                        //{
+                                        //    Directory.Delete(startPath);
+                                        //}
+                                        //else
+                                        //{
 
                                         Directory.Delete(startPath, recursive: true);
-                                    //}
-                                    
+                                        //}
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Response.Write("<Script>alert('Directory is not Empty''" + ex.ToString() + "')</script>");
+                                    }
+
+
                                 }
-                                catch(Exception ex)
-                                {
-                                    Response.Write("<Script>alert('Directory is not Empty''" + ex.ToString() + "')</script>");
-                                }
-                               
 
                             }
-
                         }
                     }
                 }
