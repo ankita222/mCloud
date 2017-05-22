@@ -366,6 +366,7 @@
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
+    <Content Include="test.txt" />
     <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
@@ -3696,9 +3697,11 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
     <Content Include="UserPage\MyAccount.aspx" />
+    <Content Include="Users\9693495172\fav.txt" />
     <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
     <Content Include="Web.config" />
+    <Content Include="FavPath.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\mCloudDAL.cs" />
