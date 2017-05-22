@@ -22,6 +22,13 @@
             $("#myul1").show();
         }
         $("#Image1").draggable({ cursor: "pointer" });
+
+
+  function  BtndwnClick()
+        {
+            document.getElementById('<%= btndownload.ClientID %>').click();
+        }
+
     </script>
 
     <style>
@@ -352,6 +359,43 @@
                             <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Cancel</button>
                                      </div>
                               </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        <div class="modal fade in" id="DivArchive" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                            <h4 class="modal-title" id="H8" style="margin-top: -5px;text-align:center;">Archive File</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-control-label">
+                                    <label for="txtfolder" style="color: #4a4a4a;float:left;">Name</label>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <div class="form-line">
+                                            <input type="text" runat="server" id="txtzipname" class="form-control" style="border: 1px solid #e2d9d9; border-radius: 4px;" />
+
+                                            <%--<input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple />--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                     <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <asp:Button runat="server" ID="btnarchive" CssClass="btn btn-info waves-effect" OnClick="btnarchive_Click" Text="Create" style="float: left;width: 100%;" />
+                          </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Close</button>
+                                </div>
+                         </div><
                         </div>
                     </div>
                 </div>
