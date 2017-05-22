@@ -111,7 +111,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
+ <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
 
     <div class="container-fluid">    
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
@@ -357,8 +357,92 @@
                 </div>
 
             </div>
+        <!-- Modal To copy-->
+        <div class="modal fade in" id="DivCopyFiles" tabindex="-1" role="dialog" style="top: 136px;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                            <h4 class="modal-title" id="H7" style="margin-top: -5px;text-align:center;">Select Destination Folder</h4>
+                        </div>
+                        <div class="modal-body" style="overflow: auto;height: 180px;">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label">
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
+                                  <asp:TreeView ID="TreeView2" runat="server" Target="_self" NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
+                                         <HoverNodeStyle  ForeColor="BurlyWood" />
+                                            <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
 
-              
+                                            </NodeStyle>
+                                     
+                                            <ParentNodeStyle Font-Bold="False" ImageUrl="~/UserPage/images/blue_32x32.png" ChildNodesPadding="5px" />
+                                            <SelectedNodeStyle BackColor="#B5B5B5" Font-Underline="False" HorizontalPadding="5px"
+                                                VerticalPadding="5px" />
+                                  </asp:TreeView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                           <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <button type="button" runat="server" id="btncopyfile" value="MOVE" class="btn btn-info waves-effect" onserverclick="btncopyfile_ServerClick"  style="float: left;width: 100%;">Copy</button>
+                                      </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Cancel</button>
+                                      </div>
+                               </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        <!--    Modal to Move-->
+        <div class="modal fade in" id="DivMoveFiles" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                            <h4 class="modal-title" id="H6" style="margin-top: -5px;text-align:center;">Select Destination Folder</h4>
+                        </div>
+                        <div class="modal-body" style="overflow: auto;height: 180px;">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label">
+                               
+                                   
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+                                  <asp:TreeView ID="TreeView1" runat="server" Target="_self"  NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
+                                         <HoverNodeStyle  ForeColor="BurlyWood" />
+                                            <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
+
+                                            </NodeStyle>
+                                     
+                                            <ParentNodeStyle Font-Bold="False" ImageUrl="~/UserPage/images/blue_32x32.png" ChildNodesPadding="5px" />
+                                            <SelectedNodeStyle BackColor="#B5B5B5" Font-Underline="False" HorizontalPadding="5px"
+                                                VerticalPadding="5px" />
+                                  </asp:TreeView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                                <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <button type="button" runat="server" id="btnmoveok" value="MOVE" class="btn btn-info waves-effect" onserverclick="btnmoveok_ServerClick" style="float: left;width:  100%;">Move</button>
+                           </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width:  100%;">Cancel</button>
+                      </div>
+                                              </div></div>
+                    </div>
+                </div>
+
+            </div>           
     </div>
     <div class="container222">
         <div id="contextMenu" class="context-menu">
@@ -429,9 +513,7 @@
 
             </ul>
         </div>
-
-
-    </div>
+        </div>
   <script type="text/javascript">
         window.onclick = hideContextMenu;
         window.onkeydown = listenKeys;
