@@ -16,9 +16,16 @@ namespace mCloud
         mCloudDAL DAL = new mCloudDAL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(Request.QueryString["RefCode"]))
+            if (Page.User.Identity.IsAuthenticated)
             {
-                txtRefCode.Value = Request.QueryString["RefCode"];
+                Response.Redirect("~/UserPage/Dashboard.aspx");
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(Request.QueryString["RefCode"]))
+                {
+                    txtRefCode.Value = Request.QueryString["RefCode"];
+                }
             }
         }
 

@@ -69,7 +69,7 @@ namespace mCloud.UserPage
 
                 }
             }
-            catch(Exception ex)
+            catch
             {
 
             }
@@ -151,7 +151,25 @@ namespace mCloud.UserPage
 
         protected void btnvery_ServerClick(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Session["id"] as string))
+            {
+                string activationCode = AL.GenEmailVerificationCode();
+                SqlParameter[] param2 = { new SqlParameter("@UserId", Session["id"].ToString()), new SqlParameter("@Email", txtmail.Value), new SqlParameter("@ActivationCode", activationCode) };
+                int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
+                if (y >= 0) 
+                {
+                    string body = "Dear Customer,";
+                    body += "<br /><br />Please click the following link to verify your email.<br>";
+                    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("MyAccount.aspx", "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to verify</h2></a><br><br>";
+                    body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
+                    int i = AL.SendMail(txtmail.Value, "MoilCloud Email Verification", body);
+                    if (i > 0) 
+                    {
+                        Response.Write("<script>alert('Please check your inbox.');</script>");
+                    }
 
+                }
+            }
         }
     }
 }

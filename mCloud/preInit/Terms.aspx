@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Terms.aspx.cs" Inherits="mCloud.preInit.Terms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Terms | MoilCloud</title>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">

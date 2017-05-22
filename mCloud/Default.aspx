@@ -10,6 +10,7 @@
 <meta name="author" content="" />
 <script src="../Validation.js"></script>
 
+
 <title>MoilCloud - Online Storage Solution</title>
 
 <!-- Bootstrap Core CSS -->
@@ -36,7 +37,6 @@
 
 
 <!--Pricing Tables -->
-<link rel="stylesheet" type="text/css" href="Pricing/bootstrap/css/bootstrap.min.css" />
 <link href="FrontPage/Pricing/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="FrontPage/Pricing/font-awesome/css/font-awesome.min.css" />
 
@@ -49,15 +49,16 @@
 <link href="FrontPage/modal/css/component.css" rel="stylesheet" />
 
 <script src="FrontPage/modal/js/modernizr.custom.js"></script>
+<link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
     <!--Sign In modal call-->
     <script type="text/javascript">
         function ShowPopup() {
             $("#btnShowPopup").click();
         }
     </script>  
-
+    
 </head>
-<body id="page-top" style="overflow: visible;">
+<body id="page-top" style="overflow: visible;" onkeydown="return (event.keyCode!=13)">
 <form id="form1" runat="server">
     <!--Hidden button for c# modal call-->
     <button type="button" style="display: none;" id="btnShowPopup" class="md-trigger" data-modal="modal-login" data-toggle="modal">
@@ -93,11 +94,12 @@
                     <a class="page-scroll" href="#features" style="font-weight: 700;">Price & Plans</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight: 700;">Contact</a>
-                </li>
-                <li>
                     <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight: 700;">About Us</a>
                 </li>
+                <li>
+                    <a class="page-scroll" href="preInit/ContactUs.aspx" style="font-weight: 700;">Contact</a>
+                </li>
+                
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -517,7 +519,7 @@
     var polyfilter_scriptpath = '/js/';
 </script>
 <script src="FrontPage/modal/js/cssParser.js"></script>
-<script src="FrontPage/js/css-filters-polyfill.js"></script>
+
 <script src="FrontPage/modal/js/css-filters-polyfill.js"></script>
 </div>
 </form>

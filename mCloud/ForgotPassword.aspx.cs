@@ -16,7 +16,10 @@ namespace mCloud
         DataTable dtchk = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/UserPage/Dashboard.aspx");
+            }
         }
 
         protected void btnnext_Click(object sender, EventArgs e)

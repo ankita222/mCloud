@@ -17,8 +17,11 @@ public partial class Signin : System.Web.UI.Page
     mCloudDAL DAL = new mCloudDAL();
     protected void Page_Load(object sender, EventArgs e)
     {
-
-    }
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/UserPage/Dashboard.aspx");
+            }
+        }
     protected void btnSignIn_Click(object sender, EventArgs e)
     {
         #region LOGIN CODE

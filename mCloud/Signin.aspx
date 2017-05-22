@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <!-- Bootstrap Core CSS -->
     <link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
     <!-- Plugin CSS -->
     <link href="FrontPage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 

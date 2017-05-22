@@ -16,7 +16,10 @@ namespace mCloud
         mCloudDAL DAL = new mCloudDAL();
         protected void Page_Load(object sender, EventArgs e)
         {
-       
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/UserPage/Dashboard.aspx");
+            }
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)

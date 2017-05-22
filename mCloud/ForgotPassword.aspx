@@ -12,7 +12,7 @@
 <meta name="author" content="" />
 <!-- Bootstrap Core CSS -->
 	<link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	
+	<link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
 	<!-- Custom Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
@@ -36,18 +36,10 @@
 
 
   <!--Login Part-->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"/>
-    <link href="Login/assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="Login/assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="Login/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="Login/assets/font-awesome/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="Login/assets/css/form-elements.css"/>
 	<link rel="stylesheet" href="Login/assets/css/style.css"/>
-    <link href="modal/css/default.css" rel="stylesheet" />
-    <link href="FrontPage/modal/css/default.css" rel="stylesheet" />
-	<link href="FrontPage/modal/css/component.css" rel="stylesheet" />
-
-	<script src="FrontPage/modal/js/modernizr.custom.js"></script>
 
 </head>
 <body >
@@ -71,13 +63,13 @@
                     <li>
                         <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                        <a class="md-trigger" data-modal="modal-4" href="Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
+                        <a class="md-trigger" data-modal="modal-4" href="Signup.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="Default.aspx" style="color: black;font-weight:700;">Sign In</a>
+                        <a class="page-scroll" href="Signin.aspx" style="color: black;font-weight:700;">Sign In</a>
                     </li>
                     <li>
-                    <a class="page-scroll" href="Default.aspx" style="font-weight:700;color: black;">Price & Plans</a>
+                    <a class="page-scroll" href="Default.aspx#features" style="font-weight:700;color: black;">Price & Plans</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight:700;color: black;">About Us</a>
@@ -111,11 +103,11 @@
                 <div class="col-lg-4 col-xs-12 col-sm-12 text-center"></div>
                 <div class="col-lg-6 col-xs-12 col-sm-12 text-center">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<p style="color: #fff;font-weight: 400;line-height: 20px;">Enter Your User ID/ Mobile Number</p>
+						<p style="color: #fff;font-weight: 400;line-height: 20px;">Enter Your User ID/ Mobile Number</p><br />
 						<div style="display:inline-block;">
-                        <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
-                        &nbsp; <asp:Button runat="server" ID="btnnext" CssClass="btn btn-sm btn-info" Text="Next" OnClick="btnnext_Click" />
-                               &nbsp; <p style="color:#650202;font-weight: 400;line-height: 20px;" runat="server" id="p_warn" visible="false">This User ID Doesn't Exist</p>
+                        <input type="number" runat="server" id="txtcode" maxlength="10" class="form-username form-control" style="height: 28px;font-size: 14px; text-align:center; border: 1px solid #0981e8;width: 190px;"/><br />
+                        &nbsp; <asp:Button runat="server" ID="btnnext" CssClass="btn btn-sm btn-info" Text="Next" OnClick="btnnext_Click" /><br />
+                               &nbsp; <p style="color:#fdcb4d;font-weight: 400;line-height: 20px;" runat="server" id="p_warn" visible="false">This User ID Doesn't Exist</p>
                             </div>						
 					       </div>
 

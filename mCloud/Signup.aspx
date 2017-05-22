@@ -13,7 +13,7 @@
 <meta name="author" content="" />
 <!-- Bootstrap Core CSS -->
 	<link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	
+	<link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
 	<!-- Custom Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
@@ -84,13 +84,13 @@
                     <li>
                         <%--<a class="page-scroll" href="#" data-toggle="modal" data-target="#defaultModal">Sign up</a>--%>
 
-                        <a class="md-trigger" data-modal="modal-4" href="Default.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
+                        <a class="md-trigger" data-modal="modal-4" href="Signup.aspx" data-toggle="modal" style="color: black;font-weight:700; ">Sign up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="Default.aspx" style="color: black;font-weight:700;">Sign In</a>
+                        <a class="page-scroll" href="Signin.aspx" style="color: black;font-weight:700;">Sign In</a>
                     </li>
                     <li>
-                    <a class="page-scroll" href="Default.aspx" style="font-weight:700;color: black;">Price & Plans</a>
+                    <a class="page-scroll" href="Default.aspx#features" style="font-weight:700;color: black;">Price & Plans</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="preInit/AboutUs.aspx" style="font-weight:700;color: black;">About Us</a>

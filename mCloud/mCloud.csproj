@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="favicon.png" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FrontPage\css\new-age.css" />
     <Content Include="FrontPage\css\new-age.min.css" />
@@ -193,7 +194,8 @@
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
-    <Content Include="Logout.aspx" />
+    <Content Include="js\htc\sepia.htc" />
+    <Content Include="preInit\favicon.png" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\index.html" />
     <Content Include="preInit\Login.aspx" />
@@ -357,12 +359,10 @@
     <Content Include="preInit\vendor\jquery\jquery.min.js" />
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="preInit\Activity.aspx" />
-    <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="Signin.aspx" />
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
-    <Content Include="EmailVerificationCode.txt" />
     <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
@@ -407,6 +407,8 @@
     <Content Include="UserPage\css\themes\theme-teal.min.css" />
     <Content Include="UserPage\css\themes\theme-yellow.css" />
     <Content Include="UserPage\css\themes\theme-yellow.min.css" />
+    <Content Include="UserPage\EmailVerification.aspx" />
+    <Content Include="UserPage\favicon.png" />
     <Content Include="UserPage\images\20151205_566242be95048-210x274 %281%29.png" />
     <Content Include="UserPage\images\58df4a59e8006040485179.gif" />
     <Content Include="UserPage\images\58df4ab6c124b296487707.gif" />
@@ -415,6 +417,7 @@
     <Content Include="UserPage\images\blue.png" />
     <Content Include="UserPage\images\blue_32x32.png" />
     <Content Include="UserPage\images\child_boy-512.png" />
+    <Content Include="UserPage\images\doc.png" />
     <Content Include="UserPage\images\document-626142_640 %281%29.png" />
     <Content Include="UserPage\images\document-626142_640.png" />
     <Content Include="UserPage\images\document-icon-36540.png" />
@@ -425,6 +428,7 @@
     <Content Include="UserPage\images\fav.png" />
     <Content Include="UserPage\images\file-512.png" />
     <Content Include="UserPage\images\file-txt.png" />
+    <Content Include="UserPage\images\file-txt00.png" />
     <Content Include="UserPage\images\file-zip-alt.png" />
     <Content Include="UserPage\images\file-zip-icon-6844 %281%29.png" />
     <Content Include="UserPage\images\folder_PNG8771.png" />
@@ -471,8 +475,11 @@
     <Content Include="UserPage\images\image-gallery\thumb\thumb-9.jpg" />
     <Content Include="UserPage\images\imags - Copy.png" />
     <Content Include="UserPage\images\imags.png" />
+    <Content Include="UserPage\images\imags00.png" />
     <Content Include="UserPage\images\modernxp-74-software-install-i.png" />
     <Content Include="UserPage\images\ODF.png" />
+    <Content Include="UserPage\images\ODF00.png" />
+    <Content Include="UserPage\images\ODF000.png" />
     <Content Include="UserPage\images\reddowntri.png" />
     <Content Include="UserPage\images\reddowntri1.png" />
     <Content Include="UserPage\images\righttri.png" />
@@ -486,6 +493,10 @@
     <Content Include="UserPage\images\User-Profile.png" />
     <Content Include="UserPage\images\user.jpg" />
     <Content Include="UserPage\images\user.png" />
+    <Content Include="UserPage\images\xls.png" />
+    <Content Include="UserPage\images\zip.png" />
+    <Content Include="UserPage\images\zip0.png" />
+    <Content Include="UserPage\img\MoilCloud Homepage logo top.png" />
     <Content Include="UserPage\index.html" />
     <Content Include="UserPage\js\admin.js" />
     <Content Include="UserPage\js\demo.js" />
@@ -3684,7 +3695,6 @@
     <Content Include="UserPage\MyAccount.aspx" />
     <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
-    <Content Include="Verification.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3703,13 +3713,6 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Logout.aspx.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Logout.aspx.designer.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -3795,13 +3798,6 @@
     <Compile Include="preInit\Activity.aspx.designer.cs">
       <DependentUpon>Activity.aspx</DependentUpon>
     </Compile>
-    <Compile Include="preInit\Disclaimer.aspx.cs">
-      <DependentUpon>Disclaimer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="preInit\Disclaimer.aspx.designer.cs">
-      <DependentUpon>Disclaimer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Signin.aspx.cs">
       <DependentUpon>Signin.aspx</DependentUpon>
@@ -3831,6 +3827,13 @@
     <Compile Include="sitemap.aspx.designer.cs">
       <DependentUpon>sitemap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserPage\EmailVerification.aspx.cs">
+      <DependentUpon>EmailVerification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPage\EmailVerification.aspx.designer.cs">
+      <DependentUpon>EmailVerification.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserPage\Storage.Master.cs">
       <DependentUpon>Storage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3851,13 +3854,6 @@
     </Compile>
     <Compile Include="UserPage\MyAccount.aspx.designer.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Verification.aspx.cs">
-      <DependentUpon>Verification.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Verification.aspx.designer.cs">
-      <DependentUpon>Verification.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

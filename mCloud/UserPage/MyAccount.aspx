@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UserPage/Storage.Master" AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="mCloud.UserPage.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-      <script>
+<script>
           function selectFile() {
               $('#ContentPlaceHolder1_imgupload').click();
           }
@@ -12,13 +11,11 @@
               $("#ContentPlaceHolder1_upgradeDIV").show();
           }
     </script>
-
-    <style>
+<style>
         .div1 :hover > parent{
             box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.22);
         }
     </style>
-
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -100,10 +97,12 @@
                                     <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="txtmail" runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
+                                                <input type="text" id="txtmail" readonly="readonly" runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
                                             </div>
                                             <br />
-                                            <div runat="server" id="divvery" visible="false"><span style="color:red;" >Email address is not verified</span>&nbsp; <button id="btnvery" runat="server" onserverclick="btnvery_ServerClick" class="btn bg-red waves-effect">Verify</button></div>
+                                            <div runat="server" id="divvery" visible="false"><span style="color:red;" >Email address is not verified</span>&nbsp; <button id="btnvery" runat="server" onserverclick="btnvery_ServerClick" class="btn bg-red waves-effect">Verify</button>
+<button id="btnChangeEmail" runat="server" class="btn bg-red waves-effect">Change Email</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

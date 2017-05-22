@@ -177,9 +177,10 @@
                                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12" oncontextmenu="return filecontextmenu(event);">
                                         <%--  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">--%>
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
-                                                <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
-                        <span style="float:right;text-align: end;">
-                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="15%" CommandArgument='<%#Eval("Image") %>' OnCommand="btnFav_Command1" />
+                             <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px; width:16px;height:16px;" />
+
+                        <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" CommandArgument='<%#Eval("Image") %>'  />
                         </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
@@ -199,9 +200,9 @@
                                             <asp:Panel ID="thumbnails" runat="server" />
 
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
-                                                <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;" />
-                                                 <span style="float:right;text-align: end;">
-                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="15%" CommandArgument='<%#Eval("Image") %>' OnCommand="btnfilefav_Command" />
+                                                <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;width:16px;height:16px;" />
+                                                 <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" CommandArgument='<%#Eval("Image") %>'  />
                         </span>
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 

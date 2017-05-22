@@ -13,7 +13,7 @@
 <meta name="author" content="" />
 <!-- Bootstrap Core CSS -->
 	<link href="FrontPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	
+	<link rel="icon" href="favicon.png" type="image/png" sizes="16x16" />
 	<!-- Custom Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
