@@ -220,7 +220,7 @@ namespace mCloud.UserPage
         {
             string zipname = txtzipname.Value;
             string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater2.Items)
+            foreach (RepeaterItem ri in Repeater1.Items)
             {
                 HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
                 System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
