@@ -19,6 +19,7 @@ namespace mCloud
         SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadPlan();
             if (Page.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/UserPage/Dashboard.aspx");
@@ -26,6 +27,14 @@ namespace mCloud
 
         }
 
+        public void loadPlan()
+        {
+            string getplan = "select * from PlanMaster";
+            DataTable dt = new DataTable();
+            dt = DAL.FunDataTable(getplan);
+            rptplan.DataSource = dt;
+            rptplan.DataBind();
+        }
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             if (txtMob.Value != "" && txtMob.Value.Length == 10)

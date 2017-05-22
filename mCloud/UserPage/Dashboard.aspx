@@ -139,7 +139,7 @@
                             <div class="myhov" id="attach_box" style="float: right; cursor: pointer; font-size: 24px; font-weight: 900;" onmouseover="calldiv();" onmouseout="fadediv();">
                                 &#9776;
 							   
-							 <ul id="sec_box" style="float: right; margin-top: 53px; display: none; list-style: none; position: absolute; top: 0px; right: 8px; z-index: 1;" class="mryul">
+							 <ul id="sec_box" style="float: right; margin-top: 85px; display: none; list-style: none; position: absolute; top: 0px; right: 8px; z-index: 1;" class="mryul">
                                  <li class="mymenu">
                                      <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-placement="bottom" title="Create Folder" data-target="#defaultModal">
                                          <i class="material-icons">create_new_folder</i>
@@ -184,7 +184,7 @@
                         </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
-                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable"></asp:Label>
                                               </div>
                                         </div>
@@ -207,7 +207,7 @@
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 
                                             </div>
-                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color:black;"></asp:Label>
                                                 </div>
                                             <div class="clearfix"></div>

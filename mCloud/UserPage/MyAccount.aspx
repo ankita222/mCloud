@@ -97,7 +97,7 @@
                                     <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="txtmail" readonly="readonly" runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
+                                                <input type="text" id="txtmail"  runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
                                             </div>
                                             <br />
                                             <div runat="server" id="divvery" visible="false"><span style="color:red;" >Email address is not verified</span>&nbsp; <button id="btnvery" runat="server" onserverclick="btnvery_ServerClick" class="btn bg-red waves-effect">Verify</button>

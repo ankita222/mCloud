@@ -195,6 +195,7 @@
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="js\htc\sepia.htc" />
+    <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="preInit\favicon.png" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\index.html" />
@@ -3713,6 +3714,13 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.designer.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
