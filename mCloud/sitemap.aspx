@@ -59,6 +59,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Button ID="Button6" runat="server" OnClick="btnWrite_Click" Text="XML Read Write" />
         <div style="margin-bottom:600px;">
         <label class="check">
   <input type="checkbox"/>

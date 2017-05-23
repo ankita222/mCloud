@@ -13,6 +13,7 @@ using System.IO.Compression;
 using mCloud.App_Code;
 using System.Web.Security;
 
+
 namespace mCloud.UserPage
 {
     public partial class Dashboard : System.Web.UI.Page
@@ -20,6 +21,7 @@ namespace mCloud.UserPage
         DataTable dt_temp = new DataTable();
         DataTable dtfolder = new DataTable();
         mCloudAL AL = new mCloudAL();
+        mCloudDAL DAL = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,7 +43,7 @@ namespace mCloud.UserPage
                 treeFolder();
                 if (ReqFolder == "files")
                 {
-                    //  CreateSiteMap("files");
+                    //CreateSiteMap("files");
                     //LoadSiteMap("Files");
                     LoadSiteMap("Files");
                 }
@@ -65,7 +67,8 @@ namespace mCloud.UserPage
             {
                 string name = Session["id"].ToString();
                 DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
-                this.PopulateTreeView(rootInfo, null); ;
+                this.PopulateTreeView(rootInfo, null);
+                this.PopulateTreeView2(rootInfo,null);
             }
             catch (Exception ex)
             {
@@ -90,7 +93,7 @@ namespace mCloud.UserPage
                         //If Root Node, add to TreeView.
                         //    TreeView1.Nodes.Add(directoryNode);
                        TreeView1.Nodes.Add(directoryNode);
-                        TreeView2.Nodes.Add(directoryNode);
+                     
 
                     }
                     else
@@ -114,6 +117,55 @@ namespace mCloud.UserPage
                     //}
 
                     PopulateTreeView(directory, directoryNode);
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void PopulateTreeView2(DirectoryInfo dirInfo, TreeNode treeNode)
+        {
+            try
+            {
+                foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+                {
+                    TreeNode directoryNode = new TreeNode
+                    {
+                        Text = directory.Name,
+                        Value = directory.FullName
+                    };
+
+                    if (treeNode == null)
+                    {
+                        //If Root Node, add to TreeView.
+                        //    TreeView1.Nodes.Add(directoryNode);
+                       
+                        TreeView2.Nodes.Add(directoryNode);
+
+                    }
+                    else
+                    {
+                        //If Child Node, add to Parent Node.
+                        treeNode.ChildNodes.Add(directoryNode);
+                    }
+
+                    //Get all files in the Directory.
+                    //foreach (FileInfo file in directory.GetFiles())
+                    //{
+                    //    //Add each file as Child Node.
+                    //    TreeNode fileNode = new TreeNode
+                    //    {
+                    //        Text = file.Name,
+                    //        Value = file.FullName,
+                    //        Target = "_blank",
+                    //        NavigateUrl = (new Uri(Server.MapPath("~/"))).MakeRelativeUri(new Uri(file.FullName)).ToString()
+                    //    };
+                    //    directoryNode.ChildNodes.Add(fileNode);
+                    //}
+
+                    PopulateTreeView2(directory, directoryNode);
                 }
 
             }
@@ -164,10 +216,47 @@ namespace mCloud.UserPage
             Response.Redirect(Request.RawUrl);
 
         }
+        protected void btnarchive_Click(object sender, EventArgs e)
+        {
+            string zipname = txtzipname.Value;
+            string username = Session["id"].ToString();
+            foreach (RepeaterItem ri in Repeater1.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+                    string Path2 = GetCurrentPath();
+                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                    DirectoryInfo[] Files = d.GetDirectories();
+                    foreach (DirectoryInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            string startPath = file.FullName;
+                            //string h = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\Mudassar Khan.vcf";
+                            //string v = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\wwwww.zip";
+                            string t = Path.GetDirectoryName(startPath);
+                            string zipPath = @t + "\\" + zipname + ".zip";
 
+
+                          //  string extractPath = @"c:\example\extract";
+
+                            ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
+
+
+                        }
+
+                    }
+                }
+
+            }
+           
+        }
         protected void btncopyfile_ServerClick(object sender, EventArgs e)
         {
-           string path = TreeView2.SelectedNode.ValuePath;
+            string path = TreeView2.SelectedValue.ToString();
 
            // string username = Session["id"].ToString();
             foreach (RepeaterItem ri in Repeater2.Items)
@@ -188,20 +277,20 @@ namespace mCloud.UserPage
                             string DestinationPath = path + "\\"+name;
                             try
                             {
-                                File.Copy(@filepath, @DestinationPath);
-                                //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
-
+                                 File.Copy(@filepath, @DestinationPath, true);
+                              //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
                             }
                             catch (Exception ex)
                             {
                                 throw ex;
                             }
-                           
+                            
                         }
                     }
+
                 }
             }
-
+            
             Response.Redirect(Request.RawUrl);
         }
         //protected void CreateSiteMap(string RedirectedFolderName)
@@ -251,7 +340,7 @@ namespace mCloud.UserPage
                 //site
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -369,8 +458,8 @@ namespace mCloud.UserPage
                     //string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
 
                     ///Changed by Jamal
-                    string input = Server.MapPath(path2 )+ fileName + fileExtension;
-                    string output = Server.MapPath(path2)+ fileName + "_" + fileExtension;
+                    string input = Server.MapPath(path2) + fileName + "_" + fileExtension;
+                    string output = Server.MapPath(path2) + fileName + fileExtension;
 
                     //Save the Input File, Encrypt it and save the encrypted file in output path.
                     FileUpload1.SaveAs(input);
@@ -407,8 +496,8 @@ namespace mCloud.UserPage
                         FileUpload1.SaveAs(Server.MapPath(path2 + filename));
                     }
                     //img1.Style.Add("display", "none");
-                    
                 }
+                DAL.FunExecuteNonQuery("UPDATE UserDetails SET UsedSpace='" + AL.GetDirectorySize(Server.MapPath("~/Users/" + Session["id"].ToString()).ToString()) + "' WHERE UserId='" + Session["id"].ToString() + "'");
             }
             catch (Exception ex)
             { throw ex; }
@@ -717,8 +806,10 @@ namespace mCloud.UserPage
                     //File.Delete(@"~/Users/6354/" + name);
                 }
             }
+            DAL.FunExecuteNonQuery("UPDATE UserDetails SET UsedSpace='" + AL.GetDirectorySize(Server.MapPath("~/Users/" + Session["id"].ToString()).ToString()) + "' WHERE UserId='" + Session["id"].ToString() + "'");
             loadDirectory();
             loadFiles();
+
             
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
@@ -840,6 +931,34 @@ namespace mCloud.UserPage
             }
             return x;
         }
+
+        //protected void btnfilefav_Command(object sender, CommandEventArgs e)
+        //{
+        //    string fav_File_Name = e.CommandArgument.ToString();
+        //}
+
+        //protected void btnFav_Command1(object sender, CommandEventArgs e)
+        //{
+         
+        //        //string name = e.CommandArgument.ToString();
+        //        string path2 = "/Users/";
+        //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+        //        for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+        //        {
+        //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+        //        }
+            
+        //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
+        //    {
+        //        sw.WriteLine(path2);
+        //    }
+
+        //    //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
+        //    //    if (x > 0) 
+        //    //    Response.Write("<script>alert('Fav added!');</script>");
+
+        //}
 
     }
 }

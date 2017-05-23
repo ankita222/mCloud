@@ -40,6 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,6 +197,7 @@
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="js\htc\sepia.htc" />
+    <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="preInit\favicon.png" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\index.html" />
@@ -363,6 +366,7 @@
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
+    <Content Include="test.txt" />
     <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
@@ -3693,9 +3697,11 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
     <Content Include="UserPage\MyAccount.aspx" />
+    <Content Include="Users\9693495172\fav.txt" />
     <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
     <Content Include="Web.config" />
+    <Content Include="FavPath.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\mCloudDAL.cs" />
@@ -3713,6 +3719,13 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Disclaimer.aspx.designer.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

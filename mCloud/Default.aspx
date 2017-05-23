@@ -68,7 +68,7 @@
     <div class="container" style="background: none;">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <%--<img src="img/MoilCloud Homepage logo top.png" class="navbar-brand page-scroll img-responsive" style="height:15%; width:20%; float:left;" />--%>
@@ -215,21 +215,25 @@
         </div>
 
 
-        <div class="container" style="background: none;">
+       
+
+       <div class="container" style="background: none;">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-success">
+                <asp:Repeater runat="server" ID="rptplan">
+                    <ItemTemplate>
+                        <div class="col-md-4">
+                    <div runat="server" id="divpanel"  class='<%#(Eval("Name").Equals("Moil Lite Package")?"panel panel-success":(Eval("Name").Equals("Moil Standard Package"))?"panel panel-info":"panel panel-primary" )%>'>
                         <div class="panel-heading">
-                            <h4 class="text-center">Moil Lite Package</h4>
+                            <h4 class="text-center" runat="server" id="lblplanname"><%#Eval("Name") %></h4>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead" style="color: black;">
-                                <strong>₹ 20 For 3 Month</strong>
+                            <p class="lead" style="color: black;" >
+                                <strong>₹ <span runat="server" id="lbpprice"><%#Eval("Price") %></span>&nbsp;For&nbsp;<span runat="server" id="lblduration"><%#Eval("ValidityInDays") %></span>&nbsp;Days</strong>
                             </p>
                         </div>
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item" style="color: black;">
-                                <strong>2 GB Storage Space</strong>
+                                <strong><span runat="server" id="lblspace"><%#Eval("SpaceInByte") %></span>&nbsp;GB Storage Space</strong>
                                 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Complete Data Security
@@ -247,68 +251,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h4 class="text-center">Moil Standard Package</h4>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead" style="color: black;">
-                                <strong>₹ 50 For 3 Month</strong>
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item" style="color: black;">
-                                <strong>&nbsp;6 GB Storage Space</strong>
-                                <span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Complete Data Security
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Data Sharing With Other Users
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Technical Support
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                        </ul>
-                        <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h4 class="text-center">Moil Premium Package</h4>
-                        </div>
-                        <div class="panel-body text-center">
-                            <p class="lead" style="color: black;">
-                                <strong>₹ 100   For 3 Month</strong>
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item" style="color: black;">
-                                <strong>12 GB Storage Space</strong>
-                                <span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Complete Data Security
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Data Sharing With Other Users
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                            <li class="list-group-item" style="color: black;">Technical Support
-<span class="glyphicon glyphicon-ok pull-right"></span>
-                            </li>
-                        </ul>
-                        <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success md-trigger" data-modal="modal-4" href="#" data-toggle="modal">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
+
 
     </div>
 </section>
@@ -497,6 +444,13 @@
 
 
 <!-- jQuery -->
+
+   <script>
+	$(document).on('click',function(){
+    $('.collapse').collapse('hide');
+})
+    </script> 
+    
 <script src="FrontPage/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->

@@ -22,6 +22,13 @@
             $("#myul1").show();
         }
         $("#Image1").draggable({ cursor: "pointer" });
+
+
+  function  BtndwnClick()
+        {
+            document.getElementById('<%= btndownload.ClientID %>').click();
+        }
+
     </script>
 
     <style>
@@ -56,13 +63,14 @@
 
                 .context-menu ul li:not(.seperator) {
                     padding: 10px 5px 10px 5px;
-                    border-left: 4px solid transparent;
+                    
+                    /*border-left: 4px solid transparent;*/
                     cursor: pointer;
                 }
 
                 .context-menu ul li :hover {
                     background: #eee;
-                    border-left: 4px solid #666;
+                    /*border-left: 4px solid #666;*/
                 }
 
         .seperator {
@@ -179,12 +187,12 @@
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                              <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px; width:16px;height:16px;" />
 
-                        <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" CommandArgument='<%#Eval("Image") %>'  />
-                        </span>
+                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1"  CommandArgument='<%#Eval("Image") %>'  />
+                        </span>--%>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
-                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable"></asp:Label>
                                               </div>
                                         </div>
@@ -201,13 +209,14 @@
 
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;width:16px;height:16px;" />
-                                                 <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" CommandArgument='<%#Eval("Image") %>'  />
-                        </span>
+                         
+                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnfilefav_Command" CommandArgument='<%#Eval("Image") %>'  />
+                        </span>--%>
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 
                                             </div>
-                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;">
+                                             <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
                                                 <asp:Label runat="server" Text='<%#Eval("Image") %>' ID="mylable" Style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color:black;"></asp:Label>
                                                 </div>
                                             <div class="clearfix"></div>
@@ -357,6 +366,43 @@
                 </div>
 
             </div>
+
+        <div class="modal fade in" id="DivArchive" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                            <h4 class="modal-title" id="H8" style="margin-top: -5px;text-align:center;">Archive File</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-control-label">
+                                    <label for="txtfolder" style="color: #4a4a4a;float:left;">Name</label>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <div class="form-line">
+                                            <input type="text" runat="server" id="txtzipname" class="form-control" style="border: 1px solid #e2d9d9; border-radius: 4px;" />
+
+                                            <%--<input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple />--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                     <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <asp:Button runat="server" ID="btnarchive" CssClass="btn btn-info waves-effect" OnClick="btnarchive_Click" Text="Create" style="float: left;width: 100%;" />
+                          </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Close</button>
+                                </div>
+                         </div><
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         <!-- Modal To copy-->
         <div class="modal fade in" id="DivCopyFiles" tabindex="-1" role="dialog" style="top: 136px;">
                 <div class="modal-dialog" role="document">
@@ -447,11 +493,10 @@
     <div class="container222">
         <div id="contextMenu" class="context-menu">
             <ul>
-                <li><div data-target="#defaultModal" data-toggle="modal"> <i class="material-icons" style="color: black; font-size: 17px;">create_new_folder</i><span>New Folder</span></div></li>
+                <li><div data-target="#defaultModal" data-toggle="modal"> 
+                    <i class="material-icons" style="color: black; font-size: 17px;">create_new_folder</i><span>New Folder</span></div></li>
                 <li class="seperator"></li>
                  <li><div data-target="#uploadfiles" data-toggle="modal"> <i class="material-icons" style="color: black; font-size: 17px;">file_upload</i><span>File Upload</span></div></li>
-               
-
             </ul>
         </div>
 

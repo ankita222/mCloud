@@ -79,13 +79,7 @@
                     <div class="collapse navbar-collapse" id="navbar-collapse">
 
                         <ul class="nav navbar-nav navbar-right" style="margin-top: -12px;background: #ffffff;background-color:#f3f5f5;">
-                           <li>
-                                <a href="#" class="dropdown-toggle" style="background-color:#f3f5f5;">
-                                    <i class="material-icons" style="color:#2a9fc9;background-color:#f3f5f5;">person</i>
-                                    <%--<span class="label-count">7</span>--%>
-                                </a>
-
-                            </li>
+                         
                             <!-- #END# Notifications -->
                             <!-- Tasks -->
                             <li class="dropdown">
