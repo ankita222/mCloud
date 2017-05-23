@@ -221,14 +221,14 @@
             <div class="row">
                 <asp:Repeater runat="server" ID="rptplan">
                     <ItemTemplate>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                     <div runat="server" id="divpanel"  class='<%#(Eval("Name").Equals("Moil Lite Package")?"panel panel-success":(Eval("Name").Equals("Moil Standard Package"))?"panel panel-info":"panel panel-primary" )%>'>
                         <div class="panel-heading">
                             <h4 class="text-center" runat="server" id="lblplanname"><%#Eval("Name") %></h4>
                         </div>
                         <div class="panel-body text-center">
                             <p class="lead" style="color: black;" >
-                                <strong>₹ <span runat="server" id="lbpprice"><%#Eval("Price") %></span>&nbsp;For&nbsp;<span runat="server" id="lblduration"><%#Eval("ValidityInDays") %></span>&nbsp;Days</strong>
+                                <strong>₹ <span runat="server" id="lbpprice"><%#Eval("Price").Equals(0)?"Free":Eval("Price") %></span>&nbsp;For&nbsp;<span runat="server" id="lblduration"><%#Eval("ValidityInDays") %></span>&nbsp;Days</strong>
                             </p>
                         </div>
                         <ul class="list-group list-group-flush text-center">
@@ -239,7 +239,7 @@
                             <li class="list-group-item" style="color: black;">Complete Data Security
 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
-                            <li class="list-group-item" style="color: black;">Data Sharing With Other Users
+                            <li class="list-group-item" style="color: black;font-size: 15px;">Data Sharing With Other Users
 <span class="glyphicon glyphicon-ok pull-right"></span>
                             </li>
                             <li class="list-group-item" style="color: black;">Technical Support
