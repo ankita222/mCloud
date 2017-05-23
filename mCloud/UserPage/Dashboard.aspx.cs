@@ -188,13 +188,15 @@ namespace mCloud.UserPage
                             string DestinationPath = path + "\\"+name;
                             try
                             {
-                                 File.Copy(@filepath, @DestinationPath);
-                              //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
+                                File.Copy(@filepath, @DestinationPath);
+                                //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
+
                             }
                             catch (Exception ex)
                             {
                                 throw ex;
                             }
+                           
                         }
                     }
                 }
