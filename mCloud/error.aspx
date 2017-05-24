@@ -9,7 +9,7 @@
                 <div class="col-lg-12 text-center">
                     <div class="section-heading" style="margin-bottom:50px;">
                         <hr style="max-width: 100%; border-color:#b9b7b7;"/><br />
-                        <i class=" fa-5x fa-amazon"></i>
+                        <img src="img/error.png" alt="error" width="10%"/>
                         <h1 style="color:black;">Oops!</h1>
                         <h1 class="text-muted">I'm afraid, something went wrong.</h1>
                         
@@ -18,7 +18,8 @@
                     </div>
                 </div>
             </div>
-          
-    </div><br/> <br/> <br/> <br/> <br/>        <br/><br/></section>        
+          <br /><br />
+    </div>
+    </section>
 </asp:Content>
 
