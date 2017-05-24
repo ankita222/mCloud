@@ -3,9 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Contact Us</title>
     <style>
-        body {
-            overflow: hidden;
-        }
+      
     </style>
 </asp:Content>
 

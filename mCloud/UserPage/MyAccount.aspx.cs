@@ -20,6 +20,7 @@ namespace mCloud.UserPage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Page.IsPostBack)
             loadinfo();
             ///loadPlanDetails();
         }
@@ -62,14 +63,18 @@ namespace mCloud.UserPage
                     if (dt.Rows[0]["IsEmailVerified"].ToString() == "False")
                         divvery.Visible = true;
                     lblplan.InnerText = dt.Rows[0]["planName"].ToString();
-                    lbltotal.InnerText = dt.Rows[0]["SpaceInByte"].ToString()+" Bytes";
+                    lbltotal.InnerText = dt.Rows[0]["SpaceInByte"].ToString()+" GB";
+
+                    double total = AL.ConvertGigabytesToBytes(long.Parse(dt.Rows[0]["SpaceInByte"].ToString())); 
                     lblexp.InnerText = dt.Rows[0]["ExpiryDate"].ToString();
-                    lblavailspace.InnerText =(Int64.Parse(dt.Rows[0]["SpaceInByte"].ToString())- Int64.Parse(dt.Rows[0]["usedspace"].ToString())).ToString() + " Bytes";
-                    lblusedspace.InnerText = dt.Rows[0]["usedspace"].ToString() + " Bytes";
+                    // lblavailspace.InnerText = 
+                    double ava = (AL.ConvertBytesToGigabytes(long.Parse(total.ToString()) - long.Parse(dt.Rows[0]["usedspace"].ToString())));
+                    lblavailspace.InnerText = ava.ToString();
+                    lblusedspace.InnerText = AL.ConvertBytesToGigabytes(long.Parse(dt.Rows[0]["usedspace"].ToString())).ToString() + " GB";
 
                 }
             }
-            catch
+            catch(Exception ex)
             {
 
             }
@@ -151,24 +156,55 @@ namespace mCloud.UserPage
 
         protected void btnvery_ServerClick(object sender, EventArgs e)
         {
+            int i = verifyemail();
+            if (i > 0)
+            {
+                Response.Write("<script>alert('Please check your inbox.');</script>");
+                
+            }
+        }
+
+        public int verifyemail()
+        {
             if (!string.IsNullOrEmpty(Session["id"] as string))
             {
                 string activationCode = AL.GenEmailVerificationCode();
                 SqlParameter[] param2 = { new SqlParameter("@UserId", Session["id"].ToString()), new SqlParameter("@Email", txtmail.Value), new SqlParameter("@ActivationCode", activationCode) };
                 int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
-                if (y >= 0) 
+                if (y >= 0)
                 {
                     string body = "Dear Customer,";
                     body += "<br /><br />Please click the following link to verify your email.<br>";
                     body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("MyAccount.aspx", "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to verify</h2></a><br><br>";
                     body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
                     int i = AL.SendMail(txtmail.Value, "MoilCloud Email Verification", body);
-                    if (i > 0) 
-                    {
-                        Response.Write("<script>alert('Please check your inbox.');</script>");
-                    }
+                    return i;
 
                 }
+            }
+            return 0;
+        }
+
+        protected void btnChangeEmail_ServerClick(object sender, EventArgs e)
+        {
+            string username = Session["id"].ToString();
+            if (btnChangeEmail.InnerText== "Change Email")
+            {
+                txtmail.Attributes.Remove("readonly");
+                btnChangeEmail.InnerText = "Update Email";
+            }
+            else
+            {
+                string updateemail = "update UserDetails set Email = '"+txtmail.Value.Trim()+ "',IsEmailVerified='False' where UserId='" + username + "'";
+                int i = mDAL.FunExecuteNonQuery(updateemail);
+                if(i==1)
+                {
+                    loadinfo();
+                    int j = verifyemail();
+                    Response.Write("<script>alert('Email Updated, Please Check Your Email To Verify');</script>");
+                    btnChangeEmail.InnerText = "Change Email";
+                }
+
             }
         }
     }

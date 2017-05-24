@@ -52,11 +52,11 @@
                                         <i class="material-icons" title="Used Space">cloud_queue</i>
                                     </a>
                                 </li>
-                                <li role="presentation">
+                               <%-- <li role="presentation">
                                     <a href="#settings_with_icon_title" data-toggle="tab">
                                         <i class="material-icons" title="Recent Activity">settings</i> 
                                     </a>
-                                </li>
+                                </li>--%>
                             </ul>
 
                             <!-- Tab panes -->
@@ -97,12 +97,14 @@
                                     <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="txtmail"  runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
+                                                <input type="text" id="txtmail" readonly="" runat="server" class="form-control" placeholder=""  style="border: 1px solid #3e89ca;border-radius: 7px;padding: 8px;box-shadow: 0px 0px 0px 1px #bddbe4;"/>
                                             </div>
                                             <br />
-                                            <div runat="server" id="divvery" visible="false"><span style="color:red;" >Email address is not verified</span>&nbsp; <button id="btnvery" runat="server" onserverclick="btnvery_ServerClick" class="btn bg-red waves-effect">Verify</button>
-<button id="btnChangeEmail" runat="server" class="btn bg-red waves-effect">Change Email</button>
+                                            <div runat="server" id="divvery" visible="false" style="float:left;"><span style="color:red;" >Email address is not verified</span>&nbsp; <button id="btnvery" runat="server" onserverclick="btnvery_ServerClick" class="btn bg-red waves-effect">Verify</button>
+
                                             </div>
+                                            &nbsp;
+                                            <button id="btnChangeEmail" runat="server" class="btn bg-red waves-effect" onserverclick="btnChangeEmail_ServerClick">Change Email</button>
                                         </div>
                                     </div>
                                 </div>
@@ -199,12 +201,12 @@
                                         <label runat="server" id="lblexp" style="float: left;font-size: 16px;">Date    </label>
                                     </div>
                                 </div>
-                                    <div class="row clearfix">
+                                    <%--<div class="row clearfix">
                                    
                              <asp:Button ID="btnupgrade" runat="server" Text="Upgrade Account" type="button" class="btn bg-brown waves-effect" style="margin-left: 15px;"/>
-                                </div>
+                                </div>--%>
                                           <br />
-                                    <div class="row clearfix">
+                                <%--    <div class="row clearfix">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label">
                                         <label style="float: left;font-size: 19px;font-weight: 100;color: #8f8e90;">Delete Account</label>
                                         <br />
@@ -217,7 +219,7 @@
                                          <asp:Button ID="Button2" runat="server" Text="Delete Account" type="button" class="btn bg-red waves-effect" style="float: left;"/>
                                     </div>
                                 </div>
-                                          
+                                       --%>   
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
                                     <b>Cloud Space</b>
@@ -237,15 +239,15 @@
                                         <label style="float: left;font-size: 16px;" runat="server" id="lblusedspace">50 GB</label>
                                     </div>
                                 </div>
-                                    <div class="row clearfix">
+                                    <%--<div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-5 form-control-label">
                                         <label style="float: left;font-size: 16px;">Junk Files</label>
                                     </div>
                                      <div class="col-lg-6 col-md-6 col-sm-4 col-xs-5 form-control-label">
                                         <label style="float: left;font-size: 16px;">25 GB</label>
                                     </div>
-                                </div>
-                                    <div class="row clearfix">
+                                </div>--%>
+                                  <%--  <div class="row clearfix">
 
                                    <asp:Button ID="Button3" runat="server" Text="Clear Space" type="button" class="btn bg-brown waves-effect" style="margin-left: 15px;" />
                                           <label style="text-align:justify;">
@@ -253,11 +255,11 @@
                                     </label>
 
                                 </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
+                                </div>--%>
+                                <%--<div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
                                     <b>Recent Activity</b>
                                    
-                                </div> 
+                                </div> --%>
                                    
                                 </div>
                                

@@ -289,7 +289,7 @@ namespace mCloud.App_Code
         #endregion
 
         #region Bytes To GigaBytes
-        static double ConvertBytesToGigabytes(long bytes)
+        public  double ConvertBytesToGigabytes(long bytes)
         {
             return ((bytes / 1024f) / 1024f) / 1024f;
         }
@@ -303,7 +303,7 @@ namespace mCloud.App_Code
         #endregion
 
         #region  GigaBytes To Bytes
-        static double ConvertGigabytesToBytes(long bytes)
+       public  double ConvertGigabytesToBytes(long bytes)
         {
             return ((bytes * 1024f) * 1024f) * 1024f;
         }

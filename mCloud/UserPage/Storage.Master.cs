@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using mCloud.App_Code;
 
 namespace mCloud.UserPage
 {
     public partial class Storage : System.Web.UI.MasterPage
     {
+        mCloudDAL dal = new mCloudDAL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -26,6 +30,12 @@ namespace mCloud.UserPage
                         string fname = f.Name;
                         img1.ImageUrl = "~/Users/Profile/" + fname;
                     }
+
+                    string getplanname = "select p.Name from UserDetails u join PlanMaster p  on u.PlanId=p.PlanId where u.UserId='" + id + "'";
+                    DataTable dt = new DataTable();
+                    dt = dal.FunDataTable(getplanname);
+                    if(dt.Rows.Count>0)
+                    sp2.InnerText = dt.Rows[0][0].ToString();
                 }
                 catch(Exception ex)
                 {

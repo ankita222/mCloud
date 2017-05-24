@@ -286,7 +286,7 @@
                                     <div class="form-group" style="margin-bottom:0px;">
                                         <div class="form-line">
                                             <asp:FileUpload ID="FileUpload1" runat="server" name="pdf" />
-                                            <%--<input runat="server" width="100%" type="file" size="50" name="pdf" id="FileUpload1" />--%>
+                                            <%--<input runat="server" width="100%" type="file" size="50" name="pdf"                          id="FileUpload1" />--%>
                                         </div>
 
                                     </div>

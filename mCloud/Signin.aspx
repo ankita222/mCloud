@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="modal-footer" style="padding: 9px;">
-                            <span style="float: left;"><a class="btn" href="sitemap.aspx">Renew</a></span>
+                            <span style="float: left;"><a class="btn" href="preInit/Renew.aspx">Renew</a></span>
                             <asp:Button class="btn btn-success" runat="server" ID="btnSignIn" Style="float: right;" Text="Sign In" OnClick="btnSignIn_Click" />
 
                         </div>
