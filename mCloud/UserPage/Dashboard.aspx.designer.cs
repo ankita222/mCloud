@@ -22,6 +22,15 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// btnextract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnextract;
+        
+        /// <summary>
         /// h2 control.
         /// </summary>
         /// <remarks>
@@ -193,13 +202,13 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// TreeView2 control.
+        /// TreeViewCopy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TreeView TreeView2;
+        protected global::System.Web.UI.WebControls.TreeView TreeViewCopy;
         
         /// <summary>
         /// btncopyfile control.
@@ -220,13 +229,13 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// TreeView1 control.
+        /// TreeViewMove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TreeView TreeView1;
+        protected global::System.Web.UI.WebControls.TreeView TreeViewMove;
         
         /// <summary>
         /// btnmoveok control.

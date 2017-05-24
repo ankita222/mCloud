@@ -69,7 +69,7 @@
                         <br />
 						<div style="display:inline-block;">
                            
-                        <input type="number" runat="server" id="txtMob" placeholder="10 digit mobile number"  class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
+                        <input type="number" runat="server" id="txtMob" placeholder="10 digit mobile number"  class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;" maxlength="10"/>
                           <br />
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Send OTP" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <%--<asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" />--%>

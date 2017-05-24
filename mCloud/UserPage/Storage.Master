@@ -94,7 +94,7 @@
                                             <li>
                                                 <a href="MyAccount.aspx">
                                                     <h4>My Account
-                                                <small>Plan Name</small>
+                                                <span style="float:right;" runat="server" id="sp2">Plan Name</span>
                                                     </h4>
                                                     <%--<div class="progress">
                                                 <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
@@ -102,28 +102,8 @@
                                             </div>--%>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <h4>Upgrade
-                                                <%--<small>45%</small>--%>
-                                                    </h4>
-                                                    <%-- <div class="progress">
-                                                <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                                </div>
-                                            </div>--%>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <h4>Reload
-                                               <%-- <small>54%</small>--%>
-                                                    </h4>
-                                                    <%--  <div class="progress">
-                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%">
-                                                </div>
-                                            </div>--%>
-                                                </a>
-                                            </li>
+                                           
+                                           
                                             <li>
                                                 <a href="#">
                                                     <h4>
@@ -137,17 +117,7 @@
                                             </div>--%>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <h4>About Moil Cloud
-                                           <%--     <small>92%</small>--%>
-                                                    </h4>
-                                                    <%-- <div class="progress">
-                                                <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
-                                                </div>
-                                            </div>--%>
-                                                </a>
-                                            </li>
+                                           
                                         </ul>
                                     </li>
                                     <%-- <li class="footer">
