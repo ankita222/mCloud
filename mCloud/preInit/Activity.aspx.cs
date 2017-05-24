@@ -6,49 +6,39 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using mCloud.App_Code;
-
+using System.Data.SqlClient;
 
 namespace mCloud.preInit
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-       
+
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
         string hashotp;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-                //Temporary code
-                    // LoadPricePlan();
-
-                if (!string.IsNullOrEmpty(Session["Mob"] as string))
-                {
-                    LoadPricePlan();
-                    //if (!string.IsNullOrEmpty(Session["Mob"] as string))
-                        txtMob.Value = Session["Mob"].ToString();
-                    if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
-                        txtIsdCode.Value = Session["IsdCode"].ToString();
-                    if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
-                        hashotp = Session["HashOtp"].ToString();
-                    if (!string.IsNullOrEmpty(Session["Email"] as string))
-                        txtEmail.Value = Session["Email"].ToString();
-                }
-                //Disable below in developemnt
-                else
-                    Response.Redirect("~/Signup.aspx");
-
+            if (!string.IsNullOrEmpty(Session["Mob"] as string))
+            {
+                LoadPricePlan();
+                //if (!string.IsNullOrEmpty(Session["Mob"] as string))
+                txtMob.Value = Session["Mob"].ToString();
+                if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
+                    txtIsdCode.Value = Session["IsdCode"].ToString();
+                if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
+                    hashotp = Session["HashOtp"].ToString();
+                if (!string.IsNullOrEmpty(Session["Email"] as string))
+                    txtEmail.Value = Session["Email"].ToString();
             }
-        
+            else
+                Response.Redirect("~/Signup.aspx");
+        }
 
         public void LoadPricePlan()
         {
-            //string getPlan = "Select Price, (SpaceInByte+' - '+convert(nvarchar,ValidityInDays)+' Days') as Detail from PlanMaster";
             string getPlan = "  Select Name, Price,SpaceInByte, (SpaceInByte+' GB'+'-'+convert(nvarchar,ValidityInDays)+' Days') as Detail, (convert(nvarchar,PlanId) +'-'+convert(nvarchar,Price)+'-'+SpaceInByte+'-'+convert(nvarchar,ValidityInDays)+'-'+Name) as PlanDetails from PlanMaster";
             dt = mDAL.FunDataTable(getPlan);
-
-
             rptselectplan.DataSource = dt;
             rptselectplan.DataBind();
         }
@@ -59,48 +49,33 @@ namespace mCloud.preInit
             string[] planarray = getplan.Split('-');
             string amt, planbytes, duration, plan_name;
             Session["PlanId"] = planarray[0];
-            Session["Amount"]=  amt = planarray[1];
+            Session["Amount"] = amt = planarray[1];
             Session["DataSize"] = planbytes = planarray[2];
             Session["Days"] = duration = planarray[3];
-            Session["PlanName"] = plan_name= planarray[4];
-            //Session["PlanId"] = getplan.Split('-')[0];
+            Session["PlanName"] = plan_name = planarray[4];
 
             lblSelectedPlan.Visible = true;
             lblPaymentSelect.Visible = false;
-            //lblSelectedPlan.Text= "Selected Plan : " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days";
-            lblSelectedPlan.Text = plan_name +"( " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days )";
+            lblSelectedPlan.Text = plan_name + "( " + "₹" + amt + " - " + planbytes + " GB" + " - " + duration + " Days )";
             h3showplan.Visible = true;
-            //h3showplan.InnerText = "Selected Plan : " +"₹"+amt + " - " + planbytes + " GB"+" - " + duration + " Days";
         }
 
         protected void btnverify_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //string otp1 = Session["hastotp"].ToString();
             if (txtcode.Value != "")
             {
                 if (!string.IsNullOrEmpty(Session["HashOtp"] as string))
                 {
-                    if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString() || txtcode.Value=="1")
+                    if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString() || txtcode.Value == "1")
                     {
                         divregister.Visible = true;
                         divverify.Visible = false;
                     }
-                    //divregister.Visible = true;
-                    //divverify.Visible = false;
                     else
                     {
                         txtcode.Value = "";
                         txtcode.Attributes.Add("placeholder", "OTP not matched.");
                     }
-                    //}
-                    //catch (Exception)
-                    //{
-                    //    divregister.Visible = true;
-                    //    divverify.Visible = false;
-                    //    //ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Wrong OTP!')", true);
-                    //}
                 }
                 else
                     Response.Write("<script>alert('Something Wrong Occured, please try again.')</script>");
@@ -111,34 +86,15 @@ namespace mCloud.preInit
 
         protected void btnresend_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    string email = Session["Email"].ToString();
-
-
-            //string mob = Session["Mob"].ToString();
-
-            //string otp = AL.GenerateOTP();
-            //if (email == "" || mob == "")
-            //{
-            //    Response.Redirect("~/Default.aspx");
-            //}
-            //else
-            //{
-            //    int i = AL.SendMail(email, "Moil Cloud Verfication", "Please Verify Your Email Address By Entering This Code:  " + otp + "");
-            //}
-            //}
-            //catch (Exception)
-            //{
-
-            //}
-
             if (!string.IsNullOrEmpty(Session["Mob"] as string))
             {
                 string mob = Session["Mob"].ToString();
                 string newOTP = AL.GenOTP();
 
                 //SMS API
+
+                btnresend.Enabled = false;
+                btnresend.Visible = false;
             }
 
         }
@@ -153,23 +109,10 @@ namespace mCloud.preInit
 
         protected void btnPay_Click(object sender, EventArgs e)
         {
-            #region TEST CODE
-            //string mobile = Session["Mob"].ToString();
-            //int i = AL.CreateUserFolder(mobile);
-            //if (i == 1)
-            //{
-            //    Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + mobile);
-            //}
-            //else
-            //{
-            //    Response.Write("<script>alert('Something Wrong Occured.')</script>");
-            //}
-            #endregion
-
-            #region Final Code
+            #region Pay
             if (txtPassword.Value != txtCPassword.Value)
             {
-                Response.Write("<script>alert('Passwords do not match!');</script>");
+                Response.Write("<script>alert('Passwords mismatched!');</script>");
             }
             else if (chbxAgree.Checked == true)
             {
@@ -182,20 +125,91 @@ namespace mCloud.preInit
                         else
                             Session["Email"] = "demosale@moilcloud.com";
                         Session["Name"] = txtName.Value;
-                        //string[] tokens = lblSelectedPlan.Text.Split('-');
-                        //Session["PlanDescription"] = tokens[1] + " for " + tokens[2];
-                        //Session["PlanAmount"] = tokens[0];
                         Session["Password"] = AL.PassHash(txtCPassword.Value);
-                        Response.Redirect("Pay.aspx");
+
+                        if (
+                                !string.IsNullOrEmpty(Session["PlanId"] as string) &&
+                                !string.IsNullOrEmpty(Session["Amount"] as string) &&
+                                !string.IsNullOrEmpty(Session["DataSize"] as string) &&
+                                !string.IsNullOrEmpty(Session["Days"] as string) &&
+                                !string.IsNullOrEmpty(Session["PlanName"] as string) &&
+
+                                !string.IsNullOrEmpty(Session["Email"] as string) &&
+                                !string.IsNullOrEmpty(Session["Name"] as string) &&
+                                !string.IsNullOrEmpty(Session["Mob"] as string)
+                           )
+                        {
+                            float amount = float.Parse(Session["Amount"].ToString());
+                            string name = Session["Name"].ToString();
+                            string email = Session["Email"].ToString();
+                            string phone = Session["Mob"].ToString();
+
+                            string productinfo = Session["PlanName"].ToString() + "( " + "₹" + Session["Amount"].ToString() + " - " + Session["DataSize"].ToString() + " GB" + " - " + Session["Days"].ToString() + " Days )";
+
+                            int PaymentId = AL.GenId();
+                            string RefCode = "";
+                            if (!string.IsNullOrEmpty(Session["RefCode"] as string))
+                            {
+                                RefCode = Session["RefCode"].ToString();
+                            }
+                            SqlParameter[] param =
+                            {
+                                new SqlParameter("@UserId",phone ),
+                                new SqlParameter("@Name", name),
+                                new SqlParameter("@Email", email),
+                                new SqlParameter("@Password", Session["Password"].ToString()),
+                                new SqlParameter("@PlanId", Session["PlanId"].ToString()),
+                                new SqlParameter("@PlanStatus", "NewAccount"),
+                                new SqlParameter("@ExpiryDate", DateTime.Now.AddDays(Double.Parse(Session["Days"].ToString()))),
+                                new SqlParameter("@PaymentId", PaymentId),
+                                new SqlParameter("@UserDirectoryPath", "~/Users/"+phone),
+
+                                new SqlParameter("@MyReferenceCode", AL.GenRefCode()),
+                                new SqlParameter("@ByReferenceCode", RefCode),
+
+                                new SqlParameter("@PlanBought", Session["PlanId"].ToString()),
+                                new SqlParameter("@PaymentStatus", "Pending"),
+                                new SqlParameter("@PaidAmount", amount)
+                            };
+
+                            int x = mDAL.FunExecuteNonQuerySP("ust_onreg", param);
+                            if (x > 0)
+                            {
+                                string activationCode = AL.GenEmailVerificationCode();
+                                SqlParameter[] param2 = {
+                                new SqlParameter("@UserId", phone),
+                                new SqlParameter("@Email", email),
+                                new SqlParameter("@ActivationCode", activationCode)
+                            };
+                                int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
+                                if (y >= 0)
+                                {
+                                    string body = "Dear Customer,";
+                                    body += "<br /><br />Please click the following link to verify your email.<br>";
+                                    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("MyAccount.aspx",         "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2                     style='float:left;padding:10px; background-                                            color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to              verify</h2></a><br><br>";
+                                    body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
+                                    AL.SendMail(email, "MoilCloud Email Verification", body);
+                                }
+
+                                AL.CreateUserFolder(Session["Mob"].ToString());
+                                if (Session["PlanId"].ToString() == "1")
+                                {
+                                    Response.Redirect("Success.aspx");
+                                }
+                                else
+                                    Response.Redirect("Pay.aspx");
+                                //Response.Write("<script>alert('Registered Successfully.');</script>");
+                                //Payment Gateway
+                            }
+                        }
+                        else
+                            Response.Write("<script>alert('Something went wrong, please try again.');</script>");
                     }
                     else
                         Response.Write("<script>alert('Please fill all required fields.');</script>");
                 }
                 else
-                //Response.Write("<script>alert('Please Select a Plan.');</script>");
-                {
                     lblPaymentSelect.Visible = true;
-                }
             }
             else
                 Response.Write("<script>alert('Please check the agreement to proceed.');</script>");

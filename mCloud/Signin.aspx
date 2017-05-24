@@ -80,7 +80,7 @@
                                                 <i class="fa fa-user"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input id="txtUserName" runat="server" type="number" class="form-control" required="required" maxlengh="10" name="username" placeholder="Username (eg: 99XXXXXX99)" />
+                                                <input id="txtUserName" runat="server" type="text" class="form-control" required="required"  name="username" placeholder="Username (eg: 99XXXXXX99)" maxlength="10" onkeypress="return IsNumeric(event);"  />
                                             </div>
                                         </div>
                                     </div>
@@ -155,6 +155,19 @@
             <script src="FrontPage/vendor/jquery/jquery.min.js"></script>
             <!-- Bootstrap Core JavaScript -->
             <script src="FrontPage/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <script src="Validation.js"></script>
+
+            <script>
+
+                function IsNumeric(e) {
+                    var keyCode = e.which ? e.which : e.keyCode
+                    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                    //alert('Invalid input.');
+                    return ret;
+                }
+
+            </script>
+
         </div>
     </form>
 </body>

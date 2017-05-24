@@ -86,7 +86,7 @@
 						<p style="color: #fff;font-weight: 400;line-height: 20px;">A verification code has been sent to your mobile number, please enter the verification code to proceed.</p>
                         <div class="clearfix">&nbsp;</div>
 						<div style="display:inline-block;">
-                        <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;"/>
+                        <input type="text" runat="server" id="txtcode" class="form-username form-control" style="height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;text-align:center;"/>
                              <div class="clearfix">&nbsp;</div>
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" OnClick="btnresend_Click"/>
@@ -250,8 +250,17 @@
             $("#modal-4").modal({ backdrop: true });
         }
 
+
+        function IsNumeric(e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            //alert('Invalid input.');
+            return ret;
+        }
     </script>
 	
+}
+
 		<script src="modal/js/classie.js"></script>
 	<%--<script src="modal/js/modalEffects.js"></script>--%>
 		<!-- for the blur effect -->
