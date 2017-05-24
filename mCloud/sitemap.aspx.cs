@@ -113,7 +113,12 @@ namespace mCloud
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            create();
+            // create();
+
+            //SUBMIT_SUCCESS | 7e5bab20 - 8da9 - 1ee9 - bcc3 - 9009233e728e
+            string[] SplitOTP = "SUBMIT_SUCCESS | 7e5bab20 - 8da9 - 1ee9 - bcc3 - 9009233e728e".Split('|');
+            TextBox1.Text = SplitOTP[0];
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -158,13 +163,16 @@ namespace mCloud
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            SqlParameter[] param =
-            {
-                new SqlParameter("@Mobile", txtMob.Text),
-                new SqlParameter("@Email", txtEmail.Text)
-            };
-            object x0 = dal.FunExecuteScalarSP("ust_beginregcheck", param);
-            Label2.Text = x0.ToString();
+            //SqlParameter[] param =
+            //{
+            //    new SqlParameter("@Mobile", txtMob.Text),
+            //    new SqlParameter("@Email", txtEmail.Text)
+            //};
+            //object x0 = dal.FunExecuteScalarSP("ust_beginregcheck", param);
+            //Label2.Text = x0.ToString();
+            string otp = "12fg4";
+            Button3.Text = al.SendOTP(txtMob.Text,
+                            "MoilCloud OTP: " + otp + " OTP is confidential and not to be disclosed to anyone.");
         }
 
         private static long GetDirectorySize(string folderPath)
@@ -248,6 +256,15 @@ namespace mCloud
             //xWriter.Close();
         }
 
-
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Write(
+                    "<div style='padding:80px 80px; margin:100px;'>" +
+                    "<img src='img/error.png' alt='error' width = '10%' /><br>" +
+                    "<h1>Oops!</h1>" +
+                    "<h2>I'm afraid, something went wrong.</h2>" +
+                    "<h4><a href='./'>Take me home</a></h4></div><div style='display:none;'>"
+                    );
+        }
     }
 }

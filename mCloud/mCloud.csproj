@@ -201,6 +201,7 @@
     <Content Include="img\error.png" />
     <Content Include="img\MoilCloud Homepage logo top.png" />
     <Content Include="js\htc\sepia.htc" />
+    <Content Include="preInit\Success.aspx" />
     <Content Include="preInit\OnPaymentSuccess.aspx" />
     <Content Include="preInit\OnPaymentFailure.aspx" />
     <Content Include="preInit\Disclaimer.aspx" />
@@ -256,7 +257,6 @@
     <Content Include="preInit\modal\js\modalEffects.js" />
     <Content Include="preInit\modal\js\modernizr.custom.js" />
     <Content Include="preInit\Pay.aspx" />
-    <Content Include="preInit\Success.aspx" />
     <Content Include="preInit\PaymentWebHook.aspx" />
     <Content Include="preInit\Pricing\bootstrap\css\bootstrap.css" />
     <Content Include="preInit\Pricing\bootstrap\css\bootstrap.min.css" />
@@ -3733,6 +3733,13 @@
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="preInit\Success.aspx.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="preInit\Success.aspx.designer.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+    </Compile>
     <Compile Include="preInit\OnPaymentSuccess.aspx.cs">
       <DependentUpon>OnPaymentSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3781,13 +3788,6 @@
     </Compile>
     <Compile Include="preInit\Pay.aspx.designer.cs">
       <DependentUpon>Pay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="preInit\Success.aspx.cs">
-      <DependentUpon>Success.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="preInit\Success.aspx.designer.cs">
-      <DependentUpon>Success.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\PaymentWebHook.aspx.cs">
       <DependentUpon>PaymentWebHook.aspx</DependentUpon>
