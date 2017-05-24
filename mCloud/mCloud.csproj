@@ -58,8 +58,20 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TallComponents.PDFThumbnail, Version=3.0.5.0, Culture=neutral, PublicKeyToken=76bf2dedaa68ccb5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Techizas\Desktop\TallComponents.PDFThumbnail.dll</HintPath>
+    </Reference>
+    <Reference Include="Thought.vCards, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Techizas\Desktop\Thought.vCards.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\mCloud.dll" />
+    <Content Include="bin\mCloud.pdb" />
+    <Content Include="bin\TallComponents.PDFThumbnail.dll" />
+    <Content Include="bin\Thought.vCards.dll" />
     <Content Include="Default.aspx" />
     <Content Include="error.aspx" />
     <Content Include="error.txt" />
@@ -4311,6 +4323,7 @@
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
     <Content Include="FrontPage\vendor\simple-line-icons\less\simple-line-icons.less" />
     <Content Include="FrontPage\vendor\simple-line-icons\scss\simple-line-icons.scss" />
+    <Content Include="bin\mCloud.dll.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

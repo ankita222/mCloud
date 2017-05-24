@@ -1,0 +1,78 @@
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at mCloud.UserPage.Dashboard.btnDownoad_Command(Object sender, CommandEventArgs e)
+-----------------24-May-17 4:54:01 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path, Boolean recursive)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e)
+-----------------24-May-17 5:09:50 PM-----------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at mCloud.UserPage.Dashboard.btnDownoad_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1319
+-----------------24-May-17 5:11:34 PM-----------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at mCloud.UserPage.Dashboard.btnDownoad_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1319
+-----------------24-May-17 5:11:50 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path, Boolean recursive)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1360
+-----------------24-May-17 5:15:15 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path, Boolean recursive)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e)
+-----------------24-May-17 5:16:30 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e)
+-----------------24-May-17 5:17:01 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path, Boolean recursive)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1360
+-----------------24-May-17 5:17:19 PM-----------------
+System.IO.IOException: The directory name is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at System.IO.Directory.Delete(String path, Boolean recursive)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1360
+-----------------24-May-17 5:18:13 PM-----------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1365
+-----------------24-May-17 5:19:39 PM-----------------

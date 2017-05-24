@@ -193,8 +193,7 @@ namespace mCloud.App_Code
                     Sqlcmd.Parameters.Add(p);
             }
             try { a = Sqlcmd.ExecuteNonQuery(); }
-            catch (Exception ex) { //OnError(ex); 
-            }
+            catch (Exception ex) { OnError(ex); }
             finally { CloseConn(); }
             return a;
         }
@@ -327,14 +326,7 @@ namespace mCloud.App_Code
             {
                 sw.WriteLine(ex);
                 sw.WriteLine("-----------------" + DateTime.Now + "-----------------");
-                sw.Close();
-                HttpContext.Current.Response.Write(
-                   "<div style='padding:80px 80px; margin:100px;'>" +
-                   "<img src='img/error.png' alt='error' width = '10%' /><br>" +
-                   "<h1 style='color:#333333;'>Oops!</h1>" +
-                   "<h2 style='color:#333333;'>I'm afraid, something went wrong.</h2><br>" +
-                   "<h4 style='color:#333333;'><a href='./'>Take me home</a></h4></div><div style='display:none;'>"
-                   );
+                //HttpContext.Current.Response.Redirect("~/error.aspx");
             }
         }
         #endregion
