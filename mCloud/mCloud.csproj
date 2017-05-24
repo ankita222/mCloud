@@ -438,7 +438,7 @@
     <Content Include="UserPage\images\file-512.png" />
     <Content Include="UserPage\images\file-txt.png" />
     <Content Include="UserPage\images\file-txt00.png" />
-    <Content Include="UserPage\images\file-zip-alt.png" />
+    <Content Include="UserPage\images\file-zip-alt1.png" />
     <Content Include="UserPage\images\file-zip-icon-6844 %281%29.png" />
     <Content Include="UserPage\images\folder_PNG8771.png" />
     <Content Include="UserPage\images\image-gallery\1.jpg" />
@@ -504,7 +504,7 @@
     <Content Include="UserPage\images\user.jpg" />
     <Content Include="UserPage\images\user.png" />
     <Content Include="UserPage\images\xls.png" />
-    <Content Include="UserPage\images\zip.png" />
+    <Content Include="UserPage\images\file-zip-alt.png" />
     <Content Include="UserPage\images\zip0.png" />
     <Content Include="UserPage\img\MoilCloud Homepage logo top.png" />
     <Content Include="UserPage\index.html" />
@@ -3721,6 +3721,7 @@
     </Compile>
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="error.aspx.designer.cs">
       <DependentUpon>error.aspx</DependentUpon>

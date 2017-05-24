@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<script src="../Validation.js"></script>
+<script src="Validation.js"></script>
 
 
 <title>MoilCloud - Online Storage Solution</title>
@@ -351,7 +351,7 @@
                                         <option>+97 - England</option>
                                     </select>--%>
                                
-                                    <input id="txtMob" runat="server" type="text" class="form-control" name="mobileno" placeholder="Mobile No." maxlength="10"  />
+                                    <input id="txtMob" runat="server" type="text" class="form-control" name="mobileno" placeholder="Mobile No." maxlength="10" onkeypress="return IsNumeric(event);"  />
                                 </div>
                             </div>
                         </div>
