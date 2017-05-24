@@ -1023,23 +1023,23 @@ namespace mCloud.UserPage
                                 string startPath = file.FullName;
                                 string t = Path.GetDirectoryName(startPath);
                                 string f = Path.GetFileNameWithoutExtension(startPath);
-                               
+
 
 
 
                                 //  string extractPath = @"c:\example\extract";
 
-
-                                ZipFile.ExtractToDirectory(startPath, t+"\\"+f);
-
-
-
-
+                                try
+                                {
+                                    ZipFile.ExtractToDirectory(startPath, t + "\\" + f);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Response.Write("<Script>alert('" + ex.ToString() + "');</Script>");
+                                }
                             }
-
                         }
                     }
-
                 }
                 loadDirectory();
                 loadFiles();
