@@ -4,6 +4,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.IO;
 #endregion
 
 
@@ -26,11 +27,18 @@ namespace mCloud.App_Code
         #region Function for Open Connection
         public void OpenConn()
         {
-            if (SqlConn == null)
-                SqlConn = new SqlConnection(ConfigurationManager.
-                    ConnectionStrings["mConstr"].ToString());
-            if (SqlConn.State == ConnectionState.Closed)
-                SqlConn.Open();
+            try
+            {
+                if (SqlConn == null)
+                    SqlConn = new SqlConnection(ConfigurationManager.
+                        ConnectionStrings["mConstr"].ToString());
+                if (SqlConn.State == ConnectionState.Closed)
+                    SqlConn.Open();
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
 
         }
         #endregion
@@ -55,7 +63,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -79,7 +87,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -104,7 +112,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -127,7 +135,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
                 //HttpContext.Current.Response.Redirect("UserPage.aspx", true);
             }
             return SqlDr;
@@ -145,7 +153,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -185,7 +193,7 @@ namespace mCloud.App_Code
                     Sqlcmd.Parameters.Add(p);
             }
             try { a = Sqlcmd.ExecuteNonQuery(); }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { OnError(ex); }
             finally { CloseConn(); }
             return a;
         }
@@ -208,7 +216,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -236,7 +244,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -263,7 +271,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             finally
             {
@@ -298,7 +306,7 @@ namespace mCloud.App_Code
             }
             catch (Exception ex)
             {
-                throw ex;
+                OnError(ex);
             }
             DDL.DataSource = SqlDr;
             DDL.Items.Clear();
@@ -311,6 +319,17 @@ namespace mCloud.App_Code
         }
         #endregion
 
+        #region
+        public void OnError(Exception ex)
+        {
+            using (StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath("error.txt"), append: true))
+            {
+                sw.WriteLine(ex);
+                sw.WriteLine("-----------------" + DateTime.Now + "-----------------");
+                HttpContext.Current.Response.Redirect("~/error.aspx");
+            }
+        }
+        #endregion
     }
 }
 
