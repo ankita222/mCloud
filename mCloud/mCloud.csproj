@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="error.aspx" />
     <Content Include="favicon.png" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="FrontPage\css\new-age.css" />
@@ -196,12 +197,12 @@
     <Content Include="FrontPage\vendor\jquery\jquery.min.js" />
     <Content Include="FrontPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="FrontPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="img\MoilCloud Homepage logo top.png" />
     <Content Include="js\htc\sepia.htc" />
     <Content Include="preInit\Disclaimer.aspx" />
     <Content Include="preInit\favicon.png" />
     <Content Include="preInit\img\google-play-badge.png" />
     <Content Include="preInit\index.html" />
-    <Content Include="preInit\Login.aspx" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Login\assets\bootstrap\css\bootstrap.css" />
@@ -251,7 +252,6 @@
     <Content Include="preInit\modal\js\modalEffects.js" />
     <Content Include="preInit\modal\js\modernizr.custom.js" />
     <Content Include="preInit\Pay.aspx" />
-    <Content Include="preInit\Payment.aspx" />
     <Content Include="preInit\PaymentFailure.aspx" />
     <Content Include="preInit\PaymentSucces.aspx" />
     <Content Include="preInit\Pricing\bootstrap\css\bootstrap.css" />
@@ -366,6 +366,7 @@
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
+    <Content Include="SMS.aspx" />
     <Content Include="test.txt" />
     <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
@@ -3715,6 +3716,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3728,13 +3736,6 @@
     </Compile>
     <Compile Include="preInit\Disclaimer.aspx.designer.cs">
       <DependentUpon>Disclaimer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="preInit\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="preInit\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -3763,13 +3764,6 @@
     </Compile>
     <Compile Include="preInit\Pay.aspx.designer.cs">
       <DependentUpon>Pay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="preInit\Payment.aspx.cs">
-      <DependentUpon>Payment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="preInit\Payment.aspx.designer.cs">
-      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="preInit\PaymentFailure.aspx.cs">
       <DependentUpon>PaymentFailure.aspx</DependentUpon>
@@ -3841,6 +3835,13 @@
     </Compile>
     <Compile Include="sitemap.aspx.designer.cs">
       <DependentUpon>sitemap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SMS.aspx.cs">
+      <DependentUpon>SMS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SMS.aspx.designer.cs">
+      <DependentUpon>SMS.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPage\EmailVerification.aspx.cs">
       <DependentUpon>EmailVerification.aspx</DependentUpon>

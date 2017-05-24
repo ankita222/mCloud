@@ -13,8 +13,22 @@ namespace mCloud.preInit
         {
             if (Page.User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/UserPage/Dashboard.aspx");
+                string pageName = this.ContentPlaceHolderContent.Page.GetType().FullName;
+                if (
+                        pageName == "ASP.preinit_pay_aspx" ||
+                        pageName == "ASP.preinit_activity_aspx" ||
+                        pageName == "ASP.preinit_paymentfailure_aspx" ||
+                        pageName == "ASP.preinit_paymentsucces_aspx" ||
+                        pageName == "ASP.preinit_renew_aspx"
+                    )
+                {
+                    Response.Redirect("~/UserPage/Dashboard.aspx");
+                }
             }
+            //if (Page.User.Identity.IsAuthenticated)
+            //{
+            //    Response.Redirect("~/UserPage/Dashboard.aspx");
+            //}
         }
     }
 }

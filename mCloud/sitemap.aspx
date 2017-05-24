@@ -120,6 +120,39 @@
         <br />
         <br />
     </div>
+        <div class="modal fade in" id="DivShare" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                            <h4 class="modal-title" id="H9" style="margin-top: -5px;text-align:center;">Rename</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-control-label">
+                                    <label for="txtfolder" style="color: #4a4a4a;float:left;">Enter Name</label>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <div class="form-line">
+                                            <input type="text" runat="server" id="Text1" class="form-control" style="border: 1px solid #e2d9d9; border-radius: 4px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                          <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <asp:Button runat="server" ID="Button7" CssClass="btn btn-info waves-effect"   Text="Rename" style="float: left;width: 100%;" />
+                          </div>
+                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;" >Close</button>
+                        </div>
+                              </div></div>
+                    </div>
+                </div>
+
+            </div>
     </form>
 </body>
 </html>

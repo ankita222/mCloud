@@ -8,9 +8,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading" style="margin-bottom:50px;">
-                        <h1 style="color:black;">About Us </h1>
-                       <p class="text-muted">The Privacy Company</p>
-                        <p class="text-muted">We Moil Cloud provide complete storage of any kind of data, that is fully secure and encrypted. Data can be accesible from any where in worldwide. User can also share their data with other Moil Cloud User</p>
+                        <h1 style="color:black;">Oops!</h1>
+                       
+                        <h1 class="text-muted">We Moil Cloud provide complete storage of any kind of data, that is fully secure and encrypted. Data can be accesible from any where in worldwide. User can also share their data with other Moil Cloud User</h1>
                         <hr style="max-width: 1067px; border-color:#b9b7b7;"/>
                         
                         <h1>How secure is Moil Cloud?</h1>
