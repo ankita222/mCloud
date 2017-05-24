@@ -121,8 +121,16 @@
 }
     </style>
 
+    <script type="text/javascript">
+        function ShowPopup() {
+            $("#btnShowPopup").click();
+        }
+    </script> 
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <button type="button" style="display: none;" id="btnShowPopup" class="md-trigger" data-target="#DivShare" data-toggle="modal">
+    </button>
  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
        <asp:Button runat="server" ID="btnextract" OnClick="btnextract_Click" style="visibility:hidden"/>  
     <div class="container-fluid">    
@@ -308,7 +316,46 @@
 
             </div>
 
-               <div class="modal fade in" id="DivRename" tabindex="-1" role="dialog">
+        
+        <div class="modal fade in" id="DivShare" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                            <h4 class="modal-title" id="H9" style="margin-top: -5px;text-align:center;">Share With</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-control-label">
+                                    <label for="txtShare" style="color: #4a4a4a;float:left;">MoilCloud UserId</label>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <div class="form-line">
+                                            <input type="text" runat="server" id="txtShare" class="form-control" style="border: 1px solid #e2d9d9; border-radius: 4px;" />
+
+                                        </div>
+                                         <div class="form">
+                                             <asp:Label ID="lblShareError" ForeColor="Red" runat="server" Visible="false" Font-Size="Small"></asp:Label>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="color: white;">
+                          <div class="row clearfix">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                            <asp:Button runat="server" ID="btnShare" CssClass="btn btn-info waves-effect" OnClick="btnShare_Click" Text="Share" style="float: left;width: 100%;" />
+                          </div>
+                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
+                                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;" >Close</button>
+                        </div>
+                              </div></div>
+                    </div>
+                </div>
+
+            </div>
+
+        <div class="modal fade in" id="DivRename" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
@@ -342,7 +389,7 @@
 
             </div>
 
-               <div class="modal fade in" id="deletefolder" tabindex="-1" role="dialog">
+        <div class="modal fade in" id="deletefolder" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">

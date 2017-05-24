@@ -121,24 +121,6 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.WebControls.Button btnupload;
         
         /// <summary>
-        /// txtrename control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtrename;
-        
-        /// <summary>
-        /// btnrename control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnrename;
-        
-        /// <summary>
         /// txtShare control.
         /// </summary>
         /// <remarks>
@@ -164,6 +146,24 @@ namespace mCloud.UserPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShare;
+        
+        /// <summary>
+        /// txtrename control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtrename;
+        
+        /// <summary>
+        /// btnrename control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnrename;
         
         /// <summary>
         /// button4 control.
