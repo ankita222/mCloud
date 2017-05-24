@@ -44,7 +44,8 @@ namespace mCloud.UserPage
 
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
-                if (ReqFolder == "files")
+              
+           if (ReqFolder == "files")
                 {
                     //CreateSiteMap("files");
                     //LoadSiteMap("Files");
@@ -59,11 +60,201 @@ namespace mCloud.UserPage
                     // LoadSiteMap("Contact");
                     LoadContactFolder("Contact");
                 }
-                if (ReqFolder != "contact")
+                else if (ReqFolder == "sharedby")
+                {
+                    LoadSharedBy();
+                }
+                else if (ReqFolder == "shared")
+                {
+                    LoadSharedWith();
+                }
+
+                if (ReqFolder != "contact"&&ReqFolder!= "sharedby"&& ReqFolder != "shared")
                 {
                     loadDirectory();
                     loadFiles();
                 }
+               
+            }
+        }
+
+        public void LoadSharedBy()
+        {
+
+
+            try
+            {
+                string name = Session["id"].ToString();
+                string getshareddoc = "select * from SharedFiles where SharedBy ='" + name + "'";
+                DataTable dtshare = new DataTable();
+
+                dtshare = DAL.FunDataTable(getshareddoc);
+
+                if (dtshare != null)
+                {
+
+                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    {
+                        string path = dtshare.Rows[i]["FilePath"].ToString();
+                        //check for it is directory or file
+                        int dir;
+                        FileAttributes attr = File.GetAttributes(path);
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                        {
+                            string str = dtshare.Rows[i]["FilleName"].ToString();
+                            string image = "~/UserPage/images/folder_PNG8771.png";
+                            object[] o1 = { str, image };
+                            dt_temp.Rows.Clear();
+                            dt_temp.Rows.Add(o1);
+                            Repeater1.DataSource = dt_temp;
+                            Repeater1.DataBind();
+
+                        }
+                        else
+                        {
+                            //string sender = dtshare.Rows[i]["Sender"].ToString();
+                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
+                            FileInfo Files = new FileInfo(path);
+                            string ext = Files.Extension;
+                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
+                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                            {
+                                image = "~/UserPage/images/imags.png";
+                            }
+                            else if (ext == ".pdf")
+                            {
+                                image = "~/UserPage/images/ODF.png";
+                            }
+                            else if (ext == ".exe" || ext == ".msi")
+                            {
+                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                            }
+                            else if (ext == ".doc" || ext == ".docx")
+                            {
+                                image = "~/UserPage/images/document-626142_640 (1).png";
+                            }
+                            else if (ext == ".xls" || ext == ".xlsx")
+                            {
+                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                            }
+                            else if (ext == ".txt")
+                            {
+                                image = "~/UserPage/images/file-txt.png";
+                            }
+                            else if (ext == ".zip")
+                            {
+                                image = "~/UserPage/images/file-zip-alt.png";
+                            }
+                            else
+                            {
+                                image = "~/UserPage/images/file-512.png";
+                            }
+                            object[] o = { str1, image };
+                            dt_temp.Rows.Add(o);
+                            Repeater2.DataSource = dt_temp;
+                            Repeater2.DataBind();
+                        }
+
+
+                    }
+                }
+                // for loading 
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void LoadSharedWith()
+        {
+
+
+            try
+            {
+                string name = Session["id"].ToString();
+                string getshareddoc = "select * from SharedFiles where SharedWith ='" + name + "'";
+                DataTable dtshare = new DataTable();
+
+                dtshare = DAL.FunDataTable(getshareddoc);
+
+                if (dtshare != null)
+                {
+
+                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    {
+                        string path = dtshare.Rows[i]["FilePath"].ToString();
+                        //check for it is directory or file
+                        int dir;
+                        FileAttributes attr = File.GetAttributes(path);
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                        {
+                            string str = dtshare.Rows[i]["FilleName"].ToString();
+                            string image = "~/UserPage/images/folder_PNG8771.png";
+                            object[] o1 = { str, image };
+                            dt_temp.Rows.Clear();
+                            dt_temp.Rows.Add(o1);
+                            Repeater1.DataSource = dt_temp;
+                            Repeater1.DataBind();
+
+                        }
+                        else
+                        {
+                            //string sender = dtshare.Rows[i]["Sender"].ToString();
+                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
+                            FileInfo Files = new FileInfo(path);
+                            string ext = Files.Extension;
+                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
+                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                            {
+                                image = "~/UserPage/images/imags.png";
+                            }
+                            else if (ext == ".pdf")
+                            {
+                                image = "~/UserPage/images/ODF.png";
+                            }
+                            else if (ext == ".exe" || ext == ".msi")
+                            {
+                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                            }
+                            else if (ext == ".doc" || ext == ".docx")
+                            {
+                                image = "~/UserPage/images/document-626142_640 (1).png";
+                            }
+                            else if (ext == ".xls" || ext == ".xlsx")
+                            {
+                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                            }
+                            else if (ext == ".txt")
+                            {
+                                image = "~/UserPage/images/file-txt.png";
+                            }
+                            else if (ext == ".zip")
+                            {
+                                image = "~/UserPage/images/file-zip-alt.png";
+                            }
+                            else
+                            {
+                                image = "~/UserPage/images/file-512.png";
+                            }
+                            object[] o = { str1, image };
+                            dt_temp.Rows.Add(o);
+                            Repeater2.DataSource = dt_temp;
+                            Repeater2.DataBind();
+                        }
+
+
+                    }
+                }
+                // for loading 
+
+            }
+
+            catch (Exception ex)
+            {
+
             }
         }
 

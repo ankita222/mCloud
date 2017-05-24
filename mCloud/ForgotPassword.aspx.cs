@@ -58,14 +58,20 @@ namespace mCloud
                     DataTable dt = (DataTable)ViewState["dtchk"];
                     string mailid = dt.Rows[0]["Email"].ToString();
                     string otp = al.GenOTP();
-                    Session["Reset_OTP"] = otp;
+                    //for smsotp
+                    //string OTPrespo = al.SendOTP(Session["Mob"].ToString(),
+                    //        "MoilCloud OTP: " + otp + " OTP is confidential and not to be disclosed to anyone."
+                    //        );
+                    //string[] SplitOTP = OTPrespo.Split('|');
+                    //if (SplitOTP[0] == "SUBMIT_SUCCESS ")
+                    //{
+                    //    //DO SOMETHING 
 
-                    int i = al.SendMail(mailid, "Moil Cloud Reset Password", "Enter Following Code To Set New Password :  " + otp + "");
-                    if (i == 1)
-                    {
-                        divchoose.Visible = false;
-                        divOTP.Visible = true;
-                    }
+                    //    divchoose.Visible = false;
+                    //    divOTP.Visible = true;
+                    //}
+
+
                 }
                 else if (rbtmobile.Checked == true)
                 {
@@ -121,8 +127,17 @@ namespace mCloud
                 string mailid = dtchk.Rows[0]["Email"].ToString();
                 string otp = al.GenOTP();
                 Session["Reset_OTP"] = otp;
+                //for smsotp
+                //string OTPrespo = al.SendOTP(Session["Mob"].ToString(),
+                //            "MoilCloud OTP: " + otp + " OTP is confidential and not to be disclosed to anyone."
+                //            );
+                //string[] SplitOTP = OTPrespo.Split('|');
+                //if (SplitOTP[0] == "SUBMIT_SUCCESS ")
+                //{
+                //    //DO SOMETHING 
+                //}
 
-                int i = al.SendMail(mailid, "Moil Cloud Reset Password", "Enter Following Code To Set New Password :  " + otp + "");
+               
             }
             catch(Exception ex)
             { MDal.OnError(ex);  }
