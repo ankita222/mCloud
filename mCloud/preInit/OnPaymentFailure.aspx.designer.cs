@@ -10,7 +10,8 @@
 namespace mCloud.preInit {
     
     
-    public partial class Success {
+    public partial class OnPaymentFailure
+    {
         
         /// <summary>
         /// SrcripManager control.

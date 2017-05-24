@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Net.Mail;
 using System.Configuration;
+using System.Net;
 #endregion
 
 namespace mCloud.App_Code
@@ -193,7 +194,7 @@ namespace mCloud.App_Code
         #region File Encryption
         public void Encrypt(string inputFilePath, string outputfilePath)
         {
-            string EncryptionKey = "MAKV2SPBNI99212";
+            string EncryptionKey = "SZKRKJAAV983552";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -220,7 +221,7 @@ namespace mCloud.App_Code
         #region File Decryption
         public void Decrypt(string inputFilePath, string outputfilePath)
         {
-            string EncryptionKey = "MAKV2SPBNI99212";
+            string EncryptionKey = "SZKRKJAAV983552";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -321,6 +322,28 @@ namespace mCloud.App_Code
         {
             DirectoryInfo di = new DirectoryInfo(folderPath);
             return di.EnumerateFiles("*", SearchOption.AllDirectories).Sum(fi => fi.Length);
+        }
+        #endregion
+
+        #region SEND OTP
+        public string SendOTP(string mob, string message)
+        {
+            string smsUname = ConfigurationManager.AppSettings["smsUser"];
+            string smsPass = ConfigurationManager.AppSettings["smsPass"];
+            WebClient htpclient = new WebClient();
+            htpclient.QueryString.Add("username", smsUname);
+            htpclient.QueryString.Add("password", smsPass);
+            htpclient.QueryString.Add("type", "TEXT");
+            htpclient.QueryString.Add("sender", "MCLOUD");
+            htpclient.QueryString.Add("mobile", mob);
+            htpclient.QueryString.Add("message", message);
+            string baseurl = "http://sms.techizas.com/sendsms/sendsms.php";
+            Stream data = htpclient.OpenRead(baseurl);
+            StreamReader reader = new StreamReader(data);
+            string s = reader.ReadToEnd();
+            data.Close();
+            reader.Close();
+            return (s);
         }
         #endregion
     }

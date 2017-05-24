@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace mCloud.preInit
 {
-    public partial class Success : System.Web.UI.Page
+    public partial class OnPaymentFailure : System.Web.UI.Page
     {
 
         //mCloudDAL mDAL = new App_Code.mCloudDAL();

@@ -58,9 +58,14 @@ namespace mCloud
                             Session["Email"] = txtmail.Text;
                         }
 
-                        //SMS API CODE HERE
-
-                        Response.Redirect("preInit/Activity.aspx");
+                        string OTPrespo = AL.SendOTP(Session["Mob"].ToString(),
+                            "MoilCloud OTP: " + otp + " OTP is confidential and not to be disclosed to anyone."
+                            );
+                        string[] SplitOTP = OTPrespo.Split('|');
+                        if (SplitOTP[0] == "SUBMIT_SUCCESS ")
+                        {
+                            Response.Redirect("~/preInit/Activity.aspx");
+                        }
                     }
                 }
                 else

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Success.aspx.cs" Inherits="mCloud.preInit.Success" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="OnPaymentSuccess.aspx.cs" Inherits="mCloud.preInit.OnPaymentSuccess" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>PaymentSuccess</title>
     <!-- Bootstrap Core CSS -->
