@@ -11,7 +11,7 @@ namespace mCloud.preInit
 {
 
 
-    public partial class PaymentSucces
+    public partial class PaymentWebHook
     {
     }
 }

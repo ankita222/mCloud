@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace mCloud.preInit
 {
-    public partial class PaymentFailure : System.Web.UI.Page
+    public partial class PaymentWebHook : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

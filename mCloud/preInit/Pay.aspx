@@ -54,8 +54,9 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>
-                                    <asp:Button runat="server" ID="btnPayNow" CssClass="btn btn-sm btn-info" Text="Pay Now" OnClick="btnPayNow_Click" />
+                                <td style=" text-align:right;">
+                                    <a runat="server" id="paybtn" href="#" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Pay Now"></a>
+                                    <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
                                 </td>
                             </tr>
                         </table>
