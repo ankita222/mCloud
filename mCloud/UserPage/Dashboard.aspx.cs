@@ -66,17 +66,44 @@ namespace mCloud.UserPage
             try
             {
                 string name = Session["id"].ToString();
-                DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
-                this.PopulateTreeView(rootInfo, null);
-                this.PopulateTreeView2(rootInfo,null);
+                // DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+
+                //////      Changes-------------------////////////////////////
+                SetTreeViewCopyPath();
+                SetTreeViewMovePath();
+                /////       End Changes ----------------------------////////
+
+                // this.PopulateTreeViewMove(rootInfo, null);
+                // this.PopulateTreeViewCopy(rootInfo,null);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        #region Temporary treeview path set
+        protected void  SetTreeViewCopyPath()
+        {
+             string name = Session["id"].ToString();
+            
+            DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+            TreeNode parentNode = new TreeNode("Dashboard");
+                       TreeViewCopy.Nodes.Add(parentNode);
+           this.PopulateTreeViewCopy(rootInfo, parentNode);
+        }
+        protected void SetTreeViewMovePath()
+        {
+            string name = Session["id"].ToString();
+            DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
+            TreeNode parentNode = new TreeNode("Dashboard");
+            TreeViewMove.Nodes.Add(parentNode);
+            this.PopulateTreeViewMove(rootInfo, parentNode);
 
-        private void PopulateTreeView(DirectoryInfo dirInfo, TreeNode treeNode)
+            //TreeViewCopy.Nodes.Add(parentNode);
+            //this.PopulateTreeViewCopy(rootInfo, parentNode);
+        }
+        #endregion
+        private void PopulateTreeViewCopy(DirectoryInfo dirInfo, TreeNode treeNode)
         {
             try
             {
@@ -92,8 +119,8 @@ namespace mCloud.UserPage
                     {
                         //If Root Node, add to TreeView.
                         //    TreeView1.Nodes.Add(directoryNode);
-                       TreeView1.Nodes.Add(directoryNode);
-                     
+
+                        TreeViewCopy.Nodes.Add(directoryNode);
 
                     }
                     else
@@ -116,7 +143,7 @@ namespace mCloud.UserPage
                     //    directoryNode.ChildNodes.Add(fileNode);
                     //}
 
-                    PopulateTreeView(directory, directoryNode);
+                    PopulateTreeViewCopy(directory, directoryNode);
                 }
 
             }
@@ -124,8 +151,7 @@ namespace mCloud.UserPage
             {
             }
         }
-
-        private void PopulateTreeView2(DirectoryInfo dirInfo, TreeNode treeNode)
+        private void PopulateTreeViewMove(DirectoryInfo dirInfo, TreeNode treeNode)
         {
             try
             {
@@ -141,8 +167,8 @@ namespace mCloud.UserPage
                     {
                         //If Root Node, add to TreeView.
                         //    TreeView1.Nodes.Add(directoryNode);
-                       
-                        TreeView2.Nodes.Add(directoryNode);
+                        TreeViewMove.Nodes.Add(directoryNode);
+
 
                     }
                     else
@@ -165,7 +191,7 @@ namespace mCloud.UserPage
                     //    directoryNode.ChildNodes.Add(fileNode);
                     //}
 
-                    PopulateTreeView2(directory, directoryNode);
+                    PopulateTreeViewMove(directory, directoryNode);
                 }
 
             }
@@ -173,6 +199,10 @@ namespace mCloud.UserPage
             {
             }
         }
+      
+       
+
+        
         protected void LoadSiteMap(String UserId)
         {
             Object[] o = { UserId };
@@ -181,129 +211,152 @@ namespace mCloud.UserPage
             rptbreadcrumps.DataSource = dtSiteMap;
             rptbreadcrumps.DataBind();
         }
-
-        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
-        {
-        }
-
         protected void btnmoveok_ServerClick(object sender, EventArgs e)
         {
-            string path = TreeView1.SelectedNode.ValuePath;
+            string path = TreeViewMove.SelectedValue.ToString();
 
-            string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater2.Items)
+            if (path == "Dashboard")
             {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+                path = Server.MapPath("~//Users//" + Session["id"].ToString());
+            }
+            int x = CheckRepeaterCount();
+            if (x <= 0)
+            {
+                Response.Write("<Script>alert('Select file')</Script>");
+            }
+            else
+            {
+                string username = Session["id"].ToString();
+                foreach (RepeaterItem ri in Repeater2.Items)
                 {
-                    string name = lbl.Text;
-
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + username));//Assuming Test is your Folder
-                    FileInfo[] Files = d.GetFiles();
-                    foreach (FileInfo file in Files)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        if (file.Name == name)
+                        string name = lbl.Text;
+                        string Path2 = GetCurrentPath();
+                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
                         {
-                            string filepath = file.FullName;
+                            if (file.Name == name)
+                            {
+                                string filepath = file.FullName;
 
-                            File.Move(@filepath, @path + "\\" + name);
+                                File.Move(@filepath, @path + "\\" + name);
+                            }
                         }
                     }
                 }
-            }
 
-            Response.Redirect(Request.RawUrl);
+                //Response.Redirect(Request.RawUrl);
+            }
 
         }
         protected void btnarchive_Click(object sender, EventArgs e)
         {
             string zipname = txtzipname.Value;
             string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater1.Items)
+            int x = CheckRepeaterCount();
+            if (x <= 0)
             {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+                Response.Write("<Script>alert('Select Folder to archive')</Script>");
+            }
+            else
+            { 
+                foreach (RepeaterItem ri in Repeater1.Items)
                 {
-                    string name = lbl.Text;
-                    string Path2 = GetCurrentPath();
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
-                    DirectoryInfo[] Files = d.GetDirectories();
-                    foreach (DirectoryInfo file in Files)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        if (file.Name == name)
+                        string name = lbl.Text;
+                        string Path2 = GetCurrentPath();
+                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                        DirectoryInfo[] Files = d.GetDirectories();
+                        foreach (DirectoryInfo file in Files)
                         {
-                            string startPath = file.FullName;
-                            //string h = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\Mudassar Khan.vcf";
-                            //string v = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\wwwww.zip";
-                            string t = Path.GetDirectoryName(startPath);
-                            string zipPath = @t + "\\" + zipname + ".zip";
+                            if (file.Name == name)
+                            {
+                                string startPath = file.FullName;
+                                //string h = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\Mudassar Khan.vcf";
+                                //string v = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\wwwww.zip";
+                                string t = Path.GetDirectoryName(startPath);
+                                string zipPath = @t + "\\" + zipname + ".zip";
 
 
-                          //  string extractPath = @"c:\example\extract";
+                                //  string extractPath = @"c:\example\extract";
 
-                            ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
+                                ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
+                                
 
+
+                            }
 
                         }
-
                     }
-                }
 
+                }
+                loadDirectory();
+                loadFiles();
             }
-           
         }
         protected void btncopyfile_ServerClick(object sender, EventArgs e)
         {
-            string path = TreeView2.SelectedValue.ToString();
-
-           // string username = Session["id"].ToString();
-            foreach (RepeaterItem ri in Repeater2.Items)
+            string path = TreeViewCopy.SelectedValue.ToString();
+            if (path =="Dashboard")// Session["id"].ToString())
             {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
-                {
-                    string name = lbl.Text;
-                    string Path2 = GetCurrentPath();
-                    DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
-                    FileInfo[] Files = d.GetFiles();
-                    foreach (FileInfo file in Files)
-                    {
-                        if (file.Name == name)
-                        {
-                            string filepath = file.FullName;
-                            string DestinationPath = path + "\\"+name;
-                            try
-                            {
-                                 File.Copy(@filepath, @DestinationPath, true);
-                              //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
-                            }
-                            catch (Exception ex)
-                            {
-                                throw ex;
-                            }
-                            
-                        }
-                    }
-
-                }
+                path = MapPath(@"~//Users//" + Session["id"].ToString());
             }
-            
-            Response.Redirect(Request.RawUrl);
+
+            // string username = Session["id"].ToString();
+            int x = CheckRepeaterCount();
+            if (x <= 0)
+            {
+                Response.Write("<Script>alert('Select File')</Script>");
+            }
+            else
+            {
+                foreach (RepeaterItem ri in Repeater2.Items)
+                {
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
+                    {
+                        string name = lbl.Text;
+                        string Path2 = GetCurrentPath();
+                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
+                        {
+                            if (file.Name == name)
+                            {
+                                string filepath = file.FullName;
+                                string DestinationPath = path + "\\" + name;
+                                try
+                                {
+                                    File.Copy(@filepath, @DestinationPath, true);
+                                    //  File.Copy(@filepath, @"D:\\Project\\"+name, true);
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw ex;
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+
+             //   Response.Redirect(Request.RawUrl);
+            }
         }
-        //protected void CreateSiteMap(string RedirectedFolderName)
-        //{
-        //    //dtSiteMap.Columns.Add("dir", typeof(String));
-        //    dtSiteMap.Rows.Add("Files");
-        //}
         protected void CreateSiteMap()
         {
             dtSiteMap.Columns.Add("dir",typeof(String));
 
         }
-
         public void CreateTable()
         {
             dt_temp.Columns.Add("Image", typeof(string));
@@ -311,7 +364,6 @@ namespace mCloud.UserPage
          
             // dt_temp.Columns.Add("Folder", typeof(string));  
         }
-
         public void loadDirectory()
         {
             try
@@ -429,7 +481,12 @@ namespace mCloud.UserPage
                 //string mobile = txtmobile.Value;
                 //string map=MapPath("~\\Users\\"+mobile);
                 System.IO.Directory.CreateDirectory(map);
+        
                 loadDirectory();
+                TreeViewMove.Nodes.Clear();
+                TreeViewCopy.Nodes.Clear();
+                treeFolder();
+                
             }
         }
         protected void btnupload_Click(object sender, EventArgs e)
@@ -712,6 +769,10 @@ namespace mCloud.UserPage
 
                 loadDirectory();
                 loadFiles();
+
+                TreeViewMove.Nodes.Clear();
+                TreeViewCopy.Nodes.Clear();
+                treeFolder();
             }
             
             // Code to reload current page.
@@ -780,10 +841,12 @@ namespace mCloud.UserPage
                                         Response.Write("<Script>alert('Directory is not Empty''" + ex.ToString() + "')</script>");
                                     }
 
-
                                 }
 
                             }
+                            TreeViewMove.Nodes.Clear();
+                            TreeViewCopy.Nodes.Clear();
+                            treeFolder();
                         }
                     }
                 }
@@ -932,6 +995,57 @@ namespace mCloud.UserPage
             return x;
         }
 
+        protected void btnextract_Click(object sender, EventArgs e)
+        {
+           
+            string username = Session["id"].ToString();
+            int x = CheckRepeaterCount();
+            if (x <= 0)
+            {
+                Response.Write("<Script>alert('Select Folder to archive')</Script>");
+            }
+            else
+            {
+                foreach (RepeaterItem ri in Repeater2.Items)
+                {
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
+                    {
+                        string name = lbl.Text;
+                        string Path2 = GetCurrentPath();
+                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
+                        {
+                            if (file.Name == name)
+                            {
+                                string startPath = file.FullName;
+                                string t = Path.GetDirectoryName(startPath);
+                                string f = Path.GetFileNameWithoutExtension(startPath);
+                               
+
+
+
+                                //  string extractPath = @"c:\example\extract";
+
+
+                                ZipFile.ExtractToDirectory(startPath, t+"\\"+f);
+
+
+
+
+                            }
+
+                        }
+                    }
+
+                }
+                loadDirectory();
+                loadFiles();
+            }
+        }
+
         //protected void btnfilefav_Command(object sender, CommandEventArgs e)
         //{
         //    string fav_File_Name = e.CommandArgument.ToString();
@@ -939,7 +1053,7 @@ namespace mCloud.UserPage
 
         //protected void btnFav_Command1(object sender, CommandEventArgs e)
         //{
-         
+
         //        //string name = e.CommandArgument.ToString();
         //        string path2 = "/Users/";
         //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
@@ -948,7 +1062,7 @@ namespace mCloud.UserPage
         //        {
         //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
         //        }
-            
+
         //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
         //    {
         //        sw.WriteLine(path2);

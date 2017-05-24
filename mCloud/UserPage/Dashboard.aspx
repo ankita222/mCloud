@@ -29,6 +29,10 @@
             document.getElementById('<%= btndownload.ClientID %>').click();
         }
 
+        function BtnClick() {
+            //alert('Welcome');
+            document.getElementById('<%= btnextract.ClientID %>').click();
+        }
     </script>
 
     <style>
@@ -120,7 +124,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
-
+       <asp:Button runat="server" ID="btnextract" OnClick="btnextract_Click" style="visibility:hidden"/>  
     <div class="container-fluid">    
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
@@ -415,7 +419,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-control-label">
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
-                                  <asp:TreeView ID="TreeView2" runat="server" Target="_self" NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
+                                  <asp:TreeView ID="TreeViewCopy" runat="server" Target="_self" NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png">
                                          <HoverNodeStyle  ForeColor="BurlyWood" />
                                             <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
 
@@ -460,7 +464,7 @@
                                    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-                                  <asp:TreeView ID="TreeView1" runat="server" Target="_self"  NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
+                                  <asp:TreeView ID="TreeViewMove" runat="server" Target="_self"  NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png">
                                          <HoverNodeStyle  ForeColor="BurlyWood" />
                                             <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
 
