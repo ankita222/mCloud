@@ -481,7 +481,6 @@ namespace mCloud.UserPage
                 }
                 else
                 {
-
                     string filePath = string.Empty;
                     string contenttype = string.Empty;
                     string filename = string.Empty;
@@ -569,7 +568,7 @@ namespace mCloud.UserPage
                     }
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {}
         }
         protected void btnrename_Click(object sender, EventArgs e)
@@ -939,7 +938,7 @@ namespace mCloud.UserPage
 
         //protected void btnFav_Command1(object sender, CommandEventArgs e)
         //{
-         
+
         //        //string name = e.CommandArgument.ToString();
         //        string path2 = "/Users/";
         //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
@@ -948,7 +947,7 @@ namespace mCloud.UserPage
         //        {
         //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
         //        }
-            
+
         //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
         //    {
         //        sw.WriteLine(path2);
@@ -960,5 +959,83 @@ namespace mCloud.UserPage
 
         //}
 
+
+
+        protected void btnShare_Click(object sender, EventArgs e)
+        {
+            if (txtShare.Value != "")
+            {
+                lblShareError.Visible = false;
+                object count = DAL.FunExecuteScalar("SELECT COUNT(UserId) FROM UserDetails WHERE UserId='" + txtShare.Value + "'");
+                if (int.Parse(count.ToString()) > 0)
+                {
+                    string t = getpathoffile();
+                    string[] o = t.Split('|');
+                    object c = DAL.FunExecuteScalar("select count(*) From SharedFiles where SharedWith='" + txtShare.Value + "'and SharedBy='" + Session["id"].ToString() + "' and FilePath='" + o[0] + "'");
+                    if (int.Parse(c.ToString()) > 0)
+                    {
+                        lblShareError.Visible = true;
+                        lblShareError.Text = "Already Shared With " + txtShare.Value;
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                    }
+                    else
+                    {
+
+                        SqlParameter[] param =
+                            {
+                            new SqlParameter("@SharedBy", Session["id"].ToString()),
+                            new SqlParameter("@SharedWith", txtShare.Value),
+                            new SqlParameter("@Date", DateTime.Now),
+                            new SqlParameter("@FilleName", o[1]),
+                            new SqlParameter("@FilePath", o[0]),
+                        };
+                        int x = DAL.FunExecuteNonQuerySP("ust_sharing", param);
+                    }
+                }
+                else
+                {
+                    lblShareError.Visible = true;
+                    lblShareError.Text = "MoilCloud account not found!";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                }
+
+            }
+            else
+            {
+                lblShareError.Visible = true;
+                lblShareError.Text = "Enter MoilCloud Id";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+            }
+
+
+        }
+
+
+        public string getpathoffile()
+        {
+            string filepath = "";
+            string fname = "";
+            string path2 = GetCurrentPath();
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
+                {
+                    string name = lbl.Text;
+                    DirectoryInfo d = new DirectoryInfo(MapPath(@path2));
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (FileInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            filepath = file.FullName;
+                            fname = file.Name;
+                        }
+                    }
+                }
+            }
+            return filepath + "|" + fname;
+        }
     }
 }

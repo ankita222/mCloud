@@ -130,6 +130,33 @@ namespace mCloud.UserPage {
         protected global::System.Web.UI.WebControls.Button btnrename;
         
         /// <summary>
+        /// txtShare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtShare;
+        
+        /// <summary>
+        /// lblShareError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblShareError;
+        
+        /// <summary>
+        /// btnShare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShare;
+        
+        /// <summary>
         /// button4 control.
         /// </summary>
         /// <remarks>
