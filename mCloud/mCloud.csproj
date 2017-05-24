@@ -368,7 +368,6 @@
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="sitemap.aspx" />
-    <Content Include="SMS.aspx" />
     <Content Include="test.txt" />
     <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
@@ -3837,13 +3836,6 @@
     </Compile>
     <Compile Include="sitemap.aspx.designer.cs">
       <DependentUpon>sitemap.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS.aspx.cs">
-      <DependentUpon>SMS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS.aspx.designer.cs">
-      <DependentUpon>SMS.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPage\EmailVerification.aspx.cs">
       <DependentUpon>EmailVerification.aspx</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="error.aspx.cs" Inherits="mCloud.error" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Oops! error</title>
+    <title>Error</title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
     <section id="Section1" class="features" style="padding: 31px;background-color: rgba(232, 232, 232, 0.34);margin-top: 100px;">
@@ -21,5 +21,6 @@
           <br /><br />
     </div>
     </section>
+    </asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderFooterScript" runat="server">
 </asp:Content>
-
