@@ -69,7 +69,7 @@
                         <br />
 						<div style="display:inline-block;">
                            
-                        <input type="number" runat="server" id="txtMob" placeholder="10 digit mobile number"  class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;" maxlength="10"/>
+                        <input type="text" runat="server" id="txtMob" placeholder="10 digit mobile number"  class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 190px;" maxlength="10" onkeypress="return IsNumeric(event);"/>
                           <br />
                         &nbsp; <asp:Button runat="server" ID="btnverify" CssClass="btn btn-sm btn-info" Text="Send OTP" OnClick="btnverify_Click" />
                               &nbsp; &nbsp;     <%--<asp:Button runat="server" ID="btnresend" CssClass="btn btn-sm btn-info" Text="Resend" />--%>
@@ -84,7 +84,7 @@
                         <br />
 						<div style="display:inline-block;">
                            
-                        <input type="text" runat="server" id="txtOTP" placeholder="Enter OTP" class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 120px;"/>
+                        <input type="text" runat="server" id="txtOTP" placeholder="Enter OTP" class="form-username form-control" style="text-align:center;height: 28px;font-size: 14px;border: 1px solid #0981e8;width: 120px;text-align:center;"/>
                           <br />
                         &nbsp; <asp:Button runat="server" ID="btnVerfyOTP" CssClass="btn btn-sm btn-info" Text="Verify" OnClick="btnVerfyOTP_Click" />
                             </div>
@@ -209,6 +209,13 @@
             alert("eeeee");
             $("#modal-4").modal({ backdrop: true });
         }
+        function IsNumeric(e) {                    
+            var keyCode = e.which ? e.which : e.keyCode
+             var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+           
+
+                    return ret;
+                }
 
     </script>
 	
@@ -224,6 +231,6 @@
 		<script src="js/css-filters-polyfill.js"></script>
 	<script src="modal/js/css-filters-polyfill.js"></script>
      <script src="//getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
-
+    
 
 </asp:Content>

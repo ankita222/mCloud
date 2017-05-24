@@ -153,54 +153,60 @@ namespace mCloud.preInit
 
         protected void btnPay_Click(object sender, EventArgs e)
         {
-            #region TEST CODE
-            //string mobile = Session["Mob"].ToString();
-            //int i = AL.CreateUserFolder(mobile);
-            //if (i == 1)
-            //{
-            //    Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + mobile);
-            //}
-            //else
-            //{
-            //    Response.Write("<script>alert('Something Wrong Occured.')</script>");
-            //}
-            #endregion
+            try {
+                #region TEST CODE
+                //string mobile = Session["Mob"].ToString();
+                //int i = AL.CreateUserFolder(mobile);
+                //if (i == 1)
+                //{
+                //    Response.Redirect("~\\Userpage\\Dashboard.aspx?id=" + mobile);
+                //}
+                //else
+                //{
+                //    Response.Write("<script>alert('Something Wrong Occured.')</script>");
+                //}
+                #endregion
 
-            #region Final Code
-            if (txtPassword.Value != txtCPassword.Value)
-            {
-                Response.Write("<script>alert('Passwords do not match!');</script>");
-            }
-            else if (chbxAgree.Checked == true)
-            {
-                if (lblSelectedPlan.Text != "")
+                #region Final Code
+                if (txtPassword.Value != txtCPassword.Value)
                 {
-                    if (txtMob.Value != "" && txtName.Value != "" && (txtPassword.Value != "" && txtCPassword.Value != ""))
+                    Response.Write("<script>alert('Passwords do not match!');</script>");
+                }
+                else if (chbxAgree.Checked == true)
+                {
+                    if (lblSelectedPlan.Text != "")
                     {
-                        if (txtEmail.Value != "")
-                            Session["Email"] = txtEmail.Value;
+                        if (txtMob.Value != "" && txtName.Value != "" && (txtPassword.Value != "" && txtCPassword.Value != ""))
+                        {
+                            if (txtEmail.Value != "")
+                                Session["Email"] = txtEmail.Value;
+                            else
+                                Session["Email"] = "demosale@moilcloud.com";
+                            Session["Name"] = txtName.Value;
+                            //string[] tokens = lblSelectedPlan.Text.Split('-');
+                            //Session["PlanDescription"] = tokens[1] + " for " + tokens[2];
+                            //Session["PlanAmount"] = tokens[0];
+                            Session["Password"] = AL.PassHash(txtCPassword.Value);
+                            Response.Redirect("Pay.aspx");
+                        }
                         else
-                            Session["Email"] = "demosale@moilcloud.com";
-                        Session["Name"] = txtName.Value;
-                        //string[] tokens = lblSelectedPlan.Text.Split('-');
-                        //Session["PlanDescription"] = tokens[1] + " for " + tokens[2];
-                        //Session["PlanAmount"] = tokens[0];
-                        Session["Password"] = AL.PassHash(txtCPassword.Value);
-                        Response.Redirect("Pay.aspx");
+                            Response.Write("<script>alert('Please fill all required fields.');</script>");
                     }
                     else
-                        Response.Write("<script>alert('Please fill all required fields.');</script>");
+                    //Response.Write("<script>alert('Please Select a Plan.');</script>");
+                    {
+                        lblPaymentSelect.Visible = true;
+                    }
                 }
                 else
-                //Response.Write("<script>alert('Please Select a Plan.');</script>");
-                {
-                    lblPaymentSelect.Visible = true;
-                }
-            }
-            else
-                Response.Write("<script>alert('Please check the agreement to proceed.');</script>");
+                    Response.Write("<script>alert('Please check the agreement to proceed.');</script>");
 
-            #endregion
+                #endregion
+            }
+            catch(Exception ex)
+            {
+                mDAL.OnError(ex);
+            }
         }
     }
 }

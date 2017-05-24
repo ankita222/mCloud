@@ -46,7 +46,7 @@ namespace mCloud
             }
             catch(Exception ex)
             {
-
+                MDal.OnError(ex);
             }
         }
 
@@ -88,7 +88,7 @@ namespace mCloud
             }
             catch(Exception ex)
             {
-
+                MDal.OnError(ex);
             }
             
         }
@@ -110,7 +110,7 @@ namespace mCloud
             }
             catch(Exception ex)
             {
-
+                MDal.OnError(ex);
             }
         }
 
@@ -125,7 +125,7 @@ namespace mCloud
                 int i = al.SendMail(mailid, "Moil Cloud Reset Password", "Enter Following Code To Set New Password :  " + otp + "");
             }
             catch(Exception ex)
-            { }
+            { MDal.OnError(ex);  }
         }
 
         protected void btnreset_Click(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace mCloud
             }
             catch(Exception ex)
             {
-
+                MDal.OnError(ex);
             }
         }
     }

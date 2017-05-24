@@ -24,43 +24,53 @@ namespace mCloud
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (txtMob.Text != "" && txtMob.Text.Length == 10)
+            try
             {
-                SqlParameter[] param =
-                    {
+
+
+                if (txtMob.Text != "" && txtMob.Text.Length == 10)
+                {
+                    SqlParameter[] param =
+                        {
                         new SqlParameter("@UserId", txtMob.Text),
                         new SqlParameter("@Email", txtmail.Text),
                     };
-                object UserExist = DAL.FunExecuteScalarSP("ust_beginregcheck", param);
+                    object UserExist = DAL.FunExecuteScalarSP("ust_beginregcheck", param);
 
-                if (Convert.ToInt32(UserExist) > 0)
-                {
-                    Response.Write("<script>alert('Mobile and/or Email already exist!');</script>");
-                }
-                else
-                {
-                   SqlParameter[] param0 =
+                    if (Convert.ToInt32(UserExist) > 0)
                     {
+                        Response.Write("<script>alert('Mobile and/or Email already exist!');</script>");
+                    }
+                    else
+                    {
+                        SqlParameter[] param0 =
+                         {
                         new SqlParameter("@Mobile", txtMob.Text),
                         new SqlParameter("@Email", txtmail.Text),
                     };
-                    DAL.FunExecuteNonQuerySP("ust_beginreg", param0);
-                    Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
-                    Session["Mob"] = txtMob.Text;
-                    string otp = AL.GenOTP();
-                    Session["HashOtp"] = AL.PassHash(otp);
-                    if (txtmail.Text != "")
-                    {
-                        Session["Email"] = txtmail.Text;
+                        DAL.FunExecuteNonQuerySP("ust_beginreg", param0);
+                        Session["IsdCode"] = ddlIsdCode.SelectedValue.ToString();
+                        Session["Mob"] = txtMob.Text;
+                        string otp = AL.GenOTP();
+                        Session["HashOtp"] = AL.PassHash(otp);
+                        if (txtmail.Text != "")
+                        {
+                            Session["Email"] = txtmail.Text;
+                        }
+
+                        //SMS API CODE HERE
+
+                        Response.Redirect("preInit/Activity.aspx");
                     }
-
-                    //SMS API CODE HERE
-
-                    Response.Redirect("preInit/Activity.aspx");
                 }
+                else
+                    Response.Write("<script>alert('10 digit mobile number only.');</script>");
+
             }
-            else
-                Response.Write("<script>alert('10 digit mobile number only.');</script>");
+            catch(Exception ex)
+            {
+                DAL.OnError(ex);
+            }
         }
     }
 }
