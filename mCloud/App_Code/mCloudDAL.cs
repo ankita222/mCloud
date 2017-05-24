@@ -326,7 +326,7 @@ namespace mCloud.App_Code
             {
                 sw.WriteLine(ex);
                 sw.WriteLine("-----------------" + DateTime.Now + "-----------------");
-                HttpContext.Current.Response.Redirect("~/error.aspx");
+                //HttpContext.Current.Response.Redirect("~/error.aspx");
             }
         }
         #endregion

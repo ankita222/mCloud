@@ -237,6 +237,48 @@
 
                                 </asp:Repeater>
                             </div>
+
+                            <div id="divContact" runat="server" class="row" style="padding: 10px;" visible="false">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <%-- <div class="header">
+                                         <asp:Button ID="btnnewContact" runat="server" CssClass="btn btn-info waves-effect" Text="New" OnClick="btnnewContact_Click"/>
+                                     </div>--%>
+                                    <div class="card">
+
+                                        <div class="body table-responsive" style="overflow-x: auto;">
+                                            <asp:GridView ID="GridView1" runat="server" class="table table-hover" AutoGenerateColumns="false" GridLines="None" HeaderStyle-BackColor="Azure" BorderStyle="Solid" RowStyle-BorderStyle="Solid">
+                                                <Columns>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                                                        <ItemTemplate>
+                                                            <asp:Label type="label" id="label" runat="server" style="opacity: 1; position: static; margin-left: -20px;" Text=" <%# Container.DataItemIndex + 1 %>"/>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="Name" HeaderText="Name" />
+                                                    <asp:BoundField DataField="Contact" HeaderText="Contact" />
+                                                    <asp:BoundField DataField="EMail" HeaderText="E-mail" />
+
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                                                        <ItemTemplate>
+                                                            <asp:Button id="btnDownoad" CssClass="btn" runat="server" style="opacity: 1; position: static; margin-left: -20px;" Text="Download"  CommandArgument='<%#Eval("Contact") %>' OnCommand="btnDownoad_Command" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" >
+                                                        <ItemTemplate>
+                                                            <asp:Button id="btnDel" CssClass="btn" runat="server" style="opacity: 1; position: static; margin-left: -20px;" Text="Del"  CommandArgument='<%#Eval("Contact") %>' OnCommand="btnDel_Command" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%-- <asp:TemplateField HeaderText="E-Mail">
+                                <ItemTemplate>
+                                  <label>ankitaverma.av222@gmail.com</label>
+                                </ItemTemplate>
+                                </asp:TemplateField>--%>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -252,7 +294,7 @@
                         <div class="modal-body">
                             <div class="row clearfix">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-control-label">
-                                    <label for="txtfolder" style="color: #4a4a4a;float:left;">Folder Name</label>
+                                    <label for="txtfolder" style="color:#4a4a4a; float:left;">Folder Name</label>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                     <div class="form-group" style="margin-bottom:0px;">

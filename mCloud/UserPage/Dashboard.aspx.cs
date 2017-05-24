@@ -12,6 +12,8 @@ using System.Net;
 using System.IO.Compression;
 using mCloud.App_Code;
 using System.Web.Security;
+using Thought.vCards;
+
 
 
 namespace mCloud.UserPage
@@ -34,11 +36,12 @@ namespace mCloud.UserPage
             }
             CreateTable();
             CreateSiteMap();
-            
+            divContact.Visible = false;
+
             string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
-                
+
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
                 if (ReqFolder == "files")
@@ -51,13 +54,16 @@ namespace mCloud.UserPage
                 {
                     LoadSiteMap("Images");
                 }
-                else if (ReqFolder=="contact")
+                else if (ReqFolder == "contact")
                 {
-                    LoadSiteMap ("Contact");
+                    // LoadSiteMap("Contact");
+                    LoadContactFolder("Contact");
                 }
-                loadDirectory();
-                loadFiles();
-
+                if (ReqFolder != "contact")
+                {
+                    loadDirectory();
+                    loadFiles();
+                }
             }
         }
 
@@ -81,15 +87,15 @@ namespace mCloud.UserPage
                 throw ex;
             }
         }
-        #region Temporary treeview path set
-        protected void  SetTreeViewCopyPath()
+        #region treeview path set
+        protected void SetTreeViewCopyPath()
         {
-             string name = Session["id"].ToString();
-            
+            string name = Session["id"].ToString();
+
             DirectoryInfo rootInfo = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));
             TreeNode parentNode = new TreeNode("Dashboard");
-                       TreeViewCopy.Nodes.Add(parentNode);
-           this.PopulateTreeViewCopy(rootInfo, parentNode);
+            TreeViewCopy.Nodes.Add(parentNode);
+            this.PopulateTreeViewCopy(rootInfo, parentNode);
         }
         protected void SetTreeViewMovePath()
         {
@@ -199,10 +205,10 @@ namespace mCloud.UserPage
             {
             }
         }
-      
-       
 
-        
+
+
+
         protected void LoadSiteMap(String UserId)
         {
             Object[] o = { UserId };
@@ -263,7 +269,7 @@ namespace mCloud.UserPage
                 Response.Write("<Script>alert('Select Folder to archive')</Script>");
             }
             else
-            { 
+            {
                 foreach (RepeaterItem ri in Repeater1.Items)
                 {
                     HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
@@ -288,7 +294,7 @@ namespace mCloud.UserPage
                                 //  string extractPath = @"c:\example\extract";
 
                                 ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
-                                
+
 
 
                             }
@@ -304,7 +310,7 @@ namespace mCloud.UserPage
         protected void btncopyfile_ServerClick(object sender, EventArgs e)
         {
             string path = TreeViewCopy.SelectedValue.ToString();
-            if (path =="Dashboard")// Session["id"].ToString())
+            if (path == "Dashboard")// Session["id"].ToString())
             {
                 path = MapPath(@"~//Users//" + Session["id"].ToString());
             }
@@ -349,19 +355,19 @@ namespace mCloud.UserPage
                     }
                 }
 
-             //   Response.Redirect(Request.RawUrl);
+                //   Response.Redirect(Request.RawUrl);
             }
         }
         protected void CreateSiteMap()
         {
-            dtSiteMap.Columns.Add("dir",typeof(String));
+            dtSiteMap.Columns.Add("dir", typeof(String));
 
         }
         public void CreateTable()
         {
             dt_temp.Columns.Add("Image", typeof(string));
             dt_temp.Columns.Add("icon", typeof(string));
-         
+
             // dt_temp.Columns.Add("Folder", typeof(string));  
         }
         public void loadDirectory()
@@ -371,14 +377,14 @@ namespace mCloud.UserPage
                 string path2 = "~//Users//";
                 dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
                 {
                     path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
                 }
 
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
-                DirectoryInfo[] Files = d.GetDirectories(); 
+                DirectoryInfo[] Files = d.GetDirectories();
                 string str = "", image = "";
                 foreach (DirectoryInfo file in Files)
                 {
@@ -401,14 +407,14 @@ namespace mCloud.UserPage
         {
             try
             {
-                string path2 = "~//Users//";
-                dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+                //string path2 = "~//Users//";
+                //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
-                {
-                    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
-                }
-
+                //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //{
+                //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                //}
+                string path2 = GetCurrentPath();
                 //DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));//Assuming Test is your Folder
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
                 FileInfo[] Files = d.GetFiles(); //Getting Text files
@@ -468,7 +474,7 @@ namespace mCloud.UserPage
             string path2 = "~//Users//";
             dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-            for (int i = 0;i< dtSiteMap.Rows.Count; i++)
+            for (int i = 0; i < dtSiteMap.Rows.Count; i++)
             {
                 path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
             }
@@ -481,12 +487,12 @@ namespace mCloud.UserPage
                 //string mobile = txtmobile.Value;
                 //string map=MapPath("~\\Users\\"+mobile);
                 System.IO.Directory.CreateDirectory(map);
-        
+
                 loadDirectory();
                 TreeViewMove.Nodes.Clear();
                 TreeViewCopy.Nodes.Clear();
                 treeFolder();
-                
+
             }
         }
         protected void btnupload_Click(object sender, EventArgs e)
@@ -504,7 +510,7 @@ namespace mCloud.UserPage
                 // get contenttype
                 string type = AL.DocType(FileUpload1);
 
-                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type=="Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
+                if (type == "image/gif" || type == "image/png" || type == "image/jpeg" || type == "Image/jpg" || type == "text/plain" || type == "application/pdf" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-excel" || type == "application/vnd.ms-word" || type == "application/vnd.ms-word")
                 {
                     //Get the Input File Name and Extension.
                     string fileName = Path.GetFileNameWithoutExtension(FileUpload1.PostedFile.FileName);
@@ -561,7 +567,8 @@ namespace mCloud.UserPage
         }
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 // string username = Session["id"].ToString();
                 string folder = txtfolder.Value;
                 string path2 = "~//Users//";
@@ -588,7 +595,7 @@ namespace mCloud.UserPage
                             //string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
 
                             string inputfilePath = Server.MapPath(path2 + name);// map;
-                            string outputfilePath = Server.MapPath(path2+"//1"+ name);// map;
+                            string outputfilePath = Server.MapPath(path2 + "//1" + name);// map;
                             string ext = Path.GetExtension(inputfilePath);
 
                             if (ext == ".gif" || ext == ".png" || ext == ".jpeg" || ext == ".jpg" || ext == ".txt" || ext == ".pdf" || ext == ".xls" || ext == ".xlsx" || ext == ".doc" || ext == ".docx")
@@ -620,13 +627,13 @@ namespace mCloud.UserPage
                                 response1.BinaryWrite(data);
                                 response1.End();
                             }
-                            
+
                         }
                     }
                 }
             }
-            catch(Exception)
-            {}
+            catch (Exception)
+            { }
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {
@@ -773,7 +780,7 @@ namespace mCloud.UserPage
                 TreeViewCopy.Nodes.Clear();
                 treeFolder();
             }
-            
+
             // Code to reload current page.
             //Response.Redirect(Request.RawUrl);
         }
@@ -791,11 +798,11 @@ namespace mCloud.UserPage
             //}
             String path2 = GetCurrentPath();
             int x = CheckRepeaterCount();
-            if (x <=0)
+            if (x <= 0)
             {
                 Response.Write("<script>alert('Select file/folder to delete.')</script>");
             }
-            else if(x>0)
+            else if (x > 0)
             {
                 foreach (RepeaterItem ri in Repeater1.Items)
                 {
@@ -860,10 +867,10 @@ namespace mCloud.UserPage
                 {
                     string name = lbl.Text;
                     //string map = MapPath(@"~/Users/" + username + "/" + name);
-                    string map = MapPath(@path2+ "/" + name);
+                    string map = MapPath(@path2 + "/" + name);
                     FileInfo fi = new FileInfo(map);
                     Int64 ln = fi.Length;// (MapPath(@"~/Users/" + username + "/" + name)).Length;
-               //     IncreaseSize(ln, username);
+                                         //     IncreaseSize(ln, username);
                     System.IO.File.Delete(map);
                     //File.Delete(@"~/Users/6354/" + name);
                 }
@@ -872,7 +879,7 @@ namespace mCloud.UserPage
             loadDirectory();
             loadFiles();
 
-            
+
         }
         ///// ///////////////////////     Update the size after deleting.///////////////////////
         /* public void IncreaseSize(Int64 size, string userid)
@@ -905,29 +912,38 @@ namespace mCloud.UserPage
             try
             {
                 string foldername = e.CommandArgument.ToString();
-                string path2 = "~//Users//";
-                dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
-                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //string path2 = "~//Users//";
+                //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+                //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //{
+                //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                //}
+                string path2 = GetCurrentPath();
+                String ContactRootPath = "~//Users//" + Session["id"].ToString() + "//";
+                if (path2 == ContactRootPath && foldername == "Contact")
                 {
-                    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                    LoadContactFolder(foldername);
                 }
-                string path = Server.MapPath(@path2 + foldername);
-                ////////////////////////////////////////////////////////
-                // string name = Session["id"].ToString();
-                DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
-                DirectoryInfo[] dir = d.GetDirectories(); //Getting Text files
-                string str = "", image = "";
-                foreach (DirectoryInfo file in dir)
+                else
                 {
-                    str = file.Name;
-                    image = "~/UserPage/images/folder_PNG8771.png";
-                    object[] o = { str, image };
-                    dt_temp.Rows.Add(o);
+                    string path = Server.MapPath(@path2 + foldername);
+                    ////////////////////////////////////////////////////////
+                    // string name = Session["id"].ToString();
+                    DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
+                    DirectoryInfo[] dir = d.GetDirectories(); //Getting Text files
+                    string str = "", image = "";
+                    foreach (DirectoryInfo file in dir)
+                    {
+                        str = file.Name;
+                        image = "~/UserPage/images/folder_PNG8771.png";
+                        object[] o = { str, image };
+                        dt_temp.Rows.Add(o);
+                    }
+                    Repeater1.DataSource = dt_temp;
+                    Repeater1.DataBind();
+                    LoadSiteMap(foldername);
+                    loadFiles();
                 }
-                Repeater1.DataSource = dt_temp;
-                Repeater1.DataBind();
-                LoadSiteMap(foldername);
-                loadFiles();
             }
             catch (Exception ex)
             {
@@ -935,13 +951,119 @@ namespace mCloud.UserPage
             }
         }
 
+        #region Coding to Load Contact Folder
+        #endregion
+        protected void LoadContactFolder(string FolderName)
+        {
+            LoadSiteMap(FolderName);
+            loadDirectory();
+            try
+            {
+                #region Code to Load Files in Repeater2 except .vcf file
+
+                string path2 = GetCurrentPath();
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
+                FileInfo[] Files = d.GetFiles(); //Getting Text files
+                string str = "", image = "", ext;
+                dt_temp.Rows.Clear();
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext != ".vcf")
+                    {
+                        if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                        {
+                            image = "~/UserPage/images/imags.png";
+                        }
+                        else if (ext == ".pdf")
+                        {
+                            image = "~/UserPage/images/ODF.png";
+                        }
+                        else if (ext == ".exe" || ext == ".msi")
+                        {
+                            image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                        }
+                        else if (ext == ".doc" || ext == ".docx")
+                        {
+                            image = "~/UserPage/images/document-626142_640.png";
+                        }
+                        else if (ext == ".xls" || ext == ".xlsx")
+                        {
+                            image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                        }
+                        else if (ext == ".txt")
+                        {
+                            image = "~/UserPage/images/file-txt.png";
+                        }
+                        else if (ext == ".zip")
+                        {
+                            image = "~/UserPage/images/file-zip-alt.png";
+                        }
+                        else
+                        {
+                            image = "~/UserPage/images/file-512.png";
+                        }
+                        object[] o = { str, image };
+                        dt_temp.Rows.Add(o);
+                    }
+                    Repeater2.DataSource = dt_temp;
+                    Repeater2.DataBind();
+                }
+                #endregion
+
+                #region LoadVCFFiles
+
+                DataTable dtcontact = new DataTable();
+                dtcontact.Columns.Add("Name", typeof(string));
+                dtcontact.Columns.Add("Contact", typeof(string));
+                dtcontact.Columns.Add("EMail", typeof(string));
+
+                str = ""; ext = "";
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext == ".vcf")
+                    {
+                        vCard card = new vCard(file.FullName);
+
+
+                        string Cname, contatc = "", mail = "";
+                        Cname = card.FormattedName;
+
+                        if (card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular) != null)
+                        {
+                            contatc = card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular).FullNumber;
+                        }
+                        if (card.EmailAddresses.GetFirstChoice(vCardEmailAddressType.Internet) != null)
+                        {
+                            mail = card.EmailAddresses.GetFirstChoice(vCardEmailAddressType.Internet).Address;
+                        }
+                        object[] o = { Cname, contatc, mail };
+                        dtcontact.Rows.Add(o);
+
+                        GridView1.DataSource = dtcontact;
+                        GridView1.DataBind();
+                        divContact.Visible = true;
+                    }
+                }
+
+                #endregion
+
+
+            }
+            catch (Exception)
+            {
+            }
+        }
         // Move directly in the Folder Clicking on specific Link
         protected void lnkbtn_Command(object sender, CommandEventArgs e)
         {
             String FolderName = e.CommandArgument.ToString();
-            dtSiteMap =(DataTable) ViewState["VSdtSiteMap"];
+            dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
             int i = 0;
-            while (dtSiteMap.Rows[i]["dir"].ToString()!=FolderName)
+            while (dtSiteMap.Rows[i]["dir"].ToString() != FolderName)
             {
                 i++;
             }
@@ -996,7 +1118,7 @@ namespace mCloud.UserPage
 
         protected void btnextract_Click(object sender, EventArgs e)
         {
-           
+
             string username = Session["id"].ToString();
             int x = CheckRepeaterCount();
             if (x <= 0)
@@ -1151,5 +1273,102 @@ namespace mCloud.UserPage
             }
             return filepath + "|" + fname;
         }
+
+        protected void btnDownoad_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string ContactNo = e.CommandArgument.ToString();
+                #region LoadVCFFiles
+
+                string Path = "~//Users//" + Session["id"].ToString() + "//Contact//";
+                string str = "", ext = "";
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(Path));
+                FileInfo[] Files = d.GetFiles(); //Getting Text files
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext == ".vcf")
+                    {
+                        vCard card = new vCard(file.FullName);
+                        string contact = "", contactname = "", DispName = "";
+                        contactname = card.FormattedName;
+                        DispName = card.Title;
+                        if (card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular) != null)
+                        {
+                            contact = card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular).FullNumber;
+                        }
+
+                        if (ContactNo == contact)
+                        {
+                            //Code for Download Contact.
+                            // Response.Write("aaa");
+                            WebClient req = new WebClient();
+                            HttpResponse response = HttpContext.Current.Response;
+                            WebClient req1 = new WebClient();
+                            HttpResponse response1 = HttpContext.Current.Response;
+                            string filePath = Path + "/" + file.Name;// map;
+                            response1.Clear();
+                            response1.ClearContent();
+                            response1.ClearHeaders();
+                            response1.Buffer = true;
+                            response1.AddHeader("Content-Disposition", "attachment;filename=" + file.Name);
+                            byte[] data = req.DownloadData(Server.MapPath(filePath));
+                            response1.BinaryWrite(data);
+                            response1.End();
+                        }
+                    }
+                }
+
+                Response.Redirect("Dashboard.aspx?type=contact");
+            }
+            catch (Exception ex)
+            {
+                DAL.OnError(ex);
+            }
+            #endregion
+        }
+
+        protected void btnDel_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string ContactNo = e.CommandArgument.ToString();
+                string Path = "~//Users//" + Session["id"].ToString() + "//Contact//";
+                string str = "", ext = "";
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(Path));
+                FileInfo[] Files = d.GetFiles(); //Getting Text files
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext == ".vcf")
+                    {
+                        vCard card = new vCard(file.FullName);
+                        string contact = "", contactname = "", DispName = "";
+                        contactname = card.FormattedName;
+                        DispName = card.Title;
+                        if (card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular) != null)
+                        {
+                            contact = card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular).FullNumber;
+                        }
+
+                        if (ContactNo == contact)
+                        {
+                            string startPath = file.FullName;
+                            File.Delete(startPath);
+                        }
+                    }
+                }
+
+                Response.Redirect("Dashboard.aspx?type=contact");
+            }
+            catch (Exception ex)
+            {
+                DAL.OnError(ex);
+            }
+        }
+
     }
 }
