@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Success.aspx.cs" Inherits="mCloud.preInit.Success" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="OnPaymentFailure.aspx.cs" Inherits="mCloud.preInit.OnPaymentFailure" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>PaymentSuccess</title>
+    <title>Payment Failure</title>
     <!-- Bootstrap Core CSS -->
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 </asp:Content>
@@ -15,8 +15,8 @@
 		   <div class="row">
 				<div class="col-lg-12 col-xs-12 col-sm-12 text-left">
 					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<h3 style="color: #fff;font-weight: 400;line-height: 20px;">Account Sucessfuly Created!</h3>
-						<p class="text-muted" style="font-size: 18px;color: #fff;">Login >> Enjoy </p>
+						<h2 style="color: #fff;font-size: 30px;font-weight: 400;line-height: 20px;">Oops! Something went wrong.</h2>
+						<p class="text-muted" style="font-size: 18px;color: #fff;">Retry or Contact Support</p>
 					</div>
 				</div>
                <br />
@@ -37,8 +37,8 @@
 
                              <tr>
                                  <td colspan="2">
-                                     <asp:Label ID="Label1" runat="server" Text="Successfully registered!" ForeColor="#00CC66" Font-Size="Larger"></asp:Label><br />
-                                     <a href="../Signin.aspx">Sigin In</a>
+                                     <asp:Label ID="Label1" runat="server" Text="Payment Failure!" ForeColor="#FF3300" Font-Size="Large"></asp:Label><br />
+                                     <a href="#">Retry or Contact Support</a>
                                  </td>
 
                              </tr>

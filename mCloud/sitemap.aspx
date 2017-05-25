@@ -59,6 +59,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Button ID="Button8" runat="server" Text="Error!" OnClick="Button8_Click" Width="205px" /><br />
+        <br /><br />
         <asp:Button ID="Button6" runat="server" OnClick="btnWrite_Click" Text="XML Read Write" />
         <div style="margin-bottom:600px;">
         <label class="check">
@@ -115,7 +117,7 @@
         VerticalPadding="0px" />
 </asp:TreeView>
 
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="SPLIT" OnClick="Button1_Click" />
 
         <br />
         <br />

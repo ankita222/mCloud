@@ -25,7 +25,6 @@ namespace mCloud.UserPage
         mCloudAL AL = new mCloudAL();
         mCloudDAL DAL = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
-        DataTable dtfav;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Session["id"] as string))
@@ -42,17 +41,11 @@ namespace mCloud.UserPage
             string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
-                #region Code to create Session Datatable and storing the Favourite items
-                dtfav = new DataTable();
-                dtfav=DAL.FunDataTable("Select [UserId],[FavouriteItemName],[FavouriteItemPath],[ItemType] from [FavouriteList] where [UserId]='"+Session["id"].ToString()+"' ");
-                Session["dtfav"] = dtfav;
-                DataTable dtn = new DataTable();
-                dtn = (DataTable)Session["dtfav"];
-                #endregion
 
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
-                if (ReqFolder == "files")
+              
+           if (ReqFolder == "files")
                 {
                     //CreateSiteMap("files");
                     //LoadSiteMap("Files");
@@ -67,11 +60,201 @@ namespace mCloud.UserPage
                     // LoadSiteMap("Contact");
                     LoadContactFolder("Contact");
                 }
-                if (ReqFolder != "contact")
+                else if (ReqFolder == "sharedby")
+                {
+                    LoadSharedBy();
+                }
+                else if (ReqFolder == "shared")
+                {
+                    LoadSharedWith();
+                }
+
+                if (ReqFolder != "contact"&&ReqFolder!= "sharedby"&& ReqFolder != "shared")
                 {
                     loadDirectory();
                     loadFiles();
                 }
+               
+            }
+        }
+
+        public void LoadSharedBy()
+        {
+
+
+            try
+            {
+                string name = Session["id"].ToString();
+                string getshareddoc = "select * from SharedFiles where SharedBy ='" + name + "'";
+                DataTable dtshare = new DataTable();
+
+                dtshare = DAL.FunDataTable(getshareddoc);
+
+                if (dtshare != null)
+                {
+
+                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    {
+                        string path = dtshare.Rows[i]["FilePath"].ToString();
+                        //check for it is directory or file
+                        int dir;
+                        FileAttributes attr = File.GetAttributes(path);
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                        {
+                            string str = dtshare.Rows[i]["FilleName"].ToString();
+                            string image = "~/UserPage/images/folder_PNG8771.png";
+                            object[] o1 = { str, image };
+                            dt_temp.Rows.Clear();
+                            dt_temp.Rows.Add(o1);
+                            Repeater1.DataSource = dt_temp;
+                            Repeater1.DataBind();
+
+                        }
+                        else
+                        {
+                            //string sender = dtshare.Rows[i]["Sender"].ToString();
+                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
+                            FileInfo Files = new FileInfo(path);
+                            string ext = Files.Extension;
+                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
+                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                            {
+                                image = "~/UserPage/images/imags.png";
+                            }
+                            else if (ext == ".pdf")
+                            {
+                                image = "~/UserPage/images/ODF.png";
+                            }
+                            else if (ext == ".exe" || ext == ".msi")
+                            {
+                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                            }
+                            else if (ext == ".doc" || ext == ".docx")
+                            {
+                                image = "~/UserPage/images/document-626142_640 (1).png";
+                            }
+                            else if (ext == ".xls" || ext == ".xlsx")
+                            {
+                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                            }
+                            else if (ext == ".txt")
+                            {
+                                image = "~/UserPage/images/file-txt.png";
+                            }
+                            else if (ext == ".zip")
+                            {
+                                image = "~/UserPage/images/file-zip-alt.png";
+                            }
+                            else
+                            {
+                                image = "~/UserPage/images/file-512.png";
+                            }
+                            object[] o = { str1, image };
+                            dt_temp.Rows.Add(o);
+                            Repeater2.DataSource = dt_temp;
+                            Repeater2.DataBind();
+                        }
+
+
+                    }
+                }
+                // for loading 
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void LoadSharedWith()
+        {
+
+
+            try
+            {
+                string name = Session["id"].ToString();
+                string getshareddoc = "select * from SharedFiles where SharedWith ='" + name + "'";
+                DataTable dtshare = new DataTable();
+
+                dtshare = DAL.FunDataTable(getshareddoc);
+
+                if (dtshare != null)
+                {
+
+                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    {
+                        string path = dtshare.Rows[i]["FilePath"].ToString();
+                        //check for it is directory or file
+                        int dir;
+                        FileAttributes attr = File.GetAttributes(path);
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                        {
+                            string str = dtshare.Rows[i]["FilleName"].ToString();
+                            string image = "~/UserPage/images/folder_PNG8771.png";
+                            object[] o1 = { str, image };
+                            dt_temp.Rows.Clear();
+                            dt_temp.Rows.Add(o1);
+                            Repeater1.DataSource = dt_temp;
+                            Repeater1.DataBind();
+
+                        }
+                        else
+                        {
+                            //string sender = dtshare.Rows[i]["Sender"].ToString();
+                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
+                            FileInfo Files = new FileInfo(path);
+                            string ext = Files.Extension;
+                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
+                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                            {
+                                image = "~/UserPage/images/imags.png";
+                            }
+                            else if (ext == ".pdf")
+                            {
+                                image = "~/UserPage/images/ODF.png";
+                            }
+                            else if (ext == ".exe" || ext == ".msi")
+                            {
+                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                            }
+                            else if (ext == ".doc" || ext == ".docx")
+                            {
+                                image = "~/UserPage/images/document-626142_640 (1).png";
+                            }
+                            else if (ext == ".xls" || ext == ".xlsx")
+                            {
+                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                            }
+                            else if (ext == ".txt")
+                            {
+                                image = "~/UserPage/images/file-txt.png";
+                            }
+                            else if (ext == ".zip")
+                            {
+                                image = "~/UserPage/images/file-zip-alt.png";
+                            }
+                            else
+                            {
+                                image = "~/UserPage/images/file-512.png";
+                            }
+                            object[] o = { str1, image };
+                            dt_temp.Rows.Add(o);
+                            Repeater2.DataSource = dt_temp;
+                            Repeater2.DataBind();
+                        }
+
+
+                    }
+                }
+                // for loading 
+
+            }
+
+            catch (Exception ex)
+            {
+                DAL.OnError(ex);
             }
         }
 
@@ -240,42 +423,33 @@ namespace mCloud.UserPage
             }
             else
             {
-                try
+                string username = Session["id"].ToString();
+                foreach (RepeaterItem ri in Repeater2.Items)
                 {
-                    string username = Session["id"].ToString();
-                    foreach (RepeaterItem ri in Repeater2.Items)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                        System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                        if (chk.Checked)
+                        string name = lbl.Text;
+                        string Path2 = GetCurrentPath();
+                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
                         {
-                            string name = lbl.Text;
-                            string Path2 = GetCurrentPath();
-                            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
-                            FileInfo[] Files = d.GetFiles();
-                            foreach (FileInfo file in Files)
+                            if (file.Name == name)
                             {
-                                if (file.Name == name)
-                                {
-                                    string filepath = file.FullName;
+                                string filepath = file.FullName;
 
-                                    File.Move(@filepath, @path + "\\" + name);
-                                }
+                                File.Move(@filepath, @path + "\\" + name);
                             }
-                            loadDirectory();
-                            loadFiles();
                         }
-
+                        loadDirectory();
+                        loadFiles();
                     }
+                }
 
-                    //Response.Redirect(Request.RawUrl);
-                }
-                catch (Exception ex)
-                {
-                    DAL.OnError(ex);
-                }
+                //Response.Redirect(Request.RawUrl);
             }
-                
 
         }
         protected void btnarchive_Click(object sender, EventArgs e)
@@ -1186,73 +1360,34 @@ namespace mCloud.UserPage
             }
         }
 
-        protected void btnfilefav_Command(object sender, CommandEventArgs e)
-        {
-            string fav_File_Name = e.CommandArgument.ToString();
-        }
+        //protected void btnfilefav_Command(object sender, CommandEventArgs e)
+        //{
+        //    string fav_File_Name = e.CommandArgument.ToString();
+        //}
 
-        protected void btnFav_Command1(object sender, CommandEventArgs e)
-        {
-            try
-            {
-                string name = e.CommandArgument.ToString();
-                string path2 = GetCurrentPath();
-                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));//Assuming Test is your Folder
-                string fullpath = d.FullName;
-                FileInfo[] Files = d.GetFiles();
-                string type;
-                FileAttributes f = File.GetAttributes(fullpath+name);
-                if ((f & FileAttributes.Directory) == FileAttributes.Directory)
-                {
-                    type = "folder";
-                }
-                else
-                {
-                    type = "file";
-                }
-                string qry = "insert into [FavouriteList](UserId,FavouriteItemName,FavouriteItemPath,ItemType) values ('" + Session["id"].ToString() + "','" + name + "','" + fullpath+name + "','" + type + "')";
-                int x=DAL.FunExecuteNonQuery(qry);
-                if(x>0)
-                {
-                    ChangeIcon(Session["id"].ToString(),name,fullpath+name,type);
-                }
+        //protected void btnFav_Command1(object sender, CommandEventArgs e)
+        //{
 
-            }
-            catch (Exception ex)
-            {
-                DAL.OnError(ex);
-            }
+        //        //string name = e.CommandArgument.ToString();
+        //        string path2 = "/Users/";
+        //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                //foreach (RepeaterItem ri in Repeater1.Items)
-                //{
+        //        for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+        //        {
+        //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+        //        }
 
-            //    ImageButton btnfav = (ImageButton)ri.FindControl("btnFav");
-            //    btnfav.ImageUrl = "~/UserPage/images/fav1.png";
-            //}
-            
-            //string path2 = "/Users/";
-            //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+        //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
+        //    {
+        //        sw.WriteLine(path2);
+        //    }
 
-            //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
-            //{
-            //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
-            //}
+        //    //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
+        //    //    if (x > 0) 
+        //    //    Response.Write("<script>alert('Fav added!');</script>");
 
-            //using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
-            //{
-            //    sw.WriteLine(path2);
-            //}
+        //}
 
-            //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
-            //    if (x > 0) 
-            //    Response.Write("<script>alert('Fav added!');</script>");
-
-        }
-
-        protected void ChangeIcon(string userid, string name, string fullpath, string type)
-        {
-
-        }
 
 
         protected void btnShare_Click(object sender, EventArgs e)

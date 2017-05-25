@@ -31,9 +31,19 @@ namespace mCloud.preInit
                     Session["Mob"] = txtMob.Value;
                     string otp = al.GenOTP();
                     Session["HashOtp"] = al.PassHash(otp);
+
                     //SMS API to send otp string
-                    pnlRenew.Visible = false;
-                    pnlRenewOTP.Visible = true;
+                    string OTPrespo = al.SendOTP(Session["Mob"].ToString(),
+                            "MoilCloud OTP: " + otp + " OTP is confidential and not to be disclosed to anyone."
+                            );
+                    string[] SplitOTP = OTPrespo.Split('|');
+                    if (SplitOTP[0] == "SUBMIT_SUCCESS ")
+                    {
+                        pnlRenew.Visible = false;
+                        pnlRenewOTP.Visible = true;
+                    }
+
+                    
                 }
                 else
                     Response.Write("<script>alert('Account not exist!');</script>");
