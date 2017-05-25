@@ -33,6 +33,7 @@
             //alert('Welcome');
             document.getElementById('<%= btnextract.ClientID %>').click();
         }
+     
     </script>
 
     <style>
@@ -133,6 +134,7 @@
     </button>
  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
        <asp:Button runat="server" ID="btnextract" OnClick="btnextract_Click" style="visibility:hidden"/>  
+
     <div class="container-fluid">    
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
@@ -199,9 +201,9 @@
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                              <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px; width:16px;height:16px;" />
 
-                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1"  CommandArgument='<%#Eval("Image") %>'  />
-                        </span>--%>
+                     <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%"   CommandArgument='<%#Eval("Image") %>' OnCommand="btnFav_Command1"  />
+                        </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
                                              <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
@@ -222,9 +224,9 @@
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;width:16px;height:16px;" />
                          
-                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnfilefav_Command" CommandArgument='<%#Eval("Image") %>'  />
-                        </span>--%>
+                        <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1" CommandArgument='<%#Eval("Image") %>' />
+                        </span>
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 
                                             </div>
@@ -595,6 +597,7 @@
 
         <div id="filecontextmenu" class="context-menu">
             <ul>
+                 
                  <li>
                     <div data-target="#DivShare" data-toggle="modal">
                         <i class="material-icons" style="color: black; font-size: 17px;">folder_shared</i>
