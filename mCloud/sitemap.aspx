@@ -5,6 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script type="text/javascript">
+      function ShowProgressBar() {
+        document.getElementById('dvProgressBar').style.visibility = 'visible';
+      }
+
+      function HideProgressBar() {
+        document.getElementById('dvProgressBar').style.visibility = "hidden";
+      }
+    </script>
     <style type="text/css">
 
 .check {
@@ -59,7 +68,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Button ID="Button8" runat="server" Text="Error!" OnClick="Button8_Click" Width="205px" /><br />
+        <asp:Button ID="Button8" runat="server" Text="Error!" OnClientClick="javascript:ShowProgressBar()" OnClick="Button8_Click" Width="205px" /><br />
         <br /><br />
         <asp:Button ID="Button6" runat="server" OnClick="btnWrite_Click" Text="XML Read Write" />
         <div style="margin-bottom:600px;">
@@ -154,7 +163,16 @@
                     </div>
                 </div>
 
+
+            <div id="dvProgressBar" style="float:left;visibility: hidden;" >
+        <img src="Loading_icon.gif" /> resolving address, please wait...
+  </div>
+  <br style="clear:both" />
+
             </div>
+
+        
+
     </form>
 </body>
 </html>

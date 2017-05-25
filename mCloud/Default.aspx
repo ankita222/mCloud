@@ -56,12 +56,19 @@
             $("#btnShowPopup").click();
         }
     </script>  
+    <script type="text/javascript">
+        function ShowPopupLog() {
+            $("#btnShowPopupLog").click();
+        }
+    </script>  
     
 </head>
 <body id="page-top" style="overflow: visible;" onkeydown="return (event.keyCode!=13)">
 <form id="form1" runat="server">
     <!--Hidden button for c# modal call-->
     <button type="button" style="display: none;" id="btnShowPopup" class="md-trigger" data-modal="modal-login" data-toggle="modal">
+    </button>
+    <button type="button" style="display: none;" id="btnShowPopupLog" class="md-trigger" data-modal="modal-4" data-toggle="modal">
     </button>
 <div>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -340,22 +347,15 @@
                                         <asp:ListItem>Others</asp:ListItem>
                                     </asp:DropDownList>
                                   
-                                   <%-- <select id="IsdCode1" runat="server" class="form-control">
-                                        <option>+91 - India</option>
-                                        <option>+92 - Pakistan</option>
-                                        <option>+93 - China</option>
-                                        <option>+93 - Russia</option>
-                                        <option>+94 - Bhutan</option>
-                                        <option>+95 - America</option>
-                                        <option>+96 - London</option>
-                                        <option>+97 - England</option>
-                                    </select>--%>
-                               
                                     <input id="txtMob" runat="server" type="text" class="form-control" name="mobileno" placeholder="Mobile No." maxlength="10" onkeypress="return IsNumeric(event);"  />
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <asp:Label ID="lblErrorSignup" style="font-weight:normal;font-size:small;color:red;" runat="server" Visible="false" ></asp:Label>
+                        </div></div>
 
 
                 </div>

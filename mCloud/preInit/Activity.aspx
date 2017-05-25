@@ -1,7 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/preInit/Activity.Master" AutoEventWireup="true" CodeBehind="Activity.aspx.cs" Inherits="mCloud.preInit.WebForm1" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Complete Sign Up</title>
+    <script type="text/javascript">
+      function ShowProgressBar() {
+        document.getElementById('dvProgressBar').style.visibility = 'visible';
+      }
 
+      function HideProgressBar() {
+        document.getElementById('dvProgressBar').style.visibility = "hidden";
+      }
+    </script>
     <!-- Bootstrap Core CSS -->
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 	
@@ -190,7 +198,9 @@
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                         
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
-                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed To Pay" OnClick="btnPay_Click" />
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed" OnClick="btnPay_Click" OnClientClick="javascript:ShowProgressBar()" />
+                         <div id="dvProgressBar" style="visibility: hidden;">
+                         <img src="Loading_icon.gif" width="5%" />Loading...</div>
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
                                             <label id="lblPaymentSelect" runat="server" visible="false" style="color:red" >Please select a plan.</label>
                                             </ContentTemplate>

@@ -105,10 +105,6 @@ namespace mCloud.App_Code
             try
             {
                  a = Sqlcmd.ExecuteNonQuery();
-                //SqlDataAdapter da = new SqlDataAdapter(Command, SqlConn);
-                //DataTable dt = new DataTable();
-                //da.Fill(dt);
-                //a =Convert.ToInt32(dt.Rows[0]["UsrCnt"].ToString());
             }
             catch (Exception ex)
             {
@@ -136,7 +132,6 @@ namespace mCloud.App_Code
             catch (Exception ex)
             {
                 OnError(ex);
-                //HttpContext.Current.Response.Redirect("UserPage.aspx", true);
             }
             return SqlDr;
         }
@@ -326,7 +321,14 @@ namespace mCloud.App_Code
             {
                 sw.WriteLine(ex);
                 sw.WriteLine("-----------------" + DateTime.Now + "-----------------");
-                //HttpContext.Current.Response.Redirect("~/error.aspx");
+                sw.Close();
+                HttpContext.Current.Response.Write(
+                    "<div style='padding:80px 80px; margin:100px;'>" +
+                    "<img src='img/error.png' alt='error' width = '10%' /><br>" +
+                    "<h1>Oops!</h1>" +
+                    "<h2>I'm afraid, something went wrong.</h2>" +
+                    "<h4><a href='./'>Take me home</a></h4></div><div style='display:none;'>"
+                    );
             }
         }
         #endregion

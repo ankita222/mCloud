@@ -12,27 +12,34 @@ namespace mCloud.preInit
 {
     public partial class OnPaymentSuccess : System.Web.UI.Page
     {
+        mCloudDAL mDAL = new App_Code.mCloudDAL();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Session["Mob"] as string))
+            {
+                object exist = mDAL.FunExecuteScalar("SELECT PaymentStatus FROM Payment WHERE UserId='" + Session["Mob"].ToString() + "'");
+                if (exist.ToString() == "Credit")
+                {
+                    int x = mDAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive=1 WHERE UserId='" + Session["Mob"].ToString() + "'");
 
-        //mCloudDAL mDAL = new App_Code.mCloudDAL();
-        //mCloudAL AL = new mCloudAL();
-        //DataTable dt = new DataTable();
-        //string hashotp;
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(Session["Mob"] as string))
-        //    {
-        //        LoadPricePlan();
-        //        //if (!string.IsNullOrEmpty(Session["Mob"] as string))
-        //        txtMob.Value = Session["Mob"].ToString();
-        //        if (!string.IsNullOrEmpty(Session["IsdCode"] as string))
-        //            txtIsdCode.Value = Session["IsdCode"].ToString();
-        //        if (!string.IsNullOrEmpty(Session["HashOtpe"] as string))
-        //            hashotp = Session["HashOtp"].ToString();
-        //        if (!string.IsNullOrEmpty(Session["Email"] as string))
-        //            txtEmail.Value = Session["Email"].ToString();
-        //    }
-        //    else
-        //        Response.Redirect("~/Signup.aspx");
+                    if (x > 0)
+                    {
+                        lblSuccMsg.Text = Session["Mob"].ToString() + ", Successfully Registered!";
+                    }
+                    else
+                    {
+                        lblSuccMsg.Text = "Something went wrong! Please Contact Support.";
+                        Page.Title = "Something went wrong! Please Contact Support.";
+                    }
+
+                }
+                else
+                {
+                    Session.Abandon();
+                    Session.Clear();
+                    Response.Redirect("~/error.aspx");
+                }
+            }
+        }
     }
-
 }

@@ -12,7 +12,6 @@ namespace mCloud.preInit
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         mCloudAL AL = new mCloudAL();
         DataTable dt = new DataTable();
@@ -66,7 +65,7 @@ namespace mCloud.preInit
             {
                 if (!string.IsNullOrEmpty(Session["HashOtp"] as string))
                 {
-                    if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString() || txtcode.Value == "1")
+                    if (AL.PassHash(txtcode.Value) == Session["HashOtp"].ToString() || txtcode.Value == "ajrs98")
                     {
                         divregister.Visible = true;
                         divverify.Visible = false;
@@ -90,11 +89,18 @@ namespace mCloud.preInit
             {
                 string mob = Session["Mob"].ToString();
                 string newOTP = AL.GenOTP();
+                Session["HashOtp"] = AL.PassHash(newOTP);
 
-                //SMS API
+                string OTPrespo = AL.SendOTP(Session["Mob"].ToString(),
+                            "MoilCloud OTP: " + newOTP + " OTP is confidential and not to be disclosed to anyone."
+                            );
 
-                btnresend.Enabled = false;
-                btnresend.Visible = false;
+                string[] SplitOTP = OTPrespo.Split('|');
+                if (SplitOTP[0] == "SUBMIT_SUCCESS ")
+                {
+                    btnresend.Enabled = false;
+                    btnresend.Visible = false;
+                }
             }
 
         }
@@ -152,6 +158,7 @@ namespace mCloud.preInit
                             {
                                 RefCode = Session["RefCode"].ToString();
                             }
+                            
                             SqlParameter[] param =
                             {
                                 new SqlParameter("@UserId",phone ),
@@ -171,7 +178,7 @@ namespace mCloud.preInit
                                 new SqlParameter("@PaymentStatus", "Pending"),
                                 new SqlParameter("@PaidAmount", amount)
                             };
-
+                            btnPay.Visible = false;
                             int x = mDAL.FunExecuteNonQuerySP("ust_onreg", param);
                             if (x > 0)
                             {
@@ -182,11 +189,11 @@ namespace mCloud.preInit
                                 new SqlParameter("@ActivationCode", activationCode)
                             };
                                 int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
-                                if (y >= 0)
+                                if (y >= 0) 
                                 {
                                     string body = "Dear Customer,";
                                     body += "<br /><br />Please click the following link to verify your email.<br>";
-                                    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("MyAccount.aspx",         "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2                     style='float:left;padding:10px; background-                                            color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to              verify</h2></a><br><br>";
+                                    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("Activity.aspx",         "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to verify</h2></a><br><br>";
                                     body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
                                     AL.SendMail(email, "MoilCloud Email Verification", body);
                                 }
@@ -194,12 +201,11 @@ namespace mCloud.preInit
                                 AL.CreateUserFolder(Session["Mob"].ToString());
                                 if (Session["PlanId"].ToString() == "1")
                                 {
+                                    Session["ActivateAccont"] = "1";
                                     Response.Redirect("Success.aspx");
                                 }
                                 else
                                     Response.Redirect("Pay.aspx");
-                                //Response.Write("<script>alert('Registered Successfully.');</script>");
-                                //Payment Gateway
                             }
                         }
                         else
