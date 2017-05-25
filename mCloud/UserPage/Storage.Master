@@ -193,9 +193,16 @@
                                 </a>
                             </li>
                             <li class="active">
+                                <a href="Dashboard.aspx?type=sharedby">
+                                    <i class="material-icons" style="color: #2a9fc9;">folder_shared</i>
+                                    <span style="color: #2a9fc9;">Shared By Me</span>
+                                </a>
+                            </li>
+
+                            <li class="active">
                                 <a href="Dashboard.aspx?type=shared">
                                     <i class="material-icons" style="color: #2a9fc9;">folder_shared</i>
-                                    <span style="color: #2a9fc9;">Shared with me</span>
+                                    <span style="color: #2a9fc9;">Shared With Me</span>
                                 </a>
                             </li>
                         </ul>

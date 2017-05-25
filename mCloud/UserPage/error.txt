@@ -76,3 +76,68 @@ System.Threading.ThreadAbortException: Thread was being aborted.
    at System.Web.HttpResponse.Redirect(String url)
    at mCloud.UserPage.Dashboard.btnDel_Command(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1365
 -----------------24-May-17 5:19:39 PM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Program Files (x86)\IIS Express\~\Users\9693495172\txt.txt'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.btnFav_Command1(Object sender, CommandEventArgs e) in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 1190
+-----------------24-May-17 6:54:23 PM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Program Files (x86)\IIS Express\~\Users\9693495172\txt.txt'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.btnFav_Command1(Object sender, CommandEventArgs e)
+-----------------24-May-17 6:55:26 PM-----------------
+System.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_FavouriteList'. Cannot insert duplicate key in object 'dbo.FavouriteList'. The duplicate key value is (9693495172).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at mCloud.App_Code.mCloudDAL.FunExecuteNonQuery(String Command)
+ClientConnectionId:f1352620-efa5-4320-9cf0-8c0f00c75a06
+Error Number:2627,State:1,Class:14
+-----------------24-May-17 6:55:37 PM-----------------
+System.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_FavouriteList'. Cannot insert duplicate key in object 'dbo.FavouriteList'. The duplicate key value is (9693495172).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at mCloud.App_Code.mCloudDAL.FunExecuteNonQuery(String Command)
+ClientConnectionId:f1352620-efa5-4320-9cf0-8c0f00c75a06
+Error Number:2627,State:1,Class:14
+-----------------24-May-17 6:57:26 PM-----------------
+System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.ArrayList.ArrayListEnumeratorSimple.MoveNext()
+   at mCloud.UserPage.Dashboard.btnmoveok_ServerClick(Object sender, EventArgs e)
+-----------------25-May-17 11:04:42 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:44:45 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:44:59 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:45:56 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:48:08 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:49:40 AM-----------------

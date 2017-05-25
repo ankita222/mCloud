@@ -33,6 +33,7 @@
             //alert('Welcome');
             document.getElementById('<%= btnextract.ClientID %>').click();
         }
+     
     </script>
 
     <style>
@@ -133,6 +134,7 @@
     </button>
  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
        <asp:Button runat="server" ID="btnextract" OnClick="btnextract_Click" style="visibility:hidden"/>  
+
     <div class="container-fluid">    
                  <div class="bvv" oncontextmenu="return showcontextmenu(event);">    
                <div class="row clearfix">
@@ -189,6 +191,7 @@
                             </div>
 
                         </div>
+                        <br />
                         <div class="body">
                             <div class="row" style="padding: 10px;">
                                 <%--For Folder--%>
@@ -199,9 +202,9 @@
                                             <div id="filediv" class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                              <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px; width:16px;height:16px;" />
 
-                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1"  CommandArgument='<%#Eval("Image") %>'  />
-                        </span>--%>
+                     <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%"   CommandArgument='<%#Eval("Image") %>' OnCommand="btnFav_Command1"  />
+                        </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
                                              <div style="background: #e2dbdb;padding: 2px;text-align: center;border-radius: -1px;margin-top: 1px;box-shadow: 1px 1px 1px 1px #888874;border-bottom-left-radius: 3px;border-bottom-right-radius:3px;font-weight: 600;color: black;overflow: hidden;text-overflow: ellipsis;">
@@ -222,9 +225,9 @@
                                             <div class="filediv" style="background-color: rgba(226, 226, 226, 0.47); padding-left: 25px; border-radius: 3px; box-shadow: 1px 1px 2px 1px   #9b9c9e;">
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;width:16px;height:16px;" />
                          
-                       <%-- <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnfilefav_Command" CommandArgument='<%#Eval("Image") %>'  />
-                        </span>--%>
+                        <span style="float:right;text-align: end;padding:3px 3px;">
+                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1" CommandArgument='<%#Eval("Image") %>' />
+                        </span>
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 
                                             </div>
@@ -288,7 +291,7 @@
                <div class="modal fade in" id="defaultModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background:linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="defaultModalLabel" style="margin-top: -5px;text-align:center;">Create Folder</h4>
                         </div>
                         <div class="modal-body">
@@ -309,7 +312,7 @@
                            <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
 
-                            <asp:Button runat="server" ID="btnfolder" CssClass="btn btn-info waves-effect" Text="Create" OnClick="btnfolder_Click" style="float: left;width:100%" />
+                            <asp:Button runat="server" ID="btnfolder" CssClass="btn btn-info waves-effect" Text="Create" OnClick="btnfolder_Click" style="float: left;width:100%;background-color: #8e9698 !important;" />
                             </div>
                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                       <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Close</button>
@@ -324,7 +327,7 @@
                <div class="modal fade in" id="uploadfiles" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background:linear-gradient(45deg, #7e67e5, #02cbdf);color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142);color: white;">
                             <h4 class="modal-title" id="H1" style="margin-top: -5px;text-align:center;">Upload Files</h4>
                         </div>
                         <div class="modal-body">
@@ -346,7 +349,7 @@
                         <div class="modal-footer" style="color: white;">
                         <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnupload" CssClass="btn btn-info waves-effect" onclick="btnupload_Click"  Text="Upload" style="float: left;width:  100%;"/>
+                            <asp:Button runat="server" ID="btnupload" CssClass="btn btn-info waves-effect" onclick="btnupload_Click"  Text="Upload" style="float: left;width:  100%;background-color: #8e9698 !important;"/>
                         </div>
                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"  style="color: white;width:  100%;">Cancel</button>
@@ -362,7 +365,7 @@
         <div class="modal fade in" id="DivShare" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H9" style="margin-top: -5px;text-align:center;">Share With</h4>
                         </div>
                         <div class="modal-body">
@@ -386,7 +389,7 @@
                         <div class="modal-footer" style="color: white;">
                           <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnShare" CssClass="btn btn-info waves-effect" OnClick="btnShare_Click" Text="Share" style="float: left;width: 100%;" />
+                            <asp:Button runat="server" ID="btnShare" CssClass="btn btn-info waves-effect" OnClick="btnShare_Click" Text="Share" style="float: left;width: 100%;background-color: #8e9698 !important;" />
                           </div>
                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;" >Close</button>
@@ -400,7 +403,7 @@
         <div class="modal fade in" id="DivRename" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H9" style="margin-top: -5px;text-align:center;">Rename</h4>
                         </div>
                         <div class="modal-body">
@@ -420,7 +423,7 @@
                         <div class="modal-footer" style="color: white;">
                           <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnrename" CssClass="btn btn-info waves-effect" OnClick="btnrename_Click"  Text="Rename" style="float: left;width: 100%;" />
+                            <asp:Button runat="server" ID="btnrename" CssClass="btn btn-info waves-effect" OnClick="btnrename_Click"  Text="Rename" style="float: left;width: 100%;background-color: #8e9698 !important;" />
                           </div>
                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;" >Close</button>
@@ -434,7 +437,7 @@
         <div class="modal fade in" id="deletefolder" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(45deg, #7e67e5, #02cbdf); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H4" style="margin-top: -5px;text-align:center;">Confirm Delete</h4>
                         </div>
                         <div class="modal-body">
@@ -448,7 +451,7 @@
                         <div class="modal-footer" style="color: white;">
                           <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="button4" CssClass="btn btn-danger waves-effect" Text="Delete" OnClick="btndel_ServerClick"  style="float: left;width: 100%;"/>
+                            <asp:Button runat="server" ID="button4" CssClass="btn btn-danger waves-effect" Text="Delete" OnClick="btndel_ServerClick"  style="float: left;width: 100%;background-color: #8e9698 !important;"/>
                                       </div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                             <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Cancel</button>
@@ -463,7 +466,7 @@
         <div class="modal fade in" id="DivArchive" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H8" style="margin-top: -5px;text-align:center;">Archive File</h4>
                         </div>
                         <div class="modal-body">
@@ -485,7 +488,7 @@
                         <div class="modal-footer" style="color: white;">
                      <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <asp:Button runat="server" ID="btnarchive" CssClass="btn btn-info waves-effect" OnClick="btnarchive_Click" Text="Create" style="float: left;width: 100%;" />
+                            <asp:Button runat="server" ID="btnarchive" CssClass="btn btn-info waves-effect" OnClick="btnarchive_Click" Text="Create" style="float: left;width: 100%;background-color: #8e9698 !important;" />
                           </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Close</button>
@@ -500,7 +503,7 @@
         <div class="modal fade in" id="DivCopyFiles" tabindex="-1" role="dialog" style="top: 136px;">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H7" style="margin-top: -5px;text-align:center;">Select Destination Folder</h4>
                         </div>
                         <div class="modal-body" style="overflow: auto;height: 180px;">
@@ -510,7 +513,7 @@
         <ContentTemplate>
                                   <asp:TreeView ID="TreeViewCopy" runat="server" Target="_self" NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png">
                                          <HoverNodeStyle  ForeColor="BurlyWood" />
-                                            <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
+                                            <NodeStyle Font-Names="Tahoma" Font-Size="9pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
 
                                             </NodeStyle>
                                      
@@ -527,7 +530,7 @@
                         <div class="modal-footer" style="color: white;">
                            <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <button type="button" runat="server" id="btncopyfile" value="MOVE" class="btn btn-info waves-effect" onserverclick="btncopyfile_ServerClick"  style="float: left;width: 100%;">Copy</button>
+                            <button type="button" runat="server" id="btncopyfile" value="MOVE" class="btn btn-info waves-effect" onserverclick="btncopyfile_ServerClick"  style="float: left;width: 100%;background-color: #8e9698 !important;">Copy</button>
                                       </div>
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                              <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width: 100%;">Cancel</button>
@@ -543,7 +546,7 @@
         <div class="modal fade in" id="DivMoveFiles" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" style="background: linear-gradient(to left, #585027 , #34545d); color: white;">
+                        <div class="modal-header" style="background: linear-gradient(45deg, #b6b5b7, #354142); color: white;">
                             <h4 class="modal-title" id="H6" style="margin-top: -5px;text-align:center;">Select Destination Folder</h4>
                         </div>
                         <div class="modal-body" style="overflow: auto;height: 180px;">
@@ -555,7 +558,7 @@
         <ContentTemplate>
                                   <asp:TreeView ID="TreeViewMove" runat="server" Target="_self"  NodeIndent="15" CollapseImageUrl="~/UserPage/images/reddowntri1.png" ExpandImageUrl="~/UserPage/images/righttri.png">
                                          <HoverNodeStyle  ForeColor="BurlyWood" />
-                                            <NodeStyle Font-Names="Tahoma" Font-Size="12pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
+                                            <NodeStyle Font-Names="Tahoma" Font-Size="9pt" ForeColor="Black" HorizontalPadding="2px" NodeSpacing="5px" VerticalPadding="2px" ImageUrl="~/UserPage/images/blue_32x32.png" >
 
                                             </NodeStyle>
                                      
@@ -572,7 +575,7 @@
                         <div class="modal-footer" style="color: white;">
                                 <div class="row clearfix">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
-                            <button type="button" runat="server" id="btnmoveok" value="MOVE" class="btn btn-info waves-effect" onserverclick="btnmoveok_ServerClick" style="float: left;width:  100%;">Move</button>
+                            <button type="button" runat="server" id="btnmoveok" value="MOVE" class="btn btn-info waves-effect" onserverclick="btnmoveok_ServerClick" style="float: left;width:  100%;background-color: #8e9698 !important;">Move</button>
                            </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control-label">
                                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="color: white;width:  100%;">Cancel</button>
@@ -595,6 +598,7 @@
 
         <div id="filecontextmenu" class="context-menu">
             <ul>
+                 
                  <li>
                     <div data-target="#DivShare" data-toggle="modal">
                         <i class="material-icons" style="color: black; font-size: 17px;">folder_shared</i>
