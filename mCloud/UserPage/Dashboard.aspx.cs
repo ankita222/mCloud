@@ -26,8 +26,9 @@ namespace mCloud.UserPage
         mCloudDAL DAL = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
         DataTable dtfav;
+        DataTable dticon = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
-        {
+         {
             if (string.IsNullOrEmpty(Session["id"] as string))
             {
                 Session.Clear();
@@ -37,18 +38,14 @@ namespace mCloud.UserPage
             }
             CreateTable();
             CreateSiteMap();
+            LoadDtFavList();
             divContact.Visible = false;
 
             string ReqFolder = Request.QueryString["type"];
+            
             if (Page.IsPostBack != true)
             {
-                #region Code to create Session Datatable and storing the Favourite items
-                dtfav = new DataTable();
-                dtfav = DAL.FunDataTable("Select [UserId],[FavouriteItemName],[FavouriteItemPath],[ItemType] from [FavouriteList] where [UserId]='" + Session["id"].ToString() + "' ");
-                Session["dtfav"] = dtfav;
-                DataTable dtn = new DataTable();
-                dtn = (DataTable)Session["dtfav"];
-                #endregion 
+                
 
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
@@ -86,10 +83,19 @@ namespace mCloud.UserPage
             }
         }
 
+        protected void LoadDtFavList()
+        {
+            #region Code to create Session Datatable and storing the Favourite items
+            dtfav = new DataTable();
+            dtfav = DAL.FunDataTable("Select [UserId],[FavouriteItemName],[FavouriteItemPath],[ItemType] from [FavouriteList] where [UserId]='" + Session["id"].ToString() + "' ");
+            Session["dtfav"] = dtfav;
+            dticon = (DataTable)Session["dtfav"];
+            #endregion
+
+        }
+
         public void LoadSharedBy()
         {
-
-
             try
             {
                 string name = Session["id"].ToString();
@@ -100,7 +106,103 @@ namespace mCloud.UserPage
 
                 if (dtshare != null)
                 {
+                   
+                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    {
+                        string path = dtshare.Rows[i]["FilePath"].ToString();
+                        //check for it is directory or file
+                        int dir;
+                        FileAttributes attr = File.GetAttributes(path);
+                        if ((attr & FileAttributes.Directory) != FileAttributes.Directory)
+                        {
+                            //string sender = dtshare.Rows[i]["Sender"].ToString();
+                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
+                            FileInfo Files = new FileInfo(path);
+                            string ext = Files.Extension;
+                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
+                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                            {
+                                image = "~/UserPage/images/imags.png";
+                            }
+                            else if (ext == ".pdf")
+                            {
+                                image = "~/UserPage/images/ODF.png";
+                            }
+                            else if (ext == ".exe" || ext == ".msi")
+                            {
+                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                            }
+                            else if (ext == ".doc" || ext == ".docx")
+                            {
+                                image = "~/UserPage/images/document-626142_640 (1).png";
+                            }
+                            else if (ext == ".xls" || ext == ".xlsx")
+                            {
+                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                            }
+                            else if (ext == ".txt")
+                            {
+                                image = "~/UserPage/images/file-txt.png";
+                            }
+                            else if (ext == ".zip")
+                            {
+                                image = "~/UserPage/images/file-zip-alt.png";
+                            }
+                            else
+                            {
+                                image = "~/UserPage/images/file-512.png";
+                            }
+                            object[] o = { str1, image };
+                            dt_temp.Rows.Add(o);
+                            Repeater2.DataSource = dt_temp;
+                            Repeater2.DataBind();
 
+                        }
+                        //else
+                        //{
+                        //    string str = dtshare.Rows[i]["FilleName"].ToString();
+                        //    string image = "~/UserPage/images/folder_PNG8771.png";
+                        //    object[] o1 = { str, image };
+                        //    dt_temp.Rows.Clear();
+                        //    dt_temp.Rows.Add(o1);
+                        //    Repeater1.DataSource = dt_temp;
+                        //    Repeater1.DataBind();
+                            
+                        //}
+
+
+                    }
+                    foreach (RepeaterItem ri in Repeater2.Items)
+                    {
+                        ImageButton btnfav = (ImageButton)ri.FindControl("btnfilefav");
+                        btnfav.Visible = false;
+                    }
+                }
+                // for loading 
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void LoadSharedWith()
+        {
+
+
+            try
+            {
+                string name = Session["id"].ToString();
+                string getshareddoc = "select * from SharedFiles where SharedWith ='" + name + "'";
+                DataTable dtshare = new DataTable();
+
+                dtshare = DAL.FunDataTable(getshareddoc);
+
+                if (dtshare != null)
+                {
+                   
                     for (int i = 0; i < dtshare.Rows.Count; i++)
                     {
                         string path = dtshare.Rows[i]["FilePath"].ToString();
@@ -165,95 +267,10 @@ namespace mCloud.UserPage
 
 
                     }
-                }
-                // for loading 
-
-            }
-
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        public void LoadSharedWith()
-        {
-
-
-            try
-            {
-                string name = Session["id"].ToString();
-                string getshareddoc = "select * from SharedFiles where SharedWith ='" + name + "'";
-                DataTable dtshare = new DataTable();
-
-                dtshare = DAL.FunDataTable(getshareddoc);
-
-                if (dtshare != null)
-                {
-
-                    for (int i = 0; i < dtshare.Rows.Count; i++)
+                    foreach (RepeaterItem ri in Repeater2.Items)
                     {
-                        string path = dtshare.Rows[i]["FilePath"].ToString();
-                        //check for it is directory or file
-                        int dir;
-                        FileAttributes attr = File.GetAttributes(path);
-                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                        {
-                            string str = dtshare.Rows[i]["FilleName"].ToString();
-                            string image = "~/UserPage/images/folder_PNG8771.png";
-                            object[] o1 = { str, image };
-                            dt_temp.Rows.Clear();
-                            dt_temp.Rows.Add(o1);
-                            Repeater1.DataSource = dt_temp;
-                            Repeater1.DataBind();
-
-                        }
-                        else
-                        {
-                            //string sender = dtshare.Rows[i]["Sender"].ToString();
-                            // DirectoryInfo d = new DirectoryInfo(@"E:\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333");
-                            FileInfo Files = new FileInfo(path);
-                            string ext = Files.Extension;
-                            string str1 = dtshare.Rows[i]["FilleName"].ToString(), image;
-                            if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
-                            {
-                                image = "~/UserPage/images/imags.png";
-                            }
-                            else if (ext == ".pdf")
-                            {
-                                image = "~/UserPage/images/ODF.png";
-                            }
-                            else if (ext == ".exe" || ext == ".msi")
-                            {
-                                image = "~/UserPage/images/modernxp-74-software-install-i.png";
-                            }
-                            else if (ext == ".doc" || ext == ".docx")
-                            {
-                                image = "~/UserPage/images/document-626142_640 (1).png";
-                            }
-                            else if (ext == ".xls" || ext == ".xlsx")
-                            {
-                                image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
-                            }
-                            else if (ext == ".txt")
-                            {
-                                image = "~/UserPage/images/file-txt.png";
-                            }
-                            else if (ext == ".zip")
-                            {
-                                image = "~/UserPage/images/file-zip-alt.png";
-                            }
-                            else
-                            {
-                                image = "~/UserPage/images/file-512.png";
-                            }
-                            object[] o = { str1, image };
-                            dt_temp.Rows.Add(o);
-                            Repeater2.DataSource = dt_temp;
-                            Repeater2.DataBind();
-                        }
-
-
+                        ImageButton btnfav = (ImageButton)ri.FindControl("btnfilefav");
+                        btnfav.Visible = false;
                     }
                 }
                 // for loading 
@@ -574,6 +591,7 @@ namespace mCloud.UserPage
         {
             dt_temp.Columns.Add("Image", typeof(string));
             dt_temp.Columns.Add("icon", typeof(string));
+            dt_temp.Columns.Add("favicon", typeof(string));
 
             // dt_temp.Columns.Add("Folder", typeof(string));  
         }
@@ -581,24 +599,53 @@ namespace mCloud.UserPage
         {
             try
             {
-                string path2 = "~//Users//";
-                dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+                //string path2 = "~//Users//";
+                //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
-                {
-                    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
-                }
+                //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //{
+                //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                //}
 
+                string path2 = GetCurrentPath();
                 string name = Session["id"].ToString();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
+
                 DirectoryInfo[] Files = d.GetDirectories();
-                string str = "", image = "";
+                string currentpath = d.FullName;
+                string str = "", image = "",deficon="",favicon="";
+                favicon= "~/UserPage/images/unfav.png";
+                deficon = "~/UserPage/images/fav.png";
+                string icon = "";
+                object[] o = new object[3];
                 foreach (DirectoryInfo file in Files)
                 {
                     str = file.Name;
                     image = "~/UserPage/images/folder_PNG8771.png";
-                    object[] o = { str, image };
-                    dt_temp.Rows.Add(o);
+
+                    if (dticon != null && dticon.Rows.Count > 0)
+                    {
+                        int f = 1;
+                        for (int i = 0; i < dticon.Rows.Count; i++)
+                        {
+                            string dtfavpath = dticon.Rows[i]["FavouriteItemPath"].ToString();
+                            string itemname = dticon.Rows[i]["FavouriteItemName"].ToString();
+                            if (currentpath == dtfavpath && str == itemname) { f = 0; break; }
+                        }
+                        if (f == 0) { icon = favicon; } else { icon = deficon; }
+
+                        o[0] = str;
+                        o[1] = image;
+                        o[2] = icon;
+                    }
+                    else
+                    {
+                        o[0] = str;
+                        o[1] = image;
+                        o[2] = deficon;
+                    }
+                    
+                   dt_temp.Rows.Add(o);
                 }
                 Repeater1.DataSource = dt_temp;
                 Repeater1.DataBind();
@@ -625,8 +672,14 @@ namespace mCloud.UserPage
                 //DirectoryInfo d = new DirectoryInfo(Server.MapPath(@"~/Users/" + name));//Assuming Test is your Folder
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
                 FileInfo[] Files = d.GetFiles(); //Getting Text files
-                string str = "", image = "";
+                string currentpath = d.FullName;
+                string str = "", image = "", deficon = "", favicon = "";
+                favicon = "~/UserPage/images/unfav.png";
+                deficon = "~/UserPage/images/fav.png";
+                string icon = "";
                 dt_temp.Rows.Clear();
+                object[] o = new object[3];
+
                 foreach (FileInfo file in Files)
                 {
                     str = file.Name;
@@ -663,8 +716,30 @@ namespace mCloud.UserPage
                     {
                         image = "~/UserPage/images/file-512.png";
                     }
-                    object[] o = { str, image };
+                    if (dticon != null && dticon.Rows.Count > 0)
+                    {
+                        int f = 1;
+                        for (int i = 0; i < dticon.Rows.Count; i++)
+                        {
+                            string dtfavpath = dticon.Rows[i]["FavouriteItemPath"].ToString();
+                            string itemname = dticon.Rows[i]["FavouriteItemName"].ToString();
+                            if (currentpath == dtfavpath && str == itemname) { f = 0; break; }
+                        }
+                        if (f == 0) { icon = favicon; } else { icon = deficon; }
+
+                        o[0] = str;
+                        o[1] = image;
+                        o[2] = icon;
+                    }
+                    else
+                    {
+                        o[0] = str;
+                        o[1] = image;
+                        o[2] = deficon;
+                    }
+
                     dt_temp.Rows.Add(o);
+                    //object[] o = { str, image,favicon };
                 }
                 Repeater2.DataSource = dt_temp;
                 Repeater2.DataBind();
@@ -1136,19 +1211,21 @@ namespace mCloud.UserPage
                     string path = Server.MapPath(@path2 + foldername);
                     ////////////////////////////////////////////////////////
                     // string name = Session["id"].ToString();
-                    DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
-                    DirectoryInfo[] dir = d.GetDirectories(); //Getting Text files
-                    string str = "", image = "";
-                    foreach (DirectoryInfo file in dir)
-                    {
-                        str = file.Name;
-                        image = "~/UserPage/images/folder_PNG8771.png";
-                        object[] o = { str, image };
-                        dt_temp.Rows.Add(o);
-                    }
-                    Repeater1.DataSource = dt_temp;
-                    Repeater1.DataBind();
+                    //DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
+                    //DirectoryInfo[] dir = d.GetDirectories(); //Getting Text files
+                    //string str = "", image = "";
+                    //foreach (DirectoryInfo file in dir)
+                    //{
+                    //    str = file.Name;
+                    //    image = "~/UserPage/images/folder_PNG8771.png";
+                    //    object[] o = { str, image };
+                    //    dt_temp.Rows.Add(o);
+                    //}
+                    //Repeater1.DataSource = dt_temp;
+                    //Repeater1.DataBind();
                     LoadSiteMap(foldername);
+                    LoadDtFavList();
+                    loadDirectory();
                     loadFiles();
                 }
             }
@@ -1163,16 +1240,23 @@ namespace mCloud.UserPage
         protected void LoadContactFolder(string FolderName)
         {
             LoadSiteMap(FolderName);
+            LoadDtFavList();
             loadDirectory();
-            try
-            {
+           
                 #region Code to Load Files in Repeater2 except .vcf file
 
                 string path2 = GetCurrentPath();
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
                 FileInfo[] Files = d.GetFiles(); //Getting Text files
-                string str = "", image = "", ext;
+                string currentpath = d.FullName;
+                string str = "", image = "", deficon = "", favicon = "",ext="";
+                favicon = "~/UserPage/images/unfav.png";
+                deficon = "~/UserPage/images/fav.png";
+                string icon = "";
                 dt_temp.Rows.Clear();
+                object[] o = new object[3];
+            try
+            {
                 foreach (FileInfo file in Files)
                 {
                     str = file.Name;
@@ -1211,11 +1295,39 @@ namespace mCloud.UserPage
                         {
                             image = "~/UserPage/images/file-512.png";
                         }
-                        object[] o = { str, image };
+
+                        if (dticon != null && dticon.Rows.Count > 0)
+                        {
+                            int f = 1;
+                            for (int i = 0; i < dticon.Rows.Count; i++)
+                            {
+                                string dtfavpath = dticon.Rows[i]["FavouriteItemPath"].ToString();
+                                string itemname = dticon.Rows[i]["FavouriteItemName"].ToString();
+                                if (currentpath == dtfavpath && str == itemname) { f = 0; break; }
+                            }
+                            if (f == 0) { icon = favicon; } else { icon = deficon; }
+
+                            o[0] = str;
+                            o[1] = image;
+                            o[2] = icon;
+                        }
+                        else
+                        {
+                            o[0] = str;
+                            o[1] = image;
+                            o[2] = deficon;
+                        }
+
                         dt_temp.Rows.Add(o);
+                        //object[] o = { str, image,favicon };
                     }
                     Repeater2.DataSource = dt_temp;
                     Repeater2.DataBind();
+                    //object[] o = { str, image };
+                    //    dt_temp.Rows.Add(o);
+                    
+                    //Repeater2.DataSource = dt_temp;
+                    //Repeater2.DataBind();
                 }
                 #endregion
 
@@ -1247,7 +1359,152 @@ namespace mCloud.UserPage
                         {
                             mail = card.EmailAddresses.GetFirstChoice(vCardEmailAddressType.Internet).Address;
                         }
-                        object[] o = { Cname, contatc, mail };
+                        // object[] o = { Cname, contatc, mail };
+                        o[0] = Cname;
+                        o[1] = contatc;
+                        o[2] = mail;
+                        dtcontact.Rows.Add(o);
+
+                        GridView1.DataSource = dtcontact;
+                        GridView1.DataBind();
+                        divContact.Visible = true;
+                    }
+                }
+
+                #endregion
+
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+        protected void LoadContactFolder()
+        {
+           // LoadSiteMap(FolderName);
+            LoadDtFavList();
+            loadDirectory();
+
+            #region Code to Load Files in Repeater2 except .vcf file
+
+            string path2 = GetCurrentPath();
+            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
+            FileInfo[] Files = d.GetFiles(); //Getting Text files
+            string currentpath = d.FullName;
+            string str = "", image = "", deficon = "", favicon = "", ext = "";
+            favicon = "~/UserPage/images/unfav.png";
+            deficon = "~/UserPage/images/fav.png";
+            string icon = "";
+            dt_temp.Rows.Clear();
+            object[] o = new object[3];
+            try
+            {
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext != ".vcf")
+                    {
+                        if (ext == ".ico" || ext == ".gif" || ext == ".jpg" || ext == ".png")
+                        {
+                            image = "~/UserPage/images/imags.png";
+                        }
+                        else if (ext == ".pdf")
+                        {
+                            image = "~/UserPage/images/ODF.png";
+                        }
+                        else if (ext == ".exe" || ext == ".msi")
+                        {
+                            image = "~/UserPage/images/modernxp-74-software-install-i.png";
+                        }
+                        else if (ext == ".doc" || ext == ".docx")
+                        {
+                            image = "~/UserPage/images/document-626142_640.png";
+                        }
+                        else if (ext == ".xls" || ext == ".xlsx")
+                        {
+                            image = "~/UserPage/images/20151205_566242be95048-210x274 (1).png";
+                        }
+                        else if (ext == ".txt")
+                        {
+                            image = "~/UserPage/images/file-txt.png";
+                        }
+                        else if (ext == ".zip")
+                        {
+                            image = "~/UserPage/images/file-zip-alt.png";
+                        }
+                        else
+                        {
+                            image = "~/UserPage/images/file-512.png";
+                        }
+
+                        if (dticon != null && dticon.Rows.Count > 0)
+                        {
+                            int f = 1;
+                            for (int i = 0; i < dticon.Rows.Count; i++)
+                            {
+                                string dtfavpath = dticon.Rows[i]["FavouriteItemPath"].ToString();
+                                string itemname = dticon.Rows[i]["FavouriteItemName"].ToString();
+                                if (currentpath == dtfavpath && str == itemname) { f = 0; break; }
+                            }
+                            if (f == 0) { icon = favicon; } else { icon = deficon; }
+
+                            o[0] = str;
+                            o[1] = image;
+                            o[2] = icon;
+                        }
+                        else
+                        {
+                            o[0] = str;
+                            o[1] = image;
+                            o[2] = deficon;
+                        }
+
+                        dt_temp.Rows.Add(o);
+                        //object[] o = { str, image,favicon };
+                    }
+                    Repeater2.DataSource = dt_temp;
+                    Repeater2.DataBind();
+                    //object[] o = { str, image };
+                    //    dt_temp.Rows.Add(o);
+
+                    //Repeater2.DataSource = dt_temp;
+                    //Repeater2.DataBind();
+                }
+                #endregion
+
+                #region LoadVCFFiles
+
+                DataTable dtcontact = new DataTable();
+                dtcontact.Columns.Add("Name", typeof(string));
+                dtcontact.Columns.Add("Contact", typeof(string));
+                dtcontact.Columns.Add("EMail", typeof(string));
+
+                str = ""; ext = "";
+                foreach (FileInfo file in Files)
+                {
+                    str = file.Name;
+                    ext = file.Extension;
+                    if (ext == ".vcf")
+                    {
+                        vCard card = new vCard(file.FullName);
+
+
+                        string Cname, contatc = "", mail = "";
+                        Cname = card.FormattedName;
+
+                        if (card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular) != null)
+                        {
+                            contatc = card.Phones.GetFirstChoice(vCardPhoneTypes.Cellular).FullNumber;
+                        }
+                        if (card.EmailAddresses.GetFirstChoice(vCardEmailAddressType.Internet) != null)
+                        {
+                            mail = card.EmailAddresses.GetFirstChoice(vCardEmailAddressType.Internet).Address;
+                        }
+                        // object[] o = { Cname, contatc, mail };
+                        o[0] = Cname;
+                        o[1] = contatc;
+                        o[2] = mail;
                         dtcontact.Rows.Add(o);
 
                         GridView1.DataSource = dtcontact;
@@ -1381,15 +1638,17 @@ namespace mCloud.UserPage
 
         protected void btnFav_Command1(object sender, CommandEventArgs e)
         {
-            try
-            {
+           
                 string name = e.CommandArgument.ToString();
                 string path2 = GetCurrentPath();
+            
                 DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));//Assuming Test is your Folder
                 string fullpath = d.FullName;
                 FileInfo[] Files = d.GetFiles();
                 string type;
                 FileAttributes f = File.GetAttributes(fullpath + name);
+            try
+            {
                 if ((f & FileAttributes.Directory) == FileAttributes.Directory)
                 {
                     type = "folder";
@@ -1398,17 +1657,47 @@ namespace mCloud.UserPage
                 {
                     type = "file";
                 }
-                string qry = "insert into [FavouriteList](UserId,FavouriteItemName,FavouriteItemPath,ItemType) values ('" + Session["id"].ToString() + "','" + name + "','" + fullpath + name + "','" + type + "')";
-                int x = DAL.FunExecuteNonQuery(qry);
-                if (x > 0)
-                {
-                    ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
-                }
 
+                string qrycnt = "select Count(FavouriteItemName) from FavouriteList where UserId='" + Session["id"].ToString() + "' and FavouriteItemName='" + name + "' and FavouriteItemPath='" + fullpath + "' and ItemType='" + type + "'";
+                object cnt = DAL.FunExecuteScalar(qrycnt);
+                if (Convert.ToInt32(cnt.ToString()) > 0)
+                {
+                    string delqry = "Delete from FavouriteList where UserId='" + Session["id"].ToString() + "' and FavouriteItemName='" + name + "' and FavouriteItemPath='" + fullpath + "' and ItemType='" + type + "'";
+                    int x = DAL.FunExecuteNonQuery(delqry);
+                    if (x > 0)
+                    {
+                        Response.Write("<script>alert('Fav removed!');</script>");
+                        //ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
+                    }
+                }
+                else
+                {
+                    string qry = "insert into [FavouriteList](UserId,FavouriteItemName,FavouriteItemPath,ItemType) values ('" + Session["id"].ToString() + "','" + name + "','" + fullpath + "','" + type + "')";
+                    int x = DAL.FunExecuteNonQuery(qry);
+                    if (x > 0)
+                    {
+                        Response.Write("<script>alert('Fav added!');</script>");
+                        //ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
+                    }
+                }
+                if (path2 == "~//Users//9693495172//Contact//")
+                {
+                    LoadContactFolder();
+                }
+                else
+                {
+                    LoadDtFavList();
+                    loadDirectory();
+                    loadFiles();
+                }
             }
             catch (Exception ex)
             {
                 DAL.OnError(ex);
+            }
+            finally
+            {
+                
             }
 
             //foreach (RepeaterItem ri in Repeater1.Items)
@@ -1463,6 +1752,7 @@ namespace mCloud.UserPage
 
         protected void btnShare_Click(object sender, EventArgs e)
         {
+
             if (txtShare.Value != "")
             {
                 lblShareError.Visible = false;
@@ -1470,27 +1760,39 @@ namespace mCloud.UserPage
                 if (int.Parse(count.ToString()) > 0)
                 {
                     string t = getpathoffile();
-                    string[] o = t.Split('|');
-                    object c = DAL.FunExecuteScalar("select count(*) From SharedFiles where SharedWith='" + txtShare.Value + "'and SharedBy='" + Session["id"].ToString() + "' and FilePath='" + o[0] + "'");
-                    if (int.Parse(c.ToString()) > 0)
+                    if (CheckRepeaterCount() <= 0)
                     {
-                        lblShareError.Visible = true;
-                        lblShareError.Text = "Already Shared With " + txtShare.Value;
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                        Response.Write("<script>alert('Select a file');</script>");
+                    }
+                    else if (t =="|" || t=="|" )
+                    {
+                        Response.Write("<script>alert('Folder Cannot Be Shared');</script>");
                     }
                     else
                     {
+                        string[] o = t.Split('|');
+                        object c = DAL.FunExecuteScalar("select count(*) From SharedFiles where SharedWith='" + txtShare.Value + "'and SharedBy='" + Session["id"].ToString() + "' and FilePath='" + o[0] + "'");
+                        if (int.Parse(c.ToString()) > 0)
+                        {
+                            lblShareError.Visible = true;
+                            lblShareError.Text = "Already Shared With " + txtShare.Value;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                        }
+                        else
+                        {
 
-                        SqlParameter[] param =
-                            {
+                            SqlParameter[] param =
+                                {
                             new SqlParameter("@SharedBy", Session["id"].ToString()),
                             new SqlParameter("@SharedWith", txtShare.Value),
                             new SqlParameter("@Date", DateTime.Now),
                             new SqlParameter("@FilleName", o[1]),
                             new SqlParameter("@FilePath", o[0]),
                         };
-                        int x = DAL.FunExecuteNonQuerySP("ust_sharing", param);
+                            int x = DAL.FunExecuteNonQuerySP("ust_sharing", param);
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -1506,36 +1808,53 @@ namespace mCloud.UserPage
                 lblShareError.Text = "Enter MoilCloud Id";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
             }
-
-
         }
-
 
         public string getpathoffile()
         {
             string filepath = "";
             string fname = "";
             string path2 = GetCurrentPath();
-            foreach (RepeaterItem ri in Repeater2.Items)
-            {
-                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                if (chk.Checked)
+            //string f = Path.GetFileName(path2);
+            //FileAttributes attr = File.GetAttributes(Server.MapPath(@path2));
+            //if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            //{
+            //    return ("folder");
+            //}
+            //else
+            //{
+                foreach (RepeaterItem ri in Repeater2.Items)
                 {
-                    string name = lbl.Text;
-                    DirectoryInfo d = new DirectoryInfo(MapPath(@path2));
-                    FileInfo[] Files = d.GetFiles();
-                    foreach (FileInfo file in Files)
+                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                    if (chk.Checked)
                     {
-                        if (file.Name == name)
+                        string name = lbl.Text;
+
+                        //FileAttributes attr = File.GetAttributes(@path2);
+                        //if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                        //{
+                        //    Response.Redirect("<script>alert('Folder Cannot Be Shared');</script>");
+                        //    break;
+                        //}
+                        //else
+                        //{
+
+                        DirectoryInfo d = new DirectoryInfo(MapPath(@path2));
+                        FileInfo[] Files = d.GetFiles();
+                        foreach (FileInfo file in Files)
                         {
-                            filepath = file.FullName;
-                            fname = file.Name;
+                            if (file.Name == name)
+                            {
+                                filepath = file.FullName;
+                                fname = file.Name;
+                            }
                         }
+                    //}
                     }
                 }
-            }
-            return filepath + "|" + fname;
+                return filepath + "|" + fname;
+           // }
         }
 
         protected void btnDownoad_Command(object sender, CommandEventArgs e)

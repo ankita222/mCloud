@@ -278,11 +278,11 @@
             <li class="social-twitter">
                 <a href="#"><i class="fa fa-twitter"></i></a>
             </li>
-            <li class="social-facebook">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+               <li class="social-facebook">
+                <a href="https://www.facebook.com/profile.php?id=100017338337261"><i class="fa fa-facebook"></i></a>
             </li>
             <li class="social-google-plus">
-                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="https://plus.google.com/116086851234154634324"><i class="fa fa-google-plus"></i></a>
             </li>
         </ul>
     </div>

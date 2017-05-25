@@ -203,7 +203,7 @@
                              <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px; width:16px;height:16px;" />
 
                      <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%"   CommandArgument='<%#Eval("Image") %>' OnCommand="btnFav_Command1"  />
+                            <asp:ImageButton ID="btnFav" runat="server" ImageUrl='<%#Eval("favicon")%>' Width="16%"   CommandArgument='<%#Eval("Image") %>' OnCommand="btnFav_Command1"  />
                         </span>
                                                 <asp:ImageButton ID="Image1" runat="server" CommandArgument='<%#Eval("Image") %>' OnCommand="Image1_Command" ImageUrl='<%#Eval("icon") %>' Width="111px" CssClass="img-responsive" />
                                             </div>
@@ -226,7 +226,7 @@
                                                 <input type="checkbox" id="CheckBox1" runat="server" style="opacity: 1; position: static; margin-left: -20px;width:16px;height:16px;" />
                          
                         <span style="float:right;text-align: end;padding:3px 3px;">
-                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl="~/UserPage/images/fav.png" Width="16%" OnCommand="btnFav_Command1" CommandArgument='<%#Eval("Image") %>' />
+                            <asp:ImageButton ID="btnfilefav" runat="server" ImageUrl='<%#Eval("favicon")%>' Width="16%" OnCommand="btnFav_Command1" CommandArgument='<%#Eval("Image") %>' />
                         </span>
                                                 <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("icon") %>' Width="70px" CssClass="img-responsive" ondragenter="movefile();" draggable="true" />
                                                 
