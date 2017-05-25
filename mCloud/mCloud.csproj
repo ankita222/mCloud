@@ -384,13 +384,12 @@
     <Content Include="preInit\vendor\jquery\jquery.min.js" />
     <Content Include="preInit\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="preInit\Activity.aspx" />
+    <Content Include="preInit\WebHookErrorS.txt" />
+    <Content Include="preInit\WebHookErrorP.txt" />
+    <Content Include="preInit\WebHookError.txt" />
     <Content Include="Signin.aspx" />
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
-    <Content Include="sitemap.aspx" />
-    <Content Include="test.aspx" />
-    <Content Include="test.txt" />
-    <Content Include="TextFile1.txt" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -3685,8 +3684,9 @@
     <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
     <Content Include="Web.config" />
-    <Content Include="FavPath.xml" />
     <Content Include="WebHookError.txt" />
+    <Content Include="WebHookErrorP.txt" />
+    <Content Include="WebHookErrorS.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\mCloudDAL.cs" />
@@ -3845,20 +3845,6 @@
     </Compile>
     <Compile Include="Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="sitemap.aspx.cs">
-      <DependentUpon>sitemap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sitemap.aspx.designer.cs">
-      <DependentUpon>sitemap.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPage\EmailVerification.aspx.cs">
       <DependentUpon>EmailVerification.aspx</DependentUpon>
