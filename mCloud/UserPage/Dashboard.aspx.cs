@@ -254,7 +254,7 @@ namespace mCloud.UserPage
 
             catch (Exception ex)
             {
-
+                DAL.OnError(ex);
             }
         }
 
@@ -443,6 +443,8 @@ namespace mCloud.UserPage
                                 File.Move(@filepath, @path + "\\" + name);
                             }
                         }
+                        loadDirectory();
+                        loadFiles();
                     }
                 }
 
