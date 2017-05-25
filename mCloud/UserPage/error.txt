@@ -116,3 +116,28 @@ System.InvalidOperationException: Collection was modified; enumeration operation
    at System.Collections.ArrayList.ArrayListEnumeratorSimple.MoveNext()
    at mCloud.UserPage.Dashboard.btnmoveok_ServerClick(Object sender, EventArgs e)
 -----------------25-May-17 11:04:42 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:44:45 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:44:59 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:45:56 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:48:08 AM-----------------
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moilcloud.com\moilcloud.com\mCloud\Users\9999992222\20161111_100911.jpg'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.GetAttributes(String path)
+   at mCloud.UserPage.Dashboard.LoadSharedWith() in D:\Projects\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 199
+-----------------25-May-17 11:49:40 AM-----------------

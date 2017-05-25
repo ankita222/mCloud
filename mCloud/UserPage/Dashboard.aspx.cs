@@ -25,6 +25,7 @@ namespace mCloud.UserPage
         mCloudAL AL = new mCloudAL();
         mCloudDAL DAL = new mCloudDAL();
         DataTable dtSiteMap = new DataTable();
+        DataTable dtfav;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Session["id"] as string))
@@ -41,6 +42,13 @@ namespace mCloud.UserPage
             string ReqFolder = Request.QueryString["type"];
             if (Page.IsPostBack != true)
             {
+                #region Code to create Session Datatable and storing the Favourite items
+                dtfav = new DataTable();
+                dtfav = DAL.FunDataTable("Select [UserId],[FavouriteItemName],[FavouriteItemPath],[ItemType] from [FavouriteList] where [UserId]='" + Session["id"].ToString() + "' ");
+                Session["dtfav"] = dtfav;
+                DataTable dtn = new DataTable();
+                dtn = (DataTable)Session["dtfav"];
+                #endregion 
 
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
@@ -410,47 +418,53 @@ namespace mCloud.UserPage
         }
         protected void btnmoveok_ServerClick(object sender, EventArgs e)
         {
-            string path = TreeViewMove.SelectedValue.ToString();
+            try
+            {
+                string path = TreeViewMove.SelectedValue.ToString();
 
-            if (path == "Dashboard")
-            {
-                path = Server.MapPath("~//Users//" + Session["id"].ToString());
-            }
-            int x = CheckRepeaterCount();
-            if (x <= 0)
-            {
-                Response.Write("<Script>alert('Select file')</Script>");
-            }
-            else
-            {
-                string username = Session["id"].ToString();
-                foreach (RepeaterItem ri in Repeater2.Items)
+                if (path == "Dashboard")
                 {
-                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                    if (chk.Checked)
-                    {
-                        string name = lbl.Text;
-                        string Path2 = GetCurrentPath();
-                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
-                        FileInfo[] Files = d.GetFiles();
-                        foreach (FileInfo file in Files)
-                        {
-                            if (file.Name == name)
-                            {
-                                string filepath = file.FullName;
-
-                                File.Move(@filepath, @path + "\\" + name);
-                            }
-                        }
-                        loadDirectory();
-                        loadFiles();
-                    }
+                    path = Server.MapPath("~//Users//" + Session["id"].ToString());
                 }
+                int x = CheckRepeaterCount();
+                if (x <= 0)
+                {
+                    Response.Write("<Script>alert('Select file')</Script>");
+                }
+                else
+                {
+                    string username = Session["id"].ToString();
+                    foreach (RepeaterItem ri in Repeater2.Items)
+                    {
+                        HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                        System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                        if (chk.Checked)
+                        {
+                            string name = lbl.Text;
+                            string Path2 = GetCurrentPath();
+                            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                            FileInfo[] Files = d.GetFiles();
+                            foreach (FileInfo file in Files)
+                            {
+                                if (file.Name == name)
+                                {
+                                    string filepath = file.FullName;
 
-                //Response.Redirect(Request.RawUrl);
+                                    File.Move(@filepath, @path + "\\" + name);
+                                }
+                            }
+                            loadDirectory();
+                            loadFiles();
+                        }
+                    }
+
+                    //Response.Redirect(Request.RawUrl);
+                }
             }
-
+            catch (Exception ex)
+            {
+                DAL.OnError(ex);
+            }
         }
         protected void btnarchive_Click(object sender, EventArgs e)
         {
@@ -1365,30 +1379,87 @@ namespace mCloud.UserPage
         //    string fav_File_Name = e.CommandArgument.ToString();
         //}
 
-        //protected void btnFav_Command1(object sender, CommandEventArgs e)
-        //{
+        protected void btnFav_Command1(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string name = e.CommandArgument.ToString();
+                string path2 = GetCurrentPath();
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));//Assuming Test is your Folder
+                string fullpath = d.FullName;
+                FileInfo[] Files = d.GetFiles();
+                string type;
+                FileAttributes f = File.GetAttributes(fullpath + name);
+                if ((f & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    type = "folder";
+                }
+                else
+                {
+                    type = "file";
+                }
+                string qry = "insert into [FavouriteList](UserId,FavouriteItemName,FavouriteItemPath,ItemType) values ('" + Session["id"].ToString() + "','" + name + "','" + fullpath + name + "','" + type + "')";
+                int x = DAL.FunExecuteNonQuery(qry);
+                if (x > 0)
+                {
+                    ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
+                }
 
-        //        //string name = e.CommandArgument.ToString();
-        //        string path2 = "/Users/";
-        //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+            }
+            catch (Exception ex)
+            {
+                DAL.OnError(ex);
+            }
 
-        //        for (int i = 0; i < dtSiteMap.Rows.Count; i++)
-        //        {
-        //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
-        //        }
+            //foreach (RepeaterItem ri in Repeater1.Items)
+            //{
 
-        //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
-        //    {
-        //        sw.WriteLine(path2);
-        //    }
+            //    ImageButton btnfav = (ImageButton)ri.FindControl("btnFav");
+            //    btnfav.ImageUrl = "~/UserPage/images/fav1.png";
+            //}
 
-        //    //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
-        //    //    if (x > 0) 
-        //    //    Response.Write("<script>alert('Fav added!');</script>");
+            //string path2 = "/Users/";
+            //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-        //}
+            //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            //{
+            //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+            //}
+
+            //using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
+            //{
+            //    sw.WriteLine(path2);
+            //}
+
+            //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
+            //    if (x > 0) 
+            //    Response.Write("<script>alert('Fav added!');</script>");
 
 
+            //        //string name = e.CommandArgument.ToString();
+            //        string path2 = "/Users/";
+            //        dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+
+            //        for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+            //        {
+            //            path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "/" + e.CommandArgument.ToString() + "/";
+            //        }
+
+            //    using (StreamWriter sw = new StreamWriter(Server.MapPath("test.txt"), append: true))
+            //    {
+            //        sw.WriteLine(path2);
+            //    }
+
+            //    //int x = DAL.FunExecuteNonQuery("INSERT INTO FavouriteList(UserId,FavouriteItemPath) VALUES('" + Session["id"].ToString() + "','" + path2 + "')");
+            //    //    if (x > 0) 
+            //    //    Response.Write("<script>alert('Fav added!');</script>");
+
+        }
+
+        protected void ChangeIcon(string userid, string name, string fullpath, string type)
+        {
+
+        }
 
         protected void btnShare_Click(object sender, EventArgs e)
         {
