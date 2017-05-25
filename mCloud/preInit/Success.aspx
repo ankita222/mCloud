@@ -14,10 +14,6 @@
 		<div class="container" style="background: none;">
 		   <div class="row">
 				<div class="col-lg-12 col-xs-12 col-sm-12 text-left">
-					<div class="section-heading" style="margin-bottom:0px;float: left;">
-						<h3 style="color: #fff;font-weight: 400;line-height: 20px;">Account Sucessfuly Created!</h3>
-						<p class="text-muted" style="font-size: 18px;color: #fff;">Login >> Enjoy </p>
-					</div>
 				</div>
                <br />
                 
@@ -37,7 +33,7 @@
 
                              <tr>
                                  <td colspan="2">
-                                     <asp:Label ID="Label1" runat="server" Text="Successfully registered!" ForeColor="#00CC66" Font-Size="Larger"></asp:Label><br />
+                                     <asp:Label ID="lblSuccMsg" runat="server" Text="Successfully registered!" ForeColor="#00CC66" Font-Size="Larger"></asp:Label><br />
                                      <a href="../Signin.aspx">Sigin In</a>
                                  </td>
 
