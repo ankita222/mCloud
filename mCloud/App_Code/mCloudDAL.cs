@@ -325,8 +325,8 @@ namespace mCloud.App_Code
                 HttpContext.Current.Response.Write(
                     "<div style='padding:80px 80px; margin:100px;'>" +
                     "<img src='img/error.png' alt='error' width = '10%' /><br>" +
-                    "<h1>Oops!</h1>" +
-                    "<h2>I'm afraid, something went wrong.</h2>" +
+                    "<div style='padding:5px 5px;background-color:#7f7f7f;width:50%;'><h1>Oops!</h1>" +
+                    "<h2>I'm afraid, something went wrong.</h2></div>" +
                     "<h4><a href='./'>Take me home</a></h4></div><div style='display:none;'>"
                     );
             }

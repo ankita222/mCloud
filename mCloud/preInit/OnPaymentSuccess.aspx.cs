@@ -15,29 +15,40 @@ namespace mCloud.preInit
         mCloudDAL mDAL = new App_Code.mCloudDAL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Session["Mob"] as string))
+            if (
+                    !string.IsNullOrEmpty(Session["Mob"] as string) &&
+                    !string.IsNullOrEmpty(Request.QueryString["status"] as string) &&
+                    !string.IsNullOrEmpty(Request.QueryString["payment_id"] as string)
+               )
             {
-                object exist = mDAL.FunExecuteScalar("SELECT PaymentStatus FROM Payment WHERE UserId='" + Session["Mob"].ToString() + "'");
-                if (exist.ToString() == "Credit")
+                if (Request.QueryString["status"] == "success")
                 {
-                    int x = mDAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive=1 WHERE UserId='" + Session["Mob"].ToString() + "'");
-
-                    if (x > 0)
+                    int PupStat= mDAL.FunExecuteNonQuery("UPDATE Payment SET PaymentStatus='success',TransactionId='" + Request.QueryString["payment_id"] + "',PaymentMode='WebSite' WHERE UserId='" + Session["Mob"].ToString() + "'");
+                    if (PupStat > 0)
                     {
-                        lblSuccMsg.Text = Session["Mob"].ToString() + ", Successfully Registered!";
-                    }
-                    else
-                    {
-                        lblSuccMsg.Text = "Something went wrong! Please Contact Support.";
-                        Page.Title = "Something went wrong! Please Contact Support.";
-                    }
+                        int ActStat = mDAL.FunExecuteNonQuery("UPDATE UserDetails SET IsActive=1 WHERE UserId='" + Session["Mob"].ToString() + "'");
 
+                        if (ActStat > 0)
+                        {
+                            lblSuccMsg.Text = Session["Mob"].ToString() + ", Successfully Registered!";
+                        }
+                        else
+                        {
+                            Session.Abandon();
+                            Session.Clear();
+                            lblSuccMsg.ForeColor = System.Drawing.Color.Red;
+                            lblSuccMsg.Text = "Payment failed! If amount is deducted from your account please contact support.";
+                            Page.Title = "Payment Failed! Please Contact Support";
+                        }
+                    }
                 }
                 else
                 {
                     Session.Abandon();
                     Session.Clear();
-                    Response.Redirect("~/error.aspx");
+                    lblSuccMsg.ForeColor = System.Drawing.Color.Red;
+                    lblSuccMsg.Text = "Payment failed! If amount is deducted from your account please contact support.";
+                    Page.Title = "Payment Failed! Please Contact Support";
                 }
             }
         }

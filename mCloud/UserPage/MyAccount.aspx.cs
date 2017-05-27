@@ -44,7 +44,7 @@ namespace mCloud.UserPage
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
@@ -74,7 +74,7 @@ namespace mCloud.UserPage
 
                 }
             }
-            catch(Exception ex)
+            catch
             {
 
             }
@@ -84,30 +84,30 @@ namespace mCloud.UserPage
         {
             string username = Session["id"].ToString();
 
-            string insertmenu, firstname, lastname, mail;
+            string insertmenu, firstname, mail;
             firstname = txtFirstname.Text;
           
             mail = txtmail.Value;
 
-            SqlCommand cmd1;
+            //SqlCommand cmd1;
             string contenttype = string.Empty;
             string filename = string.Empty;
             string ext = string.Empty;
-            byte[] bytes = null;
+            //byte[] bytes = null;
             try
             {
                 if (imgupload.HasFile)
                 {
                     filename = Path.GetFileName(imgupload.PostedFile.FileName);
                     ext = Path.GetExtension(imgupload.PostedFile.FileName);
-                    imgupload.SaveAs(Server.MapPath("~/Users/Profile/" + username+ext));
-                    insertmenu = "update UserDetails set Name='"+firstname+ "' ,Email='"+ mail + "' where UserId='"+username+"'  ";
+                    imgupload.SaveAs(Server.MapPath("~/Users/Profile/" + username + ext));
+                    insertmenu = "update UserDetails set Name='" + firstname + "' ,Email='" + mail + "' where UserId='" + username + "'  ";
                 }
                 else
                 {
                     insertmenu = "update UserDetails set Name='" + firstname + "' ,Email='" + mail + "' where UserId='" + username + "'";
                 }
-             
+
                 int i = mDAL.FunExecuteNonQuery(insertmenu);
 
                 if (i == 1)
@@ -116,13 +116,12 @@ namespace mCloud.UserPage
                     txtmail.Value = "";
                 }
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "Key", "alert('Menu Added.');", true);
-               // loadInfo(number);
-               Response.Redirect(Request.RawUrl);
+                // loadInfo(number);
+                Response.Redirect(Request.RawUrl);
 
             }
-            catch (Exception ex)
+            catch
             { }
-
         }
 
         protected void btnchangepass_Click(object sender, EventArgs e)

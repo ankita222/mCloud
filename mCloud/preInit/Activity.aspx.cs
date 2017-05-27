@@ -116,51 +116,49 @@ namespace mCloud.preInit
         protected void btnPay_Click(object sender, EventArgs e)
         {
             #region Pay
-            if (txtPassword.Value != txtCPassword.Value)
+            if (txtPassword.Value == txtCPassword.Value)
             {
-                Response.Write("<script>alert('Passwords mismatched!');</script>");
-            }
-            else if (chbxAgree.Checked == true)
-            {
-                if (lblSelectedPlan.Text != "")
+                if (chbxAgree.Checked == true)
                 {
-                    if (txtMob.Value != "" && txtName.Value != "" && (txtPassword.Value != "" && txtCPassword.Value != ""))
+                    if (lblSelectedPlan.Text != "")
                     {
-                        if (txtEmail.Value != "")
-                            Session["Email"] = txtEmail.Value;
-                        else
-                            Session["Email"] = "demosale@moilcloud.com";
-                        Session["Name"] = txtName.Value;
-                        Session["Password"] = AL.PassHash(txtCPassword.Value);
-
-                        if (
-                                !string.IsNullOrEmpty(Session["PlanId"] as string) &&
-                                !string.IsNullOrEmpty(Session["Amount"] as string) &&
-                                !string.IsNullOrEmpty(Session["DataSize"] as string) &&
-                                !string.IsNullOrEmpty(Session["Days"] as string) &&
-                                !string.IsNullOrEmpty(Session["PlanName"] as string) &&
-
-                                !string.IsNullOrEmpty(Session["Email"] as string) &&
-                                !string.IsNullOrEmpty(Session["Name"] as string) &&
-                                !string.IsNullOrEmpty(Session["Mob"] as string)
-                           )
+                        if (txtMob.Value != "" && txtName.Value != "" && (txtPassword.Value != "" && txtCPassword.Value != ""))
                         {
-                            float amount = float.Parse(Session["Amount"].ToString());
-                            string name = Session["Name"].ToString();
-                            string email = Session["Email"].ToString();
-                            string phone = Session["Mob"].ToString();
+                            if (txtEmail.Value != "")
+                                Session["Email"] = txtEmail.Value;
+                            else
+                                Session["Email"] = "demosale@moilcloud.com";
+                            Session["Name"] = txtName.Value;
+                            Session["Password"] = AL.PassHash(txtCPassword.Value);
 
-                            string productinfo = Session["PlanName"].ToString() + "( " + "₹" + Session["Amount"].ToString() + " - " + Session["DataSize"].ToString() + " GB" + " - " + Session["Days"].ToString() + " Days )";
+                            if (
+                                    !string.IsNullOrEmpty(Session["PlanId"] as string) &&
+                                    !string.IsNullOrEmpty(Session["Amount"] as string) &&
+                                    !string.IsNullOrEmpty(Session["DataSize"] as string) &&
+                                    !string.IsNullOrEmpty(Session["Days"] as string) &&
+                                    !string.IsNullOrEmpty(Session["PlanName"] as string) &&
 
-                            int PaymentId = AL.GenId();
-                            string RefCode = "";
-                            if (!string.IsNullOrEmpty(Session["RefCode"] as string))
+                                    !string.IsNullOrEmpty(Session["Email"] as string) &&
+                                    !string.IsNullOrEmpty(Session["Name"] as string) &&
+                                    !string.IsNullOrEmpty(Session["Mob"] as string)
+                               )
                             {
-                                RefCode = Session["RefCode"].ToString();
-                            }
-                            
-                            SqlParameter[] param =
-                            {
+                                float amount = float.Parse(Session["Amount"].ToString());
+                                string name = Session["Name"].ToString();
+                                string email = Session["Email"].ToString();
+                                string phone = Session["Mob"].ToString();
+
+                                string productinfo = Session["PlanName"].ToString() + "( " + "₹" + Session["Amount"].ToString() + " - " + Session["DataSize"].ToString() + " GB" + " - " + Session["Days"].ToString() + " Days )";
+
+                                int PaymentId = AL.GenId();
+                                string RefCode = "";
+                                if (!string.IsNullOrEmpty(Session["RefCode"] as string))
+                                {
+                                    RefCode = Session["RefCode"].ToString();
+                                }
+
+                                SqlParameter[] param =
+                                {
                                 new SqlParameter("@UserId",phone ),
                                 new SqlParameter("@Name", name),
                                 new SqlParameter("@Email", email),
@@ -177,49 +175,71 @@ namespace mCloud.preInit
                                 new SqlParameter("@PlanBought", Session["PlanId"].ToString()),
                                 new SqlParameter("@PaymentStatus", "Pending"),
                                 new SqlParameter("@PaidAmount", amount)
-                            };
-                            btnPay.Visible = false;
-                            int x = mDAL.FunExecuteNonQuerySP("ust_onreg", param);
-                            if (x > 0)
-                            {
-                                string activationCode = AL.GenEmailVerificationCode();
-                                SqlParameter[] param2 = {
+                                };
+
+                                int x = mDAL.FunExecuteNonQuerySP("ust_onreg", param);
+                                if (x > 0)
+                                {
+                                    string activationCode = AL.GenEmailVerificationCode();
+                                    SqlParameter[] param2 = {
                                 new SqlParameter("@UserId", phone),
                                 new SqlParameter("@Email", email),
                                 new SqlParameter("@ActivationCode", activationCode)
-                            };
-                                int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
-                                if (y >= 0) 
-                                {
-                                    string body = "Dear Customer,";
-                                    body += "<br /><br />Please click the following link to verify your email.<br>";
-                                    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("Activity.aspx",         "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to verify</h2></a><br><br>";
-                                    body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
-                                    AL.SendMail(email, "MoilCloud Email Verification", body);
-                                }
+                                };
+                                    int y = mDAL.FunExecuteNonQuerySP("ust_emailverification", param2);
+                                    if (y >= 0)
+                                    {
+                                        string body = "Dear Customer,";
+                                        body += "<br /><br />Please click the following link to verify your email.<br>";
+                                        body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("Activity.aspx", "EmailVerification.aspx?ActivationCode=" + activationCode) + "'><h2 style='float:left;padding:10px; background-color:#007acc;color:#f0f0f0;width:200px;text-align:center;'>Click here to verify</h2></a><br><br>";
+                                        body += "<br /><br /><br /><br><br>Team MoilCloud<br><br>";
+                                        AL.SendMail(email, "MoilCloud Email Verification", body);
+                                    }
 
-                                AL.CreateUserFolder(Session["Mob"].ToString());
-                                if (Session["PlanId"].ToString() == "1")
-                                {
-                                    Session["ActivateAccont"] = "1";
-                                    Response.Redirect("Success.aspx");
+                                    AL.CreateUserFolder(Session["Mob"].ToString());
+                                    if (amount == 0)
+                                    {
+                                        Session["ActivateAccont"] = "1";
+                                        Response.Redirect("Success.aspx");
+                                    }
+                                    else
+                                        Response.Redirect("Pay.aspx");
                                 }
                                 else
-                                    Response.Redirect("Pay.aspx");
+                                {
+                                    lblPaymentSelect.InnerText = "Something went wrong, please try again.";
+                                    lblPaymentSelect.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                lblPaymentSelect.InnerText = "Session timeout.";
+                                lblPaymentSelect.Visible = true;
                             }
                         }
                         else
-                            Response.Write("<script>alert('Something went wrong, please try again.');</script>");
+                        {
+                            lblPaymentSelect.InnerText = "Please fill all required fields.";
+                            lblPaymentSelect.Visible = true;
+                        }
                     }
                     else
-                        Response.Write("<script>alert('Please fill all required fields.');</script>");
+                    {
+                        lblPaymentSelect.InnerText = "Select a plan to proceed.";
+                        lblPaymentSelect.Visible = true;
+                    }
                 }
                 else
+                {
+                    lblPaymentSelect.InnerText = "Please check the agreement to proceed.";
                     lblPaymentSelect.Visible = true;
+                }
             }
             else
-                Response.Write("<script>alert('Please check the agreement to proceed.');</script>");
-
+            {
+                lblPaymentSelect.InnerText = "Passwords not matched.";
+                lblPaymentSelect.Visible = true;
+            }
             #endregion
         }
     }

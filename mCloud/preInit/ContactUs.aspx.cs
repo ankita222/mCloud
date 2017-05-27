@@ -28,7 +28,7 @@ namespace mCloud.preInit
                     "<br> Mobile: " + txtMob.Value +
                     "<br> Message: " + txtMsg.Text
                       );
-                if (x == 1)
+                if (x > 0)
                 { 
                     Response.Write("<script>alert('Sent Successfully!');</script>");
                     txtName.Value = "";
@@ -36,6 +36,8 @@ namespace mCloud.preInit
                     txtMob.Value = "";
                     txtMsg.Text = "";
                 }
+                else
+                    Response.Write("<script>alert('Error! Try again.');</script>");
             }
             else
                 Response.Write("<script>alert('All fields are required and mobile number must be 10 digit only.');</script>");

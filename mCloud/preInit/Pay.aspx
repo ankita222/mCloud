@@ -53,7 +53,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>
+                                    &nbsp;</td>
                                 <td style=" text-align:right;">
                                     <a runat="server" id="paybtn" href="#" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Pay Now"></a>
                                     <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>

@@ -92,6 +92,12 @@ namespace mCloud
                     {
                         Response.Redirect("~/preInit/Activity.aspx");
                     }
+                    else
+                    {
+                        this.lblErrorSignup.Visible = true;
+                        this.lblErrorSignup.Text = "Invalid Mobile No., Contact Support.";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopupLog();", true);
+                    }
                 }
             }
             else
@@ -100,13 +106,6 @@ namespace mCloud
 
         protected void btnSignIn_Click(object sender, EventArgs e)
         {
-
-            #region TEMP LOGIN CODE
-            //Session["id"] = txtUserName.Value;
-            //Session["CurrentPath"] = "UserPage";
-            //Response.Redirect("UserPage/Dashboard.aspx?id=" + txtUserName.Value);
-            #endregion
-
             #region LOGIN CODE
 
             if (txtUserName.Value != "" && txtPassword.Value != "")

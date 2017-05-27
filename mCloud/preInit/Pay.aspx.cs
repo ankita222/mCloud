@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using mCloud.App_Code;
+using System.Collections.Specialized;
+using System.Net;
 
 namespace mCloud.preInit
 {
@@ -53,5 +55,31 @@ namespace mCloud.preInit
             }
 
         }
+
+
+        public static class Http
+        {
+            public static byte[] Post(string uri, NameValueCollection pairs)
+            {
+                byte[] response = null;
+                using (WebClient client = new WebClient())
+                {
+                    response = client.UploadValues(uri, pairs);
+                }
+                return response;
+            }
+        }
+
+
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    var response = Http.Post("http://localhost:13700/preInit/PaymentWebHookLite.aspx", new NameValueCollection() {
+        //        { "payment_id", "MOJO6233477095739189" },
+        //        { "status", "Credit" },
+        //        { "buyer_phone", Session["Mob"].ToString() },
+        //        { "amount", Session["Amount"].ToString() }
+        //        });
+        //    Response.Redirect("OnPaymentSuccess.aspx");
+        //}
     }
 }

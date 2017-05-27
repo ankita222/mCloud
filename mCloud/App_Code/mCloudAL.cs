@@ -44,7 +44,7 @@ namespace mCloud.App_Code
             {
                 Host = ConfigurationManager.AppSettings["smtpServer"],
                 Port = Convert.ToInt32(ConfigurationManager.AppSettings["smtpPort"]),
-                EnableSsl = true,
+                EnableSsl = false,
                 Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["smtpUser"], ConfigurationManager.AppSettings["smtpPass"])
             };
             message.From = Sender;
@@ -58,7 +58,7 @@ namespace mCloud.App_Code
                 smtp.Send(message);
                 return 1;
             }
-            catch (Exception ex)
+            catch
             {
                 // throw ex;
                 return 0;
@@ -150,7 +150,7 @@ namespace mCloud.App_Code
                 }
                 return 0;
             }
-            catch (Exception ex)
+            catch 
             {
                 return 0;
             }

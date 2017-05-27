@@ -177,3 +177,11 @@ System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\moil
    at System.IO.File.GetAttributes(String path)
    at mCloud.UserPage.Dashboard.LoadSharedWith()
 -----------------25-May-17 5:11:21 PM-----------------
+System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.ArrayList.ArrayListEnumeratorSimple.MoveNext()
+   at mCloud.UserPage.Dashboard.btnmoveok_ServerClick(Object sender, EventArgs e) in C:\Users\Shadab\Desktop\111mcloud\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 452
+-----------------26-05-2017 05:20:31 PM-----------------
+System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+   at System.Collections.ArrayList.ArrayListEnumeratorSimple.MoveNext()
+   at mCloud.UserPage.Dashboard.btnmoveok_ServerClick(Object sender, EventArgs e) in C:\Users\Shadab\Desktop\111mcloud\moilcloud.com\mCloud\UserPage\Dashboard.aspx.cs:line 452
+-----------------26-05-2017 05:20:37 PM-----------------

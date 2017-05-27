@@ -58,10 +58,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TallComponents.PDFThumbnail, Version=3.0.5.0, Culture=neutral, PublicKeyToken=76bf2dedaa68ccb5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\TallComponents.PDFThumbnail.dll</HintPath>
-    </Reference>
     <Reference Include="Thought.vCards, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Techizas\Desktop\Thought.vCards.dll</HintPath>
@@ -215,6 +211,7 @@
     <Content Include="js\htc\sepia.htc" />
     <Content Include="Loading_icon.gif" />
     <Content Include="preInit\EmailVerification.aspx" />
+    <Content Include="preInit\error.txt" />
     <Content Include="preInit\img\error.png" />
     <Content Include="preInit\PaymentWebHookLite.aspx" />
     <Content Include="preInit\PaymentWebHookPremium.aspx" />
@@ -390,6 +387,7 @@
     <Content Include="Signin.aspx" />
     <Content Include="RefSignUp.aspx" />
     <Content Include="Signup.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="UserPage\css\materialize.css" />
     <Content Include="UserPage\css\style.css" />
     <Content Include="UserPage\css\style.min.css" />
@@ -434,6 +432,7 @@
     <Content Include="UserPage\css\themes\theme-yellow.css" />
     <Content Include="UserPage\css\themes\theme-yellow.min.css" />
     <Content Include="UserPage\EmailVerification.aspx" />
+    <Content Include="UserPage\error.txt" />
     <Content Include="UserPage\favicon.png" />
     <Content Include="UserPage\images\20151205_566242be95048-210x274 %281%29.png" />
     <Content Include="UserPage\images\58df4a59e8006040485179.gif" />
@@ -3681,7 +3680,6 @@
     <Content Include="UserPage\plugins\waitme\waitMe.min.js" />
     <Content Include="UserPage\Dashboard.aspx" />
     <Content Include="UserPage\MyAccount.aspx" />
-    <Content Include="Users\profile\123.jpg" />
     <Content Include="Validation.js" />
     <Content Include="Web.config" />
     <Content Include="WebHookError.txt" />
@@ -3845,6 +3843,13 @@
     </Compile>
     <Compile Include="Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPage\EmailVerification.aspx.cs">
       <DependentUpon>EmailVerification.aspx</DependentUpon>
@@ -4316,6 +4321,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Users\9693495172\" />
+    <Folder Include="Users\profile\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

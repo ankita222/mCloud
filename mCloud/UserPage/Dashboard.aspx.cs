@@ -26,7 +26,7 @@ namespace mCloud.UserPage
         DataTable dtfav;
         DataTable dticon = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
-         {
+        {
             if (string.IsNullOrEmpty(Session["id"] as string))
             {
                 Session.Clear();
@@ -40,15 +40,15 @@ namespace mCloud.UserPage
             divContact.Visible = false;
 
             string ReqFolder = Request.QueryString["type"];
-            
+
             if (Page.IsPostBack != true)
             {
-                
+
 
                 LoadSiteMap(Session["id"].ToString());
                 treeFolder();
-              
-           if (ReqFolder == "files")
+
+                if (ReqFolder == "files")
                 {
                     //CreateSiteMap("files");
                     //LoadSiteMap("Files");
@@ -72,12 +72,12 @@ namespace mCloud.UserPage
                     LoadSharedWith();
                 }
 
-                if (ReqFolder != "contact"&&ReqFolder!= "sharedby"&& ReqFolder != "shared")
+                if (ReqFolder != "contact" && ReqFolder != "sharedby" && ReqFolder != "shared")
                 {
                     loadDirectory();
                     loadFiles();
                 }
-               
+
             }
         }
 
@@ -104,7 +104,7 @@ namespace mCloud.UserPage
 
                 if (dtshare != null)
                 {
-                   
+
                     for (int i = 0; i < dtshare.Rows.Count; i++)
                     {
                         string path = dtshare.Rows[i]["FilePath"].ToString();
@@ -165,7 +165,7 @@ namespace mCloud.UserPage
                         //    dt_temp.Rows.Add(o1);
                         //    Repeater1.DataSource = dt_temp;
                         //    Repeater1.DataBind();
-                            
+
                         //}
 
 
@@ -198,9 +198,9 @@ namespace mCloud.UserPage
 
                 dtshare = DAL.FunDataTable(getshareddoc);
 
-                if (dtshare != null)
+                if (dtshare != null && dtshare.Rows.Count > 0)
                 {
-                   
+
                     for (int i = 0; i < dtshare.Rows.Count; i++)
                     {
                         string path = dtshare.Rows[i]["FilePath"].ToString();
@@ -468,11 +468,12 @@ namespace mCloud.UserPage
                                     File.Move(@filepath, @path + "\\" + name);
                                 }
                             }
-                            loadDirectory();
-                            loadFiles();
-                        }
-                    }
 
+                        }
+
+                    }
+                    loadDirectory();
+                    loadFiles();
                     //Response.Redirect(Request.RawUrl);
                 }
             }
@@ -492,37 +493,39 @@ namespace mCloud.UserPage
             }
             else
             {
-                foreach (RepeaterItem ri in Repeater1.Items)
+                try
                 {
-                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                    if (chk.Checked)
+                    foreach (RepeaterItem ri in Repeater1.Items)
                     {
-                        string name = lbl.Text;
-                        string Path2 = GetCurrentPath();
-                        DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
-                        DirectoryInfo[] Files = d.GetDirectories();
-                        foreach (DirectoryInfo file in Files)
+                        HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                        System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                        if (chk.Checked)
                         {
-                            if (file.Name == name)
+                            string name = lbl.Text;
+                            string Path2 = GetCurrentPath();
+                            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@Path2));//Assuming Test is your Folder
+                            DirectoryInfo[] Files = d.GetDirectories();
+                            foreach (DirectoryInfo file in Files)
                             {
-                                string startPath = file.FullName;
-                                //string h = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\Mudassar Khan.vcf";
-                                //string v = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\wwwww.zip";
-                                string t = Path.GetDirectoryName(startPath);
-                                string zipPath = @t + "\\" + zipname + ".zip";
+                                if (file.Name == name)
+                                {
+                                    string startPath = file.FullName;
+                                    //string h = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\Mudassar Khan.vcf";
+                                    //string v = "E:\\MoilCloud\New folder\MoilCloud\onlineStorage\Users\9708942333\wwwww.zip";
+                                    string t = Path.GetDirectoryName(startPath);
+                                    string zipPath = @t + "\\" + zipname + ".zip";
 
 
-                                //  string extractPath = @"c:\example\extract";
+                                    //  string extractPath = @"c:\example\extract";
 
-                                ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
-
-
-
+                                    ZipFile.CreateFromDirectory(@startPath, @zipPath, CompressionLevel.Fastest, true);
+                                }
                             }
-
                         }
                     }
+                }
+                catch (Exception)
+                {
 
                 }
                 loadDirectory();
@@ -611,8 +614,8 @@ namespace mCloud.UserPage
 
                 DirectoryInfo[] Files = d.GetDirectories();
                 string currentpath = d.FullName;
-                string str = "", image = "",deficon="",favicon="";
-                favicon= "~/UserPage/images/unfav.png";
+                string str = "", image = "", deficon = "", favicon = "";
+                favicon = "~/UserPage/images/unfav.png";
                 deficon = "~/UserPage/images/fav.png";
                 string icon = "";
                 object[] o = new object[3];
@@ -642,8 +645,8 @@ namespace mCloud.UserPage
                         o[1] = image;
                         o[2] = deficon;
                     }
-                    
-                   dt_temp.Rows.Add(o);
+
+                    dt_temp.Rows.Add(o);
                 }
                 Repeater1.DataSource = dt_temp;
                 Repeater1.DataBind();
@@ -801,13 +804,13 @@ namespace mCloud.UserPage
                     //string output = Server.MapPath("~/Users/" + name + "/") + fileName + "_" + fileExtension;
 
                     ///Changed by Jamal
-                    string input = Server.MapPath(path2) + fileName + "_" + fileExtension;
-                    string output = Server.MapPath(path2) + fileName + fileExtension;
+                    string input = Server.MapPath(path2) + fileName + fileExtension;
+                    //string input = Server.MapPath(path2) + fileName + "_" + fileExtension;
+                    //     string output = Server.MapPath(path2) + fileName + fileExtension;
 
                     //Save the Input File, Encrypt it and save the encrypted file in output path.
                     FileUpload1.SaveAs(input);
-
-                    this.AL.Encrypt(input, output);
+                    //this.AL.Encrypt(input, output);
 
                     //Download the Encrypted File.
                     //Response.ContentType = FileUpload1.PostedFile.ContentType;
@@ -815,9 +818,9 @@ namespace mCloud.UserPage
                     //Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
                     //Response.WriteFile(output);
                     //Response.Flush();
-
                     //Delete the original (input) and the encrypted (output) file.
-                    File.Delete(input);
+
+                    // File.Delete(input);
                     //File.Delete(output);
 
                     //Response.End();
@@ -845,75 +848,106 @@ namespace mCloud.UserPage
             { throw ex; }
             loadFiles();
         }
+
+        //code to download files
         protected void btndownload_ServerClick(object sender, EventArgs e)
         {
             try
             {
                 // string username = Session["id"].ToString();
                 string folder = txtfolder.Value;
-                string path2 = "~//Users//";
-                dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
+                //string path2 = "~//Users//";
+                //dtSiteMap = (DataTable)ViewState["VSdtSiteMap"];
 
-                for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //for (int i = 0; i < dtSiteMap.Rows.Count; i++)
+                //{
+                //    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                //}
+                string path2 = GetCurrentPath();
+                int x = CheckRepeaterCount();
+                if (x <= 0)
                 {
-                    path2 = path2 + dtSiteMap.Rows[i]["dir"].ToString() + "//";
+                    Response.Write("<Script>alert('Select File');</script>");
                 }
-                foreach (RepeaterItem ri in Repeater2.Items)
+                else
                 {
-                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                    if (chk.Checked)
+                    foreach (RepeaterItem ri in Repeater2.Items)
                     {
-                        string name = lbl.Text;
-                        // string map = MapPath(@"~/Users/" + username + "/" + name);
-                        //  lblresume.Text = "~/Student_Resume/" + fuResume.FileName.ToString();
-                        if (name != string.Empty)
+                        HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                        System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                        if (chk.Checked)
                         {
-                            WebClient req = new WebClient();
-                            HttpResponse response = HttpContext.Current.Response;
-                            //string inputfilePath = Server.MapPath("~/Users/" + username + "/" + name);// map;
-                            //string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
-
-                            string inputfilePath = Server.MapPath(path2 + name);// map;
-                            string outputfilePath = Server.MapPath(path2 + "//1" + name);// map;
-                            string ext = Path.GetExtension(inputfilePath);
-
-                            if (ext == ".gif" || ext == ".png" || ext == ".jpeg" || ext == ".jpg" || ext == ".txt" || ext == ".pdf" || ext == ".xls" || ext == ".xlsx" || ext == ".doc" || ext == ".docx")
-                            {   ///Exception Error in Decryption
-                                this.AL.Decrypt(inputfilePath, outputfilePath);
-                                response.Clear();
-                                response.ClearContent();
-                                response.ClearHeaders();
-                                response.Buffer = true;
-                                response.AddHeader("Content-Disposition", "attachment;filename=" + name);
-
-                                byte[] data = req.DownloadData(outputfilePath);
-
-                                response.BinaryWrite(data);
-                                File.Delete(outputfilePath);
-                                response.End();
-                            }
-                            else
+                            string name = lbl.Text;
+                            // string map = MapPath(@"~/Users/" + username + "/" + name);
+                            //  lblresume.Text = "~/Student_Resume/" + fuResume.FileName.ToString();
+                            if (name != string.Empty)
                             {
-                                WebClient req1 = new WebClient();
-                                HttpResponse response1 = HttpContext.Current.Response;
-                                string filePath = path2 + "/" + name;// map;
-                                response1.Clear();
-                                response1.ClearContent();
-                                response1.ClearHeaders();
-                                response1.Buffer = true;
-                                response1.AddHeader("Content-Disposition", "attachment;filename=" + name);
-                                byte[] data = req.DownloadData(Server.MapPath(filePath));
-                                response1.BinaryWrite(data);
-                                response1.End();
-                            }
+                                WebClient req = new WebClient();
+                                HttpResponse response = HttpContext.Current.Response;
+                                //string inputfilePath = Server.MapPath("~/Users/" + username + "/" + name);// map;
+                                //string outputfilePath = Server.MapPath("~/Users/" + username + "/" + "1" + name);// map;
 
+                                string inputfilePath = Server.MapPath(path2 + name);// map;
+                                // string outputfilePath = Server.MapPath(path2 + "//1" + name);// map;
+                                string ext = Path.GetExtension(inputfilePath);
+
+                                if (ext == ".gif" || ext == ".png" || ext == ".jpeg" || ext == ".jpg" || ext == ".txt" || ext == ".pdf" || ext == ".xls" || ext == ".xlsx" || ext == ".doc" || ext == ".docx")
+                                {   ///Exception Error in Decryption
+                                    #region Removed Decrytion code Temporarily
+                                    //////////////Removing Decrytion/////////////
+                                    // this.AL.Decrypt(inputfilePath, outputfilePath);
+
+                                    //response.Clear();
+                                    //response.ClearContent();
+                                    //response.ClearHeaders();
+                                    //response.Buffer = true;
+                                    //response.AddHeader("Content-Disposition", "attachment;filename=" + name);
+
+                                    //byte[] data = req.DownloadData(outputfilePath);
+
+                                    //response.BinaryWrite(data);
+                                    //File.Delete(outputfilePath);
+                                    //response.End();
+                                    ///////////////////////////////////////////////
+                                    #endregion
+
+                                    #region Remove below codes when Encrytion and decrytion is applied
+                                    WebClient req1 = new WebClient();
+                                    HttpResponse response1 = HttpContext.Current.Response;
+                                    string filePath = path2 + "/" + name;// map;
+                                    response1.Clear();
+                                    response1.ClearContent();
+                                    response1.ClearHeaders();
+                                    response1.Buffer = true;
+                                    response1.AddHeader("Content-Disposition", "attachment;filename=" + name);
+                                    byte[] data = req.DownloadData(Server.MapPath(filePath));
+                                    response1.BinaryWrite(data);
+                                    response1.End();
+                                    #endregion
+                                }
+                                else
+                                {
+                                    WebClient req1 = new WebClient();
+                                    HttpResponse response1 = HttpContext.Current.Response;
+                                    string filePath = path2 + "/" + name;// map;
+                                    response1.Clear();
+                                    response1.ClearContent();
+                                    response1.ClearHeaders();
+                                    response1.Buffer = true;
+                                    response1.AddHeader("Content-Disposition", "attachment;filename=" + name);
+                                    byte[] data = req.DownloadData(Server.MapPath(filePath));
+                                    response1.BinaryWrite(data);
+                                    response1.End();
+                                }
+
+                            }
                         }
                     }
                 }
             }
             catch (Exception)
             { }
+
         }
         protected void btnrename_Click(object sender, EventArgs e)
         {
@@ -1151,7 +1185,14 @@ namespace mCloud.UserPage
                     FileInfo fi = new FileInfo(map);
                     Int64 ln = fi.Length;// (MapPath(@"~/Users/" + username + "/" + name)).Length;
                                          //     IncreaseSize(ln, username);
-                    System.IO.File.Delete(map);
+                    string delfromSharedList = "delete from [SharedFiles] where [FilePath]='" + map + "'";
+                    int delcnt = DAL.FunExecuteNonQuery(delfromSharedList);
+                    if (x > 0)
+                    {
+                        System.IO.File.Delete(map);
+                    }
+
+
                     //File.Delete(@"~/Users/6354/" + name);
                 }
             }
@@ -1240,19 +1281,19 @@ namespace mCloud.UserPage
             LoadSiteMap(FolderName);
             LoadDtFavList();
             loadDirectory();
-           
-                #region Code to Load Files in Repeater2 except .vcf file
 
-                string path2 = GetCurrentPath();
-                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
-                FileInfo[] Files = d.GetFiles(); //Getting Text files
-                string currentpath = d.FullName;
-                string str = "", image = "", deficon = "", favicon = "",ext="";
-                favicon = "~/UserPage/images/unfav.png";
-                deficon = "~/UserPage/images/fav.png";
-                string icon = "";
-                dt_temp.Rows.Clear();
-                object[] o = new object[3];
+            #region Code to Load Files in Repeater2 except .vcf file
+
+            string path2 = GetCurrentPath();
+            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));
+            FileInfo[] Files = d.GetFiles(); //Getting Text files
+            string currentpath = d.FullName;
+            string str = "", image = "", deficon = "", favicon = "", ext = "";
+            favicon = "~/UserPage/images/unfav.png";
+            deficon = "~/UserPage/images/fav.png";
+            string icon = "";
+            dt_temp.Rows.Clear();
+            object[] o = new object[3];
             try
             {
                 foreach (FileInfo file in Files)
@@ -1323,7 +1364,7 @@ namespace mCloud.UserPage
                     Repeater2.DataBind();
                     //object[] o = { str, image };
                     //    dt_temp.Rows.Add(o);
-                    
+
                     //Repeater2.DataSource = dt_temp;
                     //Repeater2.DataBind();
                 }
@@ -1379,7 +1420,7 @@ namespace mCloud.UserPage
         }
         protected void LoadContactFolder()
         {
-           // LoadSiteMap(FolderName);
+            // LoadSiteMap(FolderName);
             LoadDtFavList();
             loadDirectory();
 
@@ -1636,15 +1677,15 @@ namespace mCloud.UserPage
 
         protected void btnFav_Command1(object sender, CommandEventArgs e)
         {
-           
-                string name = e.CommandArgument.ToString();
-                string path2 = GetCurrentPath();
-            
-                DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));//Assuming Test is your Folder
-                string fullpath = d.FullName;
-                FileInfo[] Files = d.GetFiles();
-                string type;
-                FileAttributes f = File.GetAttributes(fullpath + name);
+
+            string name = e.CommandArgument.ToString();
+            string path2 = GetCurrentPath();
+
+            DirectoryInfo d = new DirectoryInfo(Server.MapPath(@path2));//Assuming Test is your Folder
+            string fullpath = d.FullName;
+            FileInfo[] Files = d.GetFiles();
+            string type;
+            FileAttributes f = File.GetAttributes(fullpath + name);
             try
             {
                 if ((f & FileAttributes.Directory) == FileAttributes.Directory)
@@ -1664,7 +1705,7 @@ namespace mCloud.UserPage
                     int x = DAL.FunExecuteNonQuery(delqry);
                     if (x > 0)
                     {
-                        Response.Write("<script>alert('Fav removed!');</script>");
+                        Response.Write("<script>alert('Favourite removed!');</script>");
                         //ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
                     }
                 }
@@ -1674,7 +1715,7 @@ namespace mCloud.UserPage
                     int x = DAL.FunExecuteNonQuery(qry);
                     if (x > 0)
                     {
-                        Response.Write("<script>alert('Fav added!');</script>");
+                        Response.Write("<script>alert('Favourite added!');</script>");
                         //ChangeIcon(Session["id"].ToString(), name, fullpath + name, type);
                     }
                 }
@@ -1695,7 +1736,7 @@ namespace mCloud.UserPage
             }
             finally
             {
-                
+
             }
 
             //foreach (RepeaterItem ri in Repeater1.Items)
@@ -1762,7 +1803,7 @@ namespace mCloud.UserPage
                     {
                         Response.Write("<script>alert('Select a file');</script>");
                     }
-                    else if (t =="|" || t=="|" )
+                    else if (t == "|" || t == "|")
                     {
                         Response.Write("<script>alert('Folder Cannot Be Shared');</script>");
                     }
@@ -1790,7 +1831,7 @@ namespace mCloud.UserPage
                             int x = DAL.FunExecuteNonQuerySP("ust_sharing", param);
                         }
                     }
-                    
+
                 }
                 else
                 {
@@ -1821,38 +1862,38 @@ namespace mCloud.UserPage
             //}
             //else
             //{
-                foreach (RepeaterItem ri in Repeater2.Items)
+            foreach (RepeaterItem ri in Repeater2.Items)
+            {
+                HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
+                System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
+                if (chk.Checked)
                 {
-                    HtmlInputCheckBox chk = (HtmlInputCheckBox)ri.FindControl("CheckBox1");
-                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)ri.FindControl("mylable");
-                    if (chk.Checked)
-                    {
-                        string name = lbl.Text;
+                    string name = lbl.Text;
 
-                        //FileAttributes attr = File.GetAttributes(@path2);
-                        //if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                        //{
-                        //    Response.Redirect("<script>alert('Folder Cannot Be Shared');</script>");
-                        //    break;
-                        //}
-                        //else
-                        //{
-
-                        DirectoryInfo d = new DirectoryInfo(MapPath(@path2));
-                        FileInfo[] Files = d.GetFiles();
-                        foreach (FileInfo file in Files)
-                        {
-                            if (file.Name == name)
-                            {
-                                filepath = file.FullName;
-                                fname = file.Name;
-                            }
-                        }
+                    //FileAttributes attr = File.GetAttributes(@path2);
+                    //if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    //{
+                    //    Response.Redirect("<script>alert('Folder Cannot Be Shared');</script>");
+                    //    break;
                     //}
+                    //else
+                    //{
+
+                    DirectoryInfo d = new DirectoryInfo(MapPath(@path2));
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (FileInfo file in Files)
+                    {
+                        if (file.Name == name)
+                        {
+                            filepath = file.FullName;
+                            fname = file.Name;
+                        }
                     }
+                    //}
                 }
-                return filepath + "|" + fname;
-           // }
+            }
+            return filepath + "|" + fname;
+            // }
         }
 
         protected void btnDownoad_Command(object sender, CommandEventArgs e)

@@ -70,7 +70,7 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-<asp:ScriptManager ID="SrcripManager" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="SrcripManager" runat="server"></asp:ScriptManager>
    <!-- <section id="features" class="features" style="background: url(img/bg-pattern.png), linear-gradient(to left,#4e1d0d,rgba(232, 60, 61, 0.81));">-->
 		 <section id="features" class="features"  style="background: linear-gradient(45deg, #7e67e5, #02cbdf);">
 		<div class="container" style="background: none;">
@@ -198,11 +198,12 @@
                                         <asp:CheckBox ID="chbxAgree" Checked="false" OnCheckedChanged="chbxAgree_CheckedChanged" AutoPostBack="true" runat="server" />
                                         
                                      <span>I agree to the Moil Cloud <a href="Terms.aspx" style="color: #555;">Terms of Use</a>  and <a href="PrivacyPolicy.aspx" style="color: #555;">Privacy Policy</a></span>
-                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed" OnClick="btnPay_Click" OnClientClick="javascript:ShowProgressBar()" />
+                                        <asp:Button ID="btnPay" Enabled="false" runat="server" CssClass="btn btn-block btn-default btn-lg" Text="Proceed" OnClick="btnPay_Click"  
+                                            OnClientClick="javascript:ShowProgressBar()" />
                          <div id="dvProgressBar" style="visibility: hidden;">
-                         <img src="Loading_icon.gif" width="5%" />Loading...</div>
+                         <img src="Loading_icon.gif" width="5%" />  Loading... Please wait</div>
 										<%--<button type="submit" class="" runat="server" id="btncfrm" disabled="disabled">Proceed To Pay</button>--%>
-                                            <label id="lblPaymentSelect" runat="server" visible="false" style="color:red" >Please select a plan.</label>
+                                            <label id="lblPaymentSelect" runat="server" visible="false" style="color:red" ></label>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
 									</div>
